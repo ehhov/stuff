@@ -1,0 +1,8 @@
+tint2 &
+feh --bg-scale ~/.wallpapers/macOS.jpg &
+#feh --bg-scale ~/.wallpapers/blue-paint.png &
+~/.bin/kb &
+which libinput-gestures-setup && libinput-gestures-setup start &
+#~/.bin/battery-log >> ~/TMP/battery.openbox &
+
+~/.bin/compton &

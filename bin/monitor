@@ -1,0 +1,9 @@
+case $1 in 
+	dis) xrandr --output eDP1 --auto; xrandr --output DP1 --off;;
+	ext) xrandr --output DP1 --auto --left-of eDP1; xrandr --output eDP1 --off;;
+	left) xrandr --output eDP1 --auto; xrandr --output DP1 --auto --left-of eDP1;;
+	rot) xrandr --output DP1 --rotate left;;
+	unrot) xrandr --output DP1 --rotate normal;;
+esac
+
+killall compton && ~/.bin/compton

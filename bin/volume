@@ -1,0 +1,10 @@
+case $1 in
+	up) amixer set Master 2%+;;
+	down) amixer set Master 2%-;;
+	toggle) amixer set Master toggle;;
+	mute) amixer set Master mute;;
+	bigup) amixer set Master 15%+;;
+	bigdown) amixer set Master 15%-;;
+esac
+
+#killall -USR1 status

@@ -1,0 +1,129 @@
+Xft.dpi: 130
+Xft.antialias: true
+Xft.hinting: true
+Xft.rgba: rgb
+Xft.autohint: true
+Xft.hintstyle: hintslight
+Xft.lcdfilter: lcddefault
+
+Xcursor.size: 32
+Xcursor.theme: mac-mod-dark
+
+!!! XTerm configuration !!!
+! special
+xterm*.foreground:   #000000
+xterm*.background:   #e4f7e4
+xterm*.cursorColor:  #000000
+! black
+xterm*.color0:  #000000 
+xterm*.color8:  #343434
+! red
+xterm*.color1:  #EA2B2B
+xterm*.color9:  #ea2b2b
+! green
+xterm*.color2:  #00c000
+xterm*.color10: #00ff00
+! yellow
+xterm*.color3:  #ffcc33
+xterm*.color11: #ffcc33
+! blue
+xterm*.color4:  #3846ff
+xterm*.color12: #3846ff
+! magenta
+xterm*.color5:  #C779DE
+xterm*.color13: #c779de
+! cyan
+xterm*.color6:  #2F9FDC
+xterm*.color14: #2ffffc
+! white
+xterm*.color7:  #c0c0c0
+xterm*.color15: #ffffff
+
+xterm*borderColor: black
+xterm*borderWidth: 1
+xterm*backdrop: white
+xterm*rightScrollBar: True
+xterm*ScrollBar: True
+xterm*Scrollbar.foreground:   Black
+xterm*Scrollbar.background:   White
+xterm*Scrollbar.thickness:    10
+xterm*saveLines: 20000
+xterm*geometry: 90x25
+!xterm*geometry: 90x25+30+60
+xterm*pointerShape:           left_ptr
+!xterm*pointerShape:           arrow
+xterm*pointerColor:           Red
+xterm*pointerColorBackground: White
+
+xterm*VT100.Translations: #override \
+  Ctrl Shift <Key>V: insert-selection(CLIPBOARD) \n\
+  Ctrl Shift <Key>C: copy-selection(CLIPBOARD)   \n\
+  Mod1 <Key>C: copy-selection(PRIMARY)   \n\
+  Mod1 <Key>V: insert-selection(PRIMARY)
+
+!xterm*font: -misc-fixed-medium-*-*-*-15-*-*-100-*-*-*-*
+!XTerm*font: -misc-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso10646-1
+!xterm*font: -misc-fixed-medium-r-normal--15-140-75-75-c-90-iso10646-1
+!xterm*font: -misc-fixed-medium-r-normal--18-120-100-100-c-90-iso10646-1
+!xterm*font: -misc-fixed-medium-r-normal--20-200-75-75-c-100-iso10646-1
+
+xterm*faceName: DejaVuSansMono
+xterm*faceSize: 9
+
+
+
+!!! URXVT configuration !!!
+! special
+urxvt*.foreground:   #DCDFE4
+urxvt*.background:   #222222
+urxvt*.cursorColor:  #A3B3CC
+! black
+urxvt*.color0:  #555555
+urxvt*.color8:  #777777
+! red
+urxvt*.color1:  #E06C75
+urxvt*.color9:  #dd0000
+! green
+urxvt*.color2:  #98C379
+urxvt*.color10: #00dd00
+! yellow
+urxvt*.color3:  #f5dd7B
+urxvt*.color11: #dddd00
+! blue
+urxvt*.color4:  #60aaff
+urxvt*.color12: #5c5cff
+! magenta
+urxvt*.color5:  #C678DD
+urxvt*.color13: #dd00dd
+! cyan
+urxvt*.color6:  #56c6b2
+urxvt*.color14: #00dddd
+! white
+urxvt*.color7:  #c0c0c0
+urxvt*.color15: #ffffff
+
+urxvt.font: xft:Terminus:size=10
+urxvt.geometry: 100x30
+urxvt.internalBorder: 10
+urxvt.saveLines: 20000
+
+URxvt*scrollBar_right: 1
+urxvt*thickness: 10
+
+! dedicated less and other scrolling
+urxvt.scrollstyle: plain
+urxvt.secondaryScreen: 1
+urxvt.secondaryScroll: 0
+urxvt.secondaryWheel: 1
+
+urxvt.perl-ext-common: default,selection-to-clipboard
+urxvt.keysym.C-S-V: eval:paste_clipboard
+urxvt.keysym.C-S-C: eval:selection_to_clipboard
+urxvt.keysym.M-V: eval:paste_selection
+
+! experiment yield: .Xresources does not understand ~/ , but ./ works fine (at least yet). 
+urxvt.iconFile: ./.icons/urxvt.svg
+
+! Decreases character spacing a bit.
+URxvt.letterSpace: -1
+

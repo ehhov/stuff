@@ -1,0 +1,29 @@
+[firefox]
+full_text="Firefox"
+command=firefox
+color=#ff5800
+
+[telegram]
+full_text="Telegram"
+command=/opt/tg/app
+color=#5a9aff
+
+[emacs]
+full_text="Emacs"
+command=emacs
+color=#df80ff
+
+[texstudio]
+full_text="TexStudio"
+command=texstudio
+color=#df60ff
+
+[okular]
+full_text="Okular"
+command=okular
+color=#90c4ff
+
+[quit]
+full_text="Close  "
+command=i3-msg "bar mode invisible bar-1" > /dev/null
+color=#999999

@@ -1,0 +1,25 @@
+my_xclip() {
+	xclip -selection clipboard -t image/png -i $1
+}
+
+case $1 in 
+	screen) 
+		#import -window root 
+		maim -u /tmp/screen.png && my_xclip /tmp/screen.png 
+		;;
+	
+	win)
+		import /tmp/clipboard.png && my_xclip /tmp/clipboard.png
+		;;
+
+	rect)
+		maim -usk /tmp/clipboard.png && my_xclip /tmp/clipboard.png 
+		;;
+
+	quit)
+		killall import
+		killall maim
+		#killall spectacle 
+		;;
+
+esac
