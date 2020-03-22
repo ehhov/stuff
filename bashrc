@@ -22,19 +22,18 @@ fi
 if [ "$PS1" ]; then
 	#PS1="[\u \w]$ "
   #PS1='\n┬─ \u \w [$(date +%l:%M:%S\ %P)]\n└─> '
-  #PS1='[\u][\w] [$(date +%l:%M:%S\ %P)]\n → '
-  #PS1=' \[\e[34m\]$(date +%l:%M:%S%P) \[\e[35m\]\u \[\e[32m\]\w \[\e[33m\] → \[\e[m\]'
   #PS1=' \[\e[33m\]+ \[\e[34m\]$(date +%l:%M:%S%P) \[\e[35m\]\u \[\e[32m\]\w \[\e[33m\]→ \[\e[m\] '
-  PS1=' \[\e[33m\]+ \[\e[34m\]$(~/.bin/bash-time) \[\e[35m\]\u \[\e[32m\]\w \[\e[33m\]→ \[\e[m\] '
+  PS1=' \[\e[34m\]$(~/.bin/bash-time) \[\e[35m\]\u \[\e[32m\]\w \[\e[33m\]→ \[\e[m\] '
 fi
 
 
 # My own willings
 
 alias ls='ls --color=auto'
+alias grep='grep --color'
 alias python='python3'
 alias pdflatex='pdflatex -file-line-error -interaction=nonstopmode'
-export EDITOR=vim
+export EDITOR=vimx
 export DE=KDE
 #export KDE_FULL_SESSION=true
 

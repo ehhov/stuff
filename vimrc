@@ -41,9 +41,11 @@ set statusline+=line\ %l,\ col\ %c\ %4P\  " col, line, percent of file length
 
 vmap <C-c> "+y
 vmap <C-x> "+c
-nmap <C-v> "+p
+"nmap <C-v> "+p
 imap <C-v> <Esc>"+pa
 
 "let g:netrw_browsex_viewer="mimeopen"
 let g:netrw_browse_split = 3
+let g:netrw_liststyle = 1
+let g:netrw_sizestyle = "h"
 autocmd filetype netrw nnoremap <buffer> O :! okular %:p:h/<cfile> & <enter>

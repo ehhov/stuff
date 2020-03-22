@@ -120,10 +120,12 @@ static Key keys[] = {
 	{ Win|Ctrl,                     XK_x,      spawn,          SHCMD("texstudio") },
 	{ Win|Ctrl,                     XK_t,      spawn,          SHCMD("/opt/tg/app") },
 	{ Win|Ctrl,                     XK_m,      spawn,          SHCMD("thunderbird") },
-
+	
+	/* External monitor configuration */
 	{ Win|Alt,                      XK_d,      spawn,          SHCMD("~/.bin/monitor dis") },
 	{ Win|Alt,                      XK_e,      spawn,          SHCMD("~/.bin/monitor ext") },
-	{ Win|Alt,                      XK_b,      spawn,          SHCMD("~/.bin/monitor left") },
+	{ Win|Alt,                      XK_s,      spawn,          SHCMD("~/.bin/monitor left") },
+	{ Win|Alt,                      XK_b,      spawn,          SHCMD("~/.bin/monitor prim") },
 
   { Win|Alt,                      XK_space,  spawn,          SHCMD("~/.bin/kb") },
 	

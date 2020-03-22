@@ -1,5 +1,5 @@
 ## Apps and packages
-- CUPS, Chrome, Emacs, feh, Firefox, GCC, Git, Okular, Python, rxvt-unicode, Spectacle, Telegram Desktop, Thunderbird, VIM, VIM-X11, VLC, XTerm
+- CUPS, Chrome, Emacs, feh, Firefox, GCC, Git, klavaro, Okular, Python, rxvt-unicode, Spectacle, Telegram Desktop, Thunderbird, VIM, VIM-X11, VLC, XTerm
 - compton-tryone, i3, dmenu, Openbox, sddm, tint2
 - alsa-lib,-devel, libX11,-devel, libXft,-devel, libXinerama,-devel, 
 - dialog, libinput, iw, wpa\_supplicant, mesa, X11: xorg-server, -server-utils, -xinit, intel-driver, libinput-driver, xbacklight, alsa

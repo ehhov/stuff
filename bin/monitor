@@ -1,7 +1,8 @@
 case $1 in 
-	dis) xrandr --output eDP1 --auto; xrandr --output DP1 --off;;
+	dis) xrandr --output eDP1 --auto --transform none; xrandr --output DP1 --off;;
 	ext) xrandr --output DP1 --auto --left-of eDP1; xrandr --output eDP1 --off;;
 	left) xrandr --output eDP1 --auto; xrandr --output DP1 --auto --left-of eDP1;;
+	prim) xrandr --output DP1 --auto --primary; xrandr --output eDP1 --scale-from 2560x1440 --same-as DP1;;
 	rot) xrandr --output DP1 --rotate left;;
 	unrot) xrandr --output DP1 --rotate normal;;
 esac
