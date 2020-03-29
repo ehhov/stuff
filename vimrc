@@ -32,7 +32,7 @@ command -nargs=? ROOT   w | ! . ~/work/todot ; root -b -q %<args>
 command -nargs=? PyROOT w | ! . ~/work/todot ; ipython2 %<args>
 command -nargs=? Tex w | ! pdflatex -file-line-error -interaction=nonstopmode % <args>
 command -nargs=? Xetex w|! xelatex % <args>
-command -nargs=? Okular ! okular %:r.pdf &a
+command -nargs=? Okular ! okular %:r.pdf & disown
 
 set laststatus=2 "increase the number of lines at the bottom to place info
 set statusline=%F\ %m  " display filename and is edited/editable 

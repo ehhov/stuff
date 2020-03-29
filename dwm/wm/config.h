@@ -124,8 +124,8 @@ static Key keys[] = {
 	/* External monitor configuration */
 	{ Win|Alt,                      XK_d,      spawn,          SHCMD("~/.bin/monitor dis") },
 	{ Win|Alt,                      XK_e,      spawn,          SHCMD("~/.bin/monitor ext") },
-	{ Win|Alt,                      XK_s,      spawn,          SHCMD("~/.bin/monitor left") },
-	{ Win|Alt,                      XK_b,      spawn,          SHCMD("~/.bin/monitor prim") },
+	{ Win|Alt,                      XK_s,      spawn,          SHCMD("~/.bin/monitor split") },
+	{ Win|Alt,                      XK_b,      spawn,          SHCMD("~/.bin/monitor dup") },
 
   { Win|Alt,                      XK_space,  spawn,          SHCMD("~/.bin/kb") },
 	

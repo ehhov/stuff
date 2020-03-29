@@ -61,15 +61,14 @@ xterm*VT100.Translations: #override \
   Mod1 <Key>C: copy-selection(PRIMARY)   \n\
   Mod1 <Key>V: insert-selection(PRIMARY)
 
+xterm*faceName: DejaVuSansMono
+xterm*faceSize: 9
+
 !xterm*font: -misc-fixed-medium-*-*-*-15-*-*-100-*-*-*-*
 !XTerm*font: -misc-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso10646-1
 !xterm*font: -misc-fixed-medium-r-normal--15-140-75-75-c-90-iso10646-1
 !xterm*font: -misc-fixed-medium-r-normal--18-120-100-100-c-90-iso10646-1
 !xterm*font: -misc-fixed-medium-r-normal--20-200-75-75-c-100-iso10646-1
-
-xterm*faceName: DejaVuSansMono
-xterm*faceSize: 9
-
 
 
 !!! URXVT configuration !!!
