@@ -1,12 +1,11 @@
 #! /bin/bash
 
-chmod +x ./bin/*
-chmod -x ./bin/*.c
-chmod -x ./bin/Makefile
+chmod +x to_home/bin/*
+chmod -x to_home/bin/*.c
+chmod -x to_home/bin/Makefile
 
-D=`pwd`
 Ln_to_home='bash_profile bashrc emacs i3 vimrc Xresources themes bin dwm st'
-Ln_to_config='fontconfig libinput-gestures.conf openbox tint2 compton'
+Ln_to_config='fontconfig libinput-gestures.conf openbox tint2 compton mimeapps.list'
 Ln_KDE='kglobalshortcutsrc khotkeysrc'
 
 
@@ -14,20 +13,71 @@ yes='Yes, delete all my own configuration files and folders (rm -rf) that can be
 no='No, leave my configuration files alive'
 PS3='Are you sure? (1/2): '
 
+create_link() {
+	# create what where
+	if [ ! -e $2 ] && [ ! -L $2 ] && [ -e $1 ]; then  
+		ln -s $1 $2
+	fi
+}
+copy() {
+	# copy what where
+	if [ ! -e $2 ] && [ ! -L $2 ] && [ -e $1 ]; then  
+		cp $1 $2
+	fi
+}
+remove() {
+	# remove what
+	if [ -e $1 ] || [ -L $1 ]; then 
+		rm $1
+	fi
+}
 
 case $1 in
-	relink|reln)
-	for i in $Ln_to_home
-	do 
-		[ -e $D/$i ] && { [ -e ~/.$i ] && rm ~/.$i; ln -s $D/$i ~/.$i; }
+	ln|link)
+	for i in to_home/*; do 
+		j=${i#to_home/}
+		create_link $(pwd)/$i ~/.$j
 	done
-	for i in $Ln_to_config
-	do
-		[ -e $D/$i ] && { [ -e ~/.config/$i ] && rm ~/.config/$i; ln -s $D/$i ~/.config/$i; }
+	for i in to_config/*; do
+		j=${i#to_config/}
+		create_link $(pwd)/$i ~/.config/$j
 	done
-	for i in $Ln_KDE
-	do
-		[ -e $D/KDE/$i ] && { [ -e ~/.config/$i ] && rm ~/.config/$i; ln -s $D/KDE/$i ~/.config/$i; }
+	for i in KDE/*; do
+		j=${i#KDE/}
+		create_link $(pwd)/$i ~/.config/$j
+	done
+	;;
+
+	reln|relink)
+	for i in to_home/*; do 
+		j=${i#to_home/}
+		remove ~/.$j
+		create_link $(pwd)/$i ~/.$j
+	done
+	for i in to_config/*; do
+		j=${i#to_config/}
+		remove ~/.config/$j
+		create_link $(pwd)/$i ~/.config/$j
+	done
+	for i in KDE/*; do
+		j=${i#KDE/}
+		remove ~/.config/$j
+		create_link $(pwd)/$i ~/.config/$j
+	done
+	;;
+
+	cp|copy)
+	for i in to_home/*; do 
+		j=${i#to_home/}
+		copy $(pwd)/$i ~/.$j
+	done
+	for i in to_config/*; do
+		j=${i#to_config/}
+		copy $(pwd)/$i ~/.config/$j
+	done
+	for i in KDE/*; do
+		j=${i#KDE/}
+		copy $(pwd)/$i ~/.config/$j
 	done
 	;;
 
@@ -37,17 +87,17 @@ case $1 in
 		case $j in 
 			$yes)
 				echo 'Deleting...'
-				for i in $Ln_to_home
-				do 
-					[ -e $D/$i -a -e ~/.$i ] && rm -rf ~/.$i
+				for i in to_home/*; do 
+					j=${i#to_home/}
+					remove ~/.$j
 				done
-				for i in $Ln_to_config
-				do
-					[ -e $D/$i -a -e ~/.config/$i ] && rm -rf ~/.config/$i
+				for i in to_config/*; do
+					j=${i#to_config/}
+					remove ~/.config/$j
 				done
-				for i in $Ln_KDE
-				do 
-					[ -e $D/KDE/$i -a -e ~/.config/$i ] && rm -rf ~/.config/$i
+				for i in KDE/*; do
+					j=${i#KDE/}
+					remove ~/.config/$j
 				done
 				break ;;
 			$no)
@@ -57,42 +107,12 @@ case $1 in
 	done
 	;;
 
-	mv|move)
-	for i in $Ln_to_home
-	do 
-		[ ! -e ~/.$i -a -e $D/$i ] && mv $D/$i ~/.$i
-	done
-	for i in $Ln_to_config
-	do
-		[ ! -e ~/.config/$i -a -e $D/$i ] && mv $D/$i ~/.config/$i
-	done
-	for i in $Ln_KDE
-	do 
-		[ ! -e ~/.config/$i -a -e $D/KDE/$i ] && mv $D/KDE/$i ~/.config/$i
-	done
-	;;
-
-	ln|link)
-	for i in $Ln_to_home
-	do 
-		[ ! -e ~/.$i -a -e $D/$i ] && ln -s $D/$i ~/.$i
-	done
-	for i in $Ln_to_config
-	do
-		[ ! -e ~/.config/$i -a -e $D/$i ] && ln -s $D/$i ~/.config/$i
-	done
-	for i in $Ln_KDE
-	do 
-		[ ! -e ~/.config/$i -a -e $D/KDE/$i ] && ln -s $D/KDE/$i ~/.config/$i
-	done
-	;;
-
 	*)
 	echo -e "$0: usage ('|' means 'or') :"
 	echo -e "  $0 ln|link \t\t to create links"
 	echo -e "  $0 reln|relink \t to remove your files and create links"
-	echo -e "  $0 rm|clear|clean \t to remove your files"
-	echo -e "  $0 mv|move \t\t to move files instead of creating links"
+	echo -e "  $0 cp|copy \t\t to copy files instead of creating links"
+	echo -e "  $0 rm|clean \t to remove your files"
 	echo -e ""
 	;;
 

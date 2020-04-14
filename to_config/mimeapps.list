@@ -1,0 +1,33 @@
+[Added Associations]
+application/octet-stream=org.kde.kwrite.desktop;
+application/postscript=okularApplication_ghostview.desktop;
+application/rtf=libreoffice-writer.desktop;
+application/vnd.kde.kxmlguirc=org.kde.kwrite.desktop;
+application/x-research-info-systems=gvim.desktop;
+application/x-shellscript=org.kde.kwrite.desktop;
+image/jpeg=feh.desktop;
+image/png=feh.desktop;
+image/x-eps=okularApplication_ghostview.desktop;
+inode/directory=org.kde.dolphin.desktop;
+message/rfc822=userapp-Thunderbird-F61J8Z.desktop;
+text/markdown=okularApplication_md.desktop;
+text/plain=gvim.desktop;
+text/x-bibtex=gvim.desktop;
+text/x-c=gvim.desktop;
+text/x-chdr=org.kde.kwrite.desktop;
+text/x-csrc=org.kde.kwrite.desktop;
+text/x-python=org.kde.kwrite.desktop;
+text/x-tex=texstudio.desktop;
+x-scheme-handler/mailto=userapp-Thunderbird-F61J8Z.desktop;
+application/iopexport_bib=gvim.desktop;org.kde.kwrite.desktop;
+
+[Default Applications]
+application/rtf=libreoffice-writer.desktop;
+message/rfc822=userapp-Thunderbird-F61J8Z.desktop
+pdf=okular.desktop
+x-scheme-handler/http=firefox.desktop;
+x-scheme-handler/https=firefox.desktop;
+x-scheme-handler/mailto=userapp-Thunderbird-F61J8Z.desktop
+x-scheme-handler/tg=telegramdesktop.desktop
+image/svg+xml=inkscape.desktop;
+application/pdf=qpdfview-qt5.desktop;

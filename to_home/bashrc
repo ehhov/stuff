@@ -23,7 +23,7 @@ if [ "$PS1" ]; then
 	#PS1="[\u \w]$ "
   #PS1='\n┬─ \u \w [$(date +%l:%M:%S\ %P)]\n└─> '
   #PS1=' \[\e[33m\]+ \[\e[34m\]$(date +%l:%M:%S%P) \[\e[35m\]\u \[\e[32m\]\w \[\e[33m\]→ \[\e[m\] '
-  PS1=' \[\e[34m\]$(~/.bin/bash-time) \[\e[35m\]\u \[\e[32m\]\w \[\e[33m\]→ \[\e[m\] '
+  PS1=' \[\e[34m\]$(~/.bin/bash_time) \[\e[35m\]\u \[\e[32m\]\w \[\e[33m\]→ \[\e[m\] '
 fi
 
 
@@ -51,3 +51,16 @@ texclear() {
 	done
 }
 export -f texclear
+
+epsunite() {
+	epss=${@:1:$#-1}
+	out=${@:$#}
+	for i in $epss
+	do
+		epstopdf $i
+		pdfs="$pdfs ${i%.eps}.pdf"
+	done
+	pdfunite $pdfs $out
+	rm $pdfs
+}
+export -f epsunite

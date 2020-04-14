@@ -4,13 +4,20 @@
 
 #define BAT_PATH "/sys/class/power_supply/BAT0/"
 
-int main () {
+double interval_minutes = 1;
+double stop_after_hours = 1;
+
+int 
+main () 
+{
 	FILE *file;
 	int now, full, current;
-	time_t t;
+	time_t t, started;
 	double percent, hours_remain; 
 
-	while (1) {
+	time(&started);
+	do
+	{
 		file=fopen(BAT_PATH"charge_now","r");
 		fscanf(file,"%d",&now);
 		fclose(file);
@@ -26,10 +33,10 @@ int main () {
 		percent = now*100.0/full;
 		hours_remain = now*1.0/current;
 		time(&t);
-		printf("%ld %lf %lf\n", t, percent, hours_remain);
+		printf("%.2lf %.2lf %.3lf\n", (t - started)*1.0/60 , percent, hours_remain);
 		fflush(stdout);
-		sleep(15);
-	}
+		sleep((int) interval_minutes*60);
+	} while (t - started < stop_after_hours*3600);
 	
 	return 0;
 }

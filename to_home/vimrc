@@ -6,6 +6,7 @@ set autochdir  " automatically change directory to the file opened
 set history=50 " keep 50 lines of command line history
 set showcmd    " display incomplete commands
 set dictionary=/usr/share/dict/words
+set whichwrap+=[,]
 
 " Set the same indentation settings for all filetypes
 filetype indent plugin off
@@ -21,18 +22,21 @@ set autoindent
 command Dot w | ! . %
 command Do  w | ! chmod +x %:p; %:p
 command Dir e %:p:h
-command D   e %:p:h
-command Xx  ! mimeopen %:p
+command D e %:p:h
+command Xx silent ! mimeopen %:p & disown
 command -nargs=? C  w | ! gcc % -o /tmp/a && /tmp/a <args>
 command -nargs=? CC w | ! g++ % -o /tmp/a && /tmp/a <args>
 command -nargs=? M  wa| ! make <args>
 command -nargs=? Py w | ! python3 % <args>
-command -nargs=? IPy w| ! ipython3 % <args>
-command -nargs=? ROOT   w | ! . ~/work/todot ; root -b -q %<args>
-command -nargs=? PyROOT w | ! . ~/work/todot ; ipython2 %<args>
+command -nargs=? IPy w | ! ipython3 % <args>
 command -nargs=? Tex w | ! pdflatex -file-line-error -interaction=nonstopmode % <args>
-command -nargs=? Xetex w|! xelatex % <args>
-command -nargs=? Okular ! okular %:r.pdf & disown
+command -nargs=? Latex w | ! pdflatex -file-line-error -interaction=nonstopmode % <args>
+command -nargs=? Xetex w | ! xelatex % <args>
+command -nargs=? Okular silent ! okular %:r.pdf & disown
+command -nargs=? O silent ! qpdfview-qt5 %:r.pdf & disown
+command -nargs=? ROOT   w | ! root -b -q %<args>
+command -nargs=? PyROOT w | ! ipython2 %<args>
+command -nargs=? Ostap  w | ! ostap -qb %<args>
 
 set laststatus=2 "increase the number of lines at the bottom to place info
 set statusline=%F\ %m  " display filename and is edited/editable 
@@ -44,8 +48,7 @@ vmap <C-x> "+c
 "nmap <C-v> "+p
 imap <C-v> <Esc>"+pa
 
-"let g:netrw_browsex_viewer="mimeopen"
+"let g:netrw_browsex_viewer = "mimeopen -n"
 let g:netrw_browse_split = 3
 let g:netrw_liststyle = 1
 let g:netrw_sizestyle = "h"
-autocmd filetype netrw nnoremap <buffer> O :! okular %:p:h/<cfile> & <enter>
