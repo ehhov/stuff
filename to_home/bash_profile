@@ -26,17 +26,13 @@ if [ "$PS1" ]; then
 #    set -o ignoreeof
     set -o noclobber
     export IGNOREEOF=2
-#
-  stty stop ^S
-  stty intr ^C
-#  stty erase ^H
 fi
 
 # User specific environment and startup programs
 #
 # set the prompts
 
-PAGER=less; export PAGER    # Define the default pager for the man command.
+PAGER=less; export PAGER  # Define the default pager for the man command.
 EDITOR=vim; export EDITOR # Define the default editor
 
 # additional local strange things.

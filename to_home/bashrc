@@ -34,9 +34,6 @@ alias grep='grep --color'
 alias python='python3'
 alias pdflatex='pdflatex -file-line-error -interaction=nonstopmode'
 export EDITOR=vimx
-export DE=KDE
-#export KDE_FULL_SESSION=true
-
 
 export TeXauxiliary='aux bbl blg out toc log synctex.gz nav snm lof lot bit idx glo bcf ilg ind fdb_latexmk fls'
 texclear() {

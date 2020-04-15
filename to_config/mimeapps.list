@@ -30,4 +30,4 @@ x-scheme-handler/https=firefox.desktop;
 x-scheme-handler/mailto=userapp-Thunderbird-F61J8Z.desktop
 x-scheme-handler/tg=telegramdesktop.desktop
 image/svg+xml=inkscape.desktop;
-application/pdf=qpdfview-qt5.desktop;
+application/pdf=okularApplication_pdf.desktop;
