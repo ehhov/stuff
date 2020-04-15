@@ -19,7 +19,7 @@ Obviously, you always can look inside the `install.sh` file yourself, but here i
 - If it is `rm` or `clean`, the script will remove your own files and directories that replace existing in this repo ones **(regardless of type: rm -rf)**, but will not place new ones.
 - If it is `reln` or `relink`, the script will replace your config files (not directories) with links to ones from this repo.
 - If it is `ln` or `link`, the script will place links only to these repo files that don't override your own files with the same names.
-- If it is `mv` or `move`, the script will move only the repo files that don't override your own files with the same names.
+- If it is `cp` or `copy`, the script will copy only the repo files that don't override your own files with the same names.
 - In all other cases the script will print a little help message.
 
 If you don't want to use all the files from this repo, but want to use `install.sh` to handle them, just delete (or rename) the files you don't need and run `install.sh`, it will not cause any errors. 
