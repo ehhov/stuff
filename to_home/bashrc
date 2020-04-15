@@ -33,6 +33,7 @@ alias ls='ls --color=auto'
 alias grep='grep --color'
 alias python='python3'
 alias pdflatex='pdflatex -file-line-error -interaction=nonstopmode'
+alias open='xdg-open'
 export EDITOR=vimx
 
 export TeXauxiliary='aux bbl blg out toc log synctex.gz nav snm lof lot bit idx glo bcf ilg ind fdb_latexmk fls'

@@ -6,7 +6,7 @@ set autochdir  " automatically change directory to the file opened
 set history=50 " keep 50 lines of command line history
 set showcmd    " display incomplete commands
 set dictionary=/usr/share/dict/words
-set whichwrap+=[,]
+set whichwrap+=[,] " wrap lines with arrow keys in insert mode 
 
 " Set the same indentation settings for all filetypes
 filetype indent plugin off
@@ -21,22 +21,14 @@ set autoindent
 " Py execute 
 command Dot w | ! . %
 command Do  w | ! chmod +x %:p; %:p
-command Dir e %:p:h
 command D e %:p:h
 command Xx silent ! mimeopen %:p & disown
 command -nargs=? C  w | ! gcc % -o /tmp/a && /tmp/a <args>
 command -nargs=? CC w | ! g++ % -o /tmp/a && /tmp/a <args>
 command -nargs=? M  wa| ! make <args>
 command -nargs=? Py w | ! python3 % <args>
-command -nargs=? IPy w | ! ipython3 % <args>
-command -nargs=? Tex w | ! pdflatex -file-line-error -interaction=nonstopmode % <args>
 command -nargs=? Latex w | ! pdflatex -file-line-error -interaction=nonstopmode % <args>
-command -nargs=? Xetex w | ! xelatex % <args>
-command -nargs=? Okular silent ! okular %:r.pdf & disown
-command -nargs=? O silent ! qpdfview-qt5 %:r.pdf & disown
-command -nargs=? ROOT   w | ! root -b -q %<args>
-command -nargs=? PyROOT w | ! ipython2 %<args>
-command -nargs=? Ostap  w | ! ostap -qb %<args>
+command -nargs=? Lpdf silent ! xdg-open %:r.pdf & disown
 
 set laststatus=2 "increase the number of lines at the bottom to place info
 set statusline=%F\ %m  " display filename and is edited/editable 

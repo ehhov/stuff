@@ -1,12 +1,19 @@
 ## Apps and packages
-- CUPS, Chrome, Emacs, feh, Firefox, GCC, Git, klavaro, Okular, Python, rxvt-unicode, Spectacle, Telegram Desktop, Thunderbird, VIM, VIM-X11, VLC, XTerm
-- compton-tryone, i3, dmenu, Openbox, sddm, tint2
-- alsa-lib,-devel, libX11,-devel, libXft,-devel, libXinerama,-devel, 
-- dialog, libinput, iw, wpa\_supplicant, mesa, X11: xorg-server, -server-utils, -xinit, intel-driver, libinput-driver, xbacklight, alsa
-- flac, libinput-gestures, xclip, simplescreenrecorder, maim
-- DejaVu, Terminus, Iosevka (included in `fonts`)
+- Necessary: CUPS, GCC, Git, Python, VIM, VIM-X11, XTerm, xbacklight, ALSA, PulseAudio
+
+- Common choices: Firefox, Chrome, feh, Emacs, rxvt-unicode, VLC
+
+- My choices: Okular, Thunar, maim, xclip, Thunderbird, Telegram Desktop, simplescreenrecorder, klavaro, libinput-gestures
+
+- UI relating: sddm, dmenu, dwm (from this repository), Openbox, tint2, compton-tryone, i3
+
+- Necessary for DWM and other 'developer' work: alsa-lib,-devel, libX11,-devel, libXft,-devel, libXinerama,-devel
+
+- For minimal distros: dialog, libinput, iw, wpa\_supplicant, mesa, X11: xorg-server, -server-utils, -xinit, intel-driver, libinput-driver
+
+- Fonts: DejaVu, Terminus, Iosevka, Arimo (some are included in `thicc/fonts`)
  
-- GNUplot, OpenSSH, ROOT
+- Relating to Study: GNUplot, OpenSSH, ROOT, Ostap
 
 ## Fix hissing sound in headphones
 For alsamixer
@@ -32,10 +39,10 @@ volume = 1
 ```
 
 ## CUPS configuration
-1. Create group lpadmin.
+1. Create a group named lpadmin.
 1. Edit SystemGroup line in /etc/cups/cups-files.conf – add lpadmin. 
-1. Add user to group admin. 
-1. Type localhost:631/ in browser. 
+1. Add the user to group lpadmin. 
+1. Type localhost:631/ in a browser. 
 1. Add printer smb://guest@192.168.1.1/Xerox3250. (the format is thing://guest@IP/name)
 1. Use driver ph3250.ppd. Set yes in Share checkbox. 
 
@@ -49,6 +56,7 @@ Better patches are marked with +, not working with -, very complicated with ?
 ## Links
 - [XBM online editor](https://xbm.jazzychad.net/),
 - [Image color picker](https://html-color-codes.info/colors-from-image/),
+- [A better image color picker](https://image-color.com/),
 - [Openbox-patched with rounded corners](https://github.com/dylanaraps/openbox-patched),
 - [Color configuration for i3 online](https://thomashunter.name/i3-configurator/),
 - Themes for Openbox: [one](https://github.com/fikriomar16/OBTheme-Collections), [two](https://github.com/addy-dclxvi/openbox-theme-collections)
