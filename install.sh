@@ -28,7 +28,7 @@ copy() {
 remove() {
 	# remove what
 	if [ -e $1 ] || [ -L $1 ]; then 
-		rm $1
+		rm -rf $1
 	fi
 }
 

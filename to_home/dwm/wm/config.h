@@ -114,6 +114,7 @@ static Key keys[] = {
 	{ Win|Ctrl,                     XK_c,      spawn,          SHCMD("google-chrome") },
 	{ Win|Ctrl,                     XK_s,      spawn,          SHCMD("surf https://google.com") },
 	{ Win|Ctrl,                     XK_o,      spawn,          SHCMD("okular") },
+	{ Win|Ctrl,                     XK_p,      spawn,          SHCMD("qpdfview-qt5") },
 	{ Win|Ctrl,                     XK_d,      spawn,          SHCMD("thunar") },
 	{ Win|Ctrl,                     XK_g,      spawn,          SHCMD("gimp") },
 	{ Win|Ctrl,                     XK_i,      spawn,          SHCMD("inkscape") },
