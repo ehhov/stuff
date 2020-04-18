@@ -4,17 +4,12 @@ chmod +x to_home/bin/*
 chmod -x to_home/bin/*.c
 chmod -x to_home/bin/Makefile
 
-Ln_to_home='bash_profile bashrc emacs i3 vimrc Xresources themes bin dwm st'
-Ln_to_config='fontconfig libinput-gestures.conf openbox tint2 compton mimeapps.list'
-Ln_KDE='kglobalshortcutsrc khotkeysrc'
-
-
 yes='Yes, delete all my own configuration files and folders (rm -rf) that can be replaced with ones from this repo'
 no='No, leave my configuration files alive'
 PS3='Are you sure? (1/2): '
 
 create_link() {
-	# create what where
+	# link to_what where
 	if [ ! -e $2 ] && [ ! -L $2 ] && [ -e $1 ]; then  
 		ln -s $1 $2
 	fi
@@ -31,9 +26,21 @@ remove() {
 		rm -rf $1
 	fi
 }
+fix_mime() {
+	# copy the new mimeapps if it has been changed (and hence is now a regular file)
+	file=~/.config/mimeapps.list
+	here=to_config/mimeapps.list
+	if [ -f $file ] && [ ! -L $file ]; then 
+		cp $file $here
+	fi
+}
+
+
+# every time take xdg-mime inadequacy into account	
+fix_mime
 
 case $1 in
-	ln|link)
+ln|link)
 	for i in to_home/*; do 
 		j=${i#to_home/}
 		create_link $(pwd)/$i ~/.$j
@@ -46,9 +53,9 @@ case $1 in
 		j=${i#KDE/}
 		create_link $(pwd)/$i ~/.config/$j
 	done
-	;;
+;;
 
-	reln|relink)
+reln|relink)
 	for i in to_home/*; do 
 		j=${i#to_home/}
 		remove ~/.$j
@@ -64,9 +71,9 @@ case $1 in
 		remove ~/.config/$j
 		create_link $(pwd)/$i ~/.config/$j
 	done
-	;;
+;;
 
-	cp|copy)
+cp|copy)
 	for i in to_home/*; do 
 		j=${i#to_home/}
 		copy $(pwd)/$i ~/.$j
@@ -79,12 +86,12 @@ case $1 in
 		j=${i#KDE/}
 		copy $(pwd)/$i ~/.config/$j
 	done
-	;;
+;;
 
-	rm|clean)
-	select j in "$yes" "$no"
+rm|clean)
+	select k in "$yes" "$no"
 	do
-		case $j in 
+		case $k in 
 			$yes)
 				echo 'Deleting...'
 				for i in to_home/*; do 
@@ -105,16 +112,16 @@ case $1 in
 				break ;;
 		esac
 	done
-	;;
+;;
 
-	*)
+*)
 	echo -e "$0: usage ('|' means 'or') :"
 	echo -e "  $0 ln|link \t\t to create links"
 	echo -e "  $0 reln|relink \t to remove your files and create links"
 	echo -e "  $0 cp|copy \t\t to copy files instead of creating links"
 	echo -e "  $0 rm|clean \t to remove your files"
 	echo -e ""
-	;;
+;;
 
 
 esac

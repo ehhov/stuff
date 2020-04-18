@@ -134,16 +134,16 @@ static int kb_layout;
 /* Functions' bodies */
 
 void 
-color(const char colour[7]) 
+color(const char thecolor[7]) 
 {
-	printf(" foreground=\"#%s\"", colour);
+	printf(" foreground=\"#%s\"", thecolor);
 	return ;
 }
 
 void 
-background(const char colour[7]) 
+background(const char thecolor[7]) 
 {
-	printf(" background=\"#%s\"", colour);
+	printf(" background=\"#%s\"", thecolor);
 	return ;
 } 
 

@@ -3,7 +3,7 @@
 
 - Common choices: Firefox, Chrome, feh, Emacs, rxvt-unicode, VLC
 
-- My choices: Okular, Thunar, maim, xclip, Thunderbird, Telegram Desktop, simplescreenrecorder, klavaro, libinput-gestures
+- My choices: Okular, qpdfview-qt5, Thunar, maim, xclip, Thunderbird, Telegram Desktop, simplescreenrecorder, klavaro, libinput-gestures
 
 - UI relating: sddm, dmenu, dwm (from this repository), Openbox, tint2, compton-tryone, i3
 
@@ -14,6 +14,17 @@
 - Fonts: DejaVu, Terminus, Iosevka, Arimo (some are included in `thicc/fonts`)
  
 - Relating to Study: GNUplot, OpenSSH, ROOT, Ostap
+
+## Making xdg-mime work properly 
+Edit `/usr/bin/xdg-mime` by replacing all 
+
+``` mv $file.new $file ```
+
+with
+
+``` cat $file.new > $file ```
+
+But this doesn't help all that much.
 
 ## Fix hissing sound in headphones
 For alsamixer
