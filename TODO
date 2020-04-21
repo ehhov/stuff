@@ -3,11 +3,11 @@ set convenient Okular shortcuts and save them once and forever
 update to Fedora 31, install uberwriter
 https://docs.fedoraproject.org/en-US/quick-docs/dnf-system-upgrade/
 
-find themes for Qt and GTK that to match non-Qt5 qpdfview's boxy style
-
-make mimeapps.list work with a link. Now it is rewritten on any mimeopen -d ...
+find themes for Qt and GTK that match non-Qt5 qpdfview's boxy style
 
 patch dmenu and create a history file that will be used in parallel with command completion 
+
+make mimeapps.list work as a link 
 
 
 
