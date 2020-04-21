@@ -7,7 +7,7 @@ find themes for Qt and GTK that to match non-Qt5 qpdfview's boxy style
 
 make mimeapps.list work with a link. Now it is rewritten on any mimeopen -d ...
 
-patch dwm and create a history file that will be used in parallel with command completion 
+patch dmenu and create a history file that will be used in parallel with command completion 
 
 
 
