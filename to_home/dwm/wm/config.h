@@ -22,12 +22,12 @@ static const char *fonts[]          = { dmenufont, "DejaVuSans:size=10" };
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
-static const char col_gray4[]       = "#eeeeee";
+static const char col_gray4[]       = "#dddddd";
 static const char col_cyan[]        = "#005577";
-static const char nb[]              = "#000000";
-static const char nf[]              = "#cccccc";
-static const char sb[]              = "#224488"; //"#005577";
-static const char sf[]              = "#ffffff";
+static const char nb[]              = "#eeeeee"; //000000";
+static const char nf[]              = "#333333"; //cccccc";
+static const char sb[]              = "#ddddff"; //224488"; //005577";
+static const char sf[]              = "#000066"; //ffffff";
 static const char nbor[]            = "#444444";
 static const char sbor[]            = "#005577";
 static const char *colors[][3]      = {
@@ -121,6 +121,7 @@ static Key keys[] = {
 	{ Win|Ctrl,                     XK_x,      spawn,          SHCMD("texstudio") },
 	{ Win|Ctrl,                     XK_t,      spawn,          SHCMD("/opt/tg/app") },
 	{ Win|Ctrl,                     XK_m,      spawn,          SHCMD("thunderbird") },
+	{ Win|Ctrl,                     XK_l,      spawn,          SHCMD("libreoffice") },
 	
 	/* External monitor configuration */
 	{ Win|Alt,                      XK_d,      spawn,          SHCMD("~/.bin/monitor dis") },

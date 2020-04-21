@@ -36,7 +36,7 @@ fix_mime() {
 }
 
 
-# every time take xdg-mime inadequacy into account	
+# every time take account of the inadequacy of xdg-mime 
 fix_mime
 
 case $1 in

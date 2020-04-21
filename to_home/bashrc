@@ -51,10 +51,16 @@ texclear() {
 export -f texclear
 
 epsunite() {
-	epss=${@:1:$#-1}
-	out=${@:$#}
-	for i in $epss
-	do
+	if [ $# -le 1 ]; then 
+		echo "epsunite: too few arguments"
+		return 1
+	fi
+	while [ $# -gt 1 ]; do 
+		epses="$epses $1"
+		shift
+	done
+	out=$1
+	for i in $epses; do
 		epstopdf $i
 		pdfs="$pdfs ${i%.eps}.pdf"
 	done
