@@ -49,10 +49,6 @@ ln|link)
 		j=${i#to_config/}
 		create_link $(pwd)/$i ~/.config/$j
 	done
-	for i in KDE/*; do
-		j=${i#KDE/}
-		create_link $(pwd)/$i ~/.config/$j
-	done
 ;;
 
 reln|relink)
@@ -66,11 +62,6 @@ reln|relink)
 		remove ~/.config/$j
 		create_link $(pwd)/$i ~/.config/$j
 	done
-	for i in KDE/*; do
-		j=${i#KDE/}
-		remove ~/.config/$j
-		create_link $(pwd)/$i ~/.config/$j
-	done
 ;;
 
 cp|copy)
@@ -80,10 +71,6 @@ cp|copy)
 	done
 	for i in to_config/*; do
 		j=${i#to_config/}
-		copy $(pwd)/$i ~/.config/$j
-	done
-	for i in KDE/*; do
-		j=${i#KDE/}
 		copy $(pwd)/$i ~/.config/$j
 	done
 ;;
@@ -100,10 +87,6 @@ rm|clean)
 				done
 				for i in to_config/*; do
 					j=${i#to_config/}
-					remove ~/.config/$j
-				done
-				for i in KDE/*; do
-					j=${i#KDE/}
 					remove ~/.config/$j
 				done
 				break ;;
