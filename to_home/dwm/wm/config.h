@@ -55,10 +55,8 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class         instance    title              tags mask     isfloating   monitor */
-	{ "plasmashell", NULL,       NULL,               0b111111111, 1,           -1 },
-	{ NULL,          NULL,       "Desktop — Plasma", 1 << 8,      1,           -1 },
+	{ "Firefox",     NULL,       NULL,               1 << 8,      0,           -1 },
 	//{ "Example",   NULL,       NULL,               0b123456789, 1,           -1 },
-	//{ "Firefox",   NULL,       NULL,               1 << 8,      0,           -1 },
 };
 
 /* layout(s) */
