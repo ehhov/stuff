@@ -1,5 +1,4 @@
 [Added Associations]
-application/pdf=qpdfview-qt5.desktop;okular.desktop;qpdfview.desktop;mupdf.desktop;
 application/octet-stream=org.kde.kwrite.desktop;
 application/postscript=okularApplication_ghostview.desktop;
 application/rtf=libreoffice-writer.desktop;
@@ -12,9 +11,12 @@ text/x-chdr=org.kde.kwrite.desktop;
 text/x-csrc=org.kde.kwrite.desktop;
 x-scheme-handler/mailto=userapp-Thunderbird-F61J8Z.desktop;
 application/iopexport_bib=gvim.desktop;org.kde.kwrite.desktop;
+text/plain=gvim.desktop;
+text/x-tex=texstudio.desktop;gvim.desktop;
+application/vnd.openxmlformats-officedocument.spreadsheetml.sheet=libreoffice-calc.desktop;
+application/pdf=okularApplication_pdf.desktop;
 
 [Default Applications]
-application/pdf=okularApplication_pdf.desktop;
 pdf=okular.desktop
 image/svg+xml=inkscape.desktop;
 image/jpeg=feh.desktop;
@@ -31,3 +33,4 @@ x-scheme-handler/https=firefox.desktop;
 x-scheme-handler/mailto=userapp-Thunderbird-F61J8Z.desktop
 x-scheme-handler/tg=telegramdesktop.desktop
 inode/directory=Thunar-folder-handler.desktop;
+application/pdf=okularApplication_pdf.desktop;
