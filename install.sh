@@ -8,15 +8,17 @@ yes='Yes, delete all my own configuration files and folders (rm -rf) that can be
 no='No, leave my configuration files alive'
 PS3='Are you sure? (1/2): '
 
+this=$(pwd)
+this=${this#~/}
 create_link() {
 	# link to_what where
-	if [ ! -e $2 ] && [ ! -L $2 ] && [ -e $1 ]; then  
+	if [ ! -e $2 ] && [ ! -L $2 ]; then  
 		ln -s $1 $2
 	fi
 }
 copy() {
 	# copy what where
-	if [ ! -e $2 ] && [ ! -L $2 ] && [ -e $1 ]; then  
+	if [ ! -e $2 ] && [ ! -L $2 ]; then  
 		cp $1 $2
 	fi
 }
@@ -43,11 +45,11 @@ case $1 in
 ln|link)
 	for i in to_home/*; do 
 		j=${i#to_home/}
-		create_link $(pwd)/$i ~/.$j
+		create_link ${this}/$i ~/.$j
 	done
 	for i in to_config/*; do
 		j=${i#to_config/}
-		create_link $(pwd)/$i ~/.config/$j
+		create_link ../${this}/$i ~/.config/$j
 	done
 ;;
 
@@ -55,23 +57,23 @@ reln|relink)
 	for i in to_home/*; do 
 		j=${i#to_home/}
 		remove ~/.$j
-		create_link $(pwd)/$i ~/.$j
+		create_link ${this}/$i ~/.$j
 	done
 	for i in to_config/*; do
 		j=${i#to_config/}
 		remove ~/.config/$j
-		create_link $(pwd)/$i ~/.config/$j
+		create_link ../${this}/$i ~/.config/$j
 	done
 ;;
 
 cp|copy)
 	for i in to_home/*; do 
 		j=${i#to_home/}
-		copy $(pwd)/$i ~/.$j
+		copy ${this}/$i ~/.$j
 	done
 	for i in to_config/*; do
 		j=${i#to_config/}
-		copy $(pwd)/$i ~/.config/$j
+		copy ${this}/$i ~/.config/$j
 	done
 ;;
 

@@ -17,12 +17,9 @@ set softtabstop=2
 set shiftwidth=2
 set autoindent 
 
-" Dot, Do execute a current file in the shell
 " Dir, D go to the directory, where a current file is located
 " C, CC compile and execute
 " Py execute 
-command Dot w | ! . %
-command Do  w | ! chmod +x %:p; %:p
 command D e %:p:h
 command Xx silent ! xdg-open %:p & disown
 command -nargs=? C  w | ! gcc % -o /tmp/a && /tmp/a <args>
@@ -33,8 +30,8 @@ command -nargs=? Latex w | ! pdflatex -file-line-error -interaction=nonstopmode 
 command -nargs=? Lpdf silent ! xdg-open %:r.pdf & disown
 
 set laststatus=2 "increase the number of lines at the bottom to place info
-set statusline=%F\ %m  " display filename and is edited/editable 
-set statusline+=%=     " go to the other side of bar
+set statusline=%F\ %m  " display filename and is it edited/editable 
+set statusline+=%=     " go to the other side of the bar
 set statusline+=line\ %l,\ col\ %c\ %4P\  " col, line, percent of file length
 
 vmap <C-c> "+y
@@ -45,4 +42,4 @@ imap <C-v> <Esc>"+pa
 "let g:netrw_browsex_viewer = "mimeopen -n"
 let g:netrw_browse_split = 3
 let g:netrw_liststyle = 1
-let g:netrw_sizestyle = "h"
+let g:netrw_sizestyle = "H"

@@ -101,7 +101,7 @@ urxvt*.color14: #00dddd
 urxvt*.color7:  #c0c0c0
 urxvt*.color15: #ffffff
 
-urxvt.font: xft:Terminus:size=10
+urxvt.font: xft:Terminus (TTF):size=10
 urxvt.geometry: 100x30
 urxvt.internalBorder: 10
 urxvt.saveLines: 20000

@@ -6,7 +6,7 @@
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
 //static char *font = "DejaVuSansMono:size=10:antialias=true:autohint=true";
-static char *font = "Terminus:size=10:antialias=true:autohint=true";
+static char *font = "Terminus (TTF):size=10:antialias=true:autohint=true";
 static int borderpx = 10;
 
 /*

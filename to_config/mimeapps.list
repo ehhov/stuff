@@ -15,6 +15,7 @@ text/plain=gvim.desktop;
 text/x-tex=texstudio.desktop;gvim.desktop;
 application/vnd.openxmlformats-officedocument.spreadsheetml.sheet=libreoffice-calc.desktop;
 application/pdf=qpdfview.desktop;okularApplication_pdf.desktop;
+application/x-xpinstall=thunderbird.desktop;
 
 [Default Applications]
 pdf=okular.desktop

@@ -1,11 +1,11 @@
-# Apps and packages
+# Apps and Packages
 - Necessary: CUPS, GCC, Git, Python, VIM, VIM-X11, XTerm, xbacklight, ALSA, PulseAudio
 
 - Common choices: Firefox, Chrome, feh, Emacs, rxvt-unicode, VLC
 
 - My choices: Okular, qpdfview-qt5, Thunar, maim, xclip, Thunderbird, Telegram Desktop, simplescreenrecorder, klavaro, libinput-gestures
 
-- UI relating: sddm, dmenu, dwm (from this repository), Openbox, tint2, compton-tryone, i3
+- UI relating: sddm, dmenu, dwm (from this repository), Openbox, tint2, compton-tryone
 
 - Necessary for DWM and other 'developer' work: alsa-lib,-devel, libX11,-devel, libXft,-devel, libXinerama,-devel
 
@@ -15,8 +15,8 @@
  
 - Relating to Study: GNUplot, OpenSSH, ROOT, Ostap
 
-# Various instructions 
-## useradd, usermod, groupadd
+# Various Instructions 
+## User and Group management
 `useradd -m name` -m created the /home/name directory
 
 `groupadd name` 
@@ -24,7 +24,7 @@
 `gpasswd -a user group` to add and `-d user` to remove. 
 
 
-## Making xdg-mime work properly 
+## Making xdg-mime respect links
 Edit `/usr/bin/xdg-mime` by replacing all 
 
 ``` mv $file.new $file ```
@@ -35,7 +35,7 @@ with
 
 But this doesn't help all that much.
 
-## Fix hissing sound in headphones
+## Fixing hissing sound in headphones
 For alsamixer
 ``` bash
 amixer -c PCH cset 'name=Headphone Mic Boost Volume' 1
@@ -57,6 +57,26 @@ switch = off
 # Replace "volume = off" by:
 volume = 1
 ```
+
+## pacman
+For installed packages. 
+- `pacman -Qi package` for info.
+- `pacman -Qs word` to search for the word. 
+- `pacman -Qg group` for the group members.
+- `pacman -Ql package` for list of files owned by the package. 
+- `pacman -Qo file` for the file owner. 
+- `pacman -Rs package` to remove the package and all its unneeded dependencies. 
+- `pacman -Ru package` to check if the package is needed and if not, then remove. 
+
+For packages from repositories. 
+- `pacman -Si package` for info (double `i` sometimes).
+- `pacman -Ss word` to search for the word. 
+- `pacman -Sc` clean cache with uninstalled packages.
+
+For .pkg.tar.gz files
+- `pacman -U file` to install.
+
+In `/etc/pacman.conf`, uncomment the line `#Color` to have colored output. 
 
 ## CUPS configuration
 1. Create a group named lpadmin.
