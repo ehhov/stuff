@@ -1,10 +1,14 @@
+dash=--
+internal=eDP-1
+external=DP-1
+
 case $1 in 
-	dis) xrandr --output eDP1 --auto --transform none; xrandr --output DP1 --off;;
-	ext) xrandr --output DP1 --auto --left-of eDP1; xrandr --output eDP1 --off;;
-split) xrandr --output eDP1 --auto --transform none; xrandr --output DP1 --auto --right-of eDP1;;
-	dup) xrandr --output DP1 --auto --primary; xrandr --output eDP1 --scale-from 2560x1440 --same-as DP1;;
-	rot) xrandr --output DP1 --rotate left;;
-unrot) xrandr --output DP1 --rotate normal;;
+	dis) xrandr ${dash}output ${internal} ${dash}auto ${dash}transform none; xrandr ${dash}output ${external} ${dash}off;;
+	ext) xrandr ${dash}output ${external} ${dash}auto ${dash}left${dash}of eDP${dash}1; xrandr ${dash}output ${internal} ${dash}off;;
+split) xrandr ${dash}output ${internal} ${dash}auto ${dash}transform none; xrandr ${dash}output ${external} ${dash}auto ${dash}right-of ${internal};;
+	dup) xrandr ${dash}output ${external} ${dash}auto ${dash}primary; xrandr ${dash}output ${internal} ${dash}scale-from 2560x1440 ${dash}same-as ${external};;
+	rot) xrandr ${dash}output ${external} ${dash}rotate left;;
+unrot) xrandr ${dash}output ${external} ${dash}rotate normal;;
 esac
 
 killall compton && ~/.bin/compton

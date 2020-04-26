@@ -14,7 +14,7 @@ application/iopexport_bib=gvim.desktop;org.kde.kwrite.desktop;
 text/plain=gvim.desktop;
 text/x-tex=texstudio.desktop;gvim.desktop;
 application/vnd.openxmlformats-officedocument.spreadsheetml.sheet=libreoffice-calc.desktop;
-application/pdf=okularApplication_pdf.desktop;
+application/pdf=qpdfview.desktop;okularApplication_pdf.desktop;
 
 [Default Applications]
 pdf=okular.desktop
@@ -34,3 +34,4 @@ x-scheme-handler/mailto=userapp-Thunderbird-F61J8Z.desktop
 x-scheme-handler/tg=telegramdesktop.desktop
 inode/directory=Thunar-folder-handler.desktop;
 application/pdf=okularApplication_pdf.desktop;
+text/markdown=okularApplication_md.desktop;

@@ -56,6 +56,8 @@ static const Rule rules[] = {
 	 */
 	/* class         instance    title              tags mask     isfloating   monitor */
 	{ "Firefox",     NULL,       NULL,               1 << 0,      0,           -1 },
+	{ "firefox",     NULL,       NULL,               1 << 0,      0,           -1 },
+	{ "Thunderbird", NULL,       NULL,               1 << 8,      0,           -1 },
 	//{ "Example",   NULL,       NULL,               0b123456789, 1,           -1 },
 };
 
@@ -112,12 +114,12 @@ static Key keys[] = {
 	{ Win|Ctrl,                     XK_c,      spawn,          SHCMD("google-chrome") },
 	{ Win|Ctrl,                     XK_s,      spawn,          SHCMD("surf https://google.com") },
 	{ Win|Ctrl,                     XK_o,      spawn,          SHCMD("okular") },
-	{ Win|Ctrl,                     XK_p,      spawn,          SHCMD("qpdfview-qt5") },
+	{ Win|Ctrl,                     XK_p,      spawn,          SHCMD("qpdfview") },
 	{ Win|Ctrl,                     XK_d,      spawn,          SHCMD("thunar") },
 	{ Win|Ctrl,                     XK_g,      spawn,          SHCMD("gimp") },
 	{ Win|Ctrl,                     XK_i,      spawn,          SHCMD("inkscape") },
 	{ Win|Ctrl,                     XK_x,      spawn,          SHCMD("texstudio") },
-	{ Win|Ctrl,                     XK_t,      spawn,          SHCMD("/opt/tg/app") },
+	{ Win|Ctrl,                     XK_t,      spawn,          SHCMD("telegram-desktop") },
 	{ Win|Ctrl,                     XK_m,      spawn,          SHCMD("thunderbird") },
 	{ Win|Ctrl,                     XK_l,      spawn,          SHCMD("libreoffice") },
 	

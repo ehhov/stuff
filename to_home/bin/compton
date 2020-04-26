@@ -1,1 +1,1 @@
-/opt/tmp/compton --config ~/.config/compton/my-compton.conf $@
+compton --config ~/.config/compton/my-compton.conf $@

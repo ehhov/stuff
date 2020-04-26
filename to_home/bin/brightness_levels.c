@@ -3,8 +3,8 @@
 #define BRIGHTNESS_PATH "/sys/class/backlight/intel_backlight/"
 
 int main () {
-	double percent;
 	FILE* file;
+	double percent;
   int max, actual;
 
   file=fopen(BRIGHTNESS_PATH"max_brightness","r");
@@ -17,11 +17,10 @@ int main () {
 
   percent=100.0*actual/max;
 
-	if (percent>60)	printf("0\n");
-	else if (percent>15) printf("1\n");
-	else if (percent>5) printf("2\n");
-	else printf("3\n");
-	
+	if (percent>60)	printf("%lf\n", max*.05);
+	else if (percent>15) printf("%lf\n", max*.02);
+	else if (percent>5) printf("%lf\n", max*.01);
+	else printf("%lf\n", max*.005);
 	
 	return 0;
 }

@@ -7,6 +7,8 @@ set history=50 " keep 50 lines of command line history
 set showcmd    " display incomplete commands
 set dictionary=/usr/share/dict/words
 set whichwrap+=[,] " wrap lines with arrow keys in insert mode 
+syntax on
+set hlsearch
 
 " Set the same indentation settings for all filetypes
 filetype indent plugin off
@@ -22,7 +24,7 @@ set autoindent
 command Dot w | ! . %
 command Do  w | ! chmod +x %:p; %:p
 command D e %:p:h
-command Xx silent ! mimeopen %:p & disown
+command Xx silent ! xdg-open %:p & disown
 command -nargs=? C  w | ! gcc % -o /tmp/a && /tmp/a <args>
 command -nargs=? CC w | ! g++ % -o /tmp/a && /tmp/a <args>
 command -nargs=? M  wa| ! make <args>

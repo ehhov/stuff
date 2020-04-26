@@ -1,4 +1,4 @@
-## Apps and packages
+# Apps and packages
 - Necessary: CUPS, GCC, Git, Python, VIM, VIM-X11, XTerm, xbacklight, ALSA, PulseAudio
 
 - Common choices: Firefox, Chrome, feh, Emacs, rxvt-unicode, VLC
@@ -14,6 +14,15 @@
 - Fonts: DejaVu, Terminus, Iosevka, Arimo (some are included in `thicc/fonts`)
  
 - Relating to Study: GNUplot, OpenSSH, ROOT, Ostap
+
+# Various instructions 
+## useradd, usermod, groupadd
+`useradd -m name` -m created the /home/name directory
+
+`groupadd name` 
+
+`gpasswd -a user group` to add and `-d user` to remove. 
+
 
 ## Making xdg-mime work properly 
 Edit `/usr/bin/xdg-mime` by replacing all 

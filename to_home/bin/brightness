@@ -1,18 +1,6 @@
-step=2
-case `~/.bin/brightness_levels` in
-	0) step=5;;
-	1) step=2;;
-	2) step=1;;
-	3) step=.5;;
-	*) step=2;;
-esac
+step=`~/.bin/brightness_levels`
 
 case $1 in 
-	up) xbacklight -steps 1  -inc $step;;
-	down) xbacklight -steps 1  -dec $step;;
-	switch_record) 
-		xbacklight -get > /tmp/brightness_switch
-		xbacklight -steps 1 -set 0;;
-	switch_restore)
-		[ -f /tmp/brightness_switch ] && xbacklight -steps 1 -set `cat /tmp/brightness_switch`;;
+	up) brightnessctl set $step+;;
+	down) brightnessctl set $step-;;
 esac

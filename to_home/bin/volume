@@ -1,10 +1,17 @@
 case $1 in
-	up) amixer set Master 2%+;;
-	down) amixer set Master 2%-;;
-	toggle) amixer set Master toggle;;
-	mute) amixer set Master mute;;
-	bigup) amixer set Master 15%+;;
-	bigdown) amixer set Master 15%-;;
+	up) pactl set-sink-volume 0 +2%;;
+	down) pactl set-sink-volume 0 -2%;;
+	toggle) pactl set-sink-mute 0 toggle;;
+	mute) pactl set-sink-mute 0 1;;
+	bigup) pactl set-sink-volume 0 +15%;;
+	bigdown) pactl set-sink-volume 0 -15%;;
 esac
 
-#killall -USR1 status
+# case $1 in
+# 	up) amixer set Master 2%+;;
+# 	down) amixer set Master 2%-;;
+# 	toggle) amixer set Master toggle;;
+# 	mute) amixer set Master mute;;
+# 	bigup) amixer set Master 15%+;;
+# 	bigdown) amixer set Master 15%-;;
+# esac
