@@ -17,11 +17,8 @@ if [ -f /etc/bashrc ]; then
 fi
 
 if [ "$PS1" ]; then
-#  PS1="[\h]:\w > "
   PS1="[\u \W]$ "
-fi
 
-if [ "$PS1" ]; then
 # ignore ^d
 #    set -o ignoreeof
     set -o noclobber
@@ -34,6 +31,9 @@ fi
 
 PAGER=less; export PAGER  # Define the default pager for the man command.
 EDITOR=vim; export EDITOR # Define the default editor
+
+export QT_QPA_PLATFORMTHEME='breeze'
+
 
 # additional local strange things.
 
