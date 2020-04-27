@@ -1,5 +1,5 @@
 # Apps and Packages
-- Necessary: CUPS, GCC, Git, Python, VIM, VIM-X11, XTerm, brightnessctl, ALSA, PulseAudio
+- Necessary: CUPS, GCC, Git, Python, VIM, VIM-X11, XTerm, brightnessctl, ALSA, PulseAudio, tar, zip, unzip
 - Common choices: Firefox, Chrome, feh, rxvt-unicode, VLC
 - My choices: Okular, qpdfview-qt5, Thunar, maim, xclip
 - Larger apps: Thunderbird, GIMP, Inkscape, LibreOffice, Telegram Desktop
