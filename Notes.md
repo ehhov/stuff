@@ -15,6 +15,10 @@ On a new system, tell git who you are, using
 git config --global user.name "First name Last name"
 git config --global user.email "email@address.domain"
 ```
+And then tell git to save your credentials, the following line makes git use a single account for all repositories. 
+``` bash
+git config --global credential.helper store
+```
 
 # Various Instructions 
 ## User and Group management
