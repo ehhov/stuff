@@ -97,6 +97,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", nb, "-nf", nf, "-sb", sb, "-sf", sf, NULL };
+static const char *clipmenucmd[] = { "clipmenu", "-m", dmenumon, "-fn", dmenufont, "-nb", nb, "-nf", nf, "-sb", sb, "-sf", sf, NULL };
 static const char *termcmd[]  = { "xterm", NULL };
 static const char *suspendcmd[] = { "systemctl", "suspend", NULL };
 
@@ -106,12 +107,13 @@ static Key keys[] = {
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ Alt,                          XK_space,  spawn,          {.v = dmenucmd } },
 	{ Win,                          XK_Return, spawn,          {.v = termcmd } },
+	{ Win,                          XK_c,      spawn,          {.v = clipmenucmd } },
 	{ Win,                          XK_u,      spawn,          SHCMD("urxvt") },
 	{ Win,                          XK_x,      spawn,          SHCMD("xterm") },
 	{ Win,                          XK_s,      spawn,          SHCMD("~/.st/st") },
 	{ Win,                          XK_e,      spawn,					 SHCMD("emacs") },
 	{ Win|Ctrl,                     XK_f,      spawn,          SHCMD("firefox") },
-	{ Win|Ctrl,                     XK_c,      spawn,          SHCMD("google-chrome") },
+	{ Win|Ctrl,                     XK_c,      spawn,          SHCMD("google-chrome-stable") },
 	{ Win|Ctrl,                     XK_s,      spawn,          SHCMD("surf https://google.com") },
 	{ Win|Ctrl,                     XK_o,      spawn,          SHCMD("okular") },
 	{ Win|Ctrl,                     XK_p,      spawn,          SHCMD("qpdfview") },

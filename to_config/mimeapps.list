@@ -36,3 +36,4 @@ x-scheme-handler/tg=telegramdesktop.desktop
 inode/directory=Thunar-folder-handler.desktop;
 application/pdf=okularApplication_pdf.desktop;
 text/markdown=okularApplication_md.desktop;
+text/html=firefox.desktop;

@@ -1,7 +1,7 @@
 # Apps and Packages
 - Necessary: CUPS, GCC, Git, Python, VIM, VIM-X11, XTerm, brightnessctl, ALSA, PulseAudio, tar, zip, unzip
 - Common choices: Firefox, Chrome, feh, rxvt-unicode, VLC
-- My choices: Okular, qpdfview-qt5, Thunar, maim, xclip
+- My choices: Okular, qpdfview-qt5, Thunar, maim, xclip, clipmenu
 - Larger apps: Thunderbird, GIMP, Inkscape, LibreOffice, Telegram Desktop
 - UI related: sddm, dmenu, dwm (from this repository), Openbox, tint2, compton
 - Necessary for DWM and other 'developer' work: alsa-lib,-devel, libX11,-devel, libXft,-devel, libXinerama,-devel
