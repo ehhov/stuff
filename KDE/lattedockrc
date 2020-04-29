@@ -18,7 +18,7 @@ Recent URLs[$e]=file:$HOME/Downloads/
 detailViewIconSize=0
 
 [PlasmaRunnerManager]
-LaunchCounts=1 baloosearch_/home/kerim/tmp/rootbuild/icons/marker8.xpm
+LaunchCounts=1 services_simplescreenrecorder.desktop,1 baloosearch_/home/kerim/tmp/rootbuild/icons/marker8.xpm
 pluginWhiteList=services,shell,bookmarks,baloosearch,locations
 
 [PlasmaThemeExtended]

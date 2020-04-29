@@ -15,12 +15,7 @@ cd stuff/
 
 
 ## Small `install.sh` documentation
-Obviously, you always can look inside the `install.sh` file yourself, but here is a little description. `install.sh` looks at the first command line argument.
-- If it is `rm` or `clean`, the script will remove your own files and directories that replace existing in this repo ones **(regardless of type: rm -rf)**, but will not place new ones.
-- If it is `reln` or `relink`, the script will replace your config files (not directories) with links to ones from this repo.
-- If it is `ln` or `link`, the script will place links only to these repo files that don't override your own files with the same names.
-- If it is `cp` or `copy`, the script will copy only the repo files that don't override your own files with the same names.
-- In all other cases the script will print a little help message.
+Run `./install.sh` with no arguments to see its functions. 
 
 If you don't want to use all the files from this repo, but want to use `install.sh` to handle them, just delete (or rename) the files you don't need and run `install.sh`, it will not cause any errors. 
 
@@ -64,3 +59,4 @@ Brighness changer script `bin/brightness` by default uses a step of 2%, but can 
 If dynamic step works, you will have faster brightness change at high brightness and far more subtle adjustment at low brightness (compared to the constant step of 2%).
 
 `PS1` variable in my `bashrc` contains a program that prints time, I don't use `date +...%_I...` command because it has an additional space for one-digit hours. So you have to either edit `PS1` or compile `bash-time.c` in `bin/` using `gcc bash-time.c -o bash-time` or `make`. 
+

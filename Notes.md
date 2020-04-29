@@ -10,9 +10,9 @@
 - Fonts: DejaVu, Terminus, Iosevka, Arimo (some are included in `thicc/fonts`)
 - Studies related: GNUplot, OpenSSH, ROOT, Ostap, TeXlive, TeXStudio
 - Other: simplescreenrecorder, klavaro, libinput-gestures
-- KDE: plasma, spectacle, latte-dock 
+- KDE: Plasma, Spectacle, Latte dock, Papirus (icon pack), Adwaita (icon pack)
 
-On a new system, tell git who you are, using 
+On a new system tell git who you are, using 
 ``` bash
 git config --global user.name "First name Last name"
 git config --global user.email "email@address.domain"
@@ -21,6 +21,12 @@ And then tell git to save your credentials, the following line makes git use a s
 ``` bash
 git config --global credential.helper store
 ```
+
+The Special directory: 
+- Import `okular.shortcuts` in Okular > Settings > Configure Keyboard Shortcuts > Manage Schemes > More Actions > Import Scheme 
+- Copy `30-libinput.conf` to `/etc/X11/xorg.conf.d/`
+- If Firefox haven't taken care of the bookmarks, import them from `bookmarks.html`
+
 
 # Various Instructions 
 ## User and Group management
@@ -120,3 +126,4 @@ Better patches are marked with +, not working with -, very complicated with ?
 - [Color configuration for i3 online](https://thomashunter.name/i3-configurator/),
 - Themes for Openbox: [one](https://github.com/fikriomar16/OBTheme-Collections), [two](https://github.com/addy-dclxvi/openbox-theme-collections)
 - [A better Compton from tryone144](https://github.com/tryone144/compton)
+
