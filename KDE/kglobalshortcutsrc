@@ -1,5 +1,6 @@
 [ActivityManager]
 _k_friendly_name=Activity Manager
+switch-to-activity-20914e98-6a96-407d-aa1e-261716b529a0=none,none,Switch to activity "Default"
 switch-to-activity-537f5053-3157-429f-8819-dc8581f6afa7=none,none,Switch to activity "Default"
 
 [KDE Keyboard Layout Switcher]
@@ -28,21 +29,15 @@ _k_friendly_name=KDE Daemon
 {0a946bcb-d6cc-4023-a129-ad1b1064a124}=Meta+Return,none,Terminal
 {1039982d-6170-410d-817a-86313fc80d19}=Meta+Shift+Q,none,Exit
 {1523da30-53f1-4258-8841-67ddadf833b5}=Print,none,Screen
-{1ba38df1-b8e1-4976-971f-8808394f05e1}=none,none,Take Full Screen Screenshot
-{2dcd2eab-6475-4c1a-b03b-8603049c2213}=none,none,Take Active Window Screenshot
 {38635c38-88c2-4fc0-900f-5c1b125ba4a1}=Meta+Shift+W,none,Window
-{41ca1c84-ce87-4437-8e95-052c2b1b8877}=Meta+E,none,Emacs
-{5042681a-0656-41fd-acea-3dc76981e51a}=,none,Launch Konsole
+{41ca1c84-ce87-4437-8e95-052c2b1b8877}=Meta+E,none,Explorer
 {50622c66-c748-4cc2-8e6a-b13ad3532394}=Meta+U,none,URxvt
 {71b2ace9-04a6-404c-adc3-4abbdd0d6297}=Monitor Brightness Up,none,Up
 {791e7af9-b7d4-4c88-8d9b-8415749c975c}=Monitor Brightness Down,none,Down
 {79afe024-ea5e-49d4-88b5-61202a64260a}=Meta+Ctrl+O,none,Okular
 {8254e47e-35bc-4868-8597-580625cbdc86}=Meta+X,none,XTerm
-{a0de445d-2cd5-4944-a3a7-20f100bb5e88}=none,none,Start Screenshot Tool
-{bdf8588a-d0ae-494c-9ff7-46461ab66342}=none,none,Take Rectangular Region Screenshot
 {ca05c0b0-58f0-4d24-9b4e-042e0d4cceeb}=Meta+Ctrl+D,none,Dolphin
 {cf24da50-e98c-4ba7-8991-2682dd3528fd}=Meta+Print,none,Spectacle
-{d03619b6-9b3c-48cc-9d9c-a2aadb485550}=,none,Search
 {e88c9046-d65c-412d-b77d-08b899f53c0d}=Meta+Shift+S,none,Rectangle
 {fc2a4f8f-3afd-46b7-8fec-155a23b64b7a}=Meta+Ctrl+F,none,Firefox
 
@@ -57,12 +52,17 @@ mute=Volume Mute,Volume Mute,Mute
 
 [krunner]
 _k_friendly_name=Run Command
-run command=Alt+Space\tAlt+F2\tSearch,Alt+Space,Run Command
+run command=\tAlt+F2\tSearch,Alt+Space,Run Command
 run command on clipboard contents=Alt+Shift+F2,Alt+Shift+F2,Run Command on clipboard contents
+
+[krunner.desktop]
+RunClipboard=,Alt+Shift+F2,Run command on clipboard contents
+_k_friendly_name=KRunner
+_launch=Alt+Space,Alt+Space\tAlt+F2\tSearch,KRunner
 
 [ksmserver]
 Halt Without Confirmation=Ctrl+Alt+Shift+PgDown,none,Halt Without Confirmation
-Lock Session=Ctrl+Alt+L\tScreensaver,Ctrl+Alt+L\tScreensaver,Lock Session
+Lock Session=Ctrl+Alt+L\tScreensaver,Meta+L\tCtrl+Alt+L\tScreensaver,Lock Session
 Log Out=Ctrl+Alt+Del,none,Log Out
 Log Out Without Confirmation=Ctrl+Alt+Shift+Del,none,Log Out Without Confirmation
 Reboot Without Confirmation=Ctrl+Alt+Shift+PgUp,none,Reboot Without Confirmation
@@ -73,9 +73,11 @@ Activate Window Demanding Attention=Ctrl+Alt+A,Ctrl+Alt+A,Activate Window Demand
 ClearLastMouseMark=Meta+Shift+F12,Meta+Shift+F12,Clear Last Mouse Mark
 ClearMouseMarks=,Meta+Shift+F11,Clear All Mouse Marks
 Decrease Opacity=none,none,Decrease Opacity of Active Window by 5 %
-Expose=Ctrl+F9,Ctrl+F9,Toggle Present Windows (Current desktop)
+Expose=Ctrl+F9\tMeta+Esc,Ctrl+F9,Toggle Present Windows (Current desktop)
 ExposeAll=Ctrl+F10\tLaunch (C),Ctrl+F10\tLaunch (C),Toggle Present Windows (All desktops)
 ExposeClass=Ctrl+F7,Ctrl+F7,Toggle Present Windows (Window class)
+FlipSwitchAll=none,none,Toggle Flip Switch (All desktops)
+FlipSwitchCurrent=none,none,Toggle Flip Switch (Current desktop)
 Grid-Tiling: Close Desktop=,none,Grid-Tiling: Close Desktop
 Grid-Tiling: Decrease Size=,none,Grid-Tiling: Decrease Size
 Grid-Tiling: Float=,none,Grid-Tiling: Float
@@ -122,13 +124,13 @@ MoveZoomRight=none,none,Move Zoomed Area to Right
 MoveZoomUp=none,none,Move Zoomed Area Upwards
 Remove Window From Group=none,none,Remove Window From Group
 Setup Window Shortcut=none,none,Setup Window Shortcut
-Show Desktop=Ctrl+Alt+D,none,Show Desktop
+Show Desktop=Ctrl+Alt+D,Meta+D,Show Desktop
 ShowDesktopGrid=Ctrl+F8\t,Ctrl+F8,Show Desktop Grid
 Suspend Compositing=Alt+Shift+F12,Alt+Shift+F12,Suspend Compositing
-Switch One Desktop Down=Ctrl+Alt+Down,none,Switch One Desktop Down
-Switch One Desktop Up=Ctrl+Alt+Up,none,Switch One Desktop Up
-Switch One Desktop to the Left=Ctrl+Alt+Left,none,Switch One Desktop to the Left
-Switch One Desktop to the Right=Ctrl+Alt+Right,none,Switch One Desktop to the Right
+Switch One Desktop Down=Ctrl+Alt+Down,Meta+Ctrl+Down,Switch One Desktop Down
+Switch One Desktop Up=Ctrl+Alt+Up,Meta+Ctrl+Up,Switch One Desktop Up
+Switch One Desktop to the Left=Ctrl+Alt+Left,Meta+Ctrl+Left,Switch One Desktop to the Left
+Switch One Desktop to the Right=Ctrl+Alt+Right,Meta+Ctrl+Right,Switch One Desktop to the Right
 Switch Window Down=Meta+Alt+Down,Meta+Alt+Down,Switch to Window Below
 Switch Window Left=Meta+Alt+Left,Meta+Alt+Left,Switch to Window to the Left
 Switch Window Right=Meta+Alt+Right,Meta+Alt+Right,Switch to Window to the Right
@@ -182,6 +184,7 @@ TILING: Tile now=Meta+T,none,Tile now
 TILING: Toggle Border for all=Meta+Shift+U,none,Toggle Border for all
 TILING: Toggle Floating=Meta+F,none,Toggle Floating
 TILING: Toggle Tiling=Meta+Shift+F11,none,Toggle Tiling
+Toggle Night Color=none,none,Toggle Night Color
 Toggle Window Raise/Lower=none,none,Toggle Window Raise/Lower
 ToggleMouseClick=,Meta+*,Toggle Mouse Click Effect
 TrackMouse=none,none,Track mouse
@@ -191,12 +194,12 @@ Walk Through Desktops=\t,none,Walk Through Desktops
 Walk Through Desktops (Reverse)=\t,none,Walk Through Desktops (Reverse)
 Walk Through Window Tabs=none,none,Walk Through Window Tabs
 Walk Through Window Tabs (Reverse)=none,none,Walk Through Window Tabs (Reverse)
-Walk Through Windows=Alt+Tab,none,Walk Through Windows
-Walk Through Windows (Reverse)=Alt+Shift+Backtab,none,Walk Through Windows (Reverse)
+Walk Through Windows=Alt+Tab,Alt+Tab,Walk Through Windows
+Walk Through Windows (Reverse)=Alt+Shift+Backtab,Alt+Shift+Backtab,Walk Through Windows (Reverse)
 Walk Through Windows Alternative=Meta+J,none,Walk Through Windows Alternative
 Walk Through Windows Alternative (Reverse)=Meta+K,none,Walk Through Windows Alternative (Reverse)
-Walk Through Windows of Current Application=Alt+`,none,Walk Through Windows of Current Application
-Walk Through Windows of Current Application (Reverse)=Alt+~,none,Walk Through Windows of Current Application (Reverse)
+Walk Through Windows of Current Application=Alt+`,Alt+`,Walk Through Windows of Current Application
+Walk Through Windows of Current Application (Reverse)=Alt+~,Alt+~,Walk Through Windows of Current Application (Reverse)
 Walk Through Windows of Current Application Alternative=none,none,Walk Through Windows of Current Application Alternative
 Walk Through Windows of Current Application Alternative (Reverse)=none,none,Walk Through Windows of Current Application Alternative (Reverse)
 Window Above Other Windows=Alt+Return,none,Keep Window Above Others
@@ -279,7 +282,7 @@ activate entry 1=,Meta+1,Activate Entry 1
 activate entry 10=,Meta+0,Activate Entry 10
 activate entry 11=,Meta+Z,Activate Entry 11
 activate entry 12=,Meta+X,Activate Entry 12
-activate entry 13=Meta+C,Meta+C,Activate Entry 13
+activate entry 13=,Meta+C,Activate Entry 13
 activate entry 14=Meta+V,Meta+V,Activate Entry 14
 activate entry 15=,Meta+B,Activate Entry 15
 activate entry 16=Meta+N,Meta+N,Activate Entry 16
@@ -321,8 +324,11 @@ new instance for entry 9=Meta+Ctrl+9,Meta+Ctrl+9,New Instance for Entry 9
 repeat_action=,Ctrl+Alt+R,Manually Invoke Action on Current Clipboard
 show dock settings=Meta+A,Meta+A,Show Dock Settings
 show latte dock=Meta+`,Meta+`,Show Dock
+show latte global settings=,Meta+W,Show Latte Global Settings
 show latte universal settings=,Meta+E,Show Latte Settings
+show latte view=,Meta+`,Show Latte Dock/Panel
 show layout settings=Meta+W,Meta+W,Show Layout Settings
+show view settings=,Meta+A,Cycle Through Dock/Panel Settings Windows
 show-barcode=none,none,Show Barcode...
 show-on-mouse-pos=none,none,Open Klipper at Mouse Position
 
@@ -335,6 +341,18 @@ playpausemedia=Media Play,Media Play,Play/Pause media playback
 previousmedia=Media Previous,Media Previous,Media playback previous
 stopmedia=Media Stop,Media Stop,Stop media playback
 
+[org.kde.plasma.emojier.desktop]
+_k_friendly_name=Emoji Selector
+_launch=,Meta+.,Emoji Selector
+
+[org.kde.spectacle.desktop]
+ActiveWindowScreenShot=none,Meta+Print,Capture Active Window
+CurrentMonitorScreenShot=,none,Capture Current Monitor
+FullScreenScreenShot=none,Shift+Print,Capture Entire Desktop
+RectangularRegionScreenShot=none,Meta+Shift+Print,Capture Rectangular Region
+_k_friendly_name=Spectacle
+_launch=none,Print,Launch Spectacle
+
 [org_kde_powerdevil]
 Decrease Keyboard Brightness=Keyboard Brightness Down,Keyboard Brightness Down,Decrease Keyboard Brightness
 Decrease Screen Brightness=none,Monitor Brightness Down,Decrease Screen Brightness
@@ -344,10 +362,11 @@ Increase Screen Brightness=none,Monitor Brightness Up,Increase Screen Brightness
 PowerOff=Power Off,Power Off,Power Off
 Sleep=Sleep,Sleep,Suspend
 Toggle Keyboard Backlight=Keyboard Light On/Off,Keyboard Light On/Off,Toggle Keyboard Backlight
+Turn Off Screen=none,none,Turn Off Screen
 _k_friendly_name=Power Management
 
 [plasmashell]
-_k_friendly_name=Plasma
+_k_friendly_name=Latte Dock
 activate task manager entry 1=,Meta+1,Activate Task Manager Entry 1
 activate task manager entry 10=,Meta+0,Activate Task Manager Entry 10
 activate task manager entry 2=,Meta+2,Activate Task Manager Entry 2
@@ -364,10 +383,13 @@ cycleNextAction=none,none,Next History Item
 cyclePrevAction=none,none,Previous History Item
 edit_clipboard=none,none,Edit Contents...
 manage activities=Meta+Q,Meta+Q,Activities...
-next activity=,none,Walk through activities
-previous activity=,none,Walk through activities (Reverse)
+next activity=,Meta+Tab,Walk through activities
+previous activity=,Meta+Shift+Tab,Walk through activities (Reverse)
 repeat_action=Ctrl+Alt+R,Ctrl+Alt+R,Manually Invoke Action on Current Clipboard
 show dashboard=Meta+D,Ctrl+F12,Show Desktop
 show-barcode=none,none,Show Barcode...
 show-on-mouse-pos=none,none,Open Klipper at Mouse Position
 stop current activity=Meta+S,Meta+S,Stop Current Activity
+switch to next activity=none,none,Switch to Next Activity
+switch to previous activity=none,none,Switch to Previous Activity
+toggle do not disturb=none,none,Toggle do not disturb

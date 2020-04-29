@@ -1,5 +1,6 @@
 # Apps and Packages
-- Necessary: CUPS, GCC, Git, Python, VIM, VIM-X11, XTerm, brightnessctl, ALSA, PulseAudio, tar, zip, unzip
+
+- Necessary: XTerm, VIM (X11), Git, GCC, Python, brightnessctl, ALSA, PulseAudio, tar, zip, unzip, CUPS 
 - Common choices: Firefox, Chrome, feh, rxvt-unicode, VLC
 - My choices: Okular, qpdfview-qt5, Thunar, maim, xclip, clipmenu
 - Larger apps: Thunderbird, GIMP, Inkscape, LibreOffice, Telegram Desktop
@@ -7,8 +8,9 @@
 - Necessary for DWM and other 'developer' work: alsa-lib,-devel, libX11,-devel, libXft,-devel, libXinerama,-devel
 - For minimal distros: dialog, libinput, iw, wpa\_supplicant, mesa, X11: xorg-server, -server-utils, -xinit, intel-driver, libinput-driver
 - Fonts: DejaVu, Terminus, Iosevka, Arimo (some are included in `thicc/fonts`)
-- Study related: GNUplot, OpenSSH, ROOT, Ostap
+- Studies related: GNUplot, OpenSSH, ROOT, Ostap, TeXlive, TeXStudio
 - Other: simplescreenrecorder, klavaro, libinput-gestures
+- KDE: plasma, spectacle, latte-dock 
 
 On a new system, tell git who you are, using 
 ``` bash
@@ -22,21 +24,10 @@ git config --global credential.helper store
 
 # Various Instructions 
 ## User and Group management
-- `useradd -m name` -m created the /home/name directory
+- `useradd -m name` -m creates the /home/name directory
 - `groupadd name` 
 - `gpasswd -a user group` to add and `-d user` to remove. 
 
-
-## Making xdg-mime respect links
-Edit `/usr/bin/xdg-mime` by replacing all 
-``` 
-mv ${file}.new ${file} 
-```
-with
-``` 
-cat ${file}.new > ${file} && rm ${file}.new
-```
-But this doesn't help all that much, since all applications contain their own copy of the original code with the `mv` command. 
 
 ## Fixing hissing sound in headphones
 For alsamixer
@@ -63,32 +54,28 @@ volume = 1
 
 ## pacman
 For installed packages. 
+
 - `pacman -Qi package` for info.
 - `pacman -Qs word` to search for the word. 
 - `pacman -Qg group` for the group members.
 - `pacman -Ql package` for list of files owned by the package. 
 - `pacman -Qo file` for the file owner. 
+- `pacman -Qdt` for all unneeded dependency packages. 
 - `pacman -Rs package` to remove the package and all its unneeded dependencies. 
 - `pacman -Ru package` to check if the package is needed and if not, then remove. 
 
 For packages from repositories. 
+
 - `pacman -Si package` for info (double `i` sometimes).
 - `pacman -Ss word` to search for the word. 
 - `pacman -Syyu` to perform a full system update. 
 - `pacman -Sc` clean cache with uninstalled packages.
 
 For .pkg.tar.gz files
+
 - `pacman -U file` to install.
 
 In `/etc/pacman.conf`, uncomment the line `#Color` to have colored output. 
-
-## CUPS configuration
-1. Create a group named lpadmin.
-1. Edit SystemGroup line in /etc/cups/cups-files.conf – add lpadmin. 
-1. Add the user to group lpadmin. 
-1. Type localhost:631/ in a browser. 
-1. Add printer smb://guest@192.168.1.1/Xerox3250. (the format is thing://guest@IP/name)
-1. Use driver ph3250.ppd. Set yes in Share checkbox. 
 
 ## Deleting commit history in GitHub
 ``` bash
@@ -99,6 +86,25 @@ git branch -D master
 git branch -m master
 git push -f origin master
 ```
+
+## CUPS configuration
+1. Create a group named lpadmin.
+1. Edit SystemGroup line in /etc/cups/cups-files.conf – add lpadmin. 
+1. Add the user to group lpadmin. 
+1. Type localhost:631/ in a browser. 
+1. Add printer smb://guest@192.168.1.1/Xerox3250. (the format is thing://guest@IP/name)
+1. Use driver ph3250.ppd. Set yes in Share checkbox. 
+
+## Making xdg-mime respect links
+Edit `/usr/bin/xdg-mime` by replacing all 
+``` 
+mv ${file}.new ${file} 
+```
+with
+``` 
+cat ${file}.new > ${file} && rm ${file}.new
+```
+But this doesn't help all that much, since all applications contain their own copy of the original code with the `mv` command. 
 
 ## Cool dwm patches
 Better patches are marked with +, not working with -, very complicated with ?

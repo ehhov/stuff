@@ -33,7 +33,7 @@ PAGER=less; export PAGER  # Define the default pager for the man command.
 EDITOR=vim; export EDITOR # Define the default editor
 
 export QT_QPA_PLATFORMTHEME=breeze
-
+export QT_STYLE_OVERRIDE=breeze
 
 # additional local strange things.
 

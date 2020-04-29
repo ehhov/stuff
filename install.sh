@@ -39,7 +39,7 @@ fix_mime() {
 
 
 # every time take account of the inadequacy of xdg-mime 
-fix_mime
+#fix_mime
 
 case $1 in
 ln|link)
@@ -96,6 +96,14 @@ rm|clean)
 				echo 'You saved them'
 				break ;;
 		esac
+	done
+;;
+
+kde|KDE)
+	for i in KDE/*; do
+		j=${i#KDE/}
+		remove ~/.config/$j
+		create_link ../${this}/$i ~/.config/$j
 	done
 ;;
 

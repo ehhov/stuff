@@ -1,6 +1,6 @@
 @define-color theme_fg_color #232627;
 @define-color theme_bg_color #eff0f1;
-@define-color theme_text_color #f32627;
+@define-color theme_text_color #232627;
 @define-color theme_base_color #fcfcfc;
 @define-color theme_view_hover_decoration_color #93cee9;
 @define-color theme_hovering_selected_bg_color #93cee9;

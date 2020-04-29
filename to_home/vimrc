@@ -21,13 +21,13 @@ set autoindent
 " C, CC compile and execute
 " Py execute 
 command D e %:p:h
-command Xx silent ! xdg-open %:p & disown
+command Xx ! xdg-open %:p &>/dev/null &  disown
 command -nargs=? C  w | ! gcc % -o /tmp/a && /tmp/a <args>
 command -nargs=? CC w | ! g++ % -o /tmp/a && /tmp/a <args>
 command -nargs=? M  wa| ! make <args>
 command -nargs=? Py w | ! python3 % <args>
 command -nargs=? Latex w | ! pdflatex -file-line-error -interaction=nonstopmode % <args>
-command -nargs=? Lpdf silent ! xdg-open %:r.pdf & disown
+command -nargs=? Lpdf ! xdg-open %:r.pdf &>/dev/null & disown
 
 set laststatus=2 "increase the number of lines at the bottom to place info
 set statusline=%F\ %m  " display filename and is it edited/editable 
