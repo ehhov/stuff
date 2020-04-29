@@ -16,6 +16,7 @@ text/x-tex=texstudio.desktop;gvim.desktop;
 application/vnd.openxmlformats-officedocument.spreadsheetml.sheet=libreoffice-calc.desktop;
 application/pdf=qpdfview.desktop;okularApplication_pdf.desktop;
 application/x-xpinstall=thunderbird.desktop;
+application/xml=gvim.desktop;
 
 [Default Applications]
 pdf=okular.desktop
@@ -27,6 +28,7 @@ text/x-c=gvim.desktop;
 text/x-tex=texstudio.desktop;
 text/x-bibtex=gvim.desktop;
 text/plain=gvim.desktop;
+application/xml=gvim.desktop;
 application/rtf=libreoffice-writer.desktop;
 message/rfc822=userapp-Thunderbird-F61J8Z.desktop
 x-scheme-handler/http=firefox.desktop;

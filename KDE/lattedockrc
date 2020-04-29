@@ -1,6 +1,16 @@
+[ActionsWidget]
+ColumnState=AAAA/wAAAAAAAAABAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAmgAAAACAQAAAQAAAAAAAAAAAAAAAIf/////AAAAgQAAAAAAAAACAAAA+gAAAAEAAAAAAAABbgAAAAEAAAAAAAAD6AAAAACH
+
+[ConfigDialog]
+Height 1080=558
+Width 1920=778
+
 [DownloadDialog Settings]
 Height 1080=521
 Width 1920=700
+
+[General]
+Number of Actions=0
 
 [KFileDialog Settings]
 Recent Files[$e]=Catalina-Small.layout.latte,file:$HOME/Downloads/Catalina-Large.layout.latte,file:$HOME/Downloads/Catalina-Small.layout.latte

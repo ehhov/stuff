@@ -4,10 +4,6 @@ chmod +x to_home/bin/*
 chmod -x to_home/bin/*.c
 chmod -x to_home/bin/Makefile
 
-yes='Yes, delete all my own configuration files and folders (rm -rf) that can be replaced with ones from this repo'
-no='No, leave my configuration files alive'
-PS3='Are you sure? (1/2): '
-
 this=$(pwd)
 this=${this#~/}
 create_link() {
@@ -66,39 +62,6 @@ reln|relink)
 	done
 ;;
 
-cp|copy)
-	for i in to_home/*; do 
-		j=${i#to_home/}
-		copy ${this}/$i ~/.$j
-	done
-	for i in to_config/*; do
-		j=${i#to_config/}
-		copy ${this}/$i ~/.config/$j
-	done
-;;
-
-rm|clean)
-	select k in "$yes" "$no"
-	do
-		case $k in 
-			$yes)
-				echo 'Deleting...'
-				for i in to_home/*; do 
-					j=${i#to_home/}
-					remove ~/.$j
-				done
-				for i in to_config/*; do
-					j=${i#to_config/}
-					remove ~/.config/$j
-				done
-				break ;;
-			$no)
-				echo 'You saved them'
-				break ;;
-		esac
-	done
-;;
-
 kde|KDE)
 	for i in KDE/*; do
 		j=${i#KDE/}
@@ -111,8 +74,7 @@ kde|KDE)
 	echo -e "$0: usage ('|' means 'or') :"
 	echo -e "  $0 ln|link \t\t to create links"
 	echo -e "  $0 reln|relink \t to remove your files and create links"
-	echo -e "  $0 cp|copy \t\t to copy files instead of creating links"
-	echo -e "  $0 rm|clean \t to remove your files"
+	echo -e "  $0 kde \t\t to \`relink\` files for KDE"
 	echo -e ""
 ;;
 

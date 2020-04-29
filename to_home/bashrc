@@ -31,7 +31,6 @@ fi
 
 alias ls='ls --color=auto'
 alias grep='grep --color'
-alias python='python3'
 alias pdflatex='pdflatex -file-line-error -interaction=nonstopmode'
 #alias vim='vimx'
 export EDITOR=vim
