@@ -33,6 +33,7 @@ alias ls='ls --color=auto'
 alias grep='grep --color'
 alias pdflatex='pdflatex -file-line-error -interaction=nonstopmode'
 #alias vim='vimx'
+alias view="vim -M"
 export EDITOR=vim
 
 alias open='xdg-open'

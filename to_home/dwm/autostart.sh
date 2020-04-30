@@ -3,4 +3,5 @@ feh --bg-fill ~/.wallpapers/foggy-forest-light.jpg #bliss.jpg #dusk-fog.jpg  #ma
 ~/.bin/kb
 ~/.dwm/status/status &
 clipmenud &
+dunst &
 ~/.bin/compton &

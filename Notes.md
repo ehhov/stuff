@@ -2,7 +2,7 @@
 
 - Necessary: XTerm, VIM (X11), Git, GCC, Python, brightnessctl, ALSA, PulseAudio, tar, zip, unzip, CUPS 
 - Common choices: Firefox, Chrome, feh, rxvt-unicode, VLC
-- My choices: Okular, qpdfview-qt5, Thunar, maim, xclip, clipmenu
+- My choices: Okular, qpdfview-qt5, Thunar, maim, xclip, clipmenu, dunst
 - Larger apps: Thunderbird, GIMP, Inkscape, LibreOffice, Telegram Desktop
 - UI related: sddm, dmenu, dwm (from this repository), Openbox, tint2, compton
 - Necessary for DWM and other 'developer' work: alsa-lib,-devel, libX11,-devel, libXft,-devel, libXinerama,-devel
@@ -101,13 +101,16 @@ git push -f origin master
 1. Add printer smb://guest@192.168.1.1/Xerox3250. (the format is thing://guest@IP/name)
 1. Use driver ph3250.ppd. Set yes in Share checkbox. 
 
+## Thunderbird fonts configuration 
+The font types you need are: Cyrillic, Latin, Other Writing Systems. Set their sizes to 18. 
+
 ## Making xdg-mime respect links
 Edit `/usr/bin/xdg-mime` by replacing all 
-``` 
+``` bash
 mv ${file}.new ${file} 
 ```
 with
-``` 
+``` bash
 cat ${file}.new > ${file} && rm ${file}.new
 ```
 But this doesn't help all that much, since all applications contain their own copy of the original code with the `mv` command. 
@@ -126,4 +129,5 @@ Better patches are marked with +, not working with -, very complicated with ?
 - [Color configuration for i3 online](https://thomashunter.name/i3-configurator/),
 - Themes for Openbox: [one](https://github.com/fikriomar16/OBTheme-Collections), [two](https://github.com/addy-dclxvi/openbox-theme-collections)
 - [A better Compton from tryone144](https://github.com/tryone144/compton)
+
 

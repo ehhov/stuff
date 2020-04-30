@@ -29,7 +29,7 @@ static const char nf[]              = "#333333"; //cccccc";
 static const char sb[]              = "#ddddff"; //224488"; //005577";
 static const char sf[]              = "#000066"; //ffffff";
 static const char nbor[]            = "#444444";
-static const char sbor[]            = "#005577";
+static const char sbor[]            = "#ddddff";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { nf,        nb,        nbor      },

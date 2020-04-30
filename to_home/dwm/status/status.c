@@ -117,16 +117,15 @@ static Brightness calc_brightness();
 //static Volume calc_volume();
 static Volume calc_volume_pulse();
 static void* capture_layout(void*);
+static void* precise_minutes(void*);
 static void sig_usr1(int);
 static void sig_usr2(int);
 
 
 /* Global variables */
 
-//static pthread_mutex_t mutex1 = PTHREAD_MUTEX_INITIALIZER;
-static pthread_t status_thread, kb_thread;
+static pthread_t status_thread, kb_thread, min_thread;
 static Volume vol; /* global because of signal capturing */
-static int kb_layout;
 
 /* Pulseaudio calculated volume -- much better */
 #include "pulse_vol.h"
@@ -187,9 +186,9 @@ Timenow
 calc_time() 
 {
 	Timenow tmp;
-	time_t t;
-	time(&t);
-	tmp.now = *localtime(&t);
+	struct timeval t;
+	gettimeofday(&t, NULL);
+	tmp.now = *localtime(&t.tv_sec);
 	tmp.is_pm = tmp.now.tm_hour>=12 ? 1:0;
 	tmp.now.tm_hour -= 12*tmp.is_pm;
 	if (tmp.now.tm_hour==0) tmp.now.tm_hour=12;
@@ -332,13 +331,13 @@ calc_volume_pulse()
 }
 
 void*
-capture_layout(void* unused)
+capture_layout(void* voidlayout)
 {
 	Display* d;
 	XEvent e;
 	XkbEvent ke;
 	int event_type;
-	//int kb_layout_old=0;
+	int *layout = voidlayout;
 
 	d = XOpenDisplay(NULL);
 	XkbQueryExtension(d, 0, &event_type, 0, 0, 0);
@@ -347,21 +346,34 @@ capture_layout(void* unused)
 
 	while (1)
 	{
-		//pthread_mutex_lock(&mutex1);
 		XNextEvent(d,&e);
-		//kb_layout_old = kb_layout;
 		if (e.type == event_type) {
 			ke = (XkbEvent) e;
 			if (ke.any.xkb_type == XkbStateNotify)
-				if (ke.state.group != kb_layout) {
-						//printf("TEST"); fflush(stdout);
+				if (ke.state.group != *layout) {
+						*layout = ke.state.group;
 						pthread_kill(status_thread, SIGUSR2);
-						kb_layout = ke.state.group;
 					}
 		}
-		//pthread_mutex_unlock(&mutex1);
 	}
+}
 
+void*
+precise_minutes(void* voidnow)
+{
+	int interval = 60;
+	struct timeval current; 
+	struct timespec wait; 
+	Timenow* now = voidnow;
+	while (1)
+	{
+		gettimeofday(&current, NULL);
+		wait.tv_sec = interval - 1 - (current.tv_sec % interval);
+		wait.tv_nsec = (10e5 - current.tv_usec) * 1000;
+		nanosleep(&wait, NULL);
+		*now = calc_time();
+		pthread_kill(status_thread, SIGUSR2);
+	}
 }
 
 void
@@ -388,6 +400,7 @@ main()
 
 	Battery bat;
 	Timenow now;
+	static int kb_layout;
 	Network net;
 	Brightness bright;
 
@@ -404,12 +417,12 @@ main()
   action.sa_handler = sig_usr2;
   sigaction(SIGUSR2, &action, NULL);
 
-	pthread_create(&kb_thread, NULL, capture_layout, NULL);
+	pthread_create(&kb_thread, NULL, capture_layout, &kb_layout);
+	pthread_create(&min_thread, NULL, precise_minutes, &now);
 	
 	bat = calc_battery();
 	now = calc_time();
 	net = calc_netspeed();
-	//kb_layout = calc_layout(display);
 	bright = calc_brightness();
 	vol = calc_volume_pulse();
 	
@@ -417,21 +430,16 @@ main()
 	while (1) 
 	{
 		if (count%5==0) bat = calc_battery();
-		if (count%5==0) now = calc_time();
+		//if (count%5==0) now = calc_time();
 		net = calc_netspeed();
-		//kb_layout = calc_layout(display);
 		bright = calc_brightness();
-		//vol = calc_volume();
 		count++;
 
-		//printf(">%s: In %.3lf MB/s Out %.3lf MB/s"END, essid, (in>0)? in:0, (out>0)?out:0);
 		snprintf(net_str, net_len, "%s:%.2lf%s%.2lf", net.essid, (net.in>0)? net.in:0, net_downup, (net.out>0)?net.out:0);
 		
-		//printf(">%d%s"END, bright.percent, brightness_max_indicator[bright.is_max]);
 		snprintf(brt_str, brt_len, "%s", bright.is_max? "Bright"SEP:"");
 		
 		snprintf(vol_str, vol_len, "%s:%s%ld%s", vol.is_on?"V":"M", vol.percent<10?" ":"", vol.percent, vol.percent<100?"%":"");
-		//printf("%s", scale_dots[vol.scale]);
 		
 		snprintf(kb_str, kb_len, "%s", Xkb_group_indicator_text[kb_layout]);
 		
