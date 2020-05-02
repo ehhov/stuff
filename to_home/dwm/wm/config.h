@@ -17,8 +17,9 @@ static const int focusonwheel       = 0;         /* 0 means only on click */
 static const unsigned int systraypinning = 0;    /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayspacing = 0;    /* systray spacing */
 static const int systraypinningfailfirst = 1;    /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
+//static const char dmenufont[]       = "Iosevka:size=10";
 static const char dmenufont[]       = "Iosevka:size=10";
-static const char *fonts[]          = { dmenufont, "DejaVuSans:size=10" };
+static const char *fonts[]          = { dmenufont, "Monospace:size=10", "DejaVuSans:size=10" };
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -92,7 +93,7 @@ static const Layout layouts[] = {
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
-#define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
+#define SHCMD(cmd) { .v = (const char*[]){ "/bin/bash", "-c", cmd, NULL } }
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
@@ -123,14 +124,6 @@ static Key keys[] = {
 	{ Win|Ctrl,                     XK_t,      spawn,          SHCMD("telegram-desktop") },
 	{ Win|Ctrl,                     XK_m,      spawn,          SHCMD("thunderbird") },
 	{ Win|Ctrl,                     XK_l,      spawn,          SHCMD("libreoffice") },
-	
-	/* External monitor configuration */
-	{ Win|Alt,                      XK_d,      spawn,          SHCMD("~/.bin/monitor dis") },
-	{ Win|Alt,                      XK_e,      spawn,          SHCMD("~/.bin/monitor ext") },
-	{ Win|Alt,                      XK_s,      spawn,          SHCMD("~/.bin/monitor split") },
-	{ Win|Alt,                      XK_b,      spawn,          SHCMD("~/.bin/monitor dup") },
-
-  { Win|Alt,                      XK_space,  spawn,          SHCMD("~/.bin/kb") },
 	
 	/* Window management */
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
@@ -175,18 +168,25 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 
+	/* External monitor configuration */
+	{ Win|Alt,                      XK_d,      spawn,          SHCMD("~/.bin/monitor dis") },
+	{ Win|Alt,                      XK_e,      spawn,          SHCMD("~/.bin/monitor ext") },
+	{ Win|Alt,                      XK_s,      spawn,          SHCMD("~/.bin/monitor split") },
+	{ Win|Alt,                      XK_b,      spawn,          SHCMD("~/.bin/monitor dup") },
+
+  { Win|Alt,                      XK_space,  spawn,          SHCMD("~/.bin/kb") },
+	
 	/* Exit commands */
 	{ MODKEY|ShiftMask,             XK_Escape, quit,           {0} },
-	//{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 	{ Win|Shift|Ctrl,               XK_s,      spawn,          {.v = suspendcmd} },
 
 	/* Screenshots */
 	{ 0,         XK_Print, spawn, SHCMD("~/.bin/print screen") },
-	{ Win|Shift, XK_s,     spawn, SHCMD("~/.bin/print rect") },
-	{ Win|Shift, XK_w,     spawn, SHCMD("~/.bin/print win") },
+	{ Shift,     XK_Print, spawn, SHCMD("~/.bin/print delayed") },
+	{ Win|Shift, XK_s,     spawn, SHCMD("~/.bin/print regiondwm") },
+	{ Win|Shift, XK_w,     spawn, SHCMD("~/.bin/print import") },
 	{ Win|Shift, XK_q,     spawn, SHCMD("~/.bin/print quit") },
 	{ Win,       XK_Print, spawn, SHCMD("spectacle") },
-	{ Shift,     XK_Print, spawn, SHCMD("spectacle -r") },
 
 	/* XF86XK_Keys */
 	{ 0,   XF86XK_AudioRaiseVolume,  spawn, SHCMD("~/.bin/volume up") },

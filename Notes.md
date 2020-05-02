@@ -1,13 +1,13 @@
 # Apps and Packages
 
-- Necessary: XTerm, VIM (X11), Git, GCC, Python, brightnessctl, ALSA, PulseAudio, tar, zip, unzip, CUPS 
-- Common choices: Firefox, Chrome, feh, rxvt-unicode, VLC
-- My choices: Okular, qpdfview-qt5, Thunar, maim, xclip, clipmenu, dunst
+- Necessary: XTerm, VIM (X11), Git, GCC, Python, brightnessctl, ALSA, PulseAudio, tar, zip, unzip, CUPS
+- Common choices: Firefox, Chrome, feh, rxvt-unicode, VLC, pavucontrol, bluez, bluez-utils, pulseaudio-bluetooth
+- My choices: Okular, qpdfview-qt5, Thunar, maim, scrot, xclip, clipmenu, dunst
 - Larger apps: Thunderbird, GIMP, Inkscape, LibreOffice, Telegram Desktop
 - UI related: sddm, dmenu, dwm (from this repository), Openbox, tint2, compton
 - Necessary for DWM and other 'developer' work: alsa-lib,-devel, libX11,-devel, libXft,-devel, libXinerama,-devel
 - For minimal distros: dialog, libinput, iw, wpa\_supplicant, mesa, X11: xorg-server, -server-utils, -xinit, intel-driver, libinput-driver
-- Fonts: DejaVu, Terminus, Iosevka, Arimo (some are included in `thicc/fonts`)
+- Fonts: DejaVu, Terminus, Iosevka, Arimo, Cousine (some are included in `thicc/fonts`)
 - Studies related: GNUplot, OpenSSH, ROOT, Ostap, TeXlive, TeXStudio
 - Other: simplescreenrecorder, klavaro, libinput-gestures
 - KDE: Plasma, Spectacle, Latte dock, Papirus (icon pack), Adwaita (icon pack)
@@ -129,5 +129,6 @@ Better patches are marked with +, not working with -, very complicated with ?
 - [Color configuration for i3 online](https://thomashunter.name/i3-configurator/),
 - Themes for Openbox: [one](https://github.com/fikriomar16/OBTheme-Collections), [two](https://github.com/addy-dclxvi/openbox-theme-collections)
 - [A better Compton from tryone144](https://github.com/tryone144/compton)
+
 
 

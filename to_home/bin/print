@@ -1,25 +1,35 @@
-my_xclip() {
+copy() {
 	xclip -selection clipboard -t image/png -i $1
 }
 
 case $1 in 
-	screen) 
-		#import -window root 
-		maim -u /tmp/screen.png && my_xclip /tmp/screen.png 
-		;;
-	
-	win)
-		import /tmp/clipboard.png && my_xclip /tmp/clipboard.png
-		;;
+screen) 
+	#import -window root 
+	#maim -u 
+	scrot -o /tmp/screen.png && copy /tmp/screen.png 
+;;
 
-	rect)
-		maim -usk /tmp/clipboard.png && my_xclip /tmp/clipboard.png 
-		;;
+delayed)
+	scrot -d 5 -o /tmp/screen.png && copy /tmp/screen.png
+;;
 
-	quit)
-		killall import
-		killall maim
-		#killall spectacle 
-		;;
+import)
+	import /tmp/region.png && copy /tmp/region.png
+;;
+
+region)
+	scrot -bsfo /tmp/region.png && copy /tmp/region.png 
+;;
+
+regiondwm)
+	maim -usk /tmp/region.png && copy /tmp/region.png 
+;;
+
+quit)
+	killall import
+	killall maim
+	killall scrot
+	#killall spectacle 
+;;
 
 esac

@@ -117,7 +117,7 @@ static Brightness calc_brightness();
 //static Volume calc_volume();
 static Volume calc_volume_pulse();
 static void* capture_layout(void*);
-static void* precise_minutes(void*);
+static void* precise_time(void*);
 static void sig_usr1(int);
 static void sig_usr2(int);
 
@@ -172,8 +172,7 @@ calc_battery()
 	if (tmp.is_chr==1) {
 		tmp.hours=(full-now)/current;
 		tmp.mins=(full-now)%current*60/current;
-	}
-	else {
+	}	else {
 		tmp.hours=now/current;
 		tmp.mins=now%current*60/current;
 	}
@@ -234,14 +233,6 @@ calc_netspeed()
 	return tmp;
 }
 
-/*int
-calc_layout(Display *display) 
-{
-	XkbStateRec kb_state;
-	XkbGetState(display, XkbUseCoreKbd, &kb_state);
-	return kb_state.group;
-}*/
-
 Brightness
 calc_brightness() 
 {
@@ -262,50 +253,6 @@ calc_brightness()
 
 	return tmp;
 }
-
-/*Volume 
-calc_volume() 
-{
-	Volume tmp;
-	
-	snd_mixer_t* handle;
-	snd_mixer_elem_t* elem;
-	snd_mixer_selem_id_t* sid;
-	long min, max;
-
-	snd_mixer_selem_id_alloca(&sid);
-	snd_mixer_selem_id_set_index(sid, 0);
-	snd_mixer_selem_id_set_name(sid, "Master");
-
-	snd_mixer_open(&handle, 0);
-	snd_mixer_attach(handle, "default");
-	snd_mixer_selem_register(handle, NULL, NULL);
-	snd_mixer_load(handle);
-	elem = snd_mixer_find_selem(handle, sid);
-	snd_mixer_selem_get_playback_volume_range (elem, &min, &max);
-	
-	snd_mixer_selem_get_playback_volume(elem, 0, &tmp.percent);
-	snd_mixer_selem_get_playback_switch(elem, 0, &tmp.is_on);
-	
-	tmp.percent = 100*(tmp.percent-min)/(max-min);
-
-	snd_mixer_close(handle);
-	//snd_mixer_selem_id_free(sid); // this should not be commented, but doesn't work uncommented 
-
-	if (tmp.percent>95) tmp.scale=0;
-	else if (tmp.percent>75) tmp.scale=1;
-	else if (tmp.percent>50) tmp.scale=2;
-	else if (tmp.percent>25) tmp.scale=3;
-	else if (tmp.percent>0)  tmp.scale=4;
-	else tmp.scale=5;
-
-	if (!tmp.is_on) tmp.icon=0;
-	else if (tmp.percent<30) tmp.icon=1;
-	else if (tmp.percent<90) tmp.icon=2;
-	else tmp.icon=3;
-
-	return tmp;
-}*/
 
 Volume
 calc_volume_pulse()
@@ -359,7 +306,7 @@ capture_layout(void* voidlayout)
 }
 
 void*
-precise_minutes(void* voidnow)
+precise_time(void* voidnow)
 {
 	int interval = 60;
 	struct timeval current; 
@@ -379,7 +326,6 @@ precise_minutes(void* voidnow)
 void
 sig_usr1(int signal)
 {
-	//vol = calc_volume();
 	vol = calc_volume_pulse();
 }
 
@@ -418,7 +364,7 @@ main()
   sigaction(SIGUSR2, &action, NULL);
 
 	pthread_create(&kb_thread, NULL, capture_layout, &kb_layout);
-	pthread_create(&min_thread, NULL, precise_minutes, &now);
+	pthread_create(&min_thread, NULL, precise_time, &now);
 	
 	bat = calc_battery();
 	now = calc_time();

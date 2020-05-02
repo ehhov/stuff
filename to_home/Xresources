@@ -61,8 +61,8 @@ xterm*VT100.Translations: #override \
   Mod1 <Key>C: copy-selection(PRIMARY)   \n\
   Mod1 <Key>V: insert-selection(PRIMARY)
 
-xterm*faceName: DejaVuSansMono
-xterm*faceSize: 9
+xterm*faceName: monospace
+xterm*faceSize: 10
 
 !xterm*font: -misc-fixed-medium-*-*-*-15-*-*-100-*-*-*-*
 !XTerm*font: -misc-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso10646-1

@@ -951,7 +951,7 @@ Uuid={791e7af9-b7d4-4c88-8d9b-8415749c975c}
 
 [Data_5]
 Comment=Comment
-DataCount=5
+DataCount=6
 Enabled=true
 Name=Screenshots
 SystemGroup=0
@@ -990,14 +990,14 @@ Uuid={1523da30-53f1-4258-8841-67ddadf833b5}
 [Data_5_2]
 Comment=Comment
 Enabled=true
-Name=Rectangle
+Name=Delayed\s
 Type=SIMPLE_ACTION_DATA
 
 [Data_5_2Actions]
 ActionsCount=1
 
 [Data_5_2Actions0]
-CommandURL=/bin/sh -c '~/.bin/print rect'
+CommandURL=/bin/sh -c '~/.bin/print delayed'
 Type=COMMAND_URL
 
 [Data_5_2Conditions]
@@ -1009,21 +1009,21 @@ Comment=Simple_action
 TriggersCount=1
 
 [Data_5_2Triggers0]
-Key=Meta+Shift+S
+Key=Shift+Print
 Type=SHORTCUT
-Uuid={e88c9046-d65c-412d-b77d-08b899f53c0d}
+Uuid={daeb6cea-177e-4bb0-ac67-8b40ffe39037}
 
 [Data_5_3]
 Comment=Comment
 Enabled=true
-Name=Exit
+Name=Region
 Type=SIMPLE_ACTION_DATA
 
 [Data_5_3Actions]
 ActionsCount=1
 
 [Data_5_3Actions0]
-CommandURL=/bin/sh -c '~/.bin/print quit'
+CommandURL=/bin/sh -c '~/.bin/print region'
 Type=COMMAND_URL
 
 [Data_5_3Conditions]
@@ -1035,21 +1035,21 @@ Comment=Simple_action
 TriggersCount=1
 
 [Data_5_3Triggers0]
-Key=Meta+Shift+Q
+Key=Meta+Shift+S
 Type=SHORTCUT
-Uuid={1039982d-6170-410d-817a-86313fc80d19}
+Uuid={e88c9046-d65c-412d-b77d-08b899f53c0d}
 
 [Data_5_4]
 Comment=Comment
 Enabled=true
-Name=Spectacle
+Name=Import
 Type=SIMPLE_ACTION_DATA
 
 [Data_5_4Actions]
 ActionsCount=1
 
 [Data_5_4Actions0]
-CommandURL=spectacle
+CommandURL=/bin/sh -c '~/.bin/print import'
 Type=COMMAND_URL
 
 [Data_5_4Conditions]
@@ -1061,21 +1061,21 @@ Comment=Simple_action
 TriggersCount=1
 
 [Data_5_4Triggers0]
-Key=Meta+Print
+Key=Meta+Shift+W
 Type=SHORTCUT
-Uuid={cf24da50-e98c-4ba7-8991-2682dd3528fd}
+Uuid={38635c38-88c2-4fc0-900f-5c1b125ba4a1}
 
 [Data_5_5]
 Comment=Comment
 Enabled=true
-Name=Window
+Name=Exit
 Type=SIMPLE_ACTION_DATA
 
 [Data_5_5Actions]
 ActionsCount=1
 
 [Data_5_5Actions0]
-CommandURL=/bin/sh -c '~/.bin/print win'
+CommandURL=/bin/sh -c '~/.bin/print quit'
 Type=COMMAND_URL
 
 [Data_5_5Conditions]
@@ -1087,13 +1087,39 @@ Comment=Simple_action
 TriggersCount=1
 
 [Data_5_5Triggers0]
-Key=Meta+Shift+W
+Key=Meta+Shift+Q
 Type=SHORTCUT
-Uuid={38635c38-88c2-4fc0-900f-5c1b125ba4a1}
+Uuid={1039982d-6170-410d-817a-86313fc80d19}
+
+[Data_5_6]
+Comment=Comment
+Enabled=true
+Name=Spectacle
+Type=SIMPLE_ACTION_DATA
+
+[Data_5_6Actions]
+ActionsCount=1
+
+[Data_5_6Actions0]
+CommandURL=spectacle
+Type=COMMAND_URL
+
+[Data_5_6Conditions]
+Comment=
+ConditionsCount=0
+
+[Data_5_6Triggers]
+Comment=Simple_action
+TriggersCount=1
+
+[Data_5_6Triggers0]
+Key=Meta+Print
+Type=SHORTCUT
+Uuid={cf24da50-e98c-4ba7-8991-2682dd3528fd}
 
 [Data_6]
 Comment=Comment
-DataCount=7
+DataCount=8
 Enabled=true
 Name=Applications
 SystemGroup=0
@@ -1284,6 +1310,32 @@ TriggersCount=1
 Key=Meta+Ctrl+F
 Type=SHORTCUT
 Uuid={fc2a4f8f-3afd-46b7-8fec-155a23b64b7a}
+
+[Data_6_8]
+Comment=Comment
+Enabled=true
+Name=Thunderbird
+Type=SIMPLE_ACTION_DATA
+
+[Data_6_8Actions]
+ActionsCount=1
+
+[Data_6_8Actions0]
+CommandURL=thunderbird
+Type=COMMAND_URL
+
+[Data_6_8Conditions]
+Comment=
+ConditionsCount=0
+
+[Data_6_8Triggers]
+Comment=Simple_action
+TriggersCount=1
+
+[Data_6_8Triggers0]
+Key=Meta+Ctrl+M
+Type=SHORTCUT
+Uuid={3686c1c3-848e-42a9-821c-c5717dfe5f7e}
 
 [Data_7_8]
 Comment[$d]

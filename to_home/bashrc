@@ -33,11 +33,15 @@ alias ls='ls --color=auto'
 alias grep='grep --color'
 alias pdflatex='pdflatex -file-line-error -interaction=nonstopmode'
 #alias vim='vimx'
-alias view="vim -M"
+alias view="vim -R -M"
 export EDITOR=vim
-
-alias open='xdg-open'
 alias xclipb='xclip -selection clipboard'
+
+open() { 
+	for i in "$@"; do
+		xdg-open "$i" &>/dev/null & disown; 
+	done 
+}
 
 export TeXauxiliary='aux bbl blg out toc log synctex.gz nav snm lof lot bit idx glo bcf ilg ind fdb_latexmk fls'
 texclear() {
