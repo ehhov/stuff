@@ -1,3 +1,13 @@
+/* 
+	The content of this file came from i3status source code
+	https://github.com/i3/i3status/
+	It aims at instant status info update on any action 
+	upon volume: mute toggle, volume change, headphones 
+	plug in, etc.
+	Unfortunately, I don't understand what is going on here,
+	but it works in my status in the same way as in i3status.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -60,9 +70,9 @@ typedef struct index_info_s {
 
 
 /* Functions */
-int pulse_initialize(void);
-int description_pulseaudio(uint32_t, const char *, char buffer[MAX_SINK_DESCRIPTION_LEN]);
-int volume_pulseaudio(uint32_t, const char *);
+static int pulse_initialize(void);
+static int description_pulseaudio(uint32_t, const char *, char buffer[MAX_SINK_DESCRIPTION_LEN]);
+static int volume_pulseaudio(uint32_t, const char *);
 static void pulseaudio_error_log(pa_context *);
 static int pulseaudio_free_operation(pa_context *, pa_operation *);
 static void subscribe_cb(pa_context *, pa_subscription_event_type_t, uint32_t, void *);
@@ -71,7 +81,6 @@ static void store_default_sink_cb(pa_context *, const pa_sink_info *, int, void 
 static void get_sink_info(pa_context *, uint32_t, const char *);
 static void store_info_from_sink_cb(pa_context *, const pa_sink_info *, int, void *);
 static int save_info(uint32_t, int, const char *, const char *);
-
 void get_pulse_volume();
 
 
@@ -139,7 +148,7 @@ description_pulseaudio(uint32_t sink_idx, const char *sink_name, char buffer[MAX
 				continue;
 			}
 		}
-		strncpy(buffer, entry->description, sizeof(entry->description) - 1);
+		strncpy(buffer, entry->description, sizeof(entry->description));
 		pthread_mutex_unlock(&pulse_mutex);
 		buffer[sizeof(entry->description) - 1] = '\0';
 		return 1;
