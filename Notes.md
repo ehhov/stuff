@@ -120,6 +120,15 @@ Better patches are marked with +, not working with -, very complicated with ?
 
 +-`centeredwindowname`, -`combo`, `fakefullscreen`, `flextile`, +`focusonclick`, `focusurgent`, +?`keymodes`, `noborder`, +`pango`, +`pertag`, ++?`systray`, `tilegap`, `uselessgap`
 
+## Iosevka
+If you will ever need to rebuild the [Iosevka](https://typeof.net/Iosevka/) font, don't forget the following:
+``` 
+design = ["sp-fixed", "leading-1250", 
+	"v-brace-straight", "v-numbersign-slanted", "v-percent-dots", 
+	"v-nine-turned-six", "v-capital-g-toothless"]
+```
+You will also need to install `npm`, `ttfautohint`, `otfcc`, and `afdko (python)`.
+
 
 # Links
 - [XBM online editor](https://xbm.jazzychad.net/),

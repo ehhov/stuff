@@ -1,13 +1,6 @@
-set convenient Okular shortcuts and save them once and forever
-
-update to Fedora 31, install uberwriter
-https://docs.fedoraproject.org/en-US/quick-docs/dnf-system-upgrade/
-
-find themes for Qt and GTK that match non-Qt5 qpdfview's boxy style
+provide a full list of things to do on a new Linux installation in README.md
 
 patch dmenu and create a history file that will be used in parallel with command completion 
-
-make mimeapps.list work as a link 
 
 
 

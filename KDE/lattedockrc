@@ -31,9 +31,9 @@ outlineWidth=1
 [UniversalSettings]
 badges3DStyle=false
 canDisableBorders=false
-currentLayout=My Layout
+currentLayout=Custom
 downloadWindowSize=800,550
-lastNonAssignedLayout=My Layout
+lastNonAssignedLayout=Custom
 launchers=
 layoutsColumnWidths=143,175,36,0,118
 layoutsWindowSize=700,598

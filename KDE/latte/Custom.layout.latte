@@ -44,6 +44,7 @@ advanced=false
 appletOrder=2
 iconSize=56
 maxLength=76
+mouseWheelActions=false
 panelShadows=false
 panelSize=100
 panelTransparency=15
@@ -54,10 +55,11 @@ showOnlyCurrentActivity=false
 showOnlyCurrentDesktop=true
 splitterPosition=1
 splitterPosition2=2
+titleTooltips=false
 zoomLevel=8
 
 [Containments][1][Indicator]
-customType=
+customType=org.kde.latte.dashtopanel
 enabled=true
 enabledForApplets=true
 padding=0.10000000149011612
@@ -103,31 +105,15 @@ immutability=1
 plugin=org.kde.plasma.systemtray
 
 [Containments][72][Applets][77][Configuration]
-PreloadWeight=23
-SystrayContainmentId=78
-
-[Containments][72][Applets][88]
-immutability=1
-plugin=org.kde.plasma.digitalclock
-
-[Containments][72][Applets][88][Configuration]
 PreloadWeight=0
-
-[Containments][72][Applets][88][Configuration][Appearance]
-customDateFormat=ddd MMM d
-dateFormat=custom
-use24hFormat=0
-
-[Containments][72][Applets][88][Configuration][ConfigDialog]
-DialogHeight=660
-DialogWidth=880
+SystrayContainmentId=78
 
 [Containments][72][Applets][89]
 immutability=1
 plugin=org.kde.plasma.kicker
 
 [Containments][72][Applets][89][Configuration]
-PreloadWeight=36
+PreloadWeight=4
 
 [Containments][72][Applets][89][Configuration][ConfigDialog]
 DialogHeight=660
@@ -147,6 +133,13 @@ PreloadWeight=0
 DialogHeight=660
 DialogWidth=880
 
+[Containments][72][Applets][96]
+immutability=1
+plugin=org.kde.plasma.digitalclock
+
+[Containments][72][Applets][96][Configuration]
+PreloadWeight=39
+
 [Containments][72][ConfigDialog]
 DialogHeight=756
 DialogWidth=629
@@ -158,7 +151,7 @@ PreloadWeight=0
 animationLauncherBouncing=false
 animationWindowAddedInGroup=false
 animationWindowInAttention=false
-appletOrder=89;75;91;77;88
+appletOrder=89;75;91;77;96
 dragActiveWindowEnabled=true
 iconSize=30
 inConfigureAppletsMode=true
@@ -260,7 +253,7 @@ immutability=1
 plugin=org.kde.plasma.bluetooth
 
 [Containments][78][Applets][93][Configuration]
-PreloadWeight=25
+PreloadWeight=0
 
 [Containments][78][General]
 extraItems=org.kde.plasma.clipboard,org.kde.plasma.battery,org.kde.plasma.nightcolorcontrol,org.kde.plasma.notifications,org.kde.plasma.keyboardindicator,org.kde.plasma.networkmanagement,org.kde.plasma.devicenotifier,org.kde.plasma.vault,org.kde.plasma.bluetooth,org.kde.plasma.volume,org.kde.plasma.mediacontroller

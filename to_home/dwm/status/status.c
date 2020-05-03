@@ -22,52 +22,39 @@ useful symbols:
 */
 
 #include <stdio.h>
-#include <unistd.h>
 #include <stdlib.h>
+#include <limits.h>
 #include <string.h>
 #include <time.h>
 #include <sys/time.h>
-#include <signal.h>
-#include <iwlib.h>
+
+#include <ifaddrs.h>
+#include <sys/ioctl.h>
+#include <sys/socket.h>
+#include <linux/wireless.h>
+
+#include <unistd.h>
 #include <pthread.h>
+#include <signal.h>
+
 #include <X11/Xutil.h>
 #include <X11/XKBlib.h>
-#include <alsa/asoundlib.h>
 
-#define BAT_PATH "/sys/class/power_supply/BAT0/"
-#define AC_PATH "/sys/class/power_supply/AC/"
-#define WIFI_STAT_PATH "/sys/class/net/wlp58s0/statistics/"
-#define BRIGHTNESS_PATH "/sys/class/backlight/intel_backlight/"
+/* Just easier than variables... */
+#define BAT "BAT0"
+#define AC "AC"
+#define WLAN0 "wlp58s0"
 
 
 /* Appearance */
 #define BEG "["
 #define SEP "]["
 #define END "]"
-static const char *Months[12]={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
-static const char *WeekDays[7]={"Sun","Mon","Tue","Wed","Thu","Fri","Sat"};
-static const char *ampmstyle[2]={"am","pm"};
-static const char *net_downup="↓↑";
-static const char *Xkb_group_indicator[2]={"🇺🇸","🇷🇺"};
-static const char *Xkb_group_indicator_text[2]={"us","ru"};
-static const char *brightness_max_indicator[2]={"🔅","🔆"};
-static const char *volume_icons[4]={"🔇","🔈","🔉","🔊"};
-
-static const char *scale_blocks[31]=
-	{"░░░░░░░░░░","▒░░░░░░░░░","▓░░░░░░░░░",
-	 "█░░░░░░░░░","█▒░░░░░░░░","█▓░░░░░░░░",
-	 "██░░░░░░░░","██▒░░░░░░░","██▓░░░░░░░",
-	 "███░░░░░░░","███▒░░░░░░","███▓░░░░░░",
-	 "████░░░░░░","████▒░░░░░","████▓░░░░░",
-	 "█████░░░░░","█████▒░░░░","█████▓░░░░",
-	 "██████░░░░","██████▒░░░","██████▓░░░",
-	 "███████░░░","███████▒░░","███████▓░░",
-	 "████████░░","████████▒░","████████▓░",
-	 "█████████░","█████████▒","█████████▓",
-	 "██████████"};
-
-static const char *scale_dots[6]=
-	{"•••••","•••• ·","••• · ·","•• · · ·","• · · · ·"," · · · · ·"};
+static const char* Months[12]={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
+static const char* WeekDays[7]={"Sun","Mon","Tue","Wed","Thu","Fri","Sat"};
+static const char* ampmstyle[2]={"am","pm"};
+static const char* net_downup="↓↑";
+static const char* Xkb_group_indicator[2]={"us","ru"};
 
 
 /* Structures */
@@ -81,9 +68,14 @@ typedef struct
 
 typedef struct 
 {
-	struct tm now;
+	int mon;
+	int mday; 
+	int wday; 
+	int hour; 
+	int min;
+	int sec;
 	int is_pm;
-} Timenow;
+} Clock;
 
 typedef struct 
 {
@@ -93,28 +85,15 @@ typedef struct
 
 typedef struct 
 {
-	double percent;
-	int is_max;
-} Brightness;
-
-typedef struct 
-{
 	long int percent;
 	int is_on;
-	int scale;
-	int icon;
 } Volume;
 
 /* Functions */
 
-static void color(const char[7]);
-static void background(const char[7]);
 static Battery calc_battery();
-static Timenow calc_time();
-static Network calc_netspeed();
-//static int calc_layout(Display *);
-static Brightness calc_brightness();
-//static Volume calc_volume();
+static Clock calc_time();
+static Network calc_net();
 static Volume calc_volume_pulse();
 static void* capture_layout(void*);
 static void* precise_time(void*);
@@ -132,72 +111,65 @@ static Volume vol; /* global because of signal capturing */
 
 /* Functions' bodies */
 
-void 
-color(const char thecolor[7]) 
-{
-	printf(" foreground=\"#%s\"", thecolor);
-	return ;
-}
-
-void 
-background(const char thecolor[7]) 
-{
-	printf(" background=\"#%s\"", thecolor);
-	return ;
-} 
-
 Battery
 calc_battery() 
 {
 	FILE *file;
 	int now, full, current;
-	Battery tmp;
+	Battery ret;
 	
-	file=fopen(BAT_PATH"charge_now","r");
+	file=fopen("/sys/class/power_supply/"BAT"/charge_now","r");
 	fscanf(file,"%d",&now);
 	fclose(file);
 	
-	file=fopen(BAT_PATH"charge_full","r");
+	file=fopen("/sys/class/power_supply/"BAT"/charge_full","r");
 	fscanf(file,"%d",&full);
 	fclose(file);
 
-	file=fopen(BAT_PATH"current_now","r");
+	file=fopen("/sys/class/power_supply/"BAT"/current_now","r");
 	fscanf(file,"%d",&current);
 	fclose(file);
 
-	file=fopen(AC_PATH"online","r");
-	fscanf(file,"%d",&tmp.is_chr);
+	file=fopen("/sys/class/power_supply/"AC"/online","r");
+	fscanf(file,"%d",&ret.is_chr);
 	fclose(file);
 
-	if (tmp.is_chr==1) {
-		tmp.hours=(full-now)/current;
-		tmp.mins=(full-now)%current*60/current;
+	if (ret.is_chr==1) {
+		ret.hours=(full-now)/current;
+		ret.mins=(full-now)%current*60/current;
 	}	else {
-		tmp.hours=now/current;
-		tmp.mins=now%current*60/current;
+		ret.hours=now/current;
+		ret.mins=now%current*60/current;
 	}
-	tmp.percent=now*100.0/full;
+	ret.percent=now*100.0/full;
 
-	return tmp;
+	return ret;
 }
 
-Timenow
+Clock
 calc_time() 
 {
-	Timenow tmp;
+	Clock ret;
 	struct timeval t;
 	gettimeofday(&t, NULL);
-	tmp.now = *localtime(&t.tv_sec);
-	tmp.is_pm = tmp.now.tm_hour>=12 ? 1:0;
-	tmp.now.tm_hour -= 12*tmp.is_pm;
-	if (tmp.now.tm_hour==0) tmp.now.tm_hour=12;
-	return tmp;
+	struct tm local;
+	local = *localtime(&t.tv_sec);
+	ret.mon = local.tm_mon;
+	ret.mday = local.tm_mday;
+	ret.wday = local.tm_wday; 
+	ret.hour = local.tm_hour;
+	ret.min = local.tm_min;
+	ret.sec = local.tm_sec;
+	ret.is_pm = ret.hour>=12 ? 1:0;
+	ret.hour -= 12*ret.is_pm;
+	if (ret.hour==0) ret.hour=12;
+	return ret;
 }
 
 Network
-calc_netspeed() 
+calc_net() 
 {
-	Network tmp;
+	Network ret;
 	static long int in1, in2, out1, out2;
 	static struct timeval now, old;
 	FILE *file;
@@ -206,75 +178,40 @@ calc_netspeed()
 	gettimeofday(&now,NULL);
 	in1=in2; out1=out2;
 	
-	file=fopen(WIFI_STAT_PATH"rx_bytes","r");
+	file=fopen("/sys/class/net/"WLAN0"/statistics/rx_bytes","r");
 	fscanf(file,"%ld",&in2);
 	fclose(file);
 
-	file=fopen(WIFI_STAT_PATH"tx_bytes","r");
+	file=fopen("/sys/class/net/"WLAN0"/statistics/tx_bytes","r");
 	fscanf(file,"%ld",&out2);
 	fclose(file);
 
-	tmp.in=(in2-in1)>>10; 
-	tmp.in/=1024*(now.tv_sec+now.tv_usec*1e-6-old.tv_sec-old.tv_usec*1e-6);
-	tmp.out=(out2-out1)>>10; 
-	tmp.out/=1024*(now.tv_sec+now.tv_usec*1e-6-old.tv_sec-old.tv_usec*1e-6);
+	ret.in=(in2-in1)>>10; 
+	ret.in/=1024*(now.tv_sec+now.tv_usec*1e-6-old.tv_sec-old.tv_usec*1e-6);
+	ret.out=(out2-out1)>>10; 
+	ret.out/=1024*(now.tv_sec+now.tv_usec*1e-6-old.tv_sec-old.tv_usec*1e-6);
 
 	int skfd;
-	skfd = iw_sockets_open();
 	struct iwreq wrq;
-
-  memset(tmp.essid, 0, sizeof(tmp.essid));
-  wrq.u.essid.pointer = (caddr_t) tmp.essid;
+	memset(&wrq, 0, sizeof(struct iwreq));
   wrq.u.essid.length = IW_ESSID_MAX_SIZE + 1;
-  wrq.u.essid.flags = 0;
-  iw_get_ext(skfd, "wlp58s0", SIOCGIWESSID, &wrq);
-	iw_sockets_close(skfd);
+	snprintf(wrq.ifr_name, sizeof(wrq.ifr_name), "%s", WLAN0);
+	skfd = socket(AF_INET, SOCK_DGRAM, 0);
+  memset(ret.essid, 0, sizeof(ret.essid));
+	wrq.u.essid.pointer = ret.essid;
+	ioctl(skfd,SIOCGIWESSID, &wrq);
+	close(skfd);
 
-	return tmp;
-}
-
-Brightness
-calc_brightness() 
-{
-	Brightness tmp;
-	FILE* file;
-	int max, actual;
-
-	file=fopen(BRIGHTNESS_PATH"max_brightness","r");
-	fscanf(file,"%d",&max);
-	fclose(file);
-	
-	file=fopen(BRIGHTNESS_PATH"actual_brightness","r");
-	fscanf(file,"%d",&actual);
-	fclose(file);
-
-	tmp.percent=100.0*actual/max;
-	tmp.is_max = tmp.percent>99 ? 1:0;
-
-	return tmp;
+	return ret;
 }
 
 Volume
 calc_volume_pulse()
 {
-	Volume tmp;
-
-	get_pulse_volume(&tmp.percent, &tmp.is_on);
+	Volume ret;
+	get_pulse_volume(&ret.percent, &ret.is_on);
 	/* functions in pulse_vol.h send SIGUSR1 to status_thread */
-
-	if (tmp.percent>95) tmp.scale=0;
-	else if (tmp.percent>75) tmp.scale=1;
-	else if (tmp.percent>50) tmp.scale=2;
-	else if (tmp.percent>25) tmp.scale=3;
-	else if (tmp.percent>0)  tmp.scale=4;
-	else tmp.scale=5;
-
-	if (!tmp.is_on) tmp.icon=0;
-	else if (tmp.percent<30) tmp.icon=1;
-	else if (tmp.percent<90) tmp.icon=2;
-	else tmp.icon=3;
-
-	return tmp;
+	return ret;
 }
 
 void*
@@ -311,7 +248,7 @@ precise_time(void* voidnow)
 	int interval = 60;
 	struct timeval current; 
 	struct timespec wait; 
-	Timenow* now = voidnow;
+	Clock* now = voidnow;
 	while (1)
 	{
 		gettimeofday(&current, NULL);
@@ -339,16 +276,15 @@ sig_usr2(int signal)
 int 
 main() 
 {
-	const int net_len=IW_ESSID_MAX_SIZE+20, brt_len=10, vol_len=10, kb_len=4, bat_len=20, time_len=20;
-	const int status_len=net_len+brt_len+vol_len+kb_len+bat_len+time_len+20;
-	char net_str[net_len], brt_str[brt_len], vol_str[vol_len], kb_str[kb_len], bat_str[bat_len], time_str[time_len];
+	const int net_len=IW_ESSID_MAX_SIZE+20, vol_len=10, kb_len=4, bat_len=20, time_len=20;
+	const int status_len=net_len+vol_len+kb_len+bat_len+time_len+20;
+	char net_str[net_len], vol_str[vol_len], kb_str[kb_len], bat_str[bat_len], time_str[time_len];
 	char status_str[status_len];
 
 	Battery bat;
-	Timenow now;
-	static int kb_layout;
+	Clock now;
+	int kb_layout;
 	Network net;
-	Brightness bright;
 
 	unsigned int count = 0;
 	Display *display;
@@ -368,8 +304,7 @@ main()
 	
 	bat = calc_battery();
 	now = calc_time();
-	net = calc_netspeed();
-	bright = calc_brightness();
+	net = calc_net();
 	vol = calc_volume_pulse();
 	
 	/* Infinite loop begins */
@@ -377,23 +312,27 @@ main()
 	{
 		if (count%5==0) bat = calc_battery();
 		//if (count%5==0) now = calc_time();
-		net = calc_netspeed();
-		bright = calc_brightness();
+		net = calc_net();
 		count++;
 
-		snprintf(net_str, net_len, "%s:%.2lf%s%.2lf", net.essid, (net.in>0)? net.in:0, net_downup, (net.out>0)?net.out:0);
+		snprintf(net_str, net_len, "%s:%.2lf%s%.2lf", net.essid, \
+				(net.in>0)? net.in:0, net_downup, (net.out>0)?net.out:0);
 		
-		snprintf(brt_str, brt_len, "%s", bright.is_max? "Bright"SEP:"");
+		snprintf(vol_str, vol_len, "%s:%s%ld%s", vol.is_on?"V":"M", \
+				vol.percent<10?" ":"", vol.percent, vol.percent<100?"%":"");
 		
-		snprintf(vol_str, vol_len, "%s:%s%ld%s", vol.is_on?"V":"M", vol.percent<10?" ":"", vol.percent, vol.percent<100?"%":"");
+		snprintf(kb_str, kb_len, "%s", Xkb_group_indicator[kb_layout]);
 		
-		snprintf(kb_str, kb_len, "%s", Xkb_group_indicator_text[kb_layout]);
+		snprintf(bat_str, bat_len, "%.2lf%%%s %02i:%02i%s", bat.percent, \
+				(bat.is_chr? "+" : ""), bat.hours, bat.mins, \
+				(bat.percent>10 || bat.is_chr)?"":(count%2==0?"":" LOW!") );
 		
-		snprintf(bat_str, bat_len, "%.2lf%%%s %02i:%02i%s", bat.percent, (bat.is_chr? "+" : ""), bat.hours, bat.mins, (bat.percent>10 || bat.is_chr)?"":(count%2==0?"":" LOW!") );
-		
-		snprintf(time_str, time_len, "%s %s %d %d:%02d %s", WeekDays[now.now.tm_wday], Months[now.now.tm_mon], now.now.tm_mday, now.now.tm_hour, now.now.tm_min, ampmstyle[now.is_pm]);
+		snprintf(time_str, time_len, "%s %s %d %d:%02d %s", \
+				WeekDays[now.wday], Months[now.mon], now.mday, \
+				now.hour, now.min, ampmstyle[now.is_pm]);
 
-		snprintf(status_str, status_len, BEG"%s"SEP"%s%s"SEP"%s"SEP"%s"SEP"%s"END, net_str, brt_str, vol_str, kb_str, bat_str, time_str);
+		snprintf(status_str, status_len, BEG"%s"SEP"%s"SEP"%s"SEP"%s"SEP"%s"END, \
+				net_str, vol_str, kb_str, bat_str, time_str);
 		
 		XStoreName(display, DefaultRootWindow(display), status_str);
 		XSync(display, False);
