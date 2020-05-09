@@ -6,7 +6,7 @@
 static const int len = 50;
 
 Battery
-calc_battery(const char* bat) 
+battery(const char* bat) 
 {
 	FILE *file;
 	int now, full, current;

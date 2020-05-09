@@ -19,13 +19,12 @@ pthread_t status_thread, kb_thread;
 static Volume vol; 
 
 void
-sig_usr1(int signal)
-{	vol = calc_volume_pulse(); }
-
-void
-sig_usr2(int signal)
-{ } /* Does nothing, but still interrupts sleep() */
-
+sig_usr(int signal)
+{	
+	if (signal == SIGUSR1) 
+		vol = volume_pulse(); 
+	/* else do nothing, but still interrupt sleep */
+}
 
 void 
 color (const char thecolor[7]) 
@@ -59,34 +58,30 @@ main()
 	status_thread = pthread_self();
 	struct sigaction action;
 	memset(&action, 0, sizeof(struct sigaction));
-  action.sa_handler = sig_usr1;
+  action.sa_handler = sig_usr;
   sigaction(SIGUSR1, &action, NULL);
-	memset(&action, 0, sizeof(struct sigaction));
-  action.sa_handler = sig_usr2;
   sigaction(SIGUSR2, &action, NULL);
 
 	pthread_create(&kb_thread, NULL, capture_layout, &kb_layout);
 	
-	bat = calc_battery(battery);
-	now = calc_time();
-	net = calc_net(wlan);
-	vol = calc_volume_pulse();
+	net = netspeed(wlan);
+	vol = volume_pulse();
 	
 	/* Infinite loop begins */
 	while (1) 
 	{
-		bat = calc_battery(battery);
-		now = calc_time();
-		net = calc_net(wlan);
+		bat = battery(batn);
+		now = datetime();
+		net = netspeed(wlan);
 		count++;
 
 		printf(SP);	color("666666");
-		printf("> %s: %.2lf%s%.2lf "PS, net.essid, (net.in>0)? net.in:0, \
+		printf("> %s: %.2lf%s%.2lf "PS, essid(wlan), (net.in>0)? net.in:0, \
 				net_downup, (net.out>0)?net.out:0);
 		
 		printf("%s",volume_icon[vol.icon]);
 		
-		printf(" %s ", Xkb_group_icon[kb_layout]);
+		printf("%s", Xkb_group_icon[kb_layout]);
 		
 		printf(SP);
 		if (bat.percent>75)

@@ -1,14 +1,15 @@
-set nocompatible " not compatible with the older vi
-
 set number	   " set line numbers
 set mouse=a    " ordinary mouse settings
 set autochdir  " automatically change directory to the file opened
 set history=50 " keep 50 lines of command line history
 set showcmd    " display incomplete commands
-set dictionary=/usr/share/dict/words
 set whichwrap+=[,] " wrap lines with arrow keys in insert mode 
 syntax on
 set hlsearch
+set wrap
+set linebreak
+set breakindent
+let &showbreak='|'
 
 " Set the same indentation settings for all filetypes
 filetype indent plugin off
@@ -17,9 +18,6 @@ set softtabstop=2
 set shiftwidth=2
 set autoindent 
 
-" Dir, D go to the directory, where a current file is located
-" C, CC compile and execute
-" Py execute 
 command D e %:p:h
 command Xx ! xdg-open %:p &>/dev/null &  disown
 command -nargs=? C  w | ! gcc % -o /tmp/a && /tmp/a <args>
@@ -36,10 +34,19 @@ set statusline+=line\ %l,\ col\ %c\ %4P\  " col, line, percent of file length
 
 vmap <C-c> "+y
 vmap <C-x> "+c
-"nmap <C-v> "+p
+"nmap <C-v> "+p " not set besause of the visual block mode
 imap <C-v> <Esc>"+pa
+
+set spelllang=en_us,ru " run :set spell whenever you need to turn it on 
+set spellfile=~/.vim/spell/custom.utf-8.add
+set encoding=utf-8
+autocmd BufNewFile,BufRead *.tex setlocal spell
 
 "let g:netrw_browsex_viewer = "mimeopen -n"
 let g:netrw_browse_split = 3
 let g:netrw_liststyle = 1
 let g:netrw_sizestyle = "H"
+let g:netrw_mousemaps = 0
+let g:netrw_winsize = 70
+
+set langmap=Ё~,ё`,АF,Б<,ВD,ГU,ДL,ЕT,Ж:,ЗP,ИB,ЙQ,КR,ЛK,МV,НY,ОJ,ПG,РH,СC,ТN,УE,ФA,Х{,ЦW,ЧX,ШI,ЩO,Ъ},ЫS,ЬM,Э\",Ю>,ЯZ,аf,вd,гu,дl,еt,зp,иb,йq,кr,лk,мv,нy,оj,пg,рh,сc,тn,уe,фa,х[,цw,чx,шi,щo,ъ],ыs,ьm,э',ю.,яz,№#

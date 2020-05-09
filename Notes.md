@@ -7,7 +7,7 @@
 - UI related: sddm, dmenu, dwm (from this repository), Openbox, tint2, compton
 - Necessary for DWM and other 'developer' work: alsa-lib,-devel, libX11,-devel, libXft,-devel, libXinerama,-devel
 - For minimal distros: dialog, libinput, iw, wpa\_supplicant, mesa, X11: xorg-server, -server-utils, -xinit, intel-driver, libinput-driver
-- Fonts: DejaVu, Terminus, Iosevka, Arimo, Cousine (some are included in `thicc/fonts`)
+- Fonts: DejaVu and ones from `thicc/fonts`
 - Studies related: GNUplot, OpenSSH, ROOT, Ostap, TeXlive, TeXStudio
 - Other: simplescreenrecorder, klavaro, libinput-gestures
 - KDE: Plasma, Spectacle, Latte dock, Papirus (icon pack), Adwaita (icon pack)
@@ -138,6 +138,7 @@ You will also need to install `npm`, `ttfautohint`, `otfcc`, and `afdko (python)
 - [Color configuration for i3 online](https://thomashunter.name/i3-configurator/),
 - Themes for Openbox: [one](https://github.com/fikriomar16/OBTheme-Collections), [two](https://github.com/addy-dclxvi/openbox-theme-collections)
 - [A better Compton from tryone144](https://github.com/tryone144/compton)
+
 
 
 

@@ -7,7 +7,7 @@ static const unsigned int borderdef = 0;         /* initial value of border */
 static       unsigned int borderpx  = borderdef; /* border pixel of windows */
 static const unsigned int borderpxf = 5;         /* floating windows border increment */
 static const unsigned int snap      = 10;		     /* snap pixel */
-static const unsigned int gapdef    = 10;        /* initial value of gaps */
+static const unsigned int gapdef    = 5;         /* initial value of gaps */
 static       unsigned int gappx     = gapdef;    /* gap pixel between windows */
 static const int showsystray        = 1;			   /* 0 means no systray */
 static const int showbar            = 1;         /* 0 means no bar */
@@ -17,24 +17,26 @@ static const int focusonwheel       = 0;         /* 0 means only on click */
 static const unsigned int systraypinning = 0;    /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayspacing = 0;    /* systray spacing */
 static const int systraypinningfailfirst = 1;    /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
-//static const char dmenufont[]       = "Iosevka:size=10";
 static const char dmenufont[]       = "Iosevka:size=10";
-static const char *fonts[]          = { dmenufont, "Monospace:size=10", "DejaVuSans:size=10" };
+static const char *fonts[]          = { dmenufont, "Monospace:size=10", "NotoColorEmoji:size=10" };
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
-static const char col_gray4[]       = "#dddddd";
+static const char col_gray4[]       = "#eeeeee";
 static const char col_cyan[]        = "#005577";
-static const char nb[]              = "#eeeeee"; //000000";
-static const char nf[]              = "#333333"; //cccccc";
-static const char sb[]              = "#ddddff"; //224488"; //005577";
-static const char sf[]              = "#000066"; //ffffff";
-static const char nbor[]            = "#444444";
-static const char sbor[]            = "#ddddff";
+static const char nf[] = "#999999", nb[] = "#101010", nbor[] = "#101010";
+static const char sf[] = "#ffffff", sb[] = "#224488", sbor[] = "#224488";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { nf,        nb,        nbor      },
 	[SchemeSel]  = { sf,        sb,        sbor      },
+/*my light blue  { 333333,    eeeeee,    444444    },
+	               { 000066,    ddddff,    ddddff    };
+	from dwm site  { 999999,    101010,    101010    },
+	               { ffffff,    224488,    224488    };
+	dwm default    { bbbbbb,    222222,    444444    },
+	               { eeeeee,    005577,    005577    };
+*/
 };
 
 /* Custom functions */
@@ -46,6 +48,8 @@ static void reset_layout(const Arg *arg);
 static void setgap(const Arg *arg);
 static void setborder(const Arg *arg);
 static void setclientborder(Client* c);
+static void setbar(const int show);
+static void togglemaxclient(const Arg *arg);
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
@@ -59,7 +63,8 @@ static const Rule rules[] = {
 	{ "Firefox",     NULL,       NULL,               1 << 0,      0,           -1 },
 	{ "firefox",     NULL,       NULL,               1 << 0,      0,           -1 },
 	{ "Thunderbird", NULL,       NULL,               1 << 8,      0,           -1 },
-	//{ "Example",   NULL,       NULL,               0b123456789, 1,           -1 },
+	{ "Klavaro",     NULL,       NULL,                    0,      1,           -1 },
+	//{ "Example",   NULL,       NULL,               0b987654321, 1,           -1 },
 };
 
 /* layout(s) */
@@ -75,7 +80,8 @@ static const Layout layouts[] = {
 	{ "[V]",      tile_vert },  /* 3 */
 	{ "[F]",      NULL },		    /* 4 no layout function means floating behavior */
 	{ "[M]",      monocle_gaps }, /* 5 */
-	{ "[M]",      monocle },    /* 6 */
+
+	[100] = { "[M]",      monocle },
 };
 
 /* key definitions */
@@ -115,7 +121,7 @@ static Key keys[] = {
 	{ Win,                          XK_e,      spawn,					 SHCMD("thunar") },
 	{ Win|Ctrl,                     XK_f,      spawn,          SHCMD("firefox") },
 	{ Win|Ctrl,                     XK_c,      spawn,          SHCMD("google-chrome-stable") },
-	{ Win|Ctrl,                     XK_s,      spawn,          SHCMD("surf https://google.com") },
+	{ Win|Ctrl,                     XK_s,      spawn,          SHCMD("~/.surf_/surf https://google.com") },
 	{ Win|Ctrl,                     XK_o,      spawn,          SHCMD("okular") },
 	{ Win|Ctrl,                     XK_p,      spawn,          SHCMD("qpdfview") },
 	{ Win|Ctrl,                     XK_g,      spawn,          SHCMD("gimp") },
@@ -145,7 +151,8 @@ static Key keys[] = {
 	{ MODKEY|Shift,                 XK_v,      setlayout,      {.v = &layouts[3]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[4]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[5]} },
-	{ MODKEY|Shift,                 XK_m,      setlayout,      {.v = &layouts[6]} },
+	{ MODKEY|Shift,                 XK_m,      setlayout,      {.v = &layouts[100]} },
+	{ MODKEY|Shift,                 XK_f,      togglemaxclient,{0} },
 	{ MODKEY|Shift,                 XK_i,      setgap,         {.i = 1} },
 	{ MODKEY|Shift,                 XK_d,      setgap,         {.i = -1} },
 	{ Alt|Shift,                    XK_i,      setborder,      {.i = 1} },
@@ -205,7 +212,7 @@ static Key keys[] = {
 static Button buttons[] = {
 	/* click                event mask      button          function        argument */
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
-	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[6]} },
+	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[100]} },
 	{ ClkWinTitle,          0,              Button1,        zoom,           {0} },
 	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
@@ -216,8 +223,6 @@ static Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 
-	//{ ClkRootWin,           0,              Button1,        spawn,          {.v = termcmd } },
-	//{ ClkRootWin,           0,              Button3,        spawn,          {.v = dmenucmd } },
 	{ ClkClientWin,         MODKEY|Shift,   Button2,        killclient,     {0} },
 	{ ClkClientWin,         MODKEY|Shift,   Button1,        zoom,           {0} },
 	{ ClkWinTitle,          0,              Button2,        killclient,     {0} },
@@ -253,11 +258,13 @@ tile_gaps (Monitor *m)
 		if (i < m->nmaster) {
 			h = (m->wh - my) / (MIN(n, m->nmaster) - i) - gap;
 			resize(c, m->wx + gap, m->wy + my, mw - (2*c->bw) - gap*(5-ns)/2, h - (2*c->bw), 0);
-			my += HEIGHT(c) + gap;
+			if (my + HEIGHT(c) + gap < m->wh)
+				my += HEIGHT(c) + gap;
 		} else {
 			h = (m->wh - ty) / (n - i) - gap;
 			resize(c, m->wx + mw + gap/ns, m->wy + ty, m->ww - mw - (2*c->bw) - gap*(5-ns)/2, h - (2*c->bw), 0);
-			ty += HEIGHT(c) + gap;
+			if (ty + HEIGHT(c) + gap < m->wh)
+				ty += HEIGHT(c) + gap;
 		}
 }
 
@@ -283,11 +290,13 @@ tile_vert_gaps (Monitor *m)
 		if (i < m->nmaster) {
 			w = (m->ww - mx) / (MIN(n, m->nmaster) - i) - gap;
 			resize(c, m->wx + mx, m->wy + gap, w - (2*c->bw), mh - (2*c->bw) - gap*(5-ns)/2, 0);
-			mx += WIDTH(c) + gap;
+			if (mx + WIDTH(c) + gap < m->ww)
+				mx += WIDTH(c) + gap;
 		} else {
 			w = (m->ww - tx) / (n - i) - gap;
 			resize(c, m->wx + tx, m->wy + mh + gap/ns, w - (2*c->bw), m->wh - mh - (2*c->bw) - gap*(5-ns)/2, 0);
-			tx += WIDTH(c) + gap;
+			if (tx + WIDTH(c) + gap < m->ww)
+				tx += WIDTH(c) + gap;
 		}
 }
 
@@ -309,11 +318,13 @@ tile_vert (Monitor *m)
 		if (i < m->nmaster) {
 			w = (m->ww - mx) / (MIN(n, m->nmaster) - i);
 			resize(c, m->wx + mx, m->wy, w - (2*c->bw), mh - (2*c->bw), 0);
-			mx += WIDTH(c);
+			if (mx + WIDTH(c) < m->ww)
+				mx += WIDTH(c);
 		} else {
 			w = (m->ww - tx) / (n - i);
 			resize(c, m->wx + tx, m->wy + mh, w - (2*c->bw), m->wh - mh - (2*c->bw), 0);
-			tx += WIDTH(c);
+			if (tx + WIDTH(c) < m->ww)
+				tx += WIDTH(c);
 		}
 }
 
@@ -331,6 +342,39 @@ monocle_gaps (Monitor *m)
 		snprintf(m->ltsymbol, sizeof m->ltsymbol, "[%d]", n);
 	for (c = nexttiled(m->clients); c; c = nexttiled(c->next))
 		resize(c, m->wx + gap, m->wy + gap, m->ww - 2 * c->bw - 2*gap, m->wh - 2 * c->bw - 2*gap, 0);
+}
+
+void 
+togglemaxclient(const Arg *arg)
+{
+	if (selmon->lt[selmon->sellt] == &layouts[100] &&	selmon->showbar == 0) {
+		setbar(1);
+		setlayout(NULL);
+	} else {
+		setbar(0);
+		Arg a = {.v = &layouts[100]};
+		setlayout(&a);
+	}
+}
+
+void
+setbar(const int show)
+{
+	selmon->showbar = show;
+	updatebarpos(selmon);
+	resizebarwin(selmon);
+	if (showsystray) {
+		XWindowChanges wc;
+		if (!selmon->showbar)
+			wc.y = -bh;
+		else if (selmon->showbar) {
+			wc.y = 0;
+			if (!selmon->topbar)
+				wc.y = selmon->mh - bh;
+		}
+		XConfigureWindow(dpy, systray->win, CWY, &wc);
+	}
+	arrange(selmon);
 }
 
 void
@@ -374,4 +418,5 @@ reset_layout(const Arg *arg)
 	setborder(&a);
 	a.v = &layouts[0];
 	setlayout(&a);
+	setbar(showbar);
 }

@@ -4,7 +4,7 @@
 #include "structs.h"
 
 Clock
-calc_time() 
+datetime() 
 {
 	Clock ret;
 	struct timeval t;

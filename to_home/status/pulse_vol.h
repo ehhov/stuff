@@ -148,7 +148,8 @@ description_pulseaudio(uint32_t sink_idx, const char *sink_name, char buffer[MAX
 				continue;
 			}
 		}
-		strncpy(buffer, entry->description, sizeof(entry->description));
+		strncpy(buffer, entry->description, MAX_SINK_DESCRIPTION_LEN);
+		//strncpy(buffer, entry->description, sizeof(entry->description));
 		pthread_mutex_unlock(&pulse_mutex);
 		buffer[sizeof(entry->description) - 1] = '\0';
 		return 1;

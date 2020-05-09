@@ -17,7 +17,7 @@ static const int len = 50;
 const int id_len = IW_ESSID_MAX_SIZE+1;
 
 Network
-calc_net(const char* wlan) 
+netspeed(const char* wlan) 
 {
 	Network ret;
 	static long int in1, in2, out1, out2;
@@ -44,16 +44,22 @@ calc_net(const char* wlan)
 	ret.out=(out2-out1)>>10; 
 	ret.out/=1024*(now.tv_sec+now.tv_usec*1e-6-old.tv_sec-old.tv_usec*1e-6);
 
+	return ret;
+}
+
+const char* 
+essid(const char* wlan)
+{
+	static char name[IW_ESSID_MAX_SIZE+1];
 	int skfd;
 	struct iwreq wrq;
 	memset(&wrq, 0, sizeof(struct iwreq));
   wrq.u.essid.length = IW_ESSID_MAX_SIZE + 1;
 	snprintf(wrq.ifr_name, sizeof(wrq.ifr_name), "%s", wlan);
 	skfd = socket(AF_INET, SOCK_DGRAM, 0);
-  memset(ret.essid, 0, sizeof(ret.essid));
-	wrq.u.essid.pointer = ret.essid;
+  memset(name, 0, sizeof(name));
+	wrq.u.essid.pointer = name;
 	ioctl(skfd,SIOCGIWESSID, &wrq);
 	close(skfd);
-
-	return ret;
+	return name;
 }

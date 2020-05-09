@@ -1,7 +1,8 @@
 #include "structs.h"
 
-Battery calc_battery(const char*);
-Clock calc_time();
+Battery battery(const char*);
+Clock datetime();
 void* capture_layout(void*);
-Network calc_net(const char*);
-Volume calc_volume_pulse();
+Network netspeed(const char*);
+const char* essid(const char*);
+Volume volume_pulse();

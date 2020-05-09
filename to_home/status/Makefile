@@ -8,8 +8,8 @@ all: dwms tint2s
 ${OBJ}: 
 dwms.o:
 tint2s.o:
-.c.o: pulse_vol.h
-	gcc -c ${FLAGS} $< -o $@
+.c.o:
+	gcc -c ${FLAGS} $<
 
 dwms: ${OBJ} dwms.o
 	gcc ${LIBS} ${OBJ} dwms.o -o $@
@@ -19,3 +19,5 @@ tint2s: ${OBJ} tint2s.o
 
 clear:
 	rm ${OBJ} dwms.o tint2s.o
+
+.PHONY: clear all

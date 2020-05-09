@@ -1,9 +1,10 @@
 #include <X11/Xutil.h>
 #include <X11/XKBlib.h>
-extern pthread_t status_thread;
 #include <unistd.h>
 #include <pthread.h>
 #include <signal.h>
+
+extern pthread_t status_thread;
 
 void*
 capture_layout(void* voidlayout)
@@ -13,12 +14,13 @@ capture_layout(void* voidlayout)
 	XkbEvent ke;
 	int event_type;
 	int* layout = voidlayout;
+	*layout = 0;
 
 	d = XOpenDisplay(NULL);
 	XkbQueryExtension(d, 0, &event_type, 0, 0, 0);
   XkbSelectEvents(d, XkbUseCoreKbd, XkbStateNotifyMask, XkbStateNotifyMask);
 	XSync(d,False);
-
+	
 	while (1)
 	{
 		XNextEvent(d,&e);

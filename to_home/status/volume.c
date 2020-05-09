@@ -7,7 +7,7 @@ extern pthread_t status_thread;
 #include "structs.h"
 
 Volume
-calc_volume_pulse()
+volume_pulse()
 {
 	Volume ret;
 	get_pulse_volume(&ret.percent, &ret.is_on);

@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =3
+let g:netrw_dirhist_3='/home/kerim/stuff/to_home/status'
+let g:netrw_dirhist_2='/home/kerim/stuff/to_home/vim/spell'
+let g:netrw_dirhist_1='/home/kerim/stuff/to_home/vim'
+let g:netrw_dirhist_0='/home/kerim/stuff/to_home/vim/spell'
+let g:netrw_dirhist_9='/home/kerim/stuff/to_home/vim'
+let g:netrw_dirhist_8='/home/kerim/stuff/to_home/vim/spell'
+let g:netrw_dirhist_7='/home/kerim/stuff/to_home/vim'
+let g:netrw_dirhist_6='/home/kerim/stuff/to_home/.vim'
+let g:netrw_dirhist_5='/home/kerim/stuff/to_home/vim/spell'
+let g:netrw_dirhist_4='/usr/share/vim/vim82/spell'

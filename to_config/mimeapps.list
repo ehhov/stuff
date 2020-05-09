@@ -20,6 +20,7 @@ application/xml=gvim.desktop;
 
 [Default Applications]
 pdf=okular.desktop
+image/x-eps=okularApplication_ghostview.desktop;
 image/svg+xml=inkscape.desktop;
 image/jpeg=feh.desktop;
 image/png=feh.desktop;

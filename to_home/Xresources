@@ -9,35 +9,70 @@ Xft.lcdfilter: lcddefault
 Xcursor.size: 32
 Xcursor.theme: mac-mod-dark
 
+!!! Color schemes !!!
+! 0,8 black; 7,15 white
+! 1,9 red; 2,10 green
+! 3,11 yellow; 4,12 blue
+! 5,13 magenta; 6,14 cyan
+!!Light with green bgr
+! background: #e4d7e4
+! foreground: #000000
+! color0:  #000000
+! color8:  #343434
+! color1:  #ea2b2b
+! color9:  #ea2b2b
+! color2:  #00c000
+! color10: #00ff00
+! color3:  #ffcc33
+! color11: #ffcc33
+! color4:  #3846ff
+! color12: #3846ff
+! color5:  #c779de
+! color13: #c779de
+! color6:  #2f9fdc
+! color14: #2ffffc
+! color7:  #c0c0c0
+! color15: #ffffff
+!!Dark 
+! foreground: #DCDFE4
+! background: #222222
+! color0:  #555555
+! color8:  #777777
+! color1:  #E06C75
+! color9:  #dd0000
+! color2:  #98C379
+! color10: #00dd00
+! color3:  #f5dd7B
+! color11: #dddd00
+! color4:  #60aaff
+! color12: #5c5cff
+! color5:  #C678DD
+! color13: #dd00dd
+! color6:  #56c6b2
+! color14: #00dddd
+! color7:  #c0c0c0
+! color15: #ffffff
+
+
 !!! XTerm configuration !!!
-! special
-xterm*.foreground:   #000000
-xterm*.background:   #e4f7e4
-xterm*.cursorColor:  #000000
-! black
-xterm*.color0:  #000000 
-xterm*.color8:  #343434
-! red
-xterm*.color1:  #EA2B2B
-xterm*.color9:  #ea2b2b
-! green
-xterm*.color2:  #00c000
-xterm*.color10: #00ff00
-! yellow
-xterm*.color3:  #ffcc33
-xterm*.color11: #ffcc33
-! blue
-xterm*.color4:  #3846ff
-xterm*.color12: #3846ff
-! magenta
-xterm*.color5:  #C779DE
-xterm*.color13: #c779de
-! cyan
-xterm*.color6:  #2F9FDC
-xterm*.color14: #2ffffc
-! white
-xterm*.color7:  #c0c0c0
-xterm*.color15: #ffffff
+xterm*background: #e4f7e4
+xterm*foreground: #000000
+xterm*color0:  #000000
+xterm*color8:  #343434
+xterm*color1:  #ea2b2b
+xterm*color9:  #ea2b2b
+xterm*color2:  #00c000
+xterm*color10: #00ff00
+xterm*color3:  #ffcc33
+xterm*color11: #ffcc33
+xterm*color4:  #3846ff
+xterm*color12: #3846ff
+xterm*color5:  #c779de
+xterm*color13: #c779de
+xterm*color6:  #2f9fdc
+xterm*color14: #2ffffc
+xterm*color7:  #c0c0c0
+xterm*color15: #ffffff
 
 xterm*borderColor: black
 xterm*borderWidth: 1
@@ -110,7 +145,7 @@ URxvt*scrollBar_right: 1
 urxvt*thickness: 10
 
 ! dedicated less and other scrolling
-urxvt.scrollstyle: plain
+urxvt.scrollstyle: xterm
 urxvt.secondaryScreen: 1
 urxvt.secondaryScroll: 0
 urxvt.secondaryWheel: 1

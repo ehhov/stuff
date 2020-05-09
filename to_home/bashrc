@@ -42,6 +42,7 @@ open() {
 		xdg-open "$i" &>/dev/null & disown; 
 	done 
 }
+export -f open
 
 export TeXauxiliary='aux bbl blg out toc log synctex.gz nav snm lof lot bit idx glo bcf ilg ind fdb_latexmk fls'
 texclear() {
