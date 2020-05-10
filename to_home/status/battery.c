@@ -27,6 +27,7 @@ battery(const char* bat)
 	file=fopen(path,"r");
 	fscanf(file,"%d",&current);
 	fclose(file);
+	if (current == 0) current = 1;
 
 	snprintf(path, len, "/sys/class/power_supply/%s/status", bat);
 	file=fopen(path,"r");

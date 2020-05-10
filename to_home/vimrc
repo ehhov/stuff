@@ -1,8 +1,8 @@
-set number	   " set line numbers
-set mouse=a    " ordinary mouse settings
-set autochdir  " automatically change directory to the file opened
-set history=50 " keep 50 lines of command line history
-set showcmd    " display incomplete commands
+set number
+set mouse=a
+set autochdir
+set history=50
+set showcmd
 set whichwrap+=[,] " wrap lines with arrow keys in insert mode 
 syntax on
 set hlsearch
@@ -11,7 +11,7 @@ set linebreak
 set breakindent
 let &showbreak='|'
 
-" Set the same indentation settings for all filetypes
+" Set the same indentation settings for all file types
 filetype indent plugin off
 set tabstop=2
 set softtabstop=2
@@ -24,23 +24,26 @@ command -nargs=? C  w | ! gcc % -o /tmp/a && /tmp/a <args>
 command -nargs=? CC w | ! g++ % -o /tmp/a && /tmp/a <args>
 command -nargs=? M  wa| ! make <args>
 command -nargs=? Py w | ! python3 % <args>
-command -nargs=? Latex w | ! pdflatex -file-line-error -interaction=nonstopmode % <args>
+command -nargs=? Latex w | ! pdflatex -file-line-error -interaction=nonstopmode % <args> | grep ':*: '
 command -nargs=? Lpdf ! xdg-open %:r.pdf &>/dev/null & disown
 
-set laststatus=2 "increase the number of lines at the bottom to place info
-set statusline=%F\ %m  " display filename and is it edited/editable 
-set statusline+=%=     " go to the other side of the bar
-set statusline+=line\ %l,\ col\ %c\ %4P\  " col, line, percent of file length
+set laststatus=2
+set statusline=%F\ %h%w%m%r%=
+set statusline+=%-6k\ line\ %l,\ col\ %v\ %4P\  
+" virtual column number %v is better than the actual %c for unicode
 
-vmap <C-c> "+y
-vmap <C-x> "+c
-"nmap <C-v> "+p " not set besause of the visual block mode
-imap <C-v> <Esc>"+pa
+vnoremap <C-c> "+y
+vnoremap <C-x> "+d
+"nnoremap <C-v> "+p " not set because of the visual block mode
+inoremap <C-v> <C-o>"+p
 
-set spelllang=en_us,ru " run :set spell whenever you need to turn it on 
+set spelllang=ru,en_us " run :set spell whenever you need it
+" ru has to be the first, because this sources ~/.vim/spell/ru.vim
 set spellfile=~/.vim/spell/custom.utf-8.add
 set encoding=utf-8
-autocmd BufNewFile,BufRead *.tex setlocal spell
+"autocmd BufNewFile,BufRead *.tex setlocal spell
+inoremap <A-s> <C-o>:let &spell=!&spell<Enter>
+nnoremap <A-s> :let &spell=!&spell<Enter>
 
 "let g:netrw_browsex_viewer = "mimeopen -n"
 let g:netrw_browse_split = 3
@@ -49,4 +52,8 @@ let g:netrw_sizestyle = "H"
 let g:netrw_mousemaps = 0
 let g:netrw_winsize = 70
 
-set langmap=Ё~,ё`,АF,Б<,ВD,ГU,ДL,ЕT,Ж:,ЗP,ИB,ЙQ,КR,ЛK,МV,НY,ОJ,ПG,РH,СC,ТN,УE,ФA,Х{,ЦW,ЧX,ШI,ЩO,Ъ},ЫS,ЬM,Э\",Ю>,ЯZ,аf,вd,гu,дl,еt,зp,иb,йq,кr,лk,мv,нy,оj,пg,рh,сc,тn,уe,фa,х[,цw,чx,шi,щo,ъ],ыs,ьm,э',ю.,яz,№#
+if argc() > 1 | silent tab all | endif
+autocmd BufNewFile,BufRead *.letter,*.email setlocal tw=72 spell
+noremap Q gq
+
+source ~/.vim/tabline.vim
