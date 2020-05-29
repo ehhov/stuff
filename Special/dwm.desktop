@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=XSession
+Exec=/home/kerim/.dwm/dwm
+TryExec=/home/kerim/.dwm/dwm
+Name=Dynamic Window Manager

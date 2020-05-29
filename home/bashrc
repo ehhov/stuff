@@ -1,0 +1,70 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+#alias ls='ls --color=auto'
+#PS1='[\u@\h \W]\$ '
+
+# .bashrc
+#
+# User specific aliases and functions
+#
+# Source global definitions
+
+if [  -f "local.shrc" ]; then
+    . "local.shrc"
+fi
+
+stty -ixon
+set -o noclobber
+alias cp='cp -i'
+alias mv='mv -i'
+alias ls='ls --color=auto'
+alias la='ls -A'
+alias lt='ls -latr'
+alias grep='grep -I --color'
+alias pdflatex='pdflatex -file-line-error -interaction=nonstopmode'
+alias vim='nvim -p'
+alias nvim='nvim -p'
+alias view="nvim -R -M"
+alias xclipb='xclip -selection clipboard'
+
+open() {
+	for i in "$@"; do
+		xdg-open "$i" &>/dev/null & disown;
+	done
+}
+export -f open
+
+
+#################################
+## Prompt string configuration ##
+PS1func() {
+	local title time user path branch
+	time="36| $(~/.bin/bash_time)"
+	user="35| $USER"
+	path="32| $(sed -E 's/([^\./]{1})[^/]*\//\1\//g' <<< ${PWD/#$HOME/\~})"
+	branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)"
+	if [ $branch ]; then branch=" ($branch)"; fi; branch="37|$branch"
+	# hyphen -, en dash –, em dash —
+	title="${PWD/#$HOME/\~} : ${SHELL##*/} — ${TERM%-*color}"
+
+	# whis way you cannot pevent bad behavior caused by ; in folder names
+	# this also happens in fish, so I don't know is it fixable at all
+	printf "\001\033]0;"; echo -n "$title"; printf "\007\002"
+	for item in "$time" "$user" "$path" "$branch"; do 
+		printf "\001\033[${item%%|*}m\002"
+		echo -n "${item#*|}"
+		#printf "\001\033[m\002"
+	done
+	printf "\001\033[m\002 "
+}
+
+PROMPT_COMMAND=""
+PS1="\$(PS1func)"
+
+#[ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
+# it is in ~/other/tmp/bash-completion now 

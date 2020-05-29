@@ -1,0 +1,73 @@
+#
+# ~/.bash_profile
+#
+
+if [ -f /etc/bashrc ]; then
+	. "/etc/bashrc"
+fi
+
+if [ "$PS1" ]; then
+	PS1="[\u \W]$ "
+
+	#ignore ^d
+	#set -o ignoreeof
+	export IGNOREEOF=2
+fi
+
+export PAGER=less
+#export EDITOR=vim
+export EDITOR=nvim
+
+export HISTCONTROL=ignoredups
+export HISTSIZE=500
+export HISTFILESIZE=20000
+
+#export QT_QPA_PLATFORMTHEME=qt5ct
+#export QT_STYLE_OVERRIDE=''
+
+# additional local strange things.
+
+if [  -f "local.profile" ]; then
+	. "local.profile"
+fi
+
+# Normal local thing
+if [ -f ~/.bashrc ]; then
+	. ~/.bashrc
+fi
+
+
+
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/X11R6/bin:/usr/local/bin:/usr/local/sbin:${PATH}":${HOME}/.bin"
+if [ -n "$PATH" ]; then
+  old_PATH=$PATH:; PATH=
+  while [ -n "$old_PATH" ]; do
+    x=${old_PATH%%:*}
+    case $PATH: in
+      *:"$x":*) ;;
+      *) PATH=$PATH:$x;;
+    esac
+    old_PATH=${old_PATH#*:}
+  done
+  PATH=${PATH#:}
+  unset old_PATH x
+fi
+export PATH
+
+MANPATH=":"${MANPATH}":/usr/share/man"
+if [ -n "$MANPATH" ]; then
+  old_MANPATH=$MANPATH:; MANPATH=
+  while [ -n "$old_MANPATH" ]; do
+    x=${old_MANPATH%%:*}
+    case $MANPATH: in
+      *:"$x":*) ;;
+      *) MANPATH=$MANPATH:$x;;
+    esac
+    old_MANPATH=${old_MANPATH#*:}
+  done
+  MANPATH=${MANPATH#:}
+  unset old_MANPATH x
+fi
+export MANPATH
+
+date

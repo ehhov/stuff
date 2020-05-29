@@ -1,0 +1,116 @@
+Xft.dpi: 130
+Xft.antialias: true
+Xft.hinting: true
+Xft.rgba: rgb
+Xft.autohint: true
+Xft.hintstyle: hintslight
+Xft.lcdfilter: lcddefault
+
+Xcursor.size: 30
+Xcursor.theme: dark
+
+! the path has to be full because it is executed from the Display Manager 
+#include "/home/kerim/.Xresources.d/colors"
+
+!!! Common !!!
+*geometry: 90x25
+*saveLines: 5000
+*pointerShape: left_ptr
+*pointerBlank: true
+*pointerBlankDelay: 999
+*internalBorder: 2
+*dynamicColors: true
+!*cutchars: " `'\"()[]{}/"
+
+!!! XTerm configuration !!!
+xterm*color0:			   light_c0
+xterm*color1:			   light_c1
+xterm*color2:  		   light_c2
+xterm*color3:  		   light_c3
+xterm*color4:  		   light_c4
+xterm*color5:  		   light_c5
+xterm*color6:  		   light_c6
+xterm*color7:  		   light_c7
+xterm*color8: 		   light_c8 
+xterm*color9:			   light_c9
+xterm*color10: 		   light_c10
+xterm*color11: 		   light_c11
+xterm*color12: 		   light_c12
+xterm*color13: 		   light_c13
+xterm*color14: 		   light_c14
+xterm*color15: 		   light_c15
+xterm*background:    light_bg
+xterm*foreground:    light_fg
+xterm*cursorColor:   light_cur
+
+xterm*faceName: monospace
+xterm*faceSize: 10
+
+xterm*borderColor: black
+xterm*borderWidth: 0
+xterm*backdrop: white
+xterm*rightScrollBar: True
+xterm*ScrollBar: True
+xterm*Scrollbar.foreground:   Black
+xterm*Scrollbar.background:   White
+xterm*Scrollbar.thickness:    10
+
+xterm*VT100.Translations: #override \
+  Ctrl Shift <Key>V: insert-selection(CLIPBOARD) \n\
+  Ctrl Shift <Key>C: copy-selection(CLIPBOARD)   \n\
+  Mod1 <Key>V: insert-selection(PRIMARY)
+
+
+!xterm*font: -misc-fixed-medium-*-*-*-15-*-*-100-*-*-*-*
+!XTerm*font: -misc-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso10646-1
+!xterm*font: -misc-fixed-medium-r-normal--15-140-75-75-c-90-iso10646-1
+!xterm*font: -misc-fixed-medium-r-normal--18-120-100-100-c-90-iso10646-1
+!xterm*font: -misc-fixed-medium-r-normal--20-200-75-75-c-100-iso10646-1
+
+
+!!! URXVT configuration !!!
+urxvt*color0:			   Dracula_c0
+urxvt*color1:			   Dracula_c1
+urxvt*color2:  		   Dracula_c2
+urxvt*color3:  		   Dracula_c3
+urxvt*color4:  		   Dracula_c4
+urxvt*color5:  		   Dracula_c5
+urxvt*color6:  		   Dracula_c6
+urxvt*color7:  		   Dracula_c7
+urxvt*color8: 		   Dracula_c8 
+urxvt*color9:			   Dracula_c9
+urxvt*color10: 		   Dracula_c10
+urxvt*color11: 		   Dracula_c11
+urxvt*color12: 		   Dracula_c12
+urxvt*color13: 		   Dracula_c13
+urxvt*color14: 		   Dracula_c14
+urxvt*color15: 		   Dracula_c15
+urxvt*background:    Dracula_bg
+urxvt*foreground:    Dracula_fg
+urxvt*cursorColor:   Dracula_cur
+
+urxvt.font: xft:Terminus (TTF):size=12
+!urxvt.font: xft:Iosevka:size=10
+
+URxvt*scrollBar_right: 1
+urxvt*thickness: 10
+
+urxvt.scrollstyle: xterm
+urxvt.secondaryScreen: 1
+urxvt.secondaryScroll: 0
+urxvt.secondaryWheel: 1
+
+urxvt.perl-ext-common: default,selection-to-clipboard
+urxvt.keysym.C-S-V: eval:paste_clipboard
+urxvt.keysym.C-S-C: eval:selection_to_clipboard
+urxvt.keysym.M-V: eval:paste_selection
+
+! fix Ctrl-Arrow keys
+URxvt.keysym.Control-Up:     \033[1;5A
+URxvt.keysym.Control-Down:   \033[1;5B
+URxvt.keysym.Control-Left:   \033[1;5D
+URxvt.keysym.Control-Right:  \033[1;5C
+
+! experiment yield: .Xresources does not understand ~/ , but ./ works fine (at least yet). 
+urxvt.iconFile: ./.icons/urxvt.svg
+

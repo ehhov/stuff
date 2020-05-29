@@ -1,0 +1,19 @@
+#!/bin/bash
+
+if [ $# -ne 2 ]; then
+	echo -e "${0##*/}: usage:"
+	echo -e "\t${0##*/} what_to_replace with_what"
+	exit
+fi
+
+# replace all appearances of $1 with $2 in files accessible by 'grep -r'
+# pattern can only contain normal letters and /
+# filenames can include any of '#@!&*${}"'\ ' and so on
+# works perfectly with all types of links and saves file permissions
+f="$1"
+what="${f//\//\\\/}"
+with="${2//\//\\\/}"
+grep -Rl "$f" | while IFS= read -r file; do 
+	cat "$file" >| /tmp/temp
+	sed "s/$what/$with/g" /tmp/temp >| "$file"
+done

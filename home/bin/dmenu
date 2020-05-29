@@ -1,0 +1,7 @@
+#!/bin/bash
+case $1 in
+	red)
+		dmenu_run -nb \#000000 -nf \#aaaaaa -sb \#e06c75 -sf \#ffffff -p 'RUN ' ;;
+	white)
+		dmenu_run -nb \#000000 -nf \#aaaaaa -sb \#dddddd -sf \#000000 -p 'RUN ' ;;
+esac

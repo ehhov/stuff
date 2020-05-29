@@ -1,7 +1,0 @@
-step=`~/.bin/brightness_levels`
-[ -z $step ] && step=2%
-
-case $1 in 
-	up) brightnessctl set $step+;;
-	down) brightnessctl set $step-;;
-esac

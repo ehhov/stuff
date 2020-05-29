@@ -1,5 +1,3 @@
-provide a full list of things to do on a new Linux installation in README.md
-
 patch dmenu and create a history file that will be used in parallel with command completion 
 
 

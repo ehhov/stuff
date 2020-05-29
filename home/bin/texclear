@@ -1,0 +1,11 @@
+#!/bin/bash
+
+TeXauxiliary='aux bbl blg out toc log synctex.gz nav snm lof lot bit idx glo bcf ilg ind fdb_latexmk fls'
+
+for file in "$@"; do
+	file="${file%.tex}"
+	file="${file%.}"
+	for i in $TeXauxiliary; do
+		 if test -f "$file.$i"; then rm "$file.$i"; fi
+	done
+done

@@ -1,0 +1,169 @@
+!!! This file is created using ~/.Xresources.d/from-st.c !!!
+
+!!! light color scheme 
+#define light_c0    #000000
+#define light_c1    #FF2424
+#define light_c2    #00c000
+#define light_c3    #CC7700
+#define light_c4    #0055FF
+#define light_c5    #d769ce
+#define light_c6    #1D97FC
+#define light_c7    #B9BBB9
+#define light_c8    #D7EFDD
+#define light_c9    #FB3737
+#define light_c10   #40BF4A
+#define light_c11   #E69119
+#define light_c12   #3846ff
+#define light_c13   #c779de
+#define light_c14   #09B3B3
+#define light_c15   #ffffff
+#define light_bg    #e4f7e4
+#define light_fg    #000000
+#define light_cur   #000000
+
+!!! Dracula color scheme 
+#define Dracula_c0    #000000
+#define Dracula_c1    #ff5555
+#define Dracula_c2    #50fa7b
+#define Dracula_c3    #FFB366
+#define Dracula_c4    #bd93f9
+#define Dracula_c5    #ff79c6
+#define Dracula_c6    #8be9fd
+#define Dracula_c7    #8B8BA7
+#define Dracula_c8    #34344B
+#define Dracula_c9    #FF4444
+#define Dracula_c10   #3DF56B
+#define Dracula_c11   #f1fa8c
+#define Dracula_c12   #B78CF2
+#define Dracula_c13   #F881C5
+#define Dracula_c14   #6EDEF7
+#define Dracula_c15   #ffffff
+#define Dracula_bg    #282a36
+#define Dracula_fg    #d8d8d2
+#define Dracula_cur   #d8d8d2
+
+!!! Solarized_dark color scheme 
+#define Solarized_dark_c0    #002129
+#define Solarized_dark_c1    #dc322f
+#define Solarized_dark_c2    #859900
+#define Solarized_dark_c3    #bf6f00
+#define Solarized_dark_c4    #268bd2
+#define Solarized_dark_c5    #d33682
+#define Solarized_dark_c6    #2aa198
+#define Solarized_dark_c7    #586e75
+#define Solarized_dark_c8    #073642
+#define Solarized_dark_c9    #cb4b16
+#define Solarized_dark_c10   #586e00
+#define Solarized_dark_c11   #a57b00
+#define Solarized_dark_c12   #3374b6
+#define Solarized_dark_c13   #8c71b4
+#define Solarized_dark_c14   #43b1a1
+#define Solarized_dark_c15   #fdf6e3
+#define Solarized_dark_bg    #002b36
+#define Solarized_dark_fg    #839496
+#define Solarized_dark_cur   #93a1a1
+
+!!! Solarized_light color scheme 
+#define Solarized_light_c0    #eee8d5
+#define Solarized_light_c1    #dc322f
+#define Solarized_light_c2    #859900
+#define Solarized_light_c3    #b58900
+#define Solarized_light_c4    #268bd2
+#define Solarized_light_c5    #d33682
+#define Solarized_light_c6    #2aa198
+#define Solarized_light_c7    #b5b5ab
+#define Solarized_light_c8    #ddd6c3
+#define Solarized_light_c9    #cb4b36
+#define Solarized_light_c10   #589e22
+#define Solarized_light_c11   #a39400
+#define Solarized_light_c12   #657bb3
+#define Solarized_light_c13   #6c71c4
+#define Solarized_light_c14   #589ea5
+#define Solarized_light_c15   #002b36
+#define Solarized_light_bg    #fdf6e3
+#define Solarized_light_fg    #556b73
+#define Solarized_light_cur   #586e75
+
+!!! Nord color scheme 
+#define Nord_c0    #3b4252
+#define Nord_c1    #bf616a
+#define Nord_c2    #a3be8c
+#define Nord_c3    #ebcb8b
+#define Nord_c4    #81a1c1
+#define Nord_c5    #b48ead
+#define Nord_c6    #88c0d0
+#define Nord_c7    #757C8A
+#define Nord_c8    #383E4D
+#define Nord_c9    #bf616a
+#define Nord_c10   #a3be8c
+#define Nord_c11   #ebcb8b
+#define Nord_c12   #81a1c1
+#define Nord_c13   #b48ead
+#define Nord_c14   #8fbcbb
+#define Nord_c15   #eceff4
+#define Nord_bg    #2e3440
+#define Nord_fg    #d8dee9
+#define Nord_cur   #d8dee9
+
+!!! dark color scheme 
+#define dark_c0    #555555
+#define dark_c1    #E06C75
+#define dark_c2    #98C379
+#define dark_c3    #f5dd7B
+#define dark_c4    #60aaff
+#define dark_c5    #C678DD
+#define dark_c6    #46c6b2
+#define dark_c7    #c0c0c0
+#define dark_c8    #777777
+#define dark_c9    #dd0000
+#define dark_c10   #00dd00
+#define dark_c11   #eebb33
+#define dark_c12   #5c5cff
+#define dark_c13   #dd00dd
+#define dark_c14   #22aacc
+#define dark_c15   #ffffff
+#define dark_bg    #222222
+#define dark_fg    #cccccc
+#define dark_cur   #cccccc
+
+!!! Solarized_dark_orig color scheme 
+#define Solarized_dark_orig_c0    #073642
+#define Solarized_dark_orig_c1    #dc322f
+#define Solarized_dark_orig_c2    #859900
+#define Solarized_dark_orig_c3    #b58900
+#define Solarized_dark_orig_c4    #268bd2
+#define Solarized_dark_orig_c5    #d33682
+#define Solarized_dark_orig_c6    #2aa198
+#define Solarized_dark_orig_c7    #eee8d5
+#define Solarized_dark_orig_c8    #002b36
+#define Solarized_dark_orig_c9    #cb4b16
+#define Solarized_dark_orig_c10   #586e75
+#define Solarized_dark_orig_c11   #657b83
+#define Solarized_dark_orig_c12   #839496
+#define Solarized_dark_orig_c13   #6c71c4
+#define Solarized_dark_orig_c14   #93a1a1
+#define Solarized_dark_orig_c15   #fdf6e3
+#define Solarized_dark_orig_bg    #002b36
+#define Solarized_dark_orig_fg    #a3b4b6
+#define Solarized_dark_orig_cur   #93a1a1
+
+!!! Solarized_light_orig color scheme 
+#define Solarized_light_orig_c0    #eee8d5
+#define Solarized_light_orig_c1    #dc322f
+#define Solarized_light_orig_c2    #859900
+#define Solarized_light_orig_c3    #b58900
+#define Solarized_light_orig_c4    #268bd2
+#define Solarized_light_orig_c5    #d33682
+#define Solarized_light_orig_c6    #2aa198
+#define Solarized_light_orig_c7    #073642
+#define Solarized_light_orig_c8    #fdf6e3
+#define Solarized_light_orig_c9    #cb4b16
+#define Solarized_light_orig_c10   #93a1a1
+#define Solarized_light_orig_c11   #839496
+#define Solarized_light_orig_c12   #657b83
+#define Solarized_light_orig_c13   #6c71c4
+#define Solarized_light_orig_c14   #586e75
+#define Solarized_light_orig_c15   #002b36
+#define Solarized_light_orig_bg    #fdf6e3
+#define Solarized_light_orig_fg    #657b83
+#define Solarized_light_orig_cur   #586e75

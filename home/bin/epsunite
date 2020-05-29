@@ -1,0 +1,19 @@
+#!/bin/bash
+
+if [ $# -lt 2 ]; then 
+	echo "${0##*/}: too few arguments"
+	echo "Usage: ${0##*/} file1.eps file2.eps ... output.pdf"
+	exit 1
+fi
+
+pdfs=()
+while [ $# -gt 1 ]; do
+	epstopdf "$1"
+	pdfs+=("${1%.eps}.pdf")
+	shift
+done
+output="$1"
+
+pdfunite "${pdfs[@]}" "$output"
+
+rm "${pdfs[@]}"
