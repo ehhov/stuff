@@ -1,8 +1,8 @@
 setl spell
 syn spell toplevel
 
-command! -buffer -nargs=? R w <bar> ! pdflatex -file-line-error -interaction=nonstopmode % <args> | grep --color ':.*:'
-command! -buffer -nargs=? P ! xdg-open %:r.pdf &>/dev/null & disown
+command! -buffer -nargs=? R update <bar> ! pdflatex -file-line-error -interaction=nonstopmode % <args> <bar> grep --color ':.*:'
+command! -buffer -nargs=? P call jobstart('xdg-open '.expand('%:p:r').'.pdf', {'detach':1})
 
 vnoremap <buffer> <c-t> :'<,'>! column -t -s \& -o \& <cr>
 inoremap <buffer> <c-e> <esc>YPVr%Y
@@ -14,15 +14,18 @@ setl fo-=t
 setl fo-=a
 
 aug tex_formatting
-	au! 
+	au!
 	au InsertLeave <buffer>
-		\ exe 'set fo-=t' | 
-		\ exe 'set fo-=a' | 
+		\ exe 'set fo-=t' |
+		\ exe 'set fo-=a' |
 aug END
 
 
 " don't do anything else yet...
 finish
+
+" The following may try to fold some elements of document. Not really usable 
+" in my opinion.
 
 " Initialization {{{
 

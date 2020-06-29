@@ -1,70 +1,43 @@
-#
+# vim:ft=sh
 # ~/.bashrc
 #
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-#alias ls='ls --color=auto'
-#PS1='[\u@\h \W]\$ '
+HISTFILE=~/.bashhst
 
-# .bashrc
-#
-# User specific aliases and functions
-#
-# Source global definitions
+bind 'set enable-keypad on'
+bind 'set show-all-if-ambiguous off'
+#bind 'set completion-map-case on'
+bind 'set completion-ignore-case on'
+#bind 'set completion-prefix-display-length 5'
+bind 'set colored-completion-prefix on'
+bind 'set colored-stats on'
 
-if [  -f "local.shrc" ]; then
-    . "local.shrc"
-fi
+[ -r ~/.shellsrc ] && . ~/.shellsrc
 
-stty -ixon
-set -o noclobber
-alias cp='cp -i'
-alias mv='mv -i'
-alias ls='ls --color=auto'
-alias la='ls -A'
-alias lt='ls -latr'
-alias grep='grep -I --color'
-alias pdflatex='pdflatex -file-line-error -interaction=nonstopmode'
-alias vim='nvim -p'
-alias nvim='nvim -p'
-alias view="nvim -R -M"
-alias xclipb='xclip -selection clipboard'
-
-open() {
-	for i in "$@"; do
-		xdg-open "$i" &>/dev/null & disown;
-	done
-}
-export -f open
-
-
-#################################
-## Prompt string configuration ##
 PS1func() {
 	local title time user path branch
-	time="36| $(~/.bin/bash_time)"
+	time="36| $(PStime)"
 	user="35| $USER"
 	path="32| $(sed -E 's/([^\./]{1})[^/]*\//\1\//g' <<< ${PWD/#$HOME/\~})"
 	branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)"
-	if [ $branch ]; then branch=" ($branch)"; fi; branch="37|$branch"
+	if [ "$branch" ]; then branch=" ($branch)"; fi; branch="37|$branch"
 	# hyphen -, en dash –, em dash —
-	title="${PWD/#$HOME/\~} : ${SHELL##*/} — ${TERM%-*color}"
+	title="${PWD/#$HOME/\~} : ${0##*/}" # $0 is the actual shell
+	if [ "$SHDEPTH" -gt 1 ]; then
+		title="$title ($SHDEPTH)"
+	fi
+	title="$title — ${TERM%-*color}"
 
-	# whis way you cannot pevent bad behavior caused by ; in folder names
-	# this also happens in fish, so I don't know is it fixable at all
-	printf "\001\033]0;"; echo -n "$title"; printf "\007\002"
-	for item in "$time" "$user" "$path" "$branch"; do 
-		printf "\001\033[${item%%|*}m\002"
-		echo -n "${item#*|}"
-		#printf "\001\033[m\002"
+	echo -en "\\001\\033]0;"; echo -n "$title"; echo -en "\\007\\002"
+	for item in "$time" "$user" "$path" "$branch"; do
+		echo -en "\\001\\033[${item%%\|*}m\\002"
+		echo -n "${item#*\|}"
 	done
-	printf "\001\033[m\002 "
+	printf "\\001\\033[00m\\002 "
 }
 
 PROMPT_COMMAND=""
 PS1="\$(PS1func)"
-
-#[ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
-# it is in ~/other/tmp/bash-completion now 

@@ -1,1 +1,1 @@
-email.vim
+readable.vim

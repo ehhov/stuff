@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 input="${1%.pdf}.pdf"
 if [ $# = 4 ]; then
@@ -21,7 +21,7 @@ output="$PWD/$output"
 
 echo "$input" pages $st to $end destination "$output"
 echo -n Hit Enter if it is correct or Ctrl-C if not...
-read 
+read
 
 dir=/tmp/$(date +%s)$RANDOM
 mkdir $dir && cd $dir

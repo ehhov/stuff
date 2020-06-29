@@ -1,0 +1,53 @@
+# vim:ft=sh
+# ~/.shellsrc -- common definitions for all shells
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+export SHDEPTH=$(( $SHDEPTH + 1 ))
+
+stty -ixon
+set -o noclobber
+alias cp='cp -i'
+alias mv='mv -i'
+alias ls='ls --color=auto'
+alias la='ls -A'
+alias ll='ls -l'
+alias lt='ls -latr'
+alias pst='ps --sort=start'
+alias grep='grep -I --color'
+alias pdflatex='pdflatex -file-line-error -interaction=nonstopmode'
+alias vim='nvim -p'
+alias nvim='nvim -p'
+alias view="nvim -R -M"
+alias xcb='xclip -selection clipboard'
+alias bt='bluetoothctl'
+alias n='nnn'
+
+
+calc() {
+	if [ "$1" = '-' ]; then
+		echo 'scale=5' >| /tmp/temp
+		bc -iql /tmp/temp
+	else
+		echo "scale=5; $*" | bc -ql
+	fi
+}
+
+open() {
+	# TODO: remove 'process finished' notification. Impossible without bash::disown.
+	for i in "$@"; do
+		nohup xdg-open "$i" 1>/dev/null 2>&1 &
+	done
+}
+
+dishup() {
+	nohup "$@" 1>/dev/null 2>&1 &
+}
+
+
+#################################
+## Prompt string configuration ##
+
+# now moved to shell-specific files

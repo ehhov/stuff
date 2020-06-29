@@ -1,14 +1,14 @@
-#!/bin/bash
+#!/bin/sh
 
 copy() {
 	xclip -selection clipboard -t image/png -i $1
 }
 
-case $1 in 
-screen) 
-	#import -window root 
-	#maim -u 
-	scrot -o /tmp/screen.png && copy /tmp/screen.png 
+case $1 in
+screen)
+	#import -window root
+	#maim -u
+	scrot -o /tmp/screen.png && copy /tmp/screen.png
 ;;
 
 delayed)
@@ -20,15 +20,15 @@ import)
 ;;
 
 region)
-	#maim -usk /tmp/region.png && copy /tmp/region.png 
-	scrot -bsfo /tmp/region.png && copy /tmp/region.png 
+	#maim -usk /tmp/region.png && copy /tmp/region.png
+	scrot -bsfo /tmp/region.png && copy /tmp/region.png
 ;;
 
 quit)
 	killall import
 	killall maim
 	killall scrot
-	#killall spectacle 
+	#killall spectacle
 ;;
 
 esac

@@ -1,0 +1,111 @@
+#!/bin/bash
+
+the_usage() {
+	this=${0##*/}
+	echo -e "$this: usage:"
+	echo -e "\t$this ls TO list (removable) devices"
+	echo -e "\t$this mount DEVICE TO mount a device"
+	echo -e "\t$this eject DEVICE TO eject a device"
+	echo -e "\t$this open DEVICE TO mount a device, open it in the SHELL, and then eject"
+}
+
+usage() {
+	the_usage | column -t -s 'TO'
+	exit 1
+}
+
+usb_check() {
+	if [ $(lsblk -drno TYPE $1) = part ] && [ $(lsblk -drno RM $1) = 1 ]; then
+		true
+	else
+		false
+	fi
+}
+
+usb_print() {
+	lsblk -dlno path,fsused,size,mountpoint "$1"
+}
+
+usb_list() {
+	local list
+	list=()
+	while read device; do
+		if usb_check "$device"; then
+			list+=( "$device" )
+		fi
+	done <<< $(lsblk -prno path)
+	if [ ${#list[@]} -eq 0 ]; then
+		echo 'No devices found'
+	else
+		for device in "${list[@]}"; do
+			usb_print "$device"
+		done
+	fi
+}
+
+usb_check_critical() {
+	if ! [ -b "$1" ]; then
+		echo -e "$1 is not a block device"
+		exit 1
+	fi
+	if ! usb_check "$1"; then
+		echo -e "$1 is not a removable partition"
+		exit 1
+	fi
+}
+
+usb_mount() {
+	part=/dev/${1#/dev/}
+
+	usb_check_critical "$part"
+
+	udisksctl mount -b $part
+}
+
+usb_eject() {
+	part=/dev/${1#/dev/}
+
+	usb_check_critical "$part"
+
+	disk=$(readlink /sys/class/block/${part#/dev/})
+	disk=${disk%/*}
+	disk=/dev/${disk##*/}
+
+	udisksctl unmount -b $part
+	udisksctl power-off -b $disk
+}
+
+usb_open() {
+	usb_mount "$1"
+
+	mpoint=$(lsblk -no mountpoint /dev/${1#/dev/})
+	olddir=$PWD
+	cd $mpoint
+	$SHELL
+	cd $olddir
+
+	usb_eject "$1"
+}
+
+############################
+## The actions themselves ##
+opt=$1
+arg=$2
+
+if [ -z "$opt" ]; then
+	usage
+fi
+if [ $opt != ls ] && [ -z "$arg" ]; then
+	usage
+fi
+
+case $opt in
+	ls)
+		usb_list;;
+	mount)
+		usb_mount "$arg";;
+	eject)
+		usb_eject "$arg";;
+	open)
+		usb_open "$arg";;
+esac

@@ -1,7 +1,38 @@
-FILES.C = brightness_levels.c battery_log.c bash_time.c
-FILES.C.OUT = $(FILES.C:.c=)
+PREFIX = ${HOME}/.local
 
-all: $(FILES.C.OUT)
+CC = cc
+FLAGS = -Wall -pedantic -Os -std=c99 -D_POSIX_C_SOURCE=200809L
+PROGS.C = batlog.c PStime.c
+PROGS = ${PROGS.C:.c=}
+FILES = ${PROGS} brightness colors colors-all\
+        epsunite monitor pdfsepunite print replaceindir\
+        svg2pdf texclear usb volume showgit
+
+define NL
+
+
+endef
+
+all: ${PROGS} ${FILES}
+
+install: all
+	mkdir -p ${PREFIX}/bin
+	$(foreach file,${FILES},\
+	  cp -f ${file} ${PREFIX}/bin $(NL)\
+	  chmod 755 ${PREFIX}/bin/${file} $(NL)\
+	  )
+
+uninstall:
+	$(foreach file,${FILES},\
+	  rm -f ${PREFIX}/bin/${file} $(NL)\
+	  )
+
+clean:
+	rm -f ${PROGS}
 
 %: %.c
-	gcc -Wall -pedantic -Os -std=c99 -o $@ $<
+	${CC} ${FLAGS} -o $@ $<
+
+%:
+
+.PHONY: all install uninstall clean

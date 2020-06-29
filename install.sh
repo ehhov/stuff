@@ -1,22 +1,23 @@
-#! /bin/bash
+#!/bin/bash
 
-this=$(pwd)
-this=${this#~/}
+dir=$(readlink -f $0)
+dir=$(dirname "$dir")
+rel=${dir#~/}
 create_link() {
 	# link to_what where
-	if [ ! -e $2 ] && [ ! -L $2 ]; then  
+	if [ ! -e $2 ] && [ ! -L $2 ]; then
 		ln -s $1 $2
 	fi
 }
 copy() {
 	# copy what where
-	if [ ! -e $2 ] && [ ! -L $2 ]; then  
+	if [ ! -e $2 ] && [ ! -L $2 ]; then
 		cp $1 $2
 	fi
 }
 remove() {
 	# remove what
-	if [ -e $1 ] || [ -L $1 ]; then 
+	if [ -e $1 ] || [ -L $1 ]; then
 		rm -rf $1
 	fi
 }
@@ -24,45 +25,61 @@ remove() {
 
 case $1 in
 ln|link)
-	for i in home/*; do 
+	for i in ${dir}/home/*; do
+		i=${i#$dir/}
 		j=${i#home/}
-		create_link ${this}/$i ~/.$j
+		create_link ${rel}/$i ~/.$j
 	done
-	for i in config/*; do
+	for i in ${dir}/config/*; do
+		i=${i#$dir/}
 		j=${i#config/}
-		create_link ../${this}/$i ~/.config/$j
+		create_link ../${rel}/$i ~/.config/$j
 	done
 ;;
 
 reln|relink)
-	for i in home/*; do 
+	for i in ${dir}/home/*; do
+		i=${i#$dir/}
 		j=${i#home/}
 		remove ~/.$j
-		create_link ${this}/$i ~/.$j
+		create_link ${rel}/$i ~/.$j
 	done
-	for i in config/*; do
+	for i in ${dir}/config/*; do
+		i=${i#$dir/}
 		j=${i#config/}
 		remove ~/.config/$j
-		create_link ../${this}/$i ~/.config/$j
+		create_link ../${rel}/$i ~/.config/$j
 	done
 ;;
 
 kde|KDE)
-	for i in KDE/*; do
+	for i in ${dir}/KDE/*; do
+		i=${i#$dir/}
 		j=${i#KDE/}
 		remove ~/.config/$j
-		create_link ../${this}/$i ~/.config/$j
+		create_link ../${rel}/$i ~/.config/$j
 	done
 ;;
 
 mime)
 	file=~/.config/mimeapps.list
-	here=config/mimeapps.list
-	if [ -f $file ] && [ ! -L $file ]; then 
+	here=${dir}/config/mimeapps.list
+	if [ -f $file ] && [ ! -L $file ]; then
 		cp $file $here
 	fi
+	here=${here#$dir/}
 	remove $file
-	create_link ../${this}/$here $file
+	create_link ../${rel}/$here $file
+;;
+
+clone)
+	cd ~
+	[ -e thicc ] || git clone https://github.com/ehhov/thicc.git
+	mkdir -p ~/gits
+	cd ~/gits
+	[ -e st ] || git clone https://github.com/ehhov/st.git
+	[ -e dwm ] || git clone https://github.com/ehhov/dwm.git
+	[ -e status ] || git clone https://github.com/ehhov/status.git
 ;;
 
 *)

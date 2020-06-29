@@ -1,1 +1,1 @@
-command! -buffer -nargs=? R w <bar> so % <args>
+command! -buffer -nargs=? R update <bar> so % <args>

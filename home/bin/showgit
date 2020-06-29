@@ -1,0 +1,21 @@
+#!/bin/sh
+
+gitdir="${1:-$(pwd)}"
+gitname=${gitdir%/}
+gitname=${gitname##*/}
+htmldir="/tmp/git/$gitname"
+prefix="${HOME}/.local"
+
+if [ -e $htmldir ]; then
+	rm -rf $htmldir
+fi
+mkdir -p $htmldir
+for file in $prefix/share/doc/stagit/style.css; do
+	cp $file $htmldir
+done
+
+cd $htmldir
+stagit $gitdir
+cd
+
+xdg-open $htmldir/log.html

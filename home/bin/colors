@@ -5,13 +5,13 @@ corner='\'
 fgs=(39 {30..37} {90..97})
 bgs=(49 {40..47} {100..107})
 readable=([39]=- [49]=-)
-for i in {0..7}; do 
+for i in {0..7}; do
 	readable[3$i]=$i
 	readable[4$i]=$i
 	readable[9$i]=$(($i+8))
 	readable[10$i]=$(($i+8))
 done
-lens="17 9 6" # table is split a bit nicer 
+lens="17 9 6" # table is split a bit nicer
 defaultlen=9
 cols=$(tput cols)
 while [ "${#corner}" -lt 2 ]; do corner=" $corner"; done
@@ -22,7 +22,7 @@ table() {
 	for _bg in "$@"; do
 		printf " %${#text}s" "${readable[$_bg]}"
 	done
-	echo 
+	echo
 	for _fg in "${fgs[@]}"; do
 		printf " %${#corner}s" "${readable[$_fg]}"
 		for _bg in "$@"; do
@@ -37,15 +37,15 @@ table() {
 }
 
 
-if [ -n "$cols" ]; then 
+if [ -n "$cols" ]; then
 	if [ -n "$*" ]; then
 		len=$(( ($cols-1-${#corner}) / (1+${#text}) ))
 	else
 		for len in $lens; do
-			[ "$cols" -ge $((${#corner}+1 + $len*(${#text}+1))) ] && break 
+			[ "$cols" -ge $((${#corner}+1 + $len*(${#text}+1))) ] && break
 		done
 	fi
-else 
+else
 	len=$defaultlen
 fi
 left="${#bgs[@]}"

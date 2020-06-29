@@ -10,39 +10,47 @@
 static const char *palettes[][259] = {
 /* black      red        green      yellow     blue       magenta    cyan       white  bg fg cur */
 {"#000000", "#FF2424", "#00c000", "#CC7700", "#0055FF", "#d769ce", "#1D97FC", "#B9BBB9",
- "#D7EFDD", "#FB3737", "#40BF4A", "#E69119", "#3846ff", "#c779de", "#09B3B3", "#ffffff", 
+ "#D7EFDD", "#FB3737", "#40BF4A", "#E69119", "#3846ff", "#c779de", "#09B3B3", "#ffffff",
  [256] = "#e4f7e4", "#000000", "#000000"}, /* My light theme */
 
-{"#000000", "#ff5555", "#50fa7b", "#FFB366", "#bd93f9", "#ff79c6", "#8be9fd", "#8B8BA7", 
- "#34344B", "#FF4444", "#3DF56B", "#f1fa8c", "#B78CF2", "#F881C5", "#6EDEF7", "#ffffff", 
+{"#000000", "#ff5555", "#50fa7b", "#FFB366", "#bd93f9", "#ff79c6", "#8be9fd", "#8B8BA7",
+ "#34344B", "#FF4444", "#3DF56B", "#f1fa8c", "#B78CF2", "#F881C5", "#6EDEF7", "#ffffff",
  [256] = "#282a36", "#d8d8d2", "#d8d8d2"}, /* Dracula */
 
-{"#002129", "#dc322f", "#859900", "#bf6f00", "#268bd2", "#d33682", "#2aa198", "#586e75", 
- "#073642", "#cb4b16", "#586e00", "#a57b00", "#3374b6", "#8c71b4", "#43b1a1", "#fdf6e3", 
+{"#002129", "#dc322f", "#859900", "#bf6f00", "#268bd2", "#d33682", "#2aa198", "#586e75",
+ "#073642", "#cb4b16", "#586e00", "#a57b00", "#3374b6", "#8c71b4", "#43b1a1", "#fdf6e3",
  [256] = "#002b36", "#839496", "#93a1a1"}, /* Solarized dark */
 
-{"#eee8d5", "#dc322f", "#859900", "#b58900", "#268bd2", "#d33682", "#2aa198", "#b5b5ab", 
- "#ddd6c3", "#cb4b36", "#589e22", "#a39400", "#657bb3", "#6c71c4", "#589ea5", "#002b36", 
+{"#eee8d5", "#dc322f", "#859900", "#b58900", "#268bd2", "#d33682", "#2aa198", "#b5b5ab",
+ "#ddd6c3", "#cb4b36", "#589e22", "#a39400", "#657bb3", "#6c71c4", "#589ea5", "#002b36",
  [256] = "#fdf6e3", "#556b73", "#586e75"}, /* Solarized light */
 
-{"#3b4252", "#bf616a", "#a3be8c", "#ebcb8b", "#81a1c1", "#b48ead", "#88c0d0", "#757C8A", 
- "#383E4D", "#bf616a", "#a3be8c", "#ebcb8b", "#81a1c1", "#b48ead", "#8fbcbb", "#eceff4", 
+{"#3b4252", "#bf616a", "#a3be8c", "#ebcb8b", "#81a1c1", "#b48ead", "#88c0d0", "#757C8A",
+ "#383E4D", "#bf616a", "#a3be8c", "#ebcb8b", "#81a1c1", "#b48ead", "#8fbcbb", "#eceff4",
  [256] = "#2e3440", "#d8dee9", "#d8dee9"}, /* Nord theme */
 
-{"#555555", "#E06C75", "#98C379", "#f5dd7B", "#60aaff", "#C678DD", "#46c6b2", "#c0c0c0", 
- "#777777", "#dd0000", "#00dd00", "#eebb33", "#5c5cff", "#dd00dd", "#22aacc", "#ffffff", 
+{"#282828", "#cc241d", "#98971a", "#d79921", "#458588", "#b16286", "#689d6a", "#95836A",
+ "#37352F", "#fb4934", "#b8bb26", "#fabd2f", "#83a598", "#d3869b", "#8ec07c", "#ebdbb2",
+ [256] = "#282828", /* hard #1d2021 / soft #32302f */ "#ebdbb2", "#ebdbb2"}, /* Gruvbox dark */
+
+{"#fbf1c7", "#cc241d", "#98971a", "#d79921", "#458588", "#b16286", "#689d6a", "#BEAD9D",
+ "#F5EBBC", "#9d0006", "#79740e", "#b57614", "#076678", "#8f3f71", "#427b58", "#3c3836",
+ [256] = "#fbf1c7", /* hard #f9f5d7 / soft #f2e5bc */ "#3c3836", "#3c3836"}, /* Gruvbox light */
+
+{"#555555", "#E06C75", "#98C379", "#f5dd7B", "#60aaff", "#C678DD", "#46c6b2", "#c0c0c0",
+ "#777777", "#dd0000", "#00dd00", "#eebb33", "#5c5cff", "#dd00dd", "#22aacc", "#ffffff",
  [256] = "#222222", "#cccccc", "#cccccc"}, /* My dark theme */
 
-{"#073642", "#dc322f", "#859900", "#b58900", "#268bd2", "#d33682", "#2aa198", "#eee8d5", 
- "#002b36", "#cb4b16", "#586e75", "#657b83", "#839496", "#6c71c4", "#93a1a1", "#fdf6e3", 
+{"#073642", "#dc322f", "#859900", "#b58900", "#268bd2", "#d33682", "#2aa198", "#eee8d5",
+ "#002b36", "#cb4b16", "#586e75", "#657b83", "#839496", "#6c71c4", "#93a1a1", "#fdf6e3",
  [256] = "#002b36", "#a3b4b6", "#93a1a1"}, /* Solarized dark original */
 
-{"#eee8d5", "#dc322f", "#859900", "#b58900", "#268bd2", "#d33682", "#2aa198", "#073642", 
- "#fdf6e3", "#cb4b16", "#93a1a1", "#839496", "#657b83", "#6c71c4", "#586e75", "#002b36", 
+{"#eee8d5", "#dc322f", "#859900", "#b58900", "#268bd2", "#d33682", "#2aa198", "#073642",
+ "#fdf6e3", "#cb4b16", "#93a1a1", "#839496", "#657b83", "#6c71c4", "#586e75", "#002b36",
  [256] = "#fdf6e3", "#657b83", "#586e75"}, /* Solarized light original */
 };
 static const char *names[] = {
-	"light", "Dracula", "Solarized_dark", "Solarized_light", "Nord", "dark", "Solarized_dark_orig", "Solarized_light_orig"
+	"light", "Dracula", "Solarized_dark", "Solarized_light", "Nord", "Gruvbox_dark", "Gruvbox_light", "dark", "Solarized_dark_orig", "Solarized_light_orig"
 };
 static const char* Xres_output = "colors";
 static const char* liveschemes = "live_colors.sh";
@@ -52,9 +60,10 @@ int main() {
 	FILE* file;
 
 	file=fopen(Xres_output, "w");
+	fprintf(file, "! vim:ft=xdefaults\n");
 	fprintf(file, "!!! This file is created using ~/.Xresources.d/from-st.c !!!\n");
 	for (int theme=0; theme<N; theme++){
-		fprintf(file, "\n!!! %s color scheme \n", names[theme]);
+		fprintf(file, "\n!!! %s color scheme\n", names[theme]);
 		fprintf(file, "#define %s_c0    %s\n", names[theme], palettes[theme][0]);
 		fprintf(file, "#define %s_c1    %s\n", names[theme], palettes[theme][1]);
 		fprintf(file, "#define %s_c2    %s\n", names[theme], palettes[theme][2]);
@@ -127,23 +136,23 @@ int main() {
 		file=fopen(vimname, "w");
 
 		fprintf(file, vimreset);
-		fprintf(file, "let s:none = \"none\"\n");  
-		fprintf(file, "let  s:c0  = \"%s\"\n", palettes[theme][0]);  
-		fprintf(file, "let  s:c1  = \"%s\"\n", palettes[theme][1]);  
-		fprintf(file, "let  s:c2  = \"%s\"\n", palettes[theme][2]);  
-		fprintf(file, "let  s:c3  = \"%s\"\n", palettes[theme][3]);  
-		fprintf(file, "let  s:c4  = \"%s\"\n", palettes[theme][4]);  
-		fprintf(file, "let  s:c5  = \"%s\"\n", palettes[theme][5]);  
-		fprintf(file, "let  s:c6  = \"%s\"\n", palettes[theme][6]);  
-		fprintf(file, "let  s:c7  = \"%s\"\n", palettes[theme][7]);  
-		fprintf(file, "let  s:c8  = \"%s\"\n", palettes[theme][8]);  
-		fprintf(file, "let  s:c9  = \"%s\"\n", palettes[theme][9]);  
-		fprintf(file, "let  s:c10 = \"%s\"\n", palettes[theme][10]); 
-		fprintf(file, "let  s:c11 = \"%s\"\n", palettes[theme][11]); 
-		fprintf(file, "let  s:c12 = \"%s\"\n", palettes[theme][12]); 
-		fprintf(file, "let  s:c13 = \"%s\"\n", palettes[theme][13]); 
-		fprintf(file, "let  s:c14 = \"%s\"\n", palettes[theme][14]); 
-		fprintf(file, "let  s:c15 = \"%s\"\n", palettes[theme][15]); 
+		fprintf(file, "let s:none = \"none\"\n");
+		fprintf(file, "let  s:c0  = \"%s\"\n", palettes[theme][0]);
+		fprintf(file, "let  s:c1  = \"%s\"\n", palettes[theme][1]);
+		fprintf(file, "let  s:c2  = \"%s\"\n", palettes[theme][2]);
+		fprintf(file, "let  s:c3  = \"%s\"\n", palettes[theme][3]);
+		fprintf(file, "let  s:c4  = \"%s\"\n", palettes[theme][4]);
+		fprintf(file, "let  s:c5  = \"%s\"\n", palettes[theme][5]);
+		fprintf(file, "let  s:c6  = \"%s\"\n", palettes[theme][6]);
+		fprintf(file, "let  s:c7  = \"%s\"\n", palettes[theme][7]);
+		fprintf(file, "let  s:c8  = \"%s\"\n", palettes[theme][8]);
+		fprintf(file, "let  s:c9  = \"%s\"\n", palettes[theme][9]);
+		fprintf(file, "let  s:c10 = \"%s\"\n", palettes[theme][10]);
+		fprintf(file, "let  s:c11 = \"%s\"\n", palettes[theme][11]);
+		fprintf(file, "let  s:c12 = \"%s\"\n", palettes[theme][12]);
+		fprintf(file, "let  s:c13 = \"%s\"\n", palettes[theme][13]);
+		fprintf(file, "let  s:c14 = \"%s\"\n", palettes[theme][14]);
+		fprintf(file, "let  s:c15 = \"%s\"\n", palettes[theme][15]);
 		fprintf(file, "let  s:bg  = \"%s\"\n", palettes[theme][256]);
 		fprintf(file, "let  s:fg  = \"%s\"\n", palettes[theme][257]);
 		fprintf(file, "let  s:cur = \"%s\"\n", palettes[theme][258]);

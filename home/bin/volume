@@ -1,6 +1,7 @@
-#!/bin/bash
+#!/bin/sh
 
-sink=$(pactl info | sed -En 's/Default Sink: (.*)/\1/p')
+#sink=$(pactl info | sed -En 's/Default Sink: (.*)/\1/p')
+sink=@DEFAULT_SINK@
 case $1 in
 	up) pactl set-sink-volume ${sink} +2%;;
 	down) pactl set-sink-volume ${sink} -2%;;

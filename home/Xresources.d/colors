@@ -1,6 +1,7 @@
+! vim:ft=xdefaults
 !!! This file is created using ~/.Xresources.d/from-st.c !!!
 
-!!! light color scheme 
+!!! light color scheme
 #define light_c0    #000000
 #define light_c1    #FF2424
 #define light_c2    #00c000
@@ -21,7 +22,7 @@
 #define light_fg    #000000
 #define light_cur   #000000
 
-!!! Dracula color scheme 
+!!! Dracula color scheme
 #define Dracula_c0    #000000
 #define Dracula_c1    #ff5555
 #define Dracula_c2    #50fa7b
@@ -42,7 +43,7 @@
 #define Dracula_fg    #d8d8d2
 #define Dracula_cur   #d8d8d2
 
-!!! Solarized_dark color scheme 
+!!! Solarized_dark color scheme
 #define Solarized_dark_c0    #002129
 #define Solarized_dark_c1    #dc322f
 #define Solarized_dark_c2    #859900
@@ -63,7 +64,7 @@
 #define Solarized_dark_fg    #839496
 #define Solarized_dark_cur   #93a1a1
 
-!!! Solarized_light color scheme 
+!!! Solarized_light color scheme
 #define Solarized_light_c0    #eee8d5
 #define Solarized_light_c1    #dc322f
 #define Solarized_light_c2    #859900
@@ -84,7 +85,7 @@
 #define Solarized_light_fg    #556b73
 #define Solarized_light_cur   #586e75
 
-!!! Nord color scheme 
+!!! Nord color scheme
 #define Nord_c0    #3b4252
 #define Nord_c1    #bf616a
 #define Nord_c2    #a3be8c
@@ -105,7 +106,49 @@
 #define Nord_fg    #d8dee9
 #define Nord_cur   #d8dee9
 
-!!! dark color scheme 
+!!! Gruvbox_dark color scheme
+#define Gruvbox_dark_c0    #282828
+#define Gruvbox_dark_c1    #cc241d
+#define Gruvbox_dark_c2    #98971a
+#define Gruvbox_dark_c3    #d79921
+#define Gruvbox_dark_c4    #458588
+#define Gruvbox_dark_c5    #b16286
+#define Gruvbox_dark_c6    #689d6a
+#define Gruvbox_dark_c7    #95836A
+#define Gruvbox_dark_c8    #37352F
+#define Gruvbox_dark_c9    #fb4934
+#define Gruvbox_dark_c10   #b8bb26
+#define Gruvbox_dark_c11   #fabd2f
+#define Gruvbox_dark_c12   #83a598
+#define Gruvbox_dark_c13   #d3869b
+#define Gruvbox_dark_c14   #8ec07c
+#define Gruvbox_dark_c15   #ebdbb2
+#define Gruvbox_dark_bg    #282828
+#define Gruvbox_dark_fg    #ebdbb2
+#define Gruvbox_dark_cur   #ebdbb2
+
+!!! Gruvbox_light color scheme
+#define Gruvbox_light_c0    #fbf1c7
+#define Gruvbox_light_c1    #cc241d
+#define Gruvbox_light_c2    #98971a
+#define Gruvbox_light_c3    #d79921
+#define Gruvbox_light_c4    #458588
+#define Gruvbox_light_c5    #b16286
+#define Gruvbox_light_c6    #689d6a
+#define Gruvbox_light_c7    #BEAD9D
+#define Gruvbox_light_c8    #F5EBBC
+#define Gruvbox_light_c9    #9d0006
+#define Gruvbox_light_c10   #79740e
+#define Gruvbox_light_c11   #b57614
+#define Gruvbox_light_c12   #076678
+#define Gruvbox_light_c13   #8f3f71
+#define Gruvbox_light_c14   #427b58
+#define Gruvbox_light_c15   #3c3836
+#define Gruvbox_light_bg    #fbf1c7
+#define Gruvbox_light_fg    #3c3836
+#define Gruvbox_light_cur   #3c3836
+
+!!! dark color scheme
 #define dark_c0    #555555
 #define dark_c1    #E06C75
 #define dark_c2    #98C379
@@ -126,7 +169,7 @@
 #define dark_fg    #cccccc
 #define dark_cur   #cccccc
 
-!!! Solarized_dark_orig color scheme 
+!!! Solarized_dark_orig color scheme
 #define Solarized_dark_orig_c0    #073642
 #define Solarized_dark_orig_c1    #dc322f
 #define Solarized_dark_orig_c2    #859900
@@ -147,7 +190,7 @@
 #define Solarized_dark_orig_fg    #a3b4b6
 #define Solarized_dark_orig_cur   #93a1a1
 
-!!! Solarized_light_orig color scheme 
+!!! Solarized_light_orig color scheme
 #define Solarized_light_orig_c0    #eee8d5
 #define Solarized_light_orig_c1    #dc322f
 #define Solarized_light_orig_c2    #859900

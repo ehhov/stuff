@@ -6,7 +6,7 @@ nnoremap <c-space> :let &iminsert=!&iminsert <cr>
 " make iminsert global
 let g:layout = &iminsert
 augroup global_keymap
-	au! 
+	au!
 	au BufLeave * let g:layout = &iminsert
 	au BufEnter * let &iminsert = g:layout
 augroup END
@@ -84,7 +84,7 @@ set langmap=Ё~,ё`,АF,Б<,ВD,ГU,ДL,ЕT,Ж:,ЗP,ИB,ЙQ,КR,ЛK,МV,НY,ОJ,
 
 "command <C-v>u0446 w " \u0446 = ц
 
-" All unmapped, because otherwise there is no chance to search for Russian letters or substitute them 
+" All unmapped, because otherwise there is no chance to search for Russian letters or substitute them
 "cmap Ё ~
 "cmap ё `
 "cmap А F
@@ -154,9 +154,9 @@ set langmap=Ё~,ё`,АF,Б<,ВD,ГU,ДL,ЕT,Ж:,ЗP,ИB,ЙQ,КR,ЛK,МV,НY,ОJ,
 "cmap ю .
 "cmap ж ;
 
-" The following lines are trying to make <C-char> work in gvim under 
+" The following lines are trying to make <C-char> work in gvim under
 " a non-english layout. It didn't work because of the Crtl ASCII behavior.
-" The lines are left here if this problem ever appears to be fixable. 
+" The lines are left here if this problem ever appears to be fixable.
 "map  <C-ё> <C-`>
 "map! <C-ё> <C-`>
 "map  <C-а> <C-f>

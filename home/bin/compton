@@ -1,2 +1,0 @@
-#!/bin/bash
-compton --config ~/.config/compton/my-compton.conf $@
