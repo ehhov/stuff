@@ -1,27 +1,12 @@
-Write a screenshot tool, using
-- scrot source code
-	https://github.com/resurrecting-open-source-projects/scrot
-	https://github.com/dreamer/scrot/blob/master/src/main.c
-- xscreenshot https://git.2f30.org/xscreenshot/file/xscreenshot.c.html
-Some useful features:
-- full screen
-- click to capture a window
-- drag to capture a region
-- click two points to select a region
-- add a delay
+Write a program to pick colors with a magnifier. A good example of the 
+resulting look is deepin-picker. Simple programs in C are grabc and 
+xzoom.
 
-st stopped using its own const char *shell variable.
-
-dwm does not load Xresources.
-
-If I run something in SDDM and then run an X session from the console 
-(via startx), SDDM stops. Two startx's from two tty's work well.
+Modify MuPDF to add a middle mouse button zoom.
 
 Try plain FFMPEG for screencast
 	https://wiki.archlinux.org/index.php/FFmpeg#Screen_capture.
 	https://trac.ffmpeg.org/wiki/Capture/Desktop#Linux
-
-Move scripts to dash instead of bash.
 
 Fix wifi problems.
 

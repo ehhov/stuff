@@ -8,14 +8,22 @@
  * Compile and run while in ~/.Xresources.d/
  */
 static const char *palettes[][259] = {
-/* black      red        green      yellow     blue       magenta    cyan       white  bg fg cur */
+     /* black      red        green      yellow     blue       magenta    cyan       white  bg fg cur */
 {"#000000", "#FF2424", "#00c000", "#CC7700", "#0055FF", "#d769ce", "#1D97FC", "#B9BBB9",
  "#D7EFDD", "#FB3737", "#40BF4A", "#E69119", "#3846ff", "#c779de", "#09B3B3", "#ffffff",
  [256] = "#e4f7e4", "#000000", "#000000"}, /* My light theme */
 
+{"#000000", "#d73a49", "#2cbe4e", "#e36209", "#005cc5", "#f34b7d", "#00add8", "#babfc4",
+ "#eff2f6", "#cb2431", "#2c974b", "#f97732", "#036ee7", "#6f42c1", "#00b4ab", "#ffffff",
+ [256] = "#f6f8fa", "#24292e", "#24292e"}, /* GitHub */
+
 {"#000000", "#ff5555", "#50fa7b", "#FFB366", "#bd93f9", "#ff79c6", "#8be9fd", "#8B8BA7",
  "#34344B", "#FF4444", "#3DF56B", "#f1fa8c", "#B78CF2", "#F881C5", "#6EDEF7", "#ffffff",
  [256] = "#282a36", "#d8d8d2", "#d8d8d2"}, /* Dracula */
+
+{"#3b4252", "#bf616a", "#a3be8c", "#ebcb8b", "#81a1c1", "#b48ead", "#88c0d0", "#757C8A",
+ "#383E4D", "#bf616a", "#a3be8c", "#ebcb8b", "#81a1c1", "#b48ead", "#8fbcbb", "#eceff4",
+ [256] = "#2e3440", "#d8dee9", "#d8dee9"}, /* Nord theme */
 
 {"#002129", "#dc322f", "#859900", "#bf6f00", "#268bd2", "#d33682", "#2aa198", "#586e75",
  "#073642", "#cb4b16", "#586e00", "#a57b00", "#3374b6", "#8c71b4", "#43b1a1", "#fdf6e3",
@@ -25,9 +33,13 @@ static const char *palettes[][259] = {
  "#ddd6c3", "#cb4b36", "#589e22", "#a39400", "#657bb3", "#6c71c4", "#589ea5", "#002b36",
  [256] = "#fdf6e3", "#556b73", "#586e75"}, /* Solarized light */
 
-{"#3b4252", "#bf616a", "#a3be8c", "#ebcb8b", "#81a1c1", "#b48ead", "#88c0d0", "#757C8A",
- "#383E4D", "#bf616a", "#a3be8c", "#ebcb8b", "#81a1c1", "#b48ead", "#8fbcbb", "#eceff4",
- [256] = "#2e3440", "#d8dee9", "#d8dee9"}, /* Nord theme */
+{"#101010", "#efa6a2", "#80c990", "#a69460", "#a3b8ef", "#e6a3dc", "#50cacd", "#808080",
+ "#252525", "#e0af85", "#5accaf", "#c8c874", "#ccaced", "#f2a1c2", "#74c3e4", "#c0c0c0",
+ [256] = "#101010", "#c0c0c0", "#c0c0c0"}, /* other dark */
+
+{"#2E3436", "#CC0000", "#4B910B", "#C4A000", "#3465A4", "#755079", "#06989A", "#916E86",
+ "#401C35", "#EF2929", "#8AE234", "#FCE94F", "#729FCF", "#AD7FA8", "#34E2E2", "#EEEEEC",
+ [256] = "#300a24", "#ffffff", "#ffffff"}, /* Ubuntu */
 
 {"#282828", "#cc241d", "#98971a", "#d79921", "#458588", "#b16286", "#689d6a", "#95836A",
  "#37352F", "#fb4934", "#b8bb26", "#fabd2f", "#83a598", "#d3869b", "#8ec07c", "#ebdbb2",
@@ -50,14 +62,14 @@ static const char *palettes[][259] = {
  [256] = "#fdf6e3", "#657b83", "#586e75"}, /* Solarized light original */
 };
 static const char *names[] = {
-	"light", "Dracula", "Solarized_dark", "Solarized_light", "Nord", "Gruvbox_dark", "Gruvbox_light", "dark", "Solarized_dark_orig", "Solarized_light_orig"
+	"light", "github", "Dracula", "Nord", "Solarized_dark", "Solarized_light", "other_dark", "Ubuntu", "Gruvbox_dark", "Gruvbox_light", "dark", "Solarized_dark_orig", "Solarized_light_orig"
 };
-static const char* Xres_output = "colors";
-static const char* liveschemes = "live_colors.sh";
+static const char *Xres_output = "colors";
+static const char *liveschemes = "live_colors.sh";
 
 int main() {
 	int N = sizeof(palettes)/sizeof(palettes[0]);
-	FILE* file;
+	FILE *file;
 
 	file=fopen(Xres_output, "w");
 	fprintf(file, "! vim:ft=xdefaults\n");
@@ -118,12 +130,12 @@ int main() {
 		fprintf(file, "}\n");
 		fprintf(file, "schemes=\"$schemes %s\"\n", names[theme]);
 	}
-	fprintf(file, "\nPS3=\"Choose a color scheme: \"\n");
-	fprintf(file, "select scheme in $schemes \"Do not change\"\n");
-	fprintf(file, "do\n");
-	fprintf(file, "\t${scheme/#Do not change/}\n");
-	fprintf(file, "\tbreak\n");
-	fprintf(file, "done\n");
+	fprintf(file, "\nPS3=\"Choose a color scheme: \"\n" \
+	              "select scheme in $schemes \"Do not change\"\n" \
+	              "do\n" \
+	              "\t${scheme/#Do not change/}\n" \
+	              "\tbreak\n" \
+	              "done\n");
 	fclose(file);
 
 	return 0;

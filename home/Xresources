@@ -7,7 +7,7 @@ Xft.autohint: true
 Xft.hintstyle: hintslight
 Xft.lcdfilter: lcddefault
 
-Xcursor.size: 30
+Xcursor.size: 24
 Xcursor.theme: dark
 
 ! the path has to be full because it is sourced from the Display Manager
@@ -24,25 +24,25 @@ Xcursor.theme: dark
 !*cutchars: " `'\"()[]{}/"
 
 !!! XTerm configuration !!!
-xterm*color0:        Dracula_c0
-xterm*color1:        Dracula_c1
-xterm*color2:        Dracula_c2
-xterm*color3:        Dracula_c3
-xterm*color4:        Dracula_c4
-xterm*color5:        Dracula_c5
-xterm*color6:        Dracula_c6
-xterm*color7:        Dracula_c7
-xterm*color8:        Dracula_c8
-xterm*color9:        Dracula_c9
-xterm*color10:       Dracula_c10
-xterm*color11:       Dracula_c11
-xterm*color12:       Dracula_c12
-xterm*color13:       Dracula_c13
-xterm*color14:       Dracula_c14
-xterm*color15:       Dracula_c15
-xterm*background:    Dracula_bg
-xterm*foreground:    Dracula_fg
-xterm*cursorColor:   Dracula_cur
+xterm*color0:        github_c0
+xterm*color1:        github_c1
+xterm*color2:        github_c2
+xterm*color3:        github_c3
+xterm*color4:        github_c4
+xterm*color5:        github_c5
+xterm*color6:        github_c6
+xterm*color7:        github_c7
+xterm*color8:        github_c8
+xterm*color9:        github_c9
+xterm*color10:       github_c10
+xterm*color11:       github_c11
+xterm*color12:       github_c12
+xterm*color13:       github_c13
+xterm*color14:       github_c14
+xterm*color15:       github_c15
+xterm*background:    github_bg
+xterm*foreground:    github_fg
+xterm*cursorColor:   github_cur
 
 !xterm*faceName: monospace:size=10
 xterm*faceName: uw ttyp0:pixelsize=18
@@ -70,29 +70,29 @@ xterm*VT100.Translations: #override \
 
 
 !!! URXVT configuration !!!
-urxvt*color0:        Solarized_dark_c0
-urxvt*color1:        Solarized_dark_c1
-urxvt*color2:        Solarized_dark_c2
-urxvt*color3:        Solarized_dark_c3
-urxvt*color4:        Solarized_dark_c4
-urxvt*color5:        Solarized_dark_c5
-urxvt*color6:        Solarized_dark_c6
-urxvt*color7:        Solarized_dark_c7
-urxvt*color8:        Solarized_dark_c8
-urxvt*color9:        Solarized_dark_c9
-urxvt*color10:       Solarized_dark_c10
-urxvt*color11:       Solarized_dark_c11
-urxvt*color12:       Solarized_dark_c12
-urxvt*color13:       Solarized_dark_c13
-urxvt*color14:       Solarized_dark_c14
-urxvt*color15:       Solarized_dark_c15
-urxvt*background:    Solarized_dark_bg
-urxvt*foreground:    Solarized_dark_fg
-urxvt*cursorColor:   Solarized_dark_cur
+urxvt*color0:        github_c0
+urxvt*color1:        github_c1
+urxvt*color2:        github_c2
+urxvt*color3:        github_c3
+urxvt*color4:        github_c4
+urxvt*color5:        github_c5
+urxvt*color6:        github_c6
+urxvt*color7:        github_c7
+urxvt*color8:        github_c8
+urxvt*color9:        github_c9
+urxvt*color10:       github_c10
+urxvt*color11:       github_c11
+urxvt*color12:       github_c12
+urxvt*color13:       github_c13
+urxvt*color14:       github_c14
+urxvt*color15:       github_c15
+urxvt*background:    github_bg
+urxvt*foreground:    github_fg
+urxvt*cursorColor:   github_cur
 
-urxvt.font: xft:uw ttyp0:pixelsize=18
-!urxvt.font: xft:Terminus (TTF):size=12
-!urxvt.font: xft:Iosevka:size=10
+!urxvt.font: xft:uw ttyp0:pixelsize=18
+urxvt.font: xft:Terminus (TTF):pixelsize=18
+!urxvt.font: xft:Iosevka:size=10:antialias=true:autohint=true
 
 URxvt*scrollBar_right: 1
 urxvt*thickness: 10

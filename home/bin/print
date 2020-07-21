@@ -8,26 +8,51 @@ case $1 in
 screen)
 	#import -window root
 	#maim -u
-	scrot -o /tmp/screen.png && copy /tmp/screen.png
+	#scrot -o /tmp/screen.png && copy /tmp/screen.png
+	xshot /tmp/screen.png && copy /tmp/screen.png
 ;;
 
 delayed)
-	scrot -d 5 -o /tmp/screen.png && copy /tmp/screen.png
-;;
-
-import)
-	import /tmp/region.png && copy /tmp/region.png
+	#scrot -d 5 -o /tmp/screen.png && copy /tmp/screen.png
+	xshot -d5000 /tmp/screen.png && copy /tmp/screen.png
 ;;
 
 region)
 	#maim -usk /tmp/region.png && copy /tmp/region.png
-	scrot -bsfo /tmp/region.png && copy /tmp/region.png
+	#scrot -bsfo /tmp/region.png && copy /tmp/region.png
+	xshot -slr /tmp/region.png && copy /tmp/region.png
+;;
+
+two)
+	xshot -slrt /tmp/region.png && copy /tmp/region.png
+;;
+
+noborder)
+	xshot -sb /tmp/region.png && copy /tmp/region.png
+;;
+
+active)
+	xshot -ab /tmp/region.png && copy /tmp/region.png
+;;
+
+monitor)
+	xshot -ma /tmp/screen.png && copy /tmp/screen.png
+;;
+
+other)
+	xshot $2 /tmp/$3 && copy /tmp/$3
+;;
+
+pick)
+	xpick | xclip -selection clipboard
 ;;
 
 quit)
-	killall import
-	killall maim
-	killall scrot
+	killall xshot
+	killall xpick
+	#killall import
+	#killall maim
+	#killall scrot
 	#killall spectacle
 ;;
 

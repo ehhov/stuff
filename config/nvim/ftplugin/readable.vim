@@ -1,14 +1,23 @@
 setl spell
 
-setl tw=72 ts=2 sts=2 sw=2 et nosta
+setl tw=72 ts=2 sts=0 sw=0 et nosta
 
 setl fo+=ta
 
-inoremap <buffer> <c-y> <c-o>:set fo-=ta<cr>
+fun! Togfo()
+	if &fo =~ 'a'
+		setl fo-=t
+		setl fo-=a
+	else
+		setl fo+=ta
+	endif
+endfun
 
-aug email_formatting
-	au!
-	au InsertEnter <buffer>
-		\ exe 'set fo+=t' |
-		\ exe 'set fo+=a' |
-aug END
+inoremap <buffer> <c-y> <c-o>:call Togfo()<cr>
+
+"aug text_formatting
+"	au!
+"	au InsertEnter <buffer>
+"		\ exe 'set fo+=t' |
+"		\ exe 'set fo+=a' |
+"aug END

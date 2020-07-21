@@ -24,10 +24,9 @@ edit [`home/bin/batterylog.c`](home/bin/batterylog.c),
 - Necessary for DWM and other 'developer' work: alsa-lib,-devel, 
   libpulse (pulseaudio-lib), libX11,-devel, libXft,-devel, 
   libXinerama,-devel
-- For minimal distros: dialog, libinput, iw, wpa\_supplicant, 
-  NetworkManager, mesa, X11: xorg-server, -server-utils, -xinit, 
-  intel-driver, libinput-driver
-- Studies related: GNUplot, OpenSSH, ROOT, Ostap, TeX Live, TeXStudio
+- For minimal distros: libinput, ip, wpa\_supplicant, dhcpcd, mesa, X11: 
+  xorg-server, -server-utils, -xinit, intel-driver, libinput-driver
+- Studies related: GNUplot, OpenSSH, ROOT, Ostap, TeX Live
 - Other: simplescreenrecorder, klavaro, libinput-gestures
 - KDE: Plasma, Spectacle, Latte dock, Papirus (icon pack), Adwaita (icon 
   pack)
@@ -36,6 +35,7 @@ Apps that may appear to be useful in the future:
 
 - guvcview(-qt) -- capture video output in real time and even do 
   something simple to it.
+- exiftool -- show and edit files metadata.
 
 The Special directory:
 - Import [`okular.shortcuts`](Special/okular.shortcuts) in Okular 
@@ -64,6 +64,8 @@ use a single account for all repositories.
 ``` bash
 git config --global credential.helper store
 ```
+
+Create the `/opt/local/` directory and set 777 permissions.
 
 
 # Various Instructions

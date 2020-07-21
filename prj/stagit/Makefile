@@ -4,8 +4,8 @@ NAME = stagit
 VERSION = 0.9.3
 
 # paths
-PREFIX = ${HOME}/.local
-MANPREFIX = ${PREFIX}/man
+PREFIX = /opt/local
+MANPREFIX = ${PREFIX}/share/man
 DOCPREFIX = ${PREFIX}/share/doc/${NAME}
 
 LIBGIT_INC = -I/usr/local/include

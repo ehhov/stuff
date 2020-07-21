@@ -517,12 +517,12 @@
 	<!-- Keybindings for starting applications -->
   <keybind key="W-e">
     <action name="Execute">
-      <command> emacs </command>
+      <command> thunar </command>
     </action>
   </keybind>
 	<keybind key="W-Return">
 		<action name="Execute">
-			<command> xterm </command>
+			<command> st </command>
 		</action>
 	</keybind>
 	<keybind key="W-u">
@@ -537,7 +537,7 @@
 	</keybind>
 	<keybind key="W-s">
 		<action name="Execute">
-			<command> ~/.st/st </command>
+			<command> st </command>
 		</action>
 	</keybind>
 	<keybind key="A-space">
@@ -562,6 +562,16 @@
 			<command> ~/.bin/brightness down </command>
 		</action>
 	</keybind>	
+	<keybind key="W-XF86MonBrightnessUp">
+		<action name="Execute">
+			<command> ~/.bin/brightness bigup </command>
+		</action>
+	</keybind>
+	<keybind key="W-XF86MonBrightnessDown">
+		<action name="Execute">
+			<command> ~/.bin/brightness bigdown </command>
+		</action>
+	</keybind>	
 	
 	<!-- Volume -->
 	<keybind key="XF86AudioRaiseVolume">
@@ -584,6 +594,16 @@
 			<command> ~/.bin/volume mute </command>
 		</action>
 	</keybind>
+	<keybind key="W-XF86AudioRaiseVolume">
+		<action name="Execute">
+			<command> ~/.bin/volume bigup </command>
+		</action>
+	</keybind>
+	<keybind key="W-XF86AudioLowerVolume">
+		<action name="Execute">
+			<command> ~/.bin/volume bigdown </command>
+		</action>
+	</keybind>
 
 	<!-- Screenshots -->
 	<keybind key="Print">
@@ -591,14 +611,29 @@
 			<command> ~/.bin/print screen </command>
 		</action>
 	</keybind>
+	<keybind key="S-Print">
+		<action name="Execute">
+			<command> ~/.bin/print delayed </command>
+		</action>
+	</keybind>
+	<keybind key="A-Print">
+		<action name="Execute">
+			<command> ~/.bin/print active </command>
+		</action>
+	</keybind>
 	<keybind key="W-S-s">
 		<action name="Execute">
-			<command> ~/.bin/print rect </command>
+			<command> ~/.bin/print region </command>
 		</action>
 	</keybind>
 	<keybind key="W-S-w">
 		<action name="Execute">
-			<command> ~/.bin/print win </command>
+			<command> ~/.bin/print two </command>
+		</action>
+	</keybind>
+	<keybind key="W-S-d">
+		<action name="Execute">
+			<command> ~/.bin/print noborder </command>
 		</action>
 	</keybind>
 	<keybind key="W-S-q">
@@ -609,11 +644,6 @@
 	<keybind key="W-Print">
 		<action name="Execute">
 			<command> spectacle </command>
-		</action>
-	</keybind>
-	<keybind key="S-Print">
-		<action name="Execute">
-			<command> spectacle -r </command>
 		</action>
 	</keybind>
 	

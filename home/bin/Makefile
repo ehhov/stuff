@@ -1,12 +1,12 @@
-PREFIX = ${HOME}/.local
+PREFIX = /opt/local
 
 CC = cc
 FLAGS = -Wall -pedantic -Os -std=c99 -D_POSIX_C_SOURCE=200809L
 PROGS.C = batlog.c PStime.c
 PROGS = ${PROGS.C:.c=}
-FILES = ${PROGS} brightness colors colors-all\
-        epsunite monitor pdfsepunite print replaceindir\
-        svg2pdf texclear usb volume showgit
+FILES = ${PROGS} brightness colors colors-all epsunite\
+        pdfsepunite replaceindir svg2pdf texclear\
+        usb volume showgit
 
 define NL
 

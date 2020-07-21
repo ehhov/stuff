@@ -30,7 +30,8 @@ plugin=org.kde.latte.plasmoid
 PreloadWeight=0
 
 [Containments][1][Applets][2][Configuration][General]
-launchers59=applications:firefox.desktop,applications:telegramdesktop.desktop,applications:org.kde.okular.desktop,applications:thunar.desktop,applications:gimp.desktop,applications:inkscape.desktop,applications:libreoffice-startcenter.desktop,applications:texstudio.desktop,file:///home/kerim/.bin/st?iconData=iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAABP-AAAT_gEHlDmEAAABM0lEQVRoge2YMW6DMBSGf6Nk7tAEgYTUY3XgCJ1YcwmmHoEhh_BhIiFBaDp0tmR3QkqxRYwIeTh93_iwrf-TbR4CYJj_jRgW2rZ9F0J8AnglyDPGtzHmI0mS43XREmia5ktrvTPGPC6aB0IIRFF0SdN0f12PhgPXGB4AjDHQWu-GdUtgjeF7XNksgdBgAWpYgBoWoIYFqNnMmZzn-b1yWFRV5TUu-B1gAWqCF5h1iV2UZTn6vCiKyXPGuLtAHMcPmdMT_BFiAWq878CSXXcOwe8AC1ATvID1a7Gua-efra7rvBa81ZRc60xpZFmW_cns_Raa0y2XWKcn-CPEAtSwADUsQM3zCSilzhRBfHBlswSklIc1SiilzlLKw7BufQsBeAHwBmC7eKppKAAnAD_UQZin4hfCqFH512zcVQAAAABJRU5ErkJggg%3D%3D,applications:systemsettings.desktop,applications:thunderbird.desktop
+isInLatteDock=true
+launchers59=applications:firefox.desktop,applications:telegramdesktop.desktop,applications:org.kde.okular.desktop,applications:thunar.desktop,applications:gimp.desktop,applications:inkscape.desktop,applications:libreoffice-startcenter.desktop,applications:texstudio.desktop,applications:systemsettings.desktop,applications:thunderbird.desktop
 
 [Containments][1][ConfigDialog]
 DialogHeight=885
@@ -50,6 +51,7 @@ panelSize=100
 panelTransparency=15
 shadowOpacity=50
 shadowSize=50
+shadows=None
 showGlow=false
 showOnlyCurrentActivity=false
 showOnlyCurrentDesktop=true
@@ -105,7 +107,7 @@ immutability=1
 plugin=org.kde.plasma.systemtray
 
 [Containments][72][Applets][77][Configuration]
-PreloadWeight=28
+PreloadWeight=0
 SystrayContainmentId=78
 
 [Containments][72][Applets][89]
@@ -254,6 +256,10 @@ plugin=org.kde.plasma.bluetooth
 
 [Containments][78][Applets][93][Configuration]
 PreloadWeight=0
+
+[Containments][78][Applets][97]
+immutability=1
+plugin=org.kde.plasma.battery
 
 [Containments][78][General]
 extraItems=org.kde.plasma.clipboard,org.kde.plasma.battery,org.kde.plasma.nightcolorcontrol,org.kde.plasma.notifications,org.kde.plasma.keyboardindicator,org.kde.plasma.networkmanagement,org.kde.plasma.devicenotifier,org.kde.plasma.vault,org.kde.plasma.bluetooth,org.kde.plasma.volume,org.kde.plasma.mediacontroller

@@ -7,6 +7,8 @@
 
 export SHDEPTH=$(( $SHDEPTH + 1 ))
 
+alias stx='startx ~/.xinitrc'
+
 stty -ixon
 set -o noclobber
 alias cp='cp -i'
@@ -23,7 +25,6 @@ alias nvim='nvim -p'
 alias view="nvim -R -M"
 alias xcb='xclip -selection clipboard'
 alias bt='bluetoothctl'
-alias n='nnn'
 
 
 calc() {

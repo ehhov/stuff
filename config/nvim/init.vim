@@ -41,19 +41,18 @@ filetype indent on
 set formatoptions=croqwjn1
 " format comments; add comment leader on <cr> and o; format with gq; use 
 " trailing space to indicate paragraph continuation; remove comment splitting 
-" wisely; format numbered lists; don't split lines of single-letter-words
+" wisely; format numbered lists; don't split lines at single-letter-words
 set nojoinspaces
 
-
-command W w
-command -bang Q q<bang>
-command D e %:p:h
-command EE update <bar> e %
-command -nargs=? M  wa <bar> ! make <args>
-command -nargs=? XX update <bar> call jobstart('xdg-open '.expand('%:p'), {'detach':1})
-command -nargs=1 Oline exe "normal <esc>YPVr".<f-args>."Y"
-command -nargs=1 Uline exe "normal <esc>YpVr".<f-args>."Y"
-command Terminal tabnew <bar> terminal
+command! -bang W w<bang>
+command! -bang Q q<bang>
+command! D e %:p:h
+command! EE update <bar> e %
+command! -nargs=? M  wa <bar> ! make <args>
+command! -nargs=? XX update <bar> call jobstart('xdg-open '.expand('%:p'), {'detach':1})
+command! -nargs=1 Oline exe "normal <esc>YPVr".<f-args>."Y"
+command! -nargs=1 Uline exe "normal <esc>YpVr".<f-args>."Y"
+command! Terminal tabnew <bar> terminal
 
 nnoremap q: <nop>
 vnoremap q gq
@@ -108,7 +107,7 @@ aug vimrc_filetype
 
 	" match any UPPERCASE[.extension] filename or only specific ones.
 	"au BufNewFile,BufRead README*,TODO* runtime ftplugin/readable.vim
-	au BufNewFile,BufRead [A-Z]\\\{1,\}{,.*} runtime ftplugin/readable.vim
+	au BufNewFile,BufRead [A-Z_-]\\\{1,\}{,.*} runtime ftplugin/readable.vim
 aug END
 
 command TW doau BufRead an.email

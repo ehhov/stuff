@@ -24,8 +24,8 @@ aug END
 " don't do anything else yet...
 finish
 
-" The following may try to fold some elements of document. Not really usable 
-" in my opinion.
+" The following may try to fold some elements of the document. Not really 
+" usable in my opinion.
 
 " Initialization {{{
 

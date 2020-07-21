@@ -72,27 +72,32 @@ hi  Todo              cterm=none            ctermfg=0     ctermbg=11
 let g:colors_name="tuning"
 " S this is and
 
-hi  Folded        cterm=none      ctermfg=4     ctermbg=8
-hi  Comment       cterm=none      ctermfg=4     ctermbg=none
-hi  Search        cterm=none      ctermfg=0     ctermbg=11
-"                                               
-hi  CursorColumn  cterm=none      ctermfg=none  ctermbg=8
-hi  CursorLine    cterm=none      ctermfg=none  ctermbg=8
-hi  CursorLineNr  cterm=none      ctermfg=7     ctermbg=8
-hi  LineNr        cterm=none      ctermfg=7     ctermbg=none
-hi  MatchParen    cterm=none      ctermfg=none  ctermbg=7
-hi  Visual        cterm=none      ctermfg=none  ctermbg=7
-hi  VertSplit     cterm=reverse   ctermfg=7     ctermbg=none
-"                                               
-hi  Pmenu         cterm=none      ctermfg=none  ctermbg=8
-hi  PmenuSel      cterm=reverse   ctermfg=7     ctermbg=none
-hi  PmenuSbar     cterm=none      ctermfg=7     ctermbg=8   
-hi  PmenuThumb    cterm=none      ctermfg=7     ctermbg=7
-"                                               
-hi  SpellBad      cterm=underline ctermfg=9     ctermbg=none
-hi  SpellCap      cterm=underline ctermfg=12    ctermbg=none
-hi  SpellLocal    cterm=underline ctermfg=14    ctermbg=none
-"                                               
-hi  TabLine       cterm=none      ctermfg=0     ctermbg=7
-hi  TabLineFill   cterm=none      ctermfg=none  ctermbg=7
-hi  TabLineSel    cterm=bold      ctermfg=none  ctermbg=none
+hi  Folded        cterm=none       ctermfg=4     ctermbg=8
+hi  Comment       cterm=none       ctermfg=4     ctermbg=none
+hi  Search        cterm=none       ctermfg=0     ctermbg=11
+"                                                
+hi  CursorColumn  cterm=none       ctermfg=none  ctermbg=8
+hi  CursorLine    cterm=none       ctermfg=none  ctermbg=8
+hi  CursorLineNr  cterm=none       ctermfg=7     ctermbg=8
+hi  LineNr        cterm=none       ctermfg=7     ctermbg=none
+hi  MatchParen    cterm=none       ctermfg=none  ctermbg=7
+hi  Visual        cterm=none       ctermfg=none  ctermbg=7
+hi  VertSplit     cterm=reverse    ctermfg=7     ctermbg=none
+"                                                
+hi  Pmenu         cterm=none       ctermfg=none  ctermbg=8
+hi  PmenuSel      cterm=reverse    ctermfg=7     ctermbg=none
+hi  PmenuSbar     cterm=none       ctermfg=7     ctermbg=8
+hi  PmenuThumb    cterm=none       ctermfg=7     ctermbg=7
+"                                                
+hi  SpellBad      cterm=underline  ctermfg=9     ctermbg=none
+hi  SpellCap      cterm=underline  ctermfg=12    ctermbg=none
+hi  SpellLocal    cterm=underline  ctermfg=14    ctermbg=none
+"
+hi  DiffAdd       cterm=none       ctermfg=none  ctermbg=10
+hi  DiffChange    cterm=none       ctermfg=none  ctermbg=11
+hi  DiffDelete    cterm=none       ctermfg=none  ctermbg=9
+hi  DiffText      cterm=none       ctermfg=15    ctermbg=9
+"                                                
+hi  TabLine       cterm=none       ctermfg=0     ctermbg=7
+hi  TabLineFill   cterm=none       ctermfg=none  ctermbg=7
+hi  TabLineSel    cterm=bold       ctermfg=none  ctermbg=none

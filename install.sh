@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 dir=$(readlink -f $0)
 dir=$(dirname "$dir")
@@ -52,6 +52,19 @@ reln|relink)
 	done
 ;;
 
+rm|remove)
+	for i in ${dir}/home/*; do
+		i=${i#$dir/}
+		j=${i#home/}
+		remove ~/.$j
+	done
+	for i in ${dir}/config/*; do
+		i=${i#$dir/}
+		j=${i#config/}
+		remove ~/.config/$j
+	done
+;;
+
 kde|KDE)
 	for i in ${dir}/KDE/*; do
 		i=${i#$dir/}
@@ -77,17 +90,21 @@ clone)
 	[ -e thicc ] || git clone https://github.com/ehhov/thicc.git
 	mkdir -p ~/gits
 	cd ~/gits
+	[ -e status ] || git clone https://github.com/ehhov/status.git
 	[ -e st ] || git clone https://github.com/ehhov/st.git
 	[ -e dwm ] || git clone https://github.com/ehhov/dwm.git
-	[ -e status ] || git clone https://github.com/ehhov/status.git
+	[ -e xshot ] || git clone https://github.com/ehhov/xshot.git
+	[ -e xpick ] || git clone https://github.com/ehhov/xpick.git
+	[ -e emonc ] || git clone https://github.com/ehhov/emonc.git
 ;;
 
 *)
 	echo -e "$0: usage ('|' means 'or') :"
-	echo -e "  $0 ln|link \t\t to create links"
-	echo -e "  $0 reln|relink \t to remove your files and create links"
-	echo -e "  $0 kde \t\t to \`relink\` files for KDE"
-	echo -e "  $0 mime \t\t to copy ~/.config/mimeapps.list to here if it is a regular file"
+	echo -e "  $0 ln|link      to create links"
+	echo -e "  $0 reln|relink  to remove your files and create links"
+	echo -e "  $0 rm|remove    to remove the files (whether they are installed or not)"
+	echo -e "  $0 kde          to \`relink\` files for KDE"
+	echo -e "  $0 mime         to copy ~/.config/mimeapps.list to here if it is a regular file"
 	echo -e ""
 ;;
 

@@ -1,0 +1,13 @@
+#!/bin/sh
+# other things are performed by WMs themselves. But if this is not loaded here, 
+# the root window will never get the correct settings.
+xrdb -load ~/.Xresources 
+
+session=${1:-dwm}
+
+case $session in
+	dwm)                exec dwm ;;
+	dwm-git)            exec ~/gits/dwm/dwm ;;
+	openbox)            exec openbox-session ;;
+	kde)                exec startplasma-x11 ;;
+esac
