@@ -1,17 +1,15 @@
-Write a program to pick colors with a magnifier. A good example of the 
-resulting look is deepin-picker. Simple programs in C are grabc and 
-xzoom.
-
 Modify MuPDF to add a middle mouse button zoom.
 
 Try plain FFMPEG for screencast
 	https://wiki.archlinux.org/index.php/FFmpeg#Screen_capture.
 	https://trac.ffmpeg.org/wiki/Capture/Desktop#Linux
 
-Fix wifi problems.
-
 Patch dmenu and create a history file that will be used in parallel with 
 command completion
+
+Try Sway:
+  Terminal emulator -- havoc (https://github.com/ii8/havoc)
+  Screenshot utility -- grim
 
 dwm:
  - libinput-gestures

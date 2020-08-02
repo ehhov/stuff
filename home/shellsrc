@@ -31,6 +31,7 @@ calc() {
 	if [ "$1" = '-' ]; then
 		echo 'scale=5' >| /tmp/temp
 		bc -iql /tmp/temp
+		rm /tmp/temp
 	else
 		echo "scale=5; $*" | bc -ql
 	fi
@@ -39,7 +40,7 @@ calc() {
 open() {
 	# TODO: remove 'process finished' notification. Impossible without bash::disown.
 	for i in "$@"; do
-		nohup xdg-open "$i" 1>/dev/null 2>&1 &
+		execbg xdg-open "$i" 1>/dev/null 2>&1
 	done
 }
 

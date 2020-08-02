@@ -54,16 +54,12 @@ systemctl start sddm.service
 systemctl set-default multi-user.target
 ```
 
-Tell git who you are, using
+Create an ssh key and add it to GitHub and other services.
 ``` bash
-git config --global user.name "First name Last name"
-git config --global user.email "email@address.domain"
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 ```
-And then tell git to save your credentials; the following line makes git 
-use a single account for all repositories.
-``` bash
-git config --global credential.helper store
-```
+[GitHub](https://docs.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account)
+[GitLab](https://docs.gitlab.com/ee/ssh/#adding-an-ssh-key-to-your-gitlab-account)
 
 Create the `/opt/local/` directory and set 777 permissions.
 

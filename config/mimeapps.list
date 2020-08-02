@@ -1,6 +1,5 @@
 [Added Associations]
 application/octet-stream=org.kde.kwrite.desktop;
-application/postscript=okularApplication_ghostview.desktop;
 application/rtf=libreoffice-writer.desktop;
 application/vnd.kde.kxmlguirc=org.kde.kwrite.desktop;
 application/x-research-info-systems=nvim-qt.desktop;
@@ -39,3 +38,4 @@ text/markdown=okularApplication_md.desktop;
 text/html=firefox.desktop;
 text/plain=nvim-qt.desktop;
 text/x-chdr=nvim-qt.desktop;
+application/postscript=okularApplication_ghostview.desktop;

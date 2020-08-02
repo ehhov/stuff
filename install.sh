@@ -5,19 +5,19 @@ dir=$(dirname "$dir")
 rel=${dir#~/}
 create_link() {
 	# link to_what where
-	if [ ! -e $2 ] && [ ! -L $2 ]; then
+	if [ ! -e $2 ] && [ ! -h $2 ]; then
 		ln -s $1 $2
 	fi
 }
 copy() {
 	# copy what where
-	if [ ! -e $2 ] && [ ! -L $2 ]; then
+	if [ ! -e $2 ] && [ ! -h $2 ]; then
 		cp $1 $2
 	fi
 }
 remove() {
 	# remove what
-	if [ -e $1 ] || [ -L $1 ]; then
+	if [ -e $1 ] || [ -h $1 ]; then
 		rm -rf $1
 	fi
 }
@@ -77,7 +77,7 @@ kde|KDE)
 mime)
 	file=~/.config/mimeapps.list
 	here=${dir}/config/mimeapps.list
-	if [ -f $file ] && [ ! -L $file ]; then
+	if [ -f $file ] && [ ! -h $file ]; then
 		cp $file $here
 	fi
 	here=${here#$dir/}

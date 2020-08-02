@@ -1,0 +1,10 @@
+# vim:ft=gitconfig
+[user]
+	name = Kerim Guseynov
+	email = guseynovkerim@gmail.com
+[alias]
+	s = status
+	d = diff
+	l = log --oneline --graph --all
+[branch]
+	autosetuprebase = always
