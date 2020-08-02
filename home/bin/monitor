@@ -1,33 +1,9 @@
 #!/bin/sh
 
-dash=--
-internal=eDP-1
-external=DP-1
-extmode=2560x1440
-
 case $1 in
-	dis)
-		xrandr ${dash}output ${internal} ${dash}auto ${dash}transform none;
-		xrandr ${dash}output ${external} ${dash}off;;
-
-	ext)
-		xrandr ${dash}output ${external} ${dash}auto ${dash}left${dash}of eDP${dash}1;
-		xrandr ${dash}output ${internal} ${dash}off;;
-
-	split)
-		xrandr ${dash}output ${internal} ${dash}auto ${dash}transform none;
-		xrandr ${dash}output ${external} ${dash}auto ${dash}right-of ${internal};;
-
-	dup)
-		xrandr ${dash}output ${external} ${dash}auto ${dash}primary;
-		xrandr ${dash}output ${internal} ${dash}scale-from ${extmode} ${dash}same-as ${external};;
-
-	rot)
-		xrandr ${dash}output ${external} ${dash}rotate left;;
-
-	unrot)
-		xrandr ${dash}output ${external} ${dash}rotate normal;;
-
+auto)  emonc -l auto;;
+dis)   emonc -l only eDP-1;;
+dup)   emonc -l from eDP-1;;
+ext)   emonc -l -o 'DP-1 DP-2 eDP-1' onlylargest;;
+max)   emonc -l largest;;
 esac
-
-killall picom && picom

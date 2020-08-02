@@ -1,33 +1,33 @@
-#! /bin/bash
+#!/bin/sh
 
 text=" gYw "
 corner='\'
-fgs=(39 {30..37} {90..97})
-bgs=(49 {40..47} {100..107})
-readable=([39]=- [49]=-)
-for i in {0..7}; do
-	readable[3$i]=$i
-	readable[4$i]=$i
-	readable[9$i]=$(($i+8))
-	readable[10$i]=$(($i+8))
-done
+bgs="49 40 41 42 43 44 45 46 47 100 101 102 104 104 105 106 107"
 lens="17 9 6" # table is split a bit nicer
 defaultlen=9
 cols=$(tput cols)
 while [ "${#corner}" -lt 2 ]; do corner=" $corner"; done
 
+readable() {
+	case $* in
+	*9) echo '-';;
+	4*) echo $(($* - 40));;
+	10*) echo $(($* - 92));;
+	esac
+}
+
 table() {
 	printf "\033[m"
 	echo -n " $corner"
-	for _bg in "$@"; do
-		printf " %${#text}s" "${readable[$_bg]}"
+	for bg in "$@"; do
+		printf " %${#text}s" "$(readable $bg)"
 	done
 	echo
-	for _fg in "${fgs[@]}"; do
-		printf " %${#corner}s" "${readable[$_fg]}"
-		for _bg in "$@"; do
+	for fg in $bgs; do
+		printf " %${#corner}s" "$(readable $fg)"
+		for bg in "$@"; do
 			printf "\033[m "
-			printf "\033[${_bg};${_fg}m"
+			printf "\033[${bg};$(($fg - 10))m"
 			echo -n "$text"
 		done
 		printf "\033[m"
@@ -37,22 +37,26 @@ table() {
 }
 
 
-if [ -n "$cols" ]; then
-	if [ -n "$*" ]; then
-		len=$(( ($cols-1-${#corner}) / (1+${#text}) ))
-	else
+if [ "$cols" ]; then
+	if [ $# -eq 0 ]; then
 		for len in $lens; do
-			[ "$cols" -ge $((${#corner}+1 + $len*(${#text}+1))) ] && break
+			if [ "$cols" -ge $((${#corner}+1 + $len*(${#text}+1))) ]
+			then break; fi
 		done
+	else
+		len=$(( ($cols-1-${#corner}) / (1+${#text}) ))
 	fi
 else
 	len=$defaultlen
 fi
-left="${#bgs[@]}"
-while [ "$left" -gt 0 ]; do
-	table "${bgs[@]:0:$len}"
-	bgs=("${bgs[@]:$len}")
-	left="${#bgs[@]}"
+set -- $bgs
+while [ $# -gt 0 ]; do
+	c=0; arg=''
+	for i in "$@"; do
+		arg="$arg $i"
+		c=$(($c + 1))
+		if [ $c -eq $len ]; then break; fi
+	done
+	table $arg
+	shift $c
 done
-
-#echo "to scroll, try ${0##*/} | less -R"

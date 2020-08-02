@@ -2,7 +2,7 @@ PREFIX = /opt/local
 
 CC = cc
 FLAGS = -Wall -pedantic -Os -std=c99 -D_POSIX_C_SOURCE=200809L
-PROGS.C = batlog.c PStime.c
+PROGS.C = batlog.c PStime.c execbg.c
 PROGS = ${PROGS.C:.c=}
 FILES = ${PROGS} brightness colors colors-all epsunite\
         pdfsepunite replaceindir svg2pdf texclear\
@@ -17,15 +17,11 @@ all: ${PROGS} ${FILES}
 
 install: all
 	mkdir -p ${PREFIX}/bin
-	$(foreach file,${FILES},\
-	  cp -f ${file} ${PREFIX}/bin $(NL)\
-	  chmod 755 ${PREFIX}/bin/${file} $(NL)\
-	  )
+	cp -f ${FILES} ${PREFIX}/bin
+	for file in ${FILES}; do chmod 755 ${PREFIX}/bin/$$file; done
 
 uninstall:
-	$(foreach file,${FILES},\
-	  rm -f ${PREFIX}/bin/${file} $(NL)\
-	  )
+	  for file in ${FILES}; do rm -f ${PREFIX}/bin/$$file; done
 
 clean:
 	rm -f ${PROGS}

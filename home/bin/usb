@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 the_usage() {
 	this=${0##*/}
@@ -15,30 +15,22 @@ usage() {
 }
 
 usb_check() {
-	if [ $(lsblk -drno TYPE $1) = part ] && [ $(lsblk -drno RM $1) = 1 ]; then
-		true
-	else
-		false
-	fi
+	[ "$(lsblk -drno TYPE $1)" = part ] && [ "$(lsblk -drno RM $1)" = 1 ]
 }
 
-usb_print() {
-	lsblk -dlno path,fsused,size,mountpoint "$1"
-}
 
 usb_list() {
-	local list
-	list=()
-	while read device; do
+	set --
+	for device in $(lsblk -prno path); do
 		if usb_check "$device"; then
-			list+=( "$device" )
+			set -- "$@" "$device"
 		fi
-	done <<< $(lsblk -prno path)
-	if [ ${#list[@]} -eq 0 ]; then
+	done
+	if [ $# -eq 0 ]; then
 		echo 'No devices found'
 	else
-		for device in "${list[@]}"; do
-			usb_print "$device"
+		for device in "$@"; do
+			lsblk -dlno path,fsused,size,mountpoint "$device"
 		done
 	fi
 }
