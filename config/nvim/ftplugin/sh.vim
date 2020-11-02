@@ -1,2 +1,2 @@
-command! -buffer -nargs=? R update <bar> ! source %:p <args>
-command! -buffer -nargs=? Run update <bar> ! ./% <args>
+command! -buffer -nargs=? R update <bar> ! exec source %:p <args>
+command! -buffer -nargs=? Run update <bar> ! exec %:p <args>

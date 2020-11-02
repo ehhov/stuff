@@ -23,18 +23,18 @@ main(int argc, char *argv[])
 		case 't':
 			if (argv[0][2]) {
 				argv[0] += 2;
-				sscanf(argv[0], "%d", &stop_after_min);
+				stop_after_min = atoi(argv[0]);
 			} else {
-				sscanf(argv[1], "%d", &stop_after_min);
+				stop_after_min = atoi(argv[1]);
 				argc--; argv++;
 			}
 			break;
 		case 'i':
 			if (argv[0][2]) {
 				argv[0] += 2;
-				sscanf(argv[0], "%d", &interval_sec);
+				interval_sec = atoi(argv[0]);
 			} else {
-				sscanf(argv[1], "%d", &interval_sec);
+				interval_sec = atoi(argv[1]);
 				argc--; argv++;
 			}
 			break;

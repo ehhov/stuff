@@ -3,11 +3,21 @@
 # the root window will never get the correct settings.
 xrdb -load ~/.Xresources 
 
+logdir="${HOME}/.xlog"
+if ! [ -d $logdir ]; then
+	mkdir -p $logdir
+fi
+logfile="${logdir}/dpy${DISPLAY#:}.log"
+if [ -e $logfile ]; then
+	mv -f $logfile ${logfile}.old
+fi
+
 session=${1:-dwm}
 
-case $session in
+{ case $session in
 	dwm)                exec dwm ;;
 	dwm-git)            exec ~/gits/dwm/dwm ;;
 	openbox)            exec openbox-session ;;
 	kde)                exec startplasma-x11 ;;
-esac
+	*)                  exec $*;;
+esac ; } > $logfile 2>&1

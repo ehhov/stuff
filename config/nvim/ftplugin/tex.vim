@@ -1,8 +1,11 @@
 setl spell
 syn spell toplevel
+let b:did_indent = 1
+setl ts=2 sts=0 sw=0 noet nosta
 
-command! -buffer -nargs=? R update <bar> ! pdflatex -file-line-error -interaction=nonstopmode % <args> <bar> grep --color ':.*:'
-command! -buffer -nargs=? P call jobstart('xdg-open '.expand('%:p:r').'.pdf', {'detach':1})
+command! -buffer R update <bar> ! pdflatex -file-line-error -interaction=nonstopmode % <args> <bar> grep --color ':.*:'
+command! -buffer P ! execbg xdg-open %:p:r.pdf
+command! -buffer C ! texclear %
 
 vnoremap <buffer> <c-t> :'<,'>! column -t -s \& -o \& <cr>
 inoremap <buffer> <c-e> <esc>YPVr%Y

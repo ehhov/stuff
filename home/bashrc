@@ -5,7 +5,7 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-HISTFILE=~/.bashhst
+HISTFILE=~/.bash_history
 
 bind 'set enable-keypad on'
 bind 'set show-all-if-ambiguous off'
@@ -22,14 +22,9 @@ PS1func() {
 	time="36| $(PStime)"
 	user="35| $USER"
 	path="32| $(sed -E 's/([^\./]{1})[^/]*\//\1\//g' <<< ${PWD/#$HOME/\~})"
-	branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)"
-	if [ "$branch" ]; then branch=" ($branch)"; fi; branch="37|$branch"
+	branch="37| (bash)"
 	# hyphen -, en dash –, em dash —
-	title="${PWD/#$HOME/\~} : ${0##*/}" # $0 is the actual shell
-	if [ "$SHDEPTH" -gt 1 ]; then
-		title="$title ($SHDEPTH)"
-	fi
-	title="$title — ${TERM%-*color}"
+	title="${PWD/#$HOME/\~} : ${0##*/} — ${TERM%-*color}"
 
 	echo -en "\\001\\033]0;"; echo -n "$title"; echo -en "\\007\\002"
 	for item in "$time" "$user" "$path" "$branch"; do

@@ -49,7 +49,7 @@ command! -bang Q q<bang>
 command! D e %:p:h
 command! EE update <bar> e %
 command! -nargs=? M  wa <bar> ! make <args>
-command! -nargs=? XX update <bar> call jobstart('xdg-open '.expand('%:p'), {'detach':1})
+command! -nargs=? Open update <bar> ! execbg xdg-open %:p
 command! -nargs=1 Oline exe "normal <esc>YPVr".<f-args>."Y"
 command! -nargs=1 Uline exe "normal <esc>YpVr".<f-args>."Y"
 command! Terminal tabnew <bar> terminal
@@ -103,14 +103,14 @@ let g:tex_flavor = "latex"
 
 aug vimrc_filetype
 	au!
-	au BufNewFile,BufRead *.letter,*.email setf email
+	au BufNewFile,BufRead *.letter,*.email setf readable
 
 	" match any UPPERCASE[.extension] filename or only specific ones.
 	"au BufNewFile,BufRead README*,TODO* runtime ftplugin/readable.vim
 	au BufNewFile,BufRead [A-Z_-]\\\{1,\}{,.*} runtime ftplugin/readable.vim
 aug END
 
-command TW doau BufRead an.email
+command! Readable doau BufRead an.email
 
 colorscheme tuning
 runtime russian.vim

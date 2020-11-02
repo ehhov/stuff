@@ -28,31 +28,31 @@ fun! TheTabLine()
 	let attr = []
 	let text = []
 
-  for tab in range(tabpagenr('$'))
+	for tab in range(tabpagenr('$'))
 		let a = '' | let t = ''
 
-    let tab = tab + 1
-    let buflist = tabpagebuflist(tab)
+		let tab = tab + 1
+		let buflist = tabpagebuflist(tab)
 		let bufnr = buflist[tabpagewinnr(tab) - 1]
-    let bufname = bufname(bufnr)
+		let bufname = bufname(bufnr)
 		for i in buflist
 			let bufmodified = getbufvar(i, "&mod")
 			if bufmodified | break | endif
 		endfor
 		let bufft = getbufvar(bufnr, "&filetype")
 
-    let a .= '%' . tab . 'T'
-    let a .= (tab == tabpagenr() ? '%#TabLineSel#' : '%#TabLine#')
-    let t .= ' ' . tab . ' '
-    let t .= (bufname != '' ? fnamemodify(bufname, ':t') : '[No Name]')
+		let a .= '%' . tab . 'T'
+		let a .= (tab == tabpagenr() ? '%#TabLineSel#' : '%#TabLine#')
+		let t .= ' ' . tab . ' '
+		let t .= (bufname != '' ? fnamemodify(bufname, ':t') : '[No Name]')
 		let t .= (bufft == 'netrw' ? '/' : '')
 		let i  = (len(buflist)>1? len(buflist):'').(bufft=='help'? 'h':'').(bufmodified? '+':'')
 		let t .= (len(i)>0? ' ['.i.']' : '')
-    let t .= (tab == tabpagenr() || tab == tabpagenr()-1 || tab == tabpagenr('$') ? ' ' : ' |')
+		let t .= (tab == tabpagenr() || tab == tabpagenr()-1 || tab == tabpagenr('$') ? ' ' : ' |')
 
 		let attr += [a]
 		let text += [t]
-  endfor
+	endfor
 
 	if len(join(text, '')) > &columns && tabpagenr('$') > 1
 		let isfull = [] | let l = 0
@@ -99,7 +99,7 @@ fun! TheTabLine()
 	for i in range(tabpagenr('$'))
 		let line .= attr[i] . text[i]
 	endfor
-  return line . '%#TabLineFill#%999T%='
+	return line . '%#TabLineFill#%999T%='
 endfun
 
 set tabline=%!TheTabLine()

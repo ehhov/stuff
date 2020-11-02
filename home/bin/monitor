@@ -1,9 +1,9 @@
 #!/bin/sh
 
 case $1 in
-auto)  emonc -l auto;;
-dis)   emonc -l only eDP-1;;
-dup)   emonc -l from eDP-1;;
-ext)   emonc -l -o 'DP-1 DP-2 eDP-1' onlylargest;;
-max)   emonc -l largest;;
+auto)  exec emonc -l auto;;
+dis)   exec emonc -l only eDP-1;;
+dup)   exec emonc -l from eDP-1;;
+ext)   exec emonc -l -o 'DP-1 DP-2 eDP-1' onlylargest;;
+max)   exec emonc -l largest;;
 esac

@@ -11,42 +11,40 @@ screen)
 	#scrot -o /tmp/screen.png && copy /tmp/screen.png
 	xshot /tmp/screen.png && copy /tmp/screen.png
 ;;
-
 delayed)
 	#scrot -d 5 -o /tmp/screen.png && copy /tmp/screen.png
 	xshot -d5000 /tmp/screen.png && copy /tmp/screen.png
 ;;
-
 region)
 	#maim -usk /tmp/region.png && copy /tmp/region.png
 	#scrot -bsfo /tmp/region.png && copy /tmp/region.png
 	xshot -slr /tmp/region.png && copy /tmp/region.png
 ;;
-
 two)
 	xshot -slrt /tmp/region.png && copy /tmp/region.png
 ;;
-
 noborder)
-	xshot -sb /tmp/region.png && copy /tmp/region.png
+	xshot -sfb /tmp/region.png && copy /tmp/region.png
 ;;
-
 active)
 	xshot -ab /tmp/region.png && copy /tmp/region.png
 ;;
-
 monitor)
 	xshot -ma /tmp/screen.png && copy /tmp/screen.png
 ;;
-
+save)
+	file="$(xdg-user-dir PICTURES)/screenshot_$(date +%F_%H-%M-%S).png"
+	if [ -e ${file} ]; then
+		flie="${file%.png}-1.png"
+	fi
+	xshot $file && copy $file
+;;
 other)
 	xshot $2 /tmp/$3 && copy /tmp/$3
 ;;
-
 pick)
-	xpick | xclip -selection clipboard
+	xpick -anp | xclip -selection clipboard
 ;;
-
 quit)
 	killall xshot
 	killall xpick
@@ -55,5 +53,4 @@ quit)
 	#killall scrot
 	#killall spectacle
 ;;
-
 esac

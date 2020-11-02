@@ -1,7 +1,26 @@
 #include <stdio.h>
-#include <string.h>
+#include <stdlib.h>
 
-/* 
+static const char *Xres_output = "colors";
+static const char *liveschemes = "live_colors.sh";
+
+static const char *
+vimcolorfile(const char *filename)
+{
+	static char buf[1024];
+	static char *home = NULL;
+
+	/* XDG_CONFIG_HOME... */
+	if (!home)
+		home = getenv("HOME");
+	if (!home)
+		exit(1);
+
+	snprintf(buf, sizeof(buf), "%s/.config/nvim/colors/gui_%s.vim", home, filename);
+	return buf;
+}
+
+/*
  * Copy the palette from st/config.h here
  * Delete all the [n]=
  * Edit the theme names variable if needed
@@ -64,16 +83,14 @@ static const char *palettes[][259] = {
 static const char *names[] = {
 	"light", "github", "Dracula", "Nord", "Solarized_dark", "Solarized_light", "other_dark", "Ubuntu", "Gruvbox_dark", "Gruvbox_light", "dark", "Solarized_dark_orig", "Solarized_light_orig"
 };
-static const char *Xres_output = "colors";
-static const char *liveschemes = "live_colors.sh";
 
 int main() {
 	int N = sizeof(palettes)/sizeof(palettes[0]);
 	FILE *file;
 
 	file=fopen(Xres_output, "w");
-	fprintf(file, "! vim:ft=xdefaults\n");
-	fprintf(file, "!!! This file is created using ~/.Xresources.d/from-st.c !!!\n");
+	fputs("! vim:ft=xdefaults\n" \
+	      "!!! This file is created using ~/.Xresources.d/from-st.c !!!\n", file);
 	for (int theme=0; theme<N; theme++){
 		fprintf(file, "\n!!! %s color scheme\n", names[theme]);
 		fprintf(file, "#define %s_c0    %s\n", names[theme], palettes[theme][0]);
@@ -99,12 +116,12 @@ int main() {
 	fclose(file);
 
 	file=fopen(liveschemes, "w");
-	fprintf(file, "#!/bin/sh\n");
-	fprintf(file, "### This file is created using ~/.Xresources.d/from-st.c ###\n");
-	fprintf(file, "# The script makes use of color changing escape sequences\n");
-	fprintf(file, "# They are supported by xterm, tilix, alacritty, (urxvt?) and not by st\n");
-	fprintf(file, "# For some details, see e.g. https://github.com/alacritty/alacritty/issues/656\n");
-	fprintf(file, "\nschemes=\"\"\n");
+	fputs("#!/bin/sh\n" \
+	      "### This file is created using ~/.Xresources.d/from-st.c ###\n" \
+	      "# The script makes use of color changing escape sequences\n" \
+	      "# They are supported by xterm, tilix, alacritty, (urxvt?) and not by st\n" \
+	      "# For some details, see e.g. https://github.com/alacritty/alacritty/issues/656\n" \
+	      "\nschemes=\"\"\n", file);
 	for (int theme=0; theme<N; theme++){
 		fprintf(file, "\n%s() {\n", names[theme]);
 		fprintf(file, "\tprintf \"\\033]4;0;%s\\007\"\n",   palettes[theme][0]);
@@ -130,120 +147,136 @@ int main() {
 		fprintf(file, "}\n");
 		fprintf(file, "schemes=\"$schemes %s\"\n", names[theme]);
 	}
-	fprintf(file, "\nPS3=\"Choose a color scheme: \"\n" \
-	              "select scheme in $schemes \"Do not change\"\n" \
-	              "do\n" \
-	              "\t${scheme/#Do not change/}\n" \
-	              "\tbreak\n" \
-	              "done\n");
+	fputs("\nPS3=\"Choose a color scheme: \"\n" \
+	      "select scheme in $schemes \"Do not change\"\n" \
+	      "do\n" \
+	      "\t${scheme/#Do not change/}\n" \
+	      "\tbreak\n" \
+	      "done\n", file);
 	fclose(file);
 
-	return 0;
-}
 
-/*
-	char vimname[128];
 	for (int theme=0; theme<N; theme++){
-		snprintf(vimname, sizeof(vimname), vimfmt, names[theme]);
-		file=fopen(vimname, "w");
+		file=fopen(vimcolorfile(names[theme]), "w");
 
-		fprintf(file, vimreset);
+		fputs("hi clear Normal\n"
+		      "set bg&\n"
+		      "hi clear\n"
+		      "if exists(\"syntax_on\")\n"
+		      "\tsyntax reset\n"
+		      "endif\n\n", file);
+		fprintf(file, "let g:colors_name = \"%s\"\n\n", names[theme]);
 		fprintf(file, "let s:none = \"none\"\n");
-		fprintf(file, "let  s:c0  = \"%s\"\n", palettes[theme][0]);
-		fprintf(file, "let  s:c1  = \"%s\"\n", palettes[theme][1]);
-		fprintf(file, "let  s:c2  = \"%s\"\n", palettes[theme][2]);
-		fprintf(file, "let  s:c3  = \"%s\"\n", palettes[theme][3]);
-		fprintf(file, "let  s:c4  = \"%s\"\n", palettes[theme][4]);
-		fprintf(file, "let  s:c5  = \"%s\"\n", palettes[theme][5]);
-		fprintf(file, "let  s:c6  = \"%s\"\n", palettes[theme][6]);
-		fprintf(file, "let  s:c7  = \"%s\"\n", palettes[theme][7]);
-		fprintf(file, "let  s:c8  = \"%s\"\n", palettes[theme][8]);
-		fprintf(file, "let  s:c9  = \"%s\"\n", palettes[theme][9]);
-		fprintf(file, "let  s:c10 = \"%s\"\n", palettes[theme][10]);
-		fprintf(file, "let  s:c11 = \"%s\"\n", palettes[theme][11]);
-		fprintf(file, "let  s:c12 = \"%s\"\n", palettes[theme][12]);
-		fprintf(file, "let  s:c13 = \"%s\"\n", palettes[theme][13]);
-		fprintf(file, "let  s:c14 = \"%s\"\n", palettes[theme][14]);
-		fprintf(file, "let  s:c15 = \"%s\"\n", palettes[theme][15]);
-		fprintf(file, "let  s:bg  = \"%s\"\n", palettes[theme][256]);
-		fprintf(file, "let  s:fg  = \"%s\"\n", palettes[theme][257]);
-		fprintf(file, "let  s:cur = \"%s\"\n", palettes[theme][258]);
-		fprintf(file, vimhighlight);
+		fprintf(file, "let s:c0    = \"%s\"\n", palettes[theme][0]);
+		fprintf(file, "let s:c1    = \"%s\"\n", palettes[theme][1]);
+		fprintf(file, "let s:c2    = \"%s\"\n", palettes[theme][2]);
+		fprintf(file, "let s:c3    = \"%s\"\n", palettes[theme][3]);
+		fprintf(file, "let s:c4    = \"%s\"\n", palettes[theme][4]);
+		fprintf(file, "let s:c5    = \"%s\"\n", palettes[theme][5]);
+		fprintf(file, "let s:c6    = \"%s\"\n", palettes[theme][6]);
+		fprintf(file, "let s:c7    = \"%s\"\n", palettes[theme][7]);
+		fprintf(file, "let s:c8    = \"%s\"\n", palettes[theme][8]);
+		fprintf(file, "let s:c9    = \"%s\"\n", palettes[theme][9]);
+		fprintf(file, "let s:c10   = \"%s\"\n", palettes[theme][10]);
+		fprintf(file, "let s:c11   = \"%s\"\n", palettes[theme][11]);
+		fprintf(file, "let s:c12   = \"%s\"\n", palettes[theme][12]);
+		fprintf(file, "let s:c13   = \"%s\"\n", palettes[theme][13]);
+		fprintf(file, "let s:c14   = \"%s\"\n", palettes[theme][14]);
+		fprintf(file, "let s:c15   = \"%s\"\n", palettes[theme][15]);
+		fprintf(file, "let s:bg    = \"%s\"\n", palettes[theme][256]);
+		fprintf(file, "let s:fg    = \"%s\"\n", palettes[theme][257]);
+		fprintf(file, "let s:cur   = \"%s\"\n", palettes[theme][258]);
+		fputs("\n\
+\" Default 16-colors color scheme in vim {{{\n\
+exe  \"hi  SpecialKey        gui=none            guifg=\"  .  s:c4    .  \" guibg=\"  .  s:none     \n\
+exe  \"hi  NonText           gui=none            guifg=\"  .  s:c12   .  \" guibg=\"  .  s:none     \n\
+exe  \"hi  Directory         gui=none            guifg=\"  .  s:c4    .  \" guibg=\"  .  s:none     \n\
+exe  \"hi  ErrorMsg          gui=none            guifg=\"  .  s:c15   .  \" guibg=\"  .  s:c1       \n\
+exe  \"hi  IncSearch         gui=reverse         guifg=\"  .  s:none  .  \" guibg=\"  .  s:none     \n\
+exe  \"hi  Search            gui=none            guifg=\"  .  s:c0    .  \" guibg=\"  .  s:c11      \n\
+exe  \"hi  MoreMsg           gui=none            guifg=\"  .  s:c2    .  \" guibg=\"  .  s:none     \n\
+exe  \"hi  ModeMsg           gui=bold            guifg=\"  .  s:none  .  \" guibg=\"  .  s:none     \n\
+exe  \"hi  LineNr            gui=none            guifg=\"  .  s:c3    .  \" guibg=\"  .  s:none     \n\
+exe  \"hi  LineNrAbove       gui=none            guifg=\"  .  s:none  .  \" guibg=\"  .  s:none     \n\
+exe  \"hi  LineNrBelow       gui=none            guifg=\"  .  s:none  .  \" guibg=\"  .  s:none     \n\
+exe  \"hi  CursorLineNr      gui=underline       guifg=\"  .  s:c3    .  \" guibg=\"  .  s:none     \n\
+exe  \"hi  Question          gui=none            guifg=\"  .  s:c2    .  \" guibg=\"  .  s:none     \n\
+exe  \"hi  StatusLine        gui=bold,reverse    guifg=\"  .  s:none  .  \" guibg=\"  .  s:none     \n\
+exe  \"hi  StatusLineNC      gui=reverse         guifg=\"  .  s:none  .  \" guibg=\"  .  s:none     \n\
+exe  \"hi  VertSplit         gui=reverse         guifg=\"  .  s:none  .  \" guibg=\"  .  s:none     \n\
+exe  \"hi  Title             gui=none            guifg=\"  .  s:c5    .  \" guibg=\"  .  s:none     \n\
+exe  \"hi  Visual            gui=none            guifg=\"  .  s:none  .  \" guibg=\"  .  s:c7       \n\
+exe  \"hi  VisualNOS         gui=bold,underline  guifg=\"  .  s:none  .  \" guibg=\"  .  s:none     \n\
+exe  \"hi  WarningMsg        gui=none            guifg=\"  .  s:c1    .  \" guibg=\"  .  s:none     \n\
+exe  \"hi  WildMenu          gui=none            guifg=\"  .  s:c0    .  \" guibg=\"  .  s:c11      \n\
+exe  \"hi  Folded            gui=none            guifg=\"  .  s:c4    .  \" guibg=\"  .  s:c7       \n\
+exe  \"hi  FoldColumn        gui=none            guifg=\"  .  s:c4    .  \" guibg=\"  .  s:c7       \n\
+exe  \"hi  DiffAdd           gui=none            guifg=\"  .  s:none  .  \" guibg=\"  .  s:c12      \n\
+exe  \"hi  DiffChange        gui=none            guifg=\"  .  s:none  .  \" guibg=\"  .  s:c13      \n\
+exe  \"hi  DiffDelete        gui=none            guifg=\"  .  s:c12   .  \" guibg=\"  .  s:c14      \n\
+exe  \"hi  DiffText          gui=bold            guifg=\"  .  s:none  .  \" guibg=\"  .  s:c9       \n\
+exe  \"hi  SignColumn        gui=none            guifg=\"  .  s:c4    .  \" guibg=\"  .  s:c7       \n\
+exe  \"hi  Conceal           gui=none            guifg=\"  .  s:c7    .  \" guibg=\"  .  s:c8       \n\
+exe  \"hi  SpellBad          gui=none            guifg=\"  .  s:none  .  \" guibg=\"  .  s:c9       \n\
+exe  \"hi  SpellCap          gui=none            guifg=\"  .  s:none  .  \" guibg=\"  .  s:c12      \n\
+exe  \"hi  SpellRare         gui=none            guifg=\"  .  s:none  .  \" guibg=\"  .  s:c13      \n\
+exe  \"hi  SpellLocal        gui=none            guifg=\"  .  s:none  .  \" guibg=\"  .  s:c14      \n\
+exe  \"hi  Pmenu             gui=none            guifg=\"  .  s:c0    .  \" guibg=\"  .  s:c13      \n\
+exe  \"hi  PmenuSel          gui=none            guifg=\"  .  s:c0    .  \" guibg=\"  .  s:c7       \n\
+exe  \"hi  PmenuSbar         gui=none            guifg=\"  .  s:none  .  \" guibg=\"  .  s:c7       \n\
+exe  \"hi  PmenuThumb        gui=none            guifg=\"  .  s:none  .  \" guibg=\"  .  s:c0       \n\
+exe  \"hi  TabLine           gui=underline       guifg=\"  .  s:c0    .  \" guibg=\"  .  s:c7       \n\
+exe  \"hi  TabLineSel        gui=bold            guifg=\"  .  s:none  .  \" guibg=\"  .  s:none     \n\
+exe  \"hi  TabLineFill       gui=reverse         guifg=\"  .  s:none  .  \" guibg=\"  .  s:none     \n\
+exe  \"hi  CursorColumn      gui=none            guifg=\"  .  s:none  .  \" guibg=\"  .  s:c7       \n\
+exe  \"hi  CursorLine        gui=underline       guifg=\"  .  s:none  .  \" guibg=\"  .  s:none     \n\
+exe  \"hi  ColorColumn       gui=none            guifg=\"  .  s:none  .  \" guibg=\"  .  s:c9       \n\
+exe  \"hi  Normal            gui=none            guifg=\"  .  s:fg    .  \" guibg=\"  .  s:bg       \n\
+exe  \"hi  StatusLineTerm    gui=bold            guifg=\"  .  s:c15   .  \" guibg=\"  .  s:c2       \n\
+exe  \"hi  StatusLineTermNC  gui=none            guifg=\"  .  s:c15   .  \" guibg=\"  .  s:c2       \n\
+exe  \"hi  MatchParen        gui=none            guifg=\"  .  s:none  .  \" guibg=\"  .  s:c14      \n\
+exe  \"hi  ToolbarLine       gui=none            guifg=\"  .  s:none  .  \" guibg=\"  .  s:c7       \n\
+exe  \"hi  ToolbarButton     gui=bold            guifg=\"  .  s:c15   .  \" guibg=\"  .  s:c8       \n\
+exe  \"hi  Comment           gui=none            guifg=\"  .  s:c4    .  \" guibg=\"  .  s:none     \n\
+exe  \"hi  Constant          gui=none            guifg=\"  .  s:c1    .  \" guibg=\"  .  s:none     \n\
+exe  \"hi  Special           gui=none            guifg=\"  .  s:c5    .  \" guibg=\"  .  s:none     \n\
+exe  \"hi  Identifier        gui=none            guifg=\"  .  s:c6    .  \" guibg=\"  .  s:none     \n\
+exe  \"hi  Statement         gui=none            guifg=\"  .  s:c3    .  \" guibg=\"  .  s:none     \n\
+exe  \"hi  PreProc           gui=none            guifg=\"  .  s:c5    .  \" guibg=\"  .  s:none     \n\
+exe  \"hi  Type              gui=none            guifg=\"  .  s:c2    .  \" guibg=\"  .  s:none     \n\
+exe  \"hi  Underlined        gui=underline       guifg=\"  .  s:c5    .  \" guibg=\"  .  s:none     \n\
+exe  \"hi  Ignore            gui=none            guifg=\"  .  s:c15   .  \" guibg=\"  .  s:none     \n\
+exe  \"hi  Error             gui=none            guifg=\"  .  s:c15   .  \" guibg=\"  .  s:c9       \n\
+exe  \"hi  Todo              gui=none            guifg=\"  .  s:c0    .  \" guibg=\"  .  s:c11      \n\
+\" }}} \n\n\
+exe  \"hi  Folded        gui=none       guifg=\"  .  s:c4    .  \" guibg=\"  .  s:c8\n\
+exe  \"hi  Comment       gui=none       guifg=\"  .  s:c4    .  \" guibg=\"  .  s:none\n\
+exe  \"hi  Search        gui=none       guifg=\"  .  s:c0    .  \" guibg=\"  .  s:c11\n\
+exe  \"hi  CursorColumn  gui=none       guifg=\"  .  s:none  .  \" guibg=\"  .  s:c8\n\
+exe  \"hi  CursorLine    gui=none       guifg=\"  .  s:none  .  \" guibg=\"  .  s:c8\n\
+exe  \"hi  CursorLineNr  gui=none       guifg=\"  .  s:c7    .  \" guibg=\"  .  s:c8\n\
+exe  \"hi  LineNr        gui=none       guifg=\"  .  s:c7    .  \" guibg=\"  .  s:none\n\
+exe  \"hi  MatchParen    gui=none       guifg=\"  .  s:none  .  \" guibg=\"  .  s:c7\n\
+exe  \"hi  Visual        gui=none       guifg=\"  .  s:none  .  \" guibg=\"  .  s:c7\n\
+exe  \"hi  VertSplit     gui=reverse    guifg=\"  .  s:c7    .  \" guibg=\"  .  s:none\n\
+exe  \"hi  Pmenu         gui=none       guifg=\"  .  s:none  .  \" guibg=\"  .  s:c8\n\
+exe  \"hi  PmenuSel      gui=reverse    guifg=\"  .  s:c7    .  \" guibg=\"  .  s:none\n\
+exe  \"hi  PmenuSbar     gui=none       guifg=\"  .  s:c7    .  \" guibg=\"  .  s:c8\n\
+exe  \"hi  PmenuThumb    gui=none       guifg=\"  .  s:c7    .  \" guibg=\"  .  s:c7\n\
+exe  \"hi  SpellBad      gui=underline  guifg=\"  .  s:c9    .  \" guibg=\"  .  s:none\n\
+exe  \"hi  SpellCap      gui=underline  guifg=\"  .  s:c12   .  \" guibg=\"  .  s:none\n\
+exe  \"hi  SpellLocal    gui=underline  guifg=\"  .  s:c14   .  \" guibg=\"  .  s:none\n\
+exe  \"hi  DiffAdd       gui=none       guifg=\"  .  s:none  .  \" guibg=\"  .  s:c10\n\
+exe  \"hi  DiffChange    gui=none       guifg=\"  .  s:none  .  \" guibg=\"  .  s:c11\n\
+exe  \"hi  DiffDelete    gui=none       guifg=\"  .  s:none  .  \" guibg=\"  .  s:c9\n\
+exe  \"hi  DiffText      gui=none       guifg=\"  .  s:c15   .  \" guibg=\"  .  s:c9\n\
+exe  \"hi  TabLine       gui=none       guifg=\"  .  s:c0    .  \" guibg=\"  .  s:c7\n\
+exe  \"hi  TabLineFill   gui=none       guifg=\"  .  s:none  .  \" guibg=\"  .  s:c7\n\
+exe  \"hi  TabLineSel    gui=bold       guifg=\"  .  s:none  .  \" guibg=\"  .  s:none\n\
+", file);
 
 		fclose(file);
 	}
 
-
-static const char* vimfmt = "term_%s.vim";
-static const char* vimreset = "\
-hi clear Normal \n\
-set bg& \n\
-hi clear \n\
-if exists(\"syntax_on\") \n\
-  syntax reset \n\
-endif\n\n";
-static const char* vimhighlight = "\n\
-exe    \"hi  SpecialKey        gui=none            guifg=\"  .  s:c4    .  \"  guibg=\"  .  s:none  \n\
-exe    \"hi  NonText           gui=none            guifg=\"  .  s:c12   .  \"  guibg=\"  .  s:none  \n\
-exe    \"hi  Directory         gui=none            guifg=\"  .  s:c4    .  \"  guibg=\"  .  s:none  \n\
-exe    \"hi  ErrorMsg          gui=none            guifg=\"  .  s:c15   .  \"  guibg=\"  .  s:c1    \n\
-exe    \"hi  IncSearch         gui=reverse         guifg=\"  .  s:none  .  \"  guibg=\"  .  s:none  \n\
-exe    \"hi  Search            gui=none            guifg=\"  .  s:c0    .  \"  guibg=\"  .  s:c11   \n\
-exe    \"hi  MoreMsg           gui=none            guifg=\"  .  s:c2    .  \"  guibg=\"  .  s:none  \n\
-exe    \"hi  ModeMsg           gui=bold            guifg=\"  .  s:none  .  \"  guibg=\"  .  s:none  \n\
-exe    \"hi  LineNr            gui=none            guifg=\"  .  s:c7    .  \"  guibg=\"  .  s:none  \n\
-exe    \"hi  LineNrAbove       gui=none            guifg=\"  .  s:none  .  \"  guibg=\"  .  s:none  \n\
-exe    \"hi  LineNrBelow       gui=none            guifg=\"  .  s:none  .  \"  guibg=\"  .  s:none  \n\
-exe    \"hi  CursorLineNr      gui=none            guifg=\"  .  s:c7    .  \"  guibg=\"  .  s:c8    \n\
-exe    \"hi  Question          gui=none            guifg=\"  .  s:c2    .  \"  guibg=\"  .  s:none  \n\
-exe    \"hi  StatusLine        gui=bold,reverse    guifg=\"  .  s:none  .  \"  guibg=\"  .  s:none  \n\
-exe    \"hi  StatusLineNC      gui=reverse         guifg=\"  .  s:none  .  \"  guibg=\"  .  s:none  \n\
-exe    \"hi  VertSplit         gui=reverse         guifg=\"  .  s:c7    .  \"  guibg=\"  .  s:none  \n\
-exe    \"hi  Title             gui=none            guifg=\"  .  s:c5    .  \"  guibg=\"  .  s:none  \n\
-exe    \"hi  Visual            gui=none            guifg=\"  .  s:none  .  \"  guibg=\"  .  s:c7    \n\
-exe    \"hi  VisualNOS         gui=bold,underline  guifg=\"  .  s:none  .  \"  guibg=\"  .  s:none  \n\
-exe    \"hi  WarningMsg        gui=none            guifg=\"  .  s:c1    .  \"  guibg=\"  .  s:none  \n\
-exe    \"hi  WildMenu          gui=none            guifg=\"  .  s:c0    .  \"  guibg=\"  .  s:c11   \n\
-exe    \"hi  Folded            gui=none            guifg=\"  .  s:c4    .  \"  guibg=\"  .  s:c8    \n\
-exe    \"hi  FoldColumn        gui=none            guifg=\"  .  s:c4    .  \"  guibg=\"  .  s:c7    \n\
-exe    \"hi  DiffAdd           gui=none            guifg=\"  .  s:none  .  \"  guibg=\"  .  s:c12   \n\
-exe    \"hi  DiffChange        gui=none            guifg=\"  .  s:none  .  \"  guibg=\"  .  s:c13   \n\
-exe    \"hi  DiffDelete        gui=none            guifg=\"  .  s:c12   .  \"  guibg=\"  .  s:c14   \n\
-exe    \"hi  DiffText          gui=bold            guifg=\"  .  s:none  .  \"  guibg=\"  .  s:c9    \n\
-exe    \"hi  SignColumn        gui=none            guifg=\"  .  s:c4    .  \"  guibg=\"  .  s:c7    \n\
-exe    \"hi  Conceal           gui=none            guifg=\"  .  s:c7    .  \"  guibg=\"  .  s:c8    \n\
-exe    \"hi  SpellBad          gui=undercurl       guifg=\"  .  s:none  .  \"  guibg=\"  .  s:c9    \n\
-exe    \"hi  SpellCap          gui=undercurl       guifg=\"  .  s:none  .  \"  guisp=\"  .  s:c12   \n\
-exe    \"hi  SpellRare         gui=undercurl       guifg=\"  .  s:none  .  \"  guisp=\"  .  s:c13   \n\
-exe    \"hi  SpellLocal        gui=undercurl       guifg=\"  .  s:none  .  \"  guisp=\"  .  s:c14   \n\
-exe    \"hi  Pmenu             gui=none            guifg=\"  .  s:none  .  \"  guibg=\"  .  s:c8    \n\
-exe    \"hi  PmenuSel          gui=reverse         guifg=\"  .  s:c7    .  \"  guibg=\"  .  s:none  \n\
-exe    \"hi  PmenuSbar         gui=none            guifg=\"  .  s:none  .  \"  guibg=\"  .  s:c7    \n\
-exe    \"hi  PmenuThumb        gui=none            guifg=\"  .  s:none  .  \"  guibg=\"  .  s:c0    \n\
-exe    \"hi  TabLine           gui=underline       guifg=\"  .  s:c0    .  \"  guibg=\"  .  s:c7    \n\
-exe    \"hi  TabLineSel        gui=bold            guifg=\"  .  s:none  .  \"  guibg=\"  .  s:none  \n\
-exe    \"hi  TabLineFill       gui=reverse         guifg=\"  .  s:none  .  \"  guibg=\"  .  s:none  \n\
-exe    \"hi  CursorColumn      gui=none            guifg=\"  .  s:none  .  \"  guibg=\"  .  s:c8    \n\
-exe    \"hi  CursorLine        gui=none            guifg=\"  .  s:none  .  \"  guibg=\"  .  s:c8    \n\
-\"exe  \"hi  Cursor            gui=none            guifg=\"  .  s:bg    .  \"  guibg=\"  .  s:fg    \n\
-exe    \"hi  ColorColumn       gui=none            guifg=\"  .  s:none  .  \"  guibg=\"  .  s:c9    \n\
-exe    \"hi  Normal            gui=none            guifg=\"  .  s:fg    .  \"  guibg=\"  .  s:bg    \n\
-exe    \"hi  StatusLineTerm    gui=bold            guifg=\"  .  s:c15   .  \"  guibg=\"  .  s:c2    \n\
-exe    \"hi  StatusLineTermNC  gui=none            guifg=\"  .  s:c15   .  \"  guibg=\"  .  s:c2    \n\
-exe    \"hi  MatchParen        gui=none            guifg=\"  .  s:none  .  \"  guibg=\"  .  s:c7    \n\
-exe    \"hi  ToolbarLine       gui=none            guifg=\"  .  s:none  .  \"  guibg=\"  .  s:c7    \n\
-exe    \"hi  ToolbarButton     gui=bold            guifg=\"  .  s:c15   .  \"  guibg=\"  .  s:c8    \n\
-exe    \"hi  Comment           gui=none            guifg=\"  .  s:c4    .  \"  guibg=\"  .  s:none  \n\
-exe    \"hi  Constant          gui=none            guifg=\"  .  s:c1    .  \"  guibg=\"  .  s:none  \n\
-exe    \"hi  Special           gui=none            guifg=\"  .  s:c5    .  \"  guibg=\"  .  s:none  \n\
-exe    \"hi  Identifier        gui=none            guifg=\"  .  s:c6    .  \"  guibg=\"  .  s:none  \n\
-exe    \"hi  Statement         gui=none            guifg=\"  .  s:c3    .  \"  guibg=\"  .  s:none  \n\
-exe    \"hi  PreProc           gui=none            guifg=\"  .  s:c5    .  \"  guibg=\"  .  s:none  \n\
-exe    \"hi  Type              gui=none            guifg=\"  .  s:c2    .  \"  guibg=\"  .  s:none  \n\
-exe    \"hi  Underlined        gui=underline       guifg=\"  .  s:c5    .  \"  guibg=\"  .  s:none  \n\
-exe    \"hi  Ignore            gui=none            guifg=\"  .  s:c15   .  \"  guibg=\"  .  s:none  \n\
-exe    \"hi  Error             gui=none            guifg=\"  .  s:c15   .  \"  guibg=\"  .  s:c9    \n\
-exe    \"hi  Todo              gui=none            guifg=\"  .  s:c0    .  \"  guibg=\"  .  s:c11   \n\
-";
-
-*/
+	return 0;
+}

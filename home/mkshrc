@@ -5,7 +5,7 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-HISTFILE=~/.mkshhst
+HISTFILE=~/.mksh_history
 
 bind '^L=clear-screen'
 bind -m ^U='^[0^K'
@@ -16,18 +16,43 @@ bind -m ^Q='^A^[[1;5C^[[C'
 [ -r ~/.shellsrc ] && . ~/.shellsrc
 
 PS1func() {
-	local title time user path branch
+	local title time user path branch n m item
 	time="36| $(PStime)"
 	user="35| $USER"
 	path="32| $(sed -E 's/([^\./]{1})[^/]*\//\1\//g' <<< ${PWD/#$HOME/\~})"
 	branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)"
-	if [ "$branch" ]; then branch=" ($branch)"; fi; branch="37|$branch"
-	# hyphen -, en dash –, em dash —
-	title="${PWD/#$HOME/\~} : ${0##*/}" # $0 is the actual shell
-	if [ "$SHDEPTH" -gt 1 ]; then
-		title="$title ($SHDEPTH)"
+	if [ "$branch" ]; then
+		branch=" $branch"
+		m=$(git rev-parse --show-toplevel)
+		n=$(git ls-files -o --exclude-standard "$m" | wc -l)
+		if [ $n -gt 0 ]; then
+			branch=",${n}u$branch"
+		fi
+		n=$(git ls-files -d "$m" | wc -l)
+		if [ $n -gt 0 ]; then
+			branch=",${n}d$branch"
+		fi
+		n=$(git ls-files -m "$m" | wc -l)
+		if [ $n -gt 0 ]; then
+			branch=",${n}m$branch"
+		fi
+		n=$(git diff --staged --name-only | wc -l)
+		if [ $n -gt 0 ]; then
+			branch=",${n}s$branch"
+		fi
+		n="$(git rev-list --left-right --count master...origin/master 2>/dev/null)"
+		m="${n#*	}"; n="${n%	*}"
+		if [ "$n" ] && [ "$m" ]; then
+			if [ $n -ne 0 ] || [ $m -ne 0 ]; then
+				branch=",$n/$m$branch"
+			fi
+		fi
+		branch="${branch#,}"
+		branch=" (${branch# })"
 	fi
-	title="$title — ${TERM%-*color}"
+	branch="37|$branch"
+	# hyphen -, en dash –, em dash —
+	title="${PWD/#$HOME/\~} : ${0##*/} — ${TERM%-*color}"
 
 	echo -en "\\001\\015"
 	echo -en "\\001\\033]0;"; echo -n "$title"; echo -en "\\007\\001"
