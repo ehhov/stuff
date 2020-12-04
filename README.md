@@ -70,6 +70,20 @@ Create an `/opt/local/` directory and set 777 permissions.
 - `groupadd name`.
 - `gpasswd -a user group` to add and `-d user` to remove.
 
+## Network
+From systemd hooks
+
+```
+dhcpcd:
+    start: dhcpcd -q -w %I
+    stop:  dhcpcd -x %I
+
+wpa_supplicant:
+    wpa_supplicant -c/etc/wpa_supplicant/wpa_supplicant-%I.conf -i%I -B
+
+NetworkManager:
+    nm-online -s -q
+```
 
 ## Fix hissing sound in headphones
 For alsamixer
@@ -132,6 +146,10 @@ For .pkg.tar.gz files
 
 In `/etc/pacman.conf`, uncomment the line `#Color` to have colored 
 output.
+
+If you have signature trust problems, try updating `gnupg` and then 
+running `pacman-key --refresh-keys`.
+
 
 ## Deleting commit history in GitHub
 ``` bash

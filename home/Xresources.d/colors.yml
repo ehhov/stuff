@@ -1,0 +1,300 @@
+schemes:
+
+  light: &light
+    primary:
+      background: '#e4f7e4'
+      foreground: '#000000'
+    normal:
+      black: '#000000'
+      red: '#FF2424'
+      green: '#00c000'
+      yellow: '#CC7700'
+      blue: '#0055FF'
+      magenta: '#d769ce'
+      cyan: '#1D97FC'
+      white: '#B9BBB9'
+    bright:
+      black: '#D7EFDD'
+      red: '#FB3737'
+      green: '#40BF4A'
+      yellow: '#E69119'
+      blue: '#3846ff'
+      magenta: '#c779de'
+      cyan: '#09B3B3'
+      white: '#ffffff'
+
+  github: &github
+    primary:
+      background: '#f6f8fa'
+      foreground: '#24292e'
+    normal:
+      black: '#000000'
+      red: '#d73a49'
+      green: '#2cbe4e'
+      yellow: '#e36209'
+      blue: '#005cc5'
+      magenta: '#f34b7d'
+      cyan: '#00add8'
+      white: '#babfc4'
+    bright:
+      black: '#eff2f6'
+      red: '#cb2431'
+      green: '#2c974b'
+      yellow: '#f97732'
+      blue: '#036ee7'
+      magenta: '#6f42c1'
+      cyan: '#00b4ab'
+      white: '#ffffff'
+
+  Dracula: &Dracula
+    primary:
+      background: '#282a36'
+      foreground: '#d8d8d2'
+    normal:
+      black: '#000000'
+      red: '#ff5555'
+      green: '#50fa7b'
+      yellow: '#FFB366'
+      blue: '#bd93f9'
+      magenta: '#ff79c6'
+      cyan: '#8be9fd'
+      white: '#8B8BA7'
+    bright:
+      black: '#34344B'
+      red: '#FF4444'
+      green: '#3DF56B'
+      yellow: '#f1fa8c'
+      blue: '#B78CF2'
+      magenta: '#F881C5'
+      cyan: '#6EDEF7'
+      white: '#ffffff'
+
+  Nord: &Nord
+    primary:
+      background: '#2e3440'
+      foreground: '#d8dee9'
+    normal:
+      black: '#3b4252'
+      red: '#bf616a'
+      green: '#a3be8c'
+      yellow: '#ebcb8b'
+      blue: '#81a1c1'
+      magenta: '#b48ead'
+      cyan: '#88c0d0'
+      white: '#757C8A'
+    bright:
+      black: '#383E4D'
+      red: '#bf616a'
+      green: '#a3be8c'
+      yellow: '#ebcb8b'
+      blue: '#81a1c1'
+      magenta: '#b48ead'
+      cyan: '#8fbcbb'
+      white: '#eceff4'
+
+  Solarized_dark: &Solarized_dark
+    primary:
+      background: '#002b36'
+      foreground: '#839496'
+    normal:
+      black: '#002129'
+      red: '#dc322f'
+      green: '#859900'
+      yellow: '#bf6f00'
+      blue: '#268bd2'
+      magenta: '#d33682'
+      cyan: '#2aa198'
+      white: '#586e75'
+    bright:
+      black: '#073642'
+      red: '#cb4b16'
+      green: '#586e00'
+      yellow: '#a57b00'
+      blue: '#3374b6'
+      magenta: '#8c71b4'
+      cyan: '#43b1a1'
+      white: '#fdf6e3'
+
+  Solarized_light: &Solarized_light
+    primary:
+      background: '#fdf6e3'
+      foreground: '#556b73'
+    normal:
+      black: '#eee8d5'
+      red: '#dc322f'
+      green: '#859900'
+      yellow: '#b58900'
+      blue: '#268bd2'
+      magenta: '#d33682'
+      cyan: '#2aa198'
+      white: '#b5b5ab'
+    bright:
+      black: '#ddd6c3'
+      red: '#cb4b36'
+      green: '#589e22'
+      yellow: '#a39400'
+      blue: '#657bb3'
+      magenta: '#6c71c4'
+      cyan: '#589ea5'
+      white: '#002b36'
+
+  other_dark: &other_dark
+    primary:
+      background: '#101010'
+      foreground: '#c0c0c0'
+    normal:
+      black: '#101010'
+      red: '#efa6a2'
+      green: '#80c990'
+      yellow: '#a69460'
+      blue: '#a3b8ef'
+      magenta: '#e6a3dc'
+      cyan: '#50cacd'
+      white: '#808080'
+    bright:
+      black: '#252525'
+      red: '#e0af85'
+      green: '#5accaf'
+      yellow: '#c8c874'
+      blue: '#ccaced'
+      magenta: '#f2a1c2'
+      cyan: '#74c3e4'
+      white: '#c0c0c0'
+
+  Ubuntu: &Ubuntu
+    primary:
+      background: '#300a24'
+      foreground: '#ffffff'
+    normal:
+      black: '#2E3436'
+      red: '#CC0000'
+      green: '#4B910B'
+      yellow: '#C4A000'
+      blue: '#3465A4'
+      magenta: '#755079'
+      cyan: '#06989A'
+      white: '#916E86'
+    bright:
+      black: '#401C35'
+      red: '#EF2929'
+      green: '#8AE234'
+      yellow: '#FCE94F'
+      blue: '#729FCF'
+      magenta: '#AD7FA8'
+      cyan: '#34E2E2'
+      white: '#EEEEEC'
+
+  Gruvbox_dark: &Gruvbox_dark
+    primary:
+      background: '#282828'
+      foreground: '#ebdbb2'
+    normal:
+      black: '#282828'
+      red: '#cc241d'
+      green: '#98971a'
+      yellow: '#d79921'
+      blue: '#458588'
+      magenta: '#b16286'
+      cyan: '#689d6a'
+      white: '#95836A'
+    bright:
+      black: '#37352F'
+      red: '#fb4934'
+      green: '#b8bb26'
+      yellow: '#fabd2f'
+      blue: '#83a598'
+      magenta: '#d3869b'
+      cyan: '#8ec07c'
+      white: '#ebdbb2'
+
+  Gruvbox_light: &Gruvbox_light
+    primary:
+      background: '#fbf1c7'
+      foreground: '#3c3836'
+    normal:
+      black: '#fbf1c7'
+      red: '#cc241d'
+      green: '#98971a'
+      yellow: '#d79921'
+      blue: '#458588'
+      magenta: '#b16286'
+      cyan: '#689d6a'
+      white: '#BEAD9D'
+    bright:
+      black: '#F5EBBC'
+      red: '#9d0006'
+      green: '#79740e'
+      yellow: '#b57614'
+      blue: '#076678'
+      magenta: '#8f3f71'
+      cyan: '#427b58'
+      white: '#3c3836'
+
+  dark: &dark
+    primary:
+      background: '#222222'
+      foreground: '#cccccc'
+    normal:
+      black: '#555555'
+      red: '#E06C75'
+      green: '#98C379'
+      yellow: '#f5dd7B'
+      blue: '#60aaff'
+      magenta: '#C678DD'
+      cyan: '#46c6b2'
+      white: '#c0c0c0'
+    bright:
+      black: '#777777'
+      red: '#dd0000'
+      green: '#00dd00'
+      yellow: '#eebb33'
+      blue: '#5c5cff'
+      magenta: '#dd00dd'
+      cyan: '#22aacc'
+      white: '#ffffff'
+
+  Solarized_dark_orig: &Solarized_dark_orig
+    primary:
+      background: '#002b36'
+      foreground: '#a3b4b6'
+    normal:
+      black: '#073642'
+      red: '#dc322f'
+      green: '#859900'
+      yellow: '#b58900'
+      blue: '#268bd2'
+      magenta: '#d33682'
+      cyan: '#2aa198'
+      white: '#eee8d5'
+    bright:
+      black: '#002b36'
+      red: '#cb4b16'
+      green: '#586e75'
+      yellow: '#657b83'
+      blue: '#839496'
+      magenta: '#6c71c4'
+      cyan: '#93a1a1'
+      white: '#fdf6e3'
+
+  Solarized_light_orig: &Solarized_light_orig
+    primary:
+      background: '#fdf6e3'
+      foreground: '#657b83'
+    normal:
+      black: '#eee8d5'
+      red: '#dc322f'
+      green: '#859900'
+      yellow: '#b58900'
+      blue: '#268bd2'
+      magenta: '#d33682'
+      cyan: '#2aa198'
+      white: '#073642'
+    bright:
+      black: '#fdf6e3'
+      red: '#cb4b16'
+      green: '#93a1a1'
+      yellow: '#839496'
+      blue: '#657b83'
+      magenta: '#6c71c4'
+      cyan: '#586e75'
+      white: '#002b36'

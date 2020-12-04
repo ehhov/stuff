@@ -3,6 +3,7 @@
 
 static const char *Xres_output = "colors";
 static const char *liveschemes = "live_colors.sh";
+static const char *alarcittycolors = "colors.yml";
 
 static const char *
 vimcolorfile(const char *filename)
@@ -19,6 +20,7 @@ vimcolorfile(const char *filename)
 	snprintf(buf, sizeof(buf), "%s/.config/nvim/colors/gui_%s.vim", home, filename);
 	return buf;
 }
+
 
 /*
  * Copy the palette from st/config.h here
@@ -155,6 +157,33 @@ int main() {
 	      "done\n", file);
 	fclose(file);
 
+	file=fopen(alarcittycolors, "w");
+	fputs("schemes:\n", file);
+	for (int theme=0; theme<N; theme++){
+		fprintf(file, "\n  %s: &%s\n", names[theme], names[theme]);
+		fprintf(file, "    primary:\n");
+		fprintf(file, "      background: '%s'\n", palettes[theme][256]);
+		fprintf(file, "      foreground: '%s'\n", palettes[theme][257]);
+		fprintf(file, "    normal:\n");
+		fprintf(file, "      black: '%s'\n",  palettes[theme][0]);
+		fprintf(file, "      red: '%s'\n",  palettes[theme][1]);
+		fprintf(file, "      green: '%s'\n",  palettes[theme][2]);
+		fprintf(file, "      yellow: '%s'\n",  palettes[theme][3]);
+		fprintf(file, "      blue: '%s'\n",  palettes[theme][4]);
+		fprintf(file, "      magenta: '%s'\n",  palettes[theme][5]);
+		fprintf(file, "      cyan: '%s'\n",  palettes[theme][6]);
+		fprintf(file, "      white: '%s'\n",  palettes[theme][7]);
+		fprintf(file, "    bright:\n");
+		fprintf(file, "      black: '%s'\n",  palettes[theme][8]);
+		fprintf(file, "      red: '%s'\n",  palettes[theme][9]);
+		fprintf(file, "      green: '%s'\n",  palettes[theme][10]);
+		fprintf(file, "      yellow: '%s'\n",  palettes[theme][11]);
+		fprintf(file, "      blue: '%s'\n",  palettes[theme][12]);
+		fprintf(file, "      magenta: '%s'\n",  palettes[theme][13]);
+		fprintf(file, "      cyan: '%s'\n",  palettes[theme][14]);
+		fprintf(file, "      white: '%s'\n",  palettes[theme][15]);
+	}
+	fclose(file);
 
 	for (int theme=0; theme<N; theme++){
 		file=fopen(vimcolorfile(names[theme]), "w");

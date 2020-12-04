@@ -27,6 +27,7 @@ outlineWidth=1
 [ScreenConnectors]
 10=eDP-1
 11=DP-1
+12=X11-0
 
 [UniversalSettings]
 badges3DStyle=false

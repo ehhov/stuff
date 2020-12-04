@@ -1,5 +1,6 @@
 [Layout]
 DisplayNames=,
+LayoutDefaultGlobal=1
 LayoutList=us,ru
 LayoutLoopCount=-1
 Model=pc101

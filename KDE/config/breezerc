@@ -3,11 +3,10 @@ OutlineCloseButton=false
 ShadowSize=ShadowSmall
 
 [Style]
-MenuOpacity=60
-MnemonicsMode=MN_ALWAYS
 ScrollBarAddLineButtons=1
 ScrollBarSubLineButtons=1
 ToolBarDrawItemSeparator=false
+WindowDragMode=WD_NONE
 
 [Windeco]
 ButtonSize=ButtonSmall

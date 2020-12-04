@@ -74,5 +74,6 @@ export MANPATH
 date
 
 if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
-	exec startx
+	#exec startx
+	exec startplasma-wayland
 fi

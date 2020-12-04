@@ -43,7 +43,7 @@ other)
 	xshot $2 /tmp/$3 && copy /tmp/$3
 ;;
 pick)
-	xpick -anp | xclip -selection clipboard
+	xpick -np | xclip -selection clipboard
 ;;
 quit)
 	killall xshot

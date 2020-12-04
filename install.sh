@@ -1,88 +1,75 @@
 #!/bin/sh
 
-dir=$(readlink -f $0)
-dir=$(dirname "$dir")
-rel=${dir#~/}
+dir="$(readlink -f "$0")"
+dir="$(dirname "$dir")"
+rel="${dir#~/}"
 create_link() {
 	# link to_what where
-	if [ ! -e $2 ] && [ ! -h $2 ]; then
-		ln -s $1 $2
-	fi
-}
-copy() {
-	# copy what where
-	if [ ! -e $2 ] && [ ! -h $2 ]; then
-		cp $1 $2
+	if [ ! -e "$2" ] && [ ! -h "$2" ]; then
+		ln -s "$1" "$2"
 	fi
 }
 remove() {
 	# remove what
-	if [ -e $1 ] || [ -h $1 ]; then
-		rm -rf $1
+	if [ -e "$1" ] || [ -h "$1" ]; then
+		rm -rf "$1"
 	fi
 }
 
+case $1 in
+	re*) action() { remove "$2"; create_link "$1" "$2"; };;
+	*)   action() { create_link "$1" "$2"; };;
+esac
 
 case $1 in
-ln|link)
-	for i in ${dir}/home/*; do
-		i=${i#$dir/}
-		j=${i#home/}
-		create_link ${rel}/$i ~/.$j
+ln|link|reln|relink)
+	for i in "${dir}"/home/*; do
+		i="${i#$dir/}"
+		j="${i#home/}"
+		action "${rel}/$i" ~/."$j"
 	done
-	for i in ${dir}/config/*; do
-		i=${i#$dir/}
-		j=${i#config/}
-		create_link ../${rel}/$i ~/.config/$j
-	done
-;;
-
-reln|relink)
-	for i in ${dir}/home/*; do
-		i=${i#$dir/}
-		j=${i#home/}
-		remove ~/.$j
-		create_link ${rel}/$i ~/.$j
-	done
-	for i in ${dir}/config/*; do
-		i=${i#$dir/}
-		j=${i#config/}
-		remove ~/.config/$j
-		create_link ../${rel}/$i ~/.config/$j
+	for i in "${dir}"/config/*; do
+		i="${i#$dir/}"
+		j="${i#config/}"
+		action ../"${rel}/$i" ~/.config/"$j"
 	done
 ;;
 
 rm|remove)
-	for i in ${dir}/home/*; do
-		i=${i#$dir/}
-		j=${i#home/}
-		remove ~/.$j
+	for i in "${dir}"/home/*; do
+		i="${i#$dir/}"
+		j="${i#home/}"
+		remove ~/."$j"
 	done
-	for i in ${dir}/config/*; do
-		i=${i#$dir/}
-		j=${i#config/}
-		remove ~/.config/$j
+	for i in "${dir}"/config/*; do
+		i="${i#$dir/}"
+		j="${i#config/}"
+		remove ~/.config/"$j"
 	done
 ;;
 
-kde|KDE)
-	for i in ${dir}/KDE/*; do
-		i=${i#$dir/}
-		j=${i#KDE/}
-		remove ~/.config/$j
-		create_link ../${rel}/$i ~/.config/$j
+kde|rekde)
+	for i in "${dir}"/KDE/config/*; do
+		i="${i#$dir/}"
+		j="${i#KDE/config/}"
+		action ../"${rel}/$i" ~/.config/"$j"
+	done
+	for i in "${dir}"/KDE/share/*; do
+		i="${i#$dir/}"
+		j="${i#KDE/share/}"
+		action ../../"${rel}/$i" ~/.local/share/"$j"
 	done
 ;;
 
 mime)
 	file=~/.config/mimeapps.list
-	here=${dir}/config/mimeapps.list
-	if [ -f $file ] && [ ! -h $file ]; then
-		cp $file $here
+	here="${dir}"/config/mimeapps.list
+	if [ -f "$file" ] && [ ! -h "$file" ]; then
+		cp "$file" $"here"
 	fi
-	here=${here#$dir/}
-	remove $file
-	create_link ../${rel}/$here $file
+	here="${here#$dir/}"
+	remove "$file"
+	create_link ../${rel}/"$here" "$file"
 ;;
 
 clone)
@@ -99,11 +86,11 @@ clone)
 ;;
 
 *)
-	echo -e "$0: usage ('|' means 'or') :"
+	echo -e "$0: usage ('|' means 'or', [] means optional) :"
 	echo -e "  $0 ln|link      to create links"
 	echo -e "  $0 reln|relink  to remove your files and create links"
 	echo -e "  $0 rm|remove    to remove the files (whether they are installed or not)"
-	echo -e "  $0 kde          to \`relink\` files for KDE"
+	echo -e "  $0 [re]kde      to \`[re]link\` files for KDE"
 	echo -e "  $0 mime         to copy ~/.config/mimeapps.list to here if it is a regular file"
 	echo -e ""
 ;;

@@ -2,12 +2,13 @@
 _k_friendly_name=Activity Manager
 switch-to-activity-20914e98-6a96-407d-aa1e-261716b529a0=none,none,Switch to activity "Default"
 switch-to-activity-537f5053-3157-429f-8819-dc8581f6afa7=none,none,Switch to activity "Default"
+switch-to-activity-88559549-0b0e-489f-ae89-506e5622cf21=none,none,Switch to activity "Default"
 
 [KDE Keyboard Layout Switcher]
 Switch keyboard layout to English (US)=none,none,Switch keyboard layout to English (US)
 Switch keyboard layout to Russian=none,none,Switch keyboard layout to Russian
-Switch to Next Keyboard Layout=Ctrl+Alt+K,none,Switch to Next Keyboard Layout
-_k_friendly_name=KDE Daemon
+Switch to Next Keyboard Layout=none,Ctrl+Alt+K,Switch to Next Keyboard Layout
+_k_friendly_name=Keyboard Layout Switcher
 
 [kaccess]
 Toggle Screen Reader On and Off=Meta+Alt+S,Meta+Alt+S,Toggle Screen Reader On and Off
@@ -17,7 +18,7 @@ _k_friendly_name=Accessibility
 Disable Touchpad=Touchpad Off,Touchpad Off,Disable Touchpad
 Enable Touchpad=Touchpad On,Touchpad On,Enable Touchpad
 Toggle Touchpad=Touchpad Toggle,Touchpad Toggle,Toggle Touchpad
-_k_friendly_name=KDE Daemon
+_k_friendly_name=KWin
 
 [kded5]
 Show System Activity=Ctrl+Esc,Ctrl+Esc,Show System Activity
@@ -25,28 +26,19 @@ _k_friendly_name=KDE Daemon
 display=Display\tMeta+P,Display\tMeta+P,Switch Display
 
 [khotkeys]
-_k_friendly_name=KDE Daemon
+_k_friendly_name=Custom Shortcuts Service
 {0a946bcb-d6cc-4023-a129-ad1b1064a124}=Meta+Return,none,Terminal
-{1039982d-6170-410d-817a-86313fc80d19}=Meta+Shift+Q,none,Exit
-{1523da30-53f1-4258-8841-67ddadf833b5}=Print,none,Screen
 {3686c1c3-848e-42a9-821c-c5717dfe5f7e}=Meta+Ctrl+M,none,Thunderbird
 {373513a7-b10d-4972-b5c7-6aec403f6c77}=Meta+Ctrl+T,none,Telegram
-{38635c38-88c2-4fc0-900f-5c1b125ba4a1}=Meta+Shift+W,none,Import
 {41ca1c84-ce87-4437-8e95-052c2b1b8877}=Meta+E,none,Explorer
 {50622c66-c748-4cc2-8e6a-b13ad3532394}=Meta+U,none,URxvt
-{71b2ace9-04a6-404c-adc3-4abbdd0d6297}=Monitor Brightness Up,none,Up
-{791e7af9-b7d4-4c88-8d9b-8415749c975c}=Monitor Brightness Down,none,Down
 {79afe024-ea5e-49d4-88b5-61202a64260a}=Meta+Ctrl+O,none,Okular
 {8254e47e-35bc-4868-8597-580625cbdc86}=Meta+X,none,XTerm
 {9c8ab798-f589-4cc2-94e3-bdac0d846051}=Meta+G,none,GVim
 {a0dacb90-60ed-4190-a2c9-c798a07ac329}=Meta+S,none,ST
 {a83754d3-e4d4-4f85-a8fc-5cfddd0d053f}=Meta+Ctrl+K,none,Konsole
-{b605dce2-68a8-4d86-9e2d-7225dea1c12d}=Meta+Monitor Brightness Down,none,Big Down
-{bb1bf06e-995e-4f2f-9d8b-425e11a65ad9}=Meta+Monitor Brightness Up,none,Big Up
 {ca05c0b0-58f0-4d24-9b4e-042e0d4cceeb}=Meta+Ctrl+D,none,Dolphin
-{cf24da50-e98c-4ba7-8991-2682dd3528fd}=Meta+Print,none,Spectacle
-{daeb6cea-177e-4bb0-ac67-8b40ffe39037}=Shift+Print,none,Delayed\s
-{e88c9046-d65c-412d-b77d-08b899f53c0d}=Meta+Shift+S,none,Region
+{cc156a35-1544-4d5d-83fb-2fbe5b86f710}=Meta+A,none,Alacritty
 {ee03219d-430f-4b4e-99c0-5b879a63b3ed}=Meta+N,none,Neovim Qt
 {fc2a4f8f-3afd-46b7-8fec-155a23b64b7a}=Meta+Ctrl+F,none,Firefox
 
@@ -59,23 +51,18 @@ increase_volume=Volume Up,Volume Up,Increase Volume
 mic_mute=Microphone Mute,Microphone Mute,Mute Microphone
 mute=Volume Mute,Volume Mute,Mute
 
-[krunner]
-_k_friendly_name=Run Command
-run command=\tAlt+F2\tSearch,Alt+Space,Run Command
-run command on clipboard contents=Alt+Shift+F2,Alt+Shift+F2,Run Command on clipboard contents
-
 [krunner.desktop]
-RunClipboard=,Alt+Shift+F2,Run command on clipboard contents
+RunClipboard=Alt+Shift+F2,Alt+Shift+F2,Run command on clipboard contents
 _k_friendly_name=KRunner
-_launch=Alt+Space,Alt+Space\tAlt+F2\tSearch,KRunner
+_launch=Search\tAlt+Space\tAlt+F2,Alt+Space\tAlt+F2\tSearch,KRunner
 
 [ksmserver]
-Halt Without Confirmation=Ctrl+Alt+Shift+PgDown,none,Halt Without Confirmation
-Lock Session=Ctrl+Alt+L\tScreensaver,Meta+L\tCtrl+Alt+L\tScreensaver,Lock Session
-Log Out=Ctrl+Alt+Del,none,Log Out
-Log Out Without Confirmation=Ctrl+Alt+Shift+Del,none,Log Out Without Confirmation
-Reboot Without Confirmation=Ctrl+Alt+Shift+PgUp,none,Reboot Without Confirmation
-_k_friendly_name=ksmserver
+Halt Without Confirmation=Ctrl+Alt+Shift+PgDown,Ctrl+Alt+Shift+PgDown,Halt Without Confirmation
+Lock Session=Ctrl+Alt+L\tScreensaver\tMeta+L,Meta+L\tCtrl+Alt+L\tScreensaver,Lock Session
+Log Out=Meta+Shift+Esc\tCtrl+Alt+Del,Ctrl+Alt+Del,Log Out
+Log Out Without Confirmation=Ctrl+Alt+Shift+Del,Ctrl+Alt+Shift+Del,Log Out Without Confirmation
+Reboot Without Confirmation=Ctrl+Alt+Shift+PgUp,Ctrl+Alt+Shift+PgUp,Reboot Without Confirmation
+_k_friendly_name=Session Management
 
 [kwin]
 Activate Window Demanding Attention=Ctrl+Alt+A,Ctrl+Alt+A,Activate Window Demanding Attention
@@ -94,7 +81,7 @@ Krohnkite: Cycle Layout=Meta+\\\\,none,
 Krohnkite: Decrease=Meta+Shift+D,none,
 Krohnkite: Down/Next=,none,
 Krohnkite: Float=,none,
-Krohnkite: Float All=Meta+Shift+F,none,
+Krohnkite: Float All=none,none,
 Krohnkite: Floating Layout=none,none,
 Krohnkite: Grow Height=Meta+Ctrl+J,none,
 Krohnkite: Grow Width=Meta+Ctrl+L,none,
@@ -108,7 +95,7 @@ Krohnkite: Move Up/Prev=,none,
 Krohnkite: Next Layout=,none,
 Krohnkite: Previous Layout=Meta+|,none,
 Krohnkite: Quarter Layout=none,none,
-Krohnkite: Right=Meta+L,none,
+Krohnkite: Right=none,none,
 Krohnkite: Set master=,none,
 Krohnkite: Shrink Height=,none,
 Krohnkite: Shrink Width=Meta+Ctrl+H,none,
@@ -206,7 +193,7 @@ Walk Through Windows of Current Application Alternative (Reverse)=none,none,Walk
 Window Above Other Windows=Alt+Return,none,Keep Window Above Others
 Window Below Other Windows=none,none,Keep Window Below Others
 Window Close=Alt+F4\tMeta+Shift+C,Alt+F4,Close Window
-Window Fullscreen=none,none,Make Window Fullscreen
+Window Fullscreen=Meta+Shift+F,none,Make Window Fullscreen
 Window Grow Horizontal=none,none,Pack Grow Window Horizontally
 Window Grow Vertical=none,none,Pack Grow Window Vertically
 Window Lower=none,none,Lower Window
@@ -284,7 +271,7 @@ activate entry 10=,Meta+0,Activate Entry 10
 activate entry 11=,Meta+Z,Activate Entry 11
 activate entry 12=,Meta+X,Activate Entry 12
 activate entry 13=,Meta+C,Activate Entry 13
-activate entry 14=Meta+V,Meta+V,Activate Entry 14
+activate entry 14=none,Meta+V,Activate Entry 14
 activate entry 15=,Meta+B,Activate Entry 15
 activate entry 16=,Meta+N,Activate Entry 16
 activate entry 17=,Meta+M,Activate Entry 17
@@ -303,32 +290,32 @@ clipboard_action=,Ctrl+Alt+X,Enable Clipboard Actions
 cycleNextAction=none,none,Next History Item
 cyclePrevAction=none,none,Previous History Item
 edit_clipboard=none,none,Edit Contents...
-new instance for entry 1=Meta+Ctrl+1,Meta+Ctrl+1,New Instance for Entry 1
-new instance for entry 10=Meta+Ctrl+0,Meta+Ctrl+0,New Instance for Entry 10
-new instance for entry 11=Meta+Ctrl+Z,Meta+Ctrl+Z,New Instance for Entry 11
-new instance for entry 12=Meta+Ctrl+X,Meta+Ctrl+X,New Instance for Entry 12
+new instance for entry 1=none,Meta+Ctrl+1,New Instance for Entry 1
+new instance for entry 10=none,Meta+Ctrl+0,New Instance for Entry 10
+new instance for entry 11=none,Meta+Ctrl+Z,New Instance for Entry 11
+new instance for entry 12=none,Meta+Ctrl+X,New Instance for Entry 12
 new instance for entry 13=,Meta+Ctrl+C,New Instance for Entry 13
-new instance for entry 14=Meta+Ctrl+V,Meta+Ctrl+V,New Instance for Entry 14
-new instance for entry 15=Meta+Ctrl+B,Meta+Ctrl+B,New Instance for Entry 15
-new instance for entry 16=Meta+Ctrl+N,Meta+Ctrl+N,New Instance for Entry 16
+new instance for entry 14=none,Meta+Ctrl+V,New Instance for Entry 14
+new instance for entry 15=none,Meta+Ctrl+B,New Instance for Entry 15
+new instance for entry 16=none,Meta+Ctrl+N,New Instance for Entry 16
 new instance for entry 17=,Meta+Ctrl+M,New Instance for Entry 17
-new instance for entry 18=Meta+Ctrl+\\,,Meta+Ctrl+\\,,New Instance for Entry 18
-new instance for entry 19=Meta+Ctrl+.,Meta+Ctrl+.,New Instance for Entry 19
-new instance for entry 2=Meta+Ctrl+2,Meta+Ctrl+2,New Instance for Entry 2
-new instance for entry 3=Meta+Ctrl+3,Meta+Ctrl+3,New Instance for Entry 3
-new instance for entry 4=Meta+Ctrl+4,Meta+Ctrl+4,New Instance for Entry 4
-new instance for entry 5=Meta+Ctrl+5,Meta+Ctrl+5,New Instance for Entry 5
-new instance for entry 6=Meta+Ctrl+6,Meta+Ctrl+6,New Instance for Entry 6
-new instance for entry 7=Meta+Ctrl+7,Meta+Ctrl+7,New Instance for Entry 7
-new instance for entry 8=Meta+Ctrl+8,Meta+Ctrl+8,New Instance for Entry 8
-new instance for entry 9=Meta+Ctrl+9,Meta+Ctrl+9,New Instance for Entry 9
+new instance for entry 18=none,Meta+Ctrl+\\,,New Instance for Entry 18
+new instance for entry 19=none,Meta+Ctrl+.,New Instance for Entry 19
+new instance for entry 2=none,Meta+Ctrl+2,New Instance for Entry 2
+new instance for entry 3=none,Meta+Ctrl+3,New Instance for Entry 3
+new instance for entry 4=none,Meta+Ctrl+4,New Instance for Entry 4
+new instance for entry 5=none,Meta+Ctrl+5,New Instance for Entry 5
+new instance for entry 6=none,Meta+Ctrl+6,New Instance for Entry 6
+new instance for entry 7=none,Meta+Ctrl+7,New Instance for Entry 7
+new instance for entry 8=none,Meta+Ctrl+8,New Instance for Entry 8
+new instance for entry 9=none,Meta+Ctrl+9,New Instance for Entry 9
 repeat_action=,Ctrl+Alt+R,Manually Invoke Action on Current Clipboard
-show dock settings=Meta+A,Meta+A,Show Dock Settings
-show latte dock=Meta+`,Meta+`,Show Dock
+show dock settings=,Meta+A,Show Dock Settings
+show latte dock=none,Meta+`,Show Dock
 show latte global settings=,Meta+W,Show Latte Global Settings
 show latte universal settings=,Meta+E,Show Latte Settings
 show latte view=,Meta+`,Show Latte Dock/Panel
-show layout settings=Meta+W,Meta+W,Show Layout Settings
+show layout settings=none,Meta+W,Show Layout Settings
 show view settings=,Meta+A,Cycle Through Dock/Panel Settings Windows
 show-barcode=none,none,Show Barcode...
 show-on-mouse-pos=Meta+C,none,Open Klipper at Mouse Position
@@ -342,24 +329,29 @@ playpausemedia=Media Play,Media Play,Play/Pause media playback
 previousmedia=Media Previous,Media Previous,Media playback previous
 stopmedia=Media Stop,Media Stop,Stop media playback
 
+[org.kde.dolphin.desktop]
+_k_friendly_name=Dolphin
+_launch=,Meta+E,Dolphin
+
 [org.kde.plasma.emojier.desktop]
 _k_friendly_name=Emoji Selector
-_launch=,Meta+.,Emoji Selector
+_launch=Meta+Ctrl+.,Meta+.,Emoji Selector
 
 [org.kde.spectacle.desktop]
-ActiveWindowScreenShot=none,Meta+Print,Capture Active Window
+ActiveWindowScreenShot=Ctrl+Print,Meta+Print,Capture Active Window
 CurrentMonitorScreenShot=,none,Capture Current Monitor
-FullScreenScreenShot=none,Shift+Print,Capture Entire Desktop
-RectangularRegionScreenShot=none,Meta+Shift+Print,Capture Rectangular Region
+FullScreenScreenShot=Print,Shift+Print,Capture Entire Desktop
+RectangularRegionScreenShot=Meta+Shift+S,Meta+Shift+Print,Capture Rectangular Region
 _k_friendly_name=Spectacle
-_launch=none,Print,Launch Spectacle
+_launch=Meta+Print,Print,Launch Spectacle
 
 [org_kde_powerdevil]
 Decrease Keyboard Brightness=Keyboard Brightness Down,Keyboard Brightness Down,Decrease Keyboard Brightness
-Decrease Screen Brightness=none,Monitor Brightness Down,Decrease Screen Brightness
+Decrease Screen Brightness=Monitor Brightness Down,Monitor Brightness Down,Decrease Screen Brightness
 Hibernate=Hibernate,Hibernate,Hibernate
 Increase Keyboard Brightness=Keyboard Brightness Up,Keyboard Brightness Up,Increase Keyboard Brightness
-Increase Screen Brightness=none,Monitor Brightness Up,Increase Screen Brightness
+Increase Screen Brightness=Monitor Brightness Up,Monitor Brightness Up,Increase Screen Brightness
+PowerDown=Power Down,Power Down,Power Down
 PowerOff=Power Off,Power Off,Power Off
 Sleep=Sleep,Sleep,Suspend
 Toggle Keyboard Backlight=Keyboard Light On/Off,Keyboard Light On/Off,Toggle Keyboard Backlight
@@ -378,12 +370,16 @@ activate task manager entry 6=,Meta+6,Activate Task Manager Entry 6
 activate task manager entry 7=,Meta+7,Activate Task Manager Entry 7
 activate task manager entry 8=,Meta+8,Activate Task Manager Entry 8
 activate task manager entry 9=,Meta+9,Activate Task Manager Entry 9
+activate widget 14=none,none,Activate Night Color Control Widget
+activate widget 23=none,none,Activate Application Menu Widget
+activate widget 32=none,none,Activate Icons-only Task Manager Widget
+activate widget 53=none,none,Activate Application Menu Widget
 clear-history=none,none,Clear Clipboard History
 clipboard_action=Ctrl+Alt+X,Ctrl+Alt+X,Enable Clipboard Actions
 cycleNextAction=none,none,Next History Item
 cyclePrevAction=none,none,Previous History Item
 edit_clipboard=none,none,Edit Contents...
-manage activities=Meta+Q,Meta+Q,Activities...
+manage activities=none,Meta+Q,Show Activity Switcher
 next activity=,Meta+Tab,Walk through activities
 previous activity=,Meta+Shift+Tab,Walk through activities (Reverse)
 repeat_action=Ctrl+Alt+R,Ctrl+Alt+R,Manually Invoke Action on Current Clipboard
@@ -394,3 +390,7 @@ stop current activity=,Meta+S,Stop Current Activity
 switch to next activity=none,none,Switch to Next Activity
 switch to previous activity=none,none,Switch to Previous Activity
 toggle do not disturb=none,none,Toggle do not disturb
+
+[systemsettings.desktop]
+_k_friendly_name=System Settings
+_launch=Tools,Tools,System Settings

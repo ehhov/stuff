@@ -1,0 +1,20 @@
+[$Version]
+update_info=delete_cursor_old_default_size.upd:DeleteCursorOldDefaultSize
+
+[Keyboard]
+KeyboardRepeating=0
+NumLock=2
+RepeatDelay=600
+RepeatRate=25
+
+[Libinput][1739][30383][DLL075B:01 06CB:76AF Mouse]
+PointerAcceleration=0.000
+PointerAccelerationProfile=2
+
+[Libinput][1739][30383][DLL075B:01 06CB:76AF Touchpad]
+MiddleButtonEmulation=false
+NaturalScroll=true
+PointerAcceleration=-0.150
+ScrollMethod=1
+TapDragLock=true
+TapToClick=true
