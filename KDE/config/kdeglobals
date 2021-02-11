@@ -123,24 +123,25 @@ ForegroundVisited=127,140,141
 
 [DirSelect Dialog]
 DirSelectDialog Size=882,604
+History Items[$e]=file:$HOME/Pictures/beautiful-bing-daily,file:$HOME/Pictures/beautiful-bing-daily,file:$HOME/Music,file:$HOME/Music,file:$HOME/Music,file:$HOME/Music
 
 [General]
-BrowserApplication=firefox.desktop
+BrowserApplication=google-chrome.desktop
 ColorScheme=Breeze
 Name=Breeze
 TerminalApplication=alacritty
 XftHintStyle=hintslight
 XftSubPixel=rgb
 fixed=Monospace,10,-1,5,50,0,0,0,0,0
-font=Arimo,10,-1,5,50,0,0,0,0,0
-menuFont=Arimo,10,-1,5,50,0,0,0,0,0
+font=Sans Serif,10,-1,5,50,0,0,0,0,0
+menuFont=Sans Serif,10,-1,5,50,0,0,0,0,0
 shadeSortColumn=true
-smallestReadableFont=Arimo,8,-1,5,50,0,0,0,0,0
-toolBarFont=Arimo,10,-1,5,50,0,0,0,0,0
+smallestReadableFont=Sans Serif,8,-1,5,50,0,0,0,0,0
+toolBarFont=Sans Serif,10,-1,5,50,0,0,0,0,0
 widgetStyle=Breeze
 
 [Icons]
-Theme=Papirus
+Theme=breeze-dark
 
 [KDE]
 ColorScheme=Breeze
@@ -169,6 +170,10 @@ Sort reversed=false
 Speedbar Width=128
 View Style=DetailTree
 
+[KScreen]
+ScaleFactor=1
+ScreenScaleFactors=eDP-1=1;DP-1=1;DP-2=1;
+
 [KShortcutsDialog Settings]
 Dialog Size=927,647
 
@@ -178,7 +183,7 @@ MaximumRemoteSize=0
 [WM]
 activeBackground=71,80,87
 activeBlend=252,252,252
-activeFont=Arimo,10,-1,5,50,0,0,0,0,0
+activeFont=Sans Serif,10,-1,5,50,0,0,0,0,0
 activeForeground=252,252,252
 inactiveBackground=239,240,241
 inactiveBlend=75,71,67

@@ -4,7 +4,7 @@ update_info=kwin.upd:replace-scalein-with-scale,kwin.upd:port-minimizeanimation-
 [Compositing]
 Backend=OpenGL
 Enabled=true
-GLCore=false
+GLCore=true
 GLPreferBufferSwap=a
 GLTextureFilter=0
 HiddenPreviews=5
@@ -37,6 +37,10 @@ Rows=1
 [DrmOutputs][bf2d3f4398][bf2d3f4398]
 Scale=1
 
+[Effect-Blur]
+BlurStrength=15
+NoiseStrength=0
+
 [Effect-CoverSwitch]
 TabBoxAlternative=false
 
@@ -60,6 +64,9 @@ BorderActivate=9
 BorderActivateAll=9
 BorderActivateClass=9
 
+[Effect-Slide]
+SlideBackground=false
+
 [ElectricBorders]
 Bottom=None
 BottomLeft=None
@@ -82,6 +89,7 @@ CommandAllWheel=Nothing
 CommandInactiveTitlebar1=Activate and raise
 CommandInactiveTitlebar2=Nothing
 CommandInactiveTitlebar3=Operations menu
+CommandTitlebarWheel=Change Opacity
 CommandWindow1=Activate, raise and pass click
 CommandWindow2=Activate and pass click
 CommandWindow3=Activate and pass click
@@ -115,7 +123,7 @@ DesktopListLayout=org.kde.breeze.desktop
 DesktopMode=1
 HighlightWindows=false
 LayoutName=thumbnails
-MinimizedMode=0
+MinimizedMode=1
 MultiScreenMode=0
 ShowDesktopMode=0
 SwitchingMode=0
@@ -126,11 +134,10 @@ ApplicationsMode=0
 DesktopMode=1
 HighlightWindows=true
 LayoutName=org.kde.breeze.desktop
-MinimizedMode=0
+MinimizedMode=1
 MultiScreenMode=0
 ShowDesktopMode=0
 ShowTabBox=false
-SwitchingMode=0
 
 [Windows]
 ActiveMouseScreen=false
@@ -155,6 +162,7 @@ MaximizeButtonMiddleClickCommand=Maximize (vertical only)
 MaximizeButtonRightClickCommand=Maximize (horizontal only)
 NextFocusPrefersMouse=false
 Placement=Cascade
+RollOverDesktops=false
 SeparateScreenFocus=false
 ShadeHover=false
 ShadeHoverInterval=250
@@ -164,5 +172,5 @@ WindowSnapZone=10
 
 [org.kde.kdecoration2]
 ButtonsOnLeft=M
-library=org.kde.breeze
-theme=Breeze
+ButtonsOnRight=IAX
+ShowToolTips=false

@@ -12,7 +12,7 @@ if [ -e $logfile ]; then
 	mv -f $logfile ${logfile}.old
 fi
 
-session=${1:-kde}
+session=${1:-dwm}
 
 { case $session in
 	dwm)                exec dwm ;;

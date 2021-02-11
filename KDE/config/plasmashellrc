@@ -1,6 +1,13 @@
 [DownloadDialog Settings]
-eDP-1 Height 1080=756
-eDP-1 Width 1920=1083
+eDP-1 Height 1080=521
+eDP-1 Width 1920=700
+
+[KPropertiesDialog]
+eDP-1 Height 1080=477
+eDP-1 Width 1920=488
+
+[PlasmaRunnerManager]
+LaunchCounts=1 services_applications:simplescreenrecorder.desktop,1 services_applications:org.kde.kontact.desktop,1 services_applications:kcm_kdeconnect.desktop,1 services_applications:org.kde.akonadiconsole.desktop,1 services_applications:thunar-bulk-rename.desktop,2 services_applications:qdbusviewer.desktop,2 services_applications:org.kde.kdeconnect.app.desktop,1 services_applications:pavucontrol.desktop,1 services_applications:vlc.desktop,1 services_applications:qt5ct.desktop,1 locations_openfile,2 services_applications:firefox.desktop,1 services_applications:powerdevilprofilesconfig.desktop,1 services_applications:org.kde.parley.desktop,3 services_applications:wayland.desktop,3 services_applications:texstudio.desktop,2 services_applications:org.kde.pimdataexporter.desktop,2 services_applications:Zoom.desktop,1 services_applications:pdfmod.desktop,1 services_applications:libreoffice-writer.desktop,1 shell_nvim ~/.bin/texclear,11 services_applications:org.kde.spectacle.desktop,1 bookmarks_https://jalopnik.com/heres-why-the-toyota-supras-2jz-is-such-a-legendary-eng-1794949464,11 services_applications:org.strawberrymusicplayer.strawberry.desktop,1 bookmarks_file:///home/kerim/work/root-doc/root-full/index.html,2 services_applications:about-distro.desktop,1 bookmarks_https://calendar.google.com/,2 services_applications:thunderbird.desktop,1 services_applications:chrome-oelandhlnpgfgmikkhfhcncciljombak-Profile_1.desktop,1 services_applications:org.kde.akregator.desktop,3 services_applications:org.inkscape.Inkscape.desktop,17 services_applications:simple-scan.desktop,1 bookmarks_http://freedom-tor.org/torrent/246564/driver-san-francisco-v-1.04-2011-pc-repack-ot-r.g.recoding,1 services_applications:org.freedesktop.IBus.Setup.desktop,2 services_applications:kcm_energyinfo.desktop,4 services_applications:gnvim.desktop,2 services_applications:gimp.desktop,1 services_applications:org.kde.kinfocenter.desktop,1 recentdocuments_file:///home/kerim/stuff/Special/bookmarks.html,2 services_applications:org.kde.discover.desktop,8 services_applications:chromium.desktop,4 services_applications:org.kde.korganizer.desktop,1 services_applications:org.kde.krdc.desktop,3 bookmarks_https://www.merriam-webster.com/,3 bookmarks_https://books.google.com/ngrams,1 services_applications:chrome-ncmjhecbjeaamljdfahankockkkdmedg-Profile_1.desktop,1 calculator_1600*25,1 services_applications:vivaldi-stable.desktop,1 services_applications:guvcview.desktop,2 services_applications:telegramdesktop.desktop,2 bookmarks_https://dictionary.cambridge.org/,1 bookmarks_file:///home/kerim/work/root-doc/ROOTUsersGuide.html#trees,1 services_applications:spellchecking.desktop,1 shell_imv,1 services_applications:google-chrome.desktop,2 services_applications:org.kde.kid3-qt.desktop,1 services_applications:org.kde.kolourpaint.desktop,1 services_applications:designer.desktop
 
 [PlasmaViews][Panel 2]
 alignment=132
@@ -36,6 +43,22 @@ thickness=32
 [PlasmaViews][Panel 34][Horizontal1920]
 thickness=32
 
+[PlasmaViews][Panel 35]
+alignment=132
+panelVisibility=2
+
+[PlasmaViews][Panel 35][Defaults]
+maxLength=1464
+minLength=124
+offset=0
+thickness=72
+
+[PlasmaViews][Panel 35][Horizontal1920]
+maxLength=1464
+minLength=124
+offset=0
+thickness=72
+
 [PlasmaViews][Panel 4][Defaults]
 thickness=26
 
@@ -45,8 +68,19 @@ thickness=26
 [PlasmaViews][Panel 4][Horizontal2560]
 thickness=26
 
+[PlasmaViews][Panel 44][Defaults]
+thickness=26
+
+[PlasmaViews][Panel 44][Horizontal1920]
+thickness=26
+
+[PlasmaViews][Panel 44][Horizontal2560]
+thickness=26
+
 [ScreenConnectors]
 0=eDP-1
+1=:0.0
+2=DP-1
 
 [Updates]
 performed=/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates/maintain_existing_desktop_icon_sizes.js,/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates/unlock_widgets.js,/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates/move_desktop_layout_config.js,/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates/obsolete_kickoffrc.js

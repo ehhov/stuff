@@ -1,7 +1,7 @@
 # vim:ft=gitconfig
 [user]
 	name = Kerim Guseynov
-	email = guseynovkerim@gmail.com
+	email = kerim.d.guseynov@gmail.com
 [alias]
 	s = status
 	d = diff

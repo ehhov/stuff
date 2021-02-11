@@ -1,0 +1,1 @@
+colorscheme gui_light

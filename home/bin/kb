@@ -1,2 +1,2 @@
 #!/bin/sh
-setxkbmap us,ru -option 'grp:win_space_toggle'
+setxkbmap 'us,ru' -option 'grp:win_space_toggle,compose:sclk,lv3:ralt_switch'

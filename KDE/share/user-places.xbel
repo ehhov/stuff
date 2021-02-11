@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE xbel>
-<xbel xmlns:kdepriv="http://www.kde.org/kdepriv" xmlns:mime="http://www.freedesktop.org/standards/shared-mime-info" xmlns:bookmark="http://www.freedesktop.org/standards/desktop-bookmarks">
+<xbel xmlns:kdepriv="http://www.kde.org/kdepriv" xmlns:bookmark="http://www.freedesktop.org/standards/desktop-bookmarks" xmlns:mime="http://www.freedesktop.org/standards/shared-mime-info">
  <info>
   <metadata owner="http://www.kde.org">
    <kde_places_version>4</kde_places_version>
@@ -52,7 +52,7 @@
    </metadata>
   </info>
  </bookmark>
- <bookmark href="file:///home/kerim/Download">
+ <bookmark href="file:///home/kerim/Downloads">
   <title>Downloads</title>
   <info>
    <metadata owner="http://freedesktop.org">
@@ -62,6 +62,7 @@
     <ID>1606947743/3</ID>
     <isSystemItem>true</isSystemItem>
     <IsHidden>false</IsHidden>
+    <OnlyInApp/>
    </metadata>
   </info>
  </bookmark>
@@ -121,7 +122,7 @@
   <title>Trash</title>
   <info>
    <metadata owner="http://freedesktop.org">
-    <bookmark:icon name="user-trash-full-full"/>
+    <bookmark:icon name="user-trash-full"/>
    </metadata>
    <metadata owner="http://www.kde.org">
     <ID>1606947743/5</ID>
@@ -140,7 +141,7 @@
     <ID>1606995222/2</ID>
     <isSystemItem>false</isSystemItem>
     <IsHidden>false</IsHidden>
-    <OnlyInApp></OnlyInApp>
+    <OnlyInApp/>
    </metadata>
   </info>
  </bookmark>
@@ -154,7 +155,7 @@
     <ID>1606995129/0</ID>
     <isSystemItem>false</isSystemItem>
     <IsHidden>false</IsHidden>
-    <OnlyInApp></OnlyInApp>
+    <OnlyInApp/>
    </metadata>
   </info>
  </bookmark>
@@ -166,7 +167,7 @@
    </metadata>
    <metadata owner="http://www.kde.org">
     <ID>1606995207/1</ID>
-    <OnlyInApp></OnlyInApp>
+    <OnlyInApp/>
     <isSystemItem>false</isSystemItem>
     <IsHidden>false</IsHidden>
    </metadata>
@@ -182,7 +183,7 @@
     <ID>1606995239/3</ID>
     <isSystemItem>false</isSystemItem>
     <IsHidden>false</IsHidden>
-    <OnlyInApp></OnlyInApp>
+    <OnlyInApp/>
    </metadata>
   </info>
  </bookmark>
@@ -235,7 +236,29 @@
     <ID>1606995345/4</ID>
     <isSystemItem>false</isSystemItem>
     <IsHidden>false</IsHidden>
-    <OnlyInApp></OnlyInApp>
+    <OnlyInApp/>
+   </metadata>
+  </info>
+ </bookmark>
+ <bookmark href="">
+  <title>Project Folder</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="folder-favorites"/>
+   </metadata>
+   <metadata owner="http://www.kde.org">
+    <OnlyInApp>kdenlive</OnlyInApp>
+   </metadata>
+  </info>
+ </bookmark>
+ <bookmark href="kdeconnect://787be15da15b738c/">
+  <title>MI 5</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="kdeconnect"/>
+   </metadata>
+   <metadata owner="http://www.kde.org">
+    <ID>1613079523/0</ID>
    </metadata>
   </info>
  </bookmark>

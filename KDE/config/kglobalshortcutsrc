@@ -4,21 +4,65 @@ switch-to-activity-20914e98-6a96-407d-aa1e-261716b529a0=none,none,Switch to acti
 switch-to-activity-537f5053-3157-429f-8819-dc8581f6afa7=none,none,Switch to activity "Default"
 switch-to-activity-88559549-0b0e-489f-ae89-506e5622cf21=none,none,Switch to activity "Default"
 
+[Clementine]
+_k_friendly_name=Clementine
+next_track=,none,Next track
+play_pause=,none,Play/Pause
+prev_track=,none,Previous track
+stop=,none,Stop
+
 [KDE Keyboard Layout Switcher]
+Switch keyboard layout to English (3l)=none,none,Switch keyboard layout to English (3l)
 Switch keyboard layout to English (US)=none,none,Switch keyboard layout to English (US)
+Switch keyboard layout to English (US, Sun Type 6/7)=none,none,Switch keyboard layout to English (US\\, Sun Type 6/7)
+Switch keyboard layout to English (US, alt. intl.)=none,none,Switch keyboard layout to English (US\\, alt. intl.)
+Switch keyboard layout to English (US, euro on 5)=none,none,Switch keyboard layout to English (US\\, euro on 5)
+Switch keyboard layout to English (US, intl., AltGr Unicode combining)=none,none,Switch keyboard layout to English (US\\, intl.\\, AltGr Unicode combining)
+Switch keyboard layout to English (US, intl., AltGr Unicode combining, alt.)=none,none,Switch keyboard layout to English (US\\, intl.\\, AltGr Unicode combining\\, alt.)
+Switch keyboard layout to English (US, intl., with dead keys)=none,none,Switch keyboard layout to English (US\\, intl.\\, with dead keys)
+Switch keyboard layout to English (intl., with AltGr dead keys)=none,none,Switch keyboard layout to English (intl.\\, with AltGr dead keys)
+Switch keyboard layout to English (the divide/multiply toggle the layout)=none,none,Switch keyboard layout to English (the divide/multiply toggle the layout)
 Switch keyboard layout to Russian=none,none,Switch keyboard layout to Russian
+Switch keyboard layout to Russian (Macintosh)=none,none,Switch keyboard layout to Russian (Macintosh)
+Switch keyboard layout to Russian (Polyglot and Reactionary)=none,none,Switch keyboard layout to Russian (Polyglot and Reactionary)
+Switch keyboard layout to Russian (Sun Type 6/7)=none,none,Switch keyboard layout to Russian (Sun Type 6/7)
+Switch keyboard layout to Russian (typewriter, legacy)=none,none,Switch keyboard layout to Russian (typewriter\\, legacy)
+Switch keyboard layout to Russian (with US punctuation)=none,none,Switch keyboard layout to Russian (with US punctuation)
+Switch keyboard layout to olpc=none,none,Switch keyboard layout to olpc
 Switch to Next Keyboard Layout=none,Ctrl+Alt+K,Switch to Next Keyboard Layout
 _k_friendly_name=Keyboard Layout Switcher
+
+[juk]
+_k_friendly_name=JuK
+back=,Ctrl+Alt+Left,Previous
+forward=,Ctrl+Alt+Right,Next
+forwardAlbum=,Ctrl+Alt+Up,Play Next Album
+mute=Ctrl+Alt+M,Ctrl+Alt+M,Mute
+playPause=Ctrl+Alt+P,Ctrl+Alt+P,Play / Pause
+seekBack=,Ctrl+Alt+Shift+Left,Seek Back
+seekForward=,Ctrl+Alt+Shift+Right,Seek Forward
+stop=Ctrl+Alt+S,Ctrl+Alt+S,Stop
+volumeDown=,Ctrl+Alt+Shift+Down,Volume Down
+volumeUp=,Ctrl+Alt+Shift+Up,Volume Up
 
 [kaccess]
 Toggle Screen Reader On and Off=Meta+Alt+S,Meta+Alt+S,Toggle Screen Reader On and Off
 _k_friendly_name=Accessibility
 
+[kalarm]
+_k_friendly_name=KAlarm
+newAudio=none,none,New Audio Alarm
+newCommand=none,none,New Command Alarm
+newDisplay=none,none,New Display Alarm
+newEmail=none,none,New Email Alarm
+spread=none,none,Spread Windows
+stopAudio=none,none,Stop Play
+
 [kcm_touchpad]
 Disable Touchpad=Touchpad Off,Touchpad Off,Disable Touchpad
 Enable Touchpad=Touchpad On,Touchpad On,Enable Touchpad
 Toggle Touchpad=Touchpad Toggle,Touchpad Toggle,Toggle Touchpad
-_k_friendly_name=KWin
+_k_friendly_name=Touchpad
 
 [kded5]
 Show System Activity=Ctrl+Esc,Ctrl+Esc,Show System Activity
@@ -28,19 +72,20 @@ display=Display\tMeta+P,Display\tMeta+P,Switch Display
 [khotkeys]
 _k_friendly_name=Custom Shortcuts Service
 {0a946bcb-d6cc-4023-a129-ad1b1064a124}=Meta+Return,none,Terminal
-{3686c1c3-848e-42a9-821c-c5717dfe5f7e}=Meta+Ctrl+M,none,Thunderbird
-{373513a7-b10d-4972-b5c7-6aec403f6c77}=Meta+Ctrl+T,none,Telegram
+{1c9ad8f2-d327-44c7-ae70-1ba2a93bfa83}=Meta+Shift+W,none,Spectacle Window
+{23217d75-755d-443c-81c9-b975dbfc783e}=Meta+C,none,Klipper Popup
 {41ca1c84-ce87-4437-8e95-052c2b1b8877}=Meta+E,none,Explorer
 {50622c66-c748-4cc2-8e6a-b13ad3532394}=Meta+U,none,URxvt
-{79afe024-ea5e-49d4-88b5-61202a64260a}=Meta+Ctrl+O,none,Okular
+{55991b4c-ec41-4f7f-9017-6fc8146c8a0a}=Meta+Shift+S,none,Spectacle Region
+{71b2ace9-04a6-404c-adc3-4abbdd0d6297}=Alt+Monitor Brightness Up,none,Up
+{791e7af9-b7d4-4c88-8d9b-8415749c975c}=Alt+Monitor Brightness Down,none,Down
 {8254e47e-35bc-4868-8597-580625cbdc86}=Meta+X,none,XTerm
 {9c8ab798-f589-4cc2-94e3-bdac0d846051}=Meta+G,none,GVim
 {a0dacb90-60ed-4190-a2c9-c798a07ac329}=Meta+S,none,ST
-{a83754d3-e4d4-4f85-a8fc-5cfddd0d053f}=Meta+Ctrl+K,none,Konsole
-{ca05c0b0-58f0-4d24-9b4e-042e0d4cceeb}=Meta+Ctrl+D,none,Dolphin
+{b605dce2-68a8-4d86-9e2d-7225dea1c12d}=Meta+Monitor Brightness Down,none,Big Down
+{bb1bf06e-995e-4f2f-9d8b-425e11a65ad9}=Meta+Monitor Brightness Up,none,Big Up
 {cc156a35-1544-4d5d-83fb-2fbe5b86f710}=Meta+A,none,Alacritty
 {ee03219d-430f-4b4e-99c0-5b879a63b3ed}=Meta+N,none,Neovim Qt
-{fc2a4f8f-3afd-46b7-8fec-155a23b64b7a}=Meta+Ctrl+F,none,Firefox
 
 [kmix]
 _k_friendly_name=Audio Volume
@@ -51,6 +96,13 @@ increase_volume=Volume Up,Volume Up,Increase Volume
 mic_mute=Microphone Mute,Microphone Mute,Mute Microphone
 mute=Volume Mute,Volume Mute,Mute
 
+[knotes]
+_k_friendly_name=KNotes
+hide_all_notes=Alt+Shift+H,Alt+Shift+H,Hide All Notes
+new_note=Alt+Shift+N,Alt+Shift+N,New Note
+new_note_clipboard=Alt+Shift+C,Alt+Shift+C,New Note From Clipboard
+show_all_notes=Alt+Shift+S,Alt+Shift+S,Show All Notes
+
 [krunner.desktop]
 RunClipboard=Alt+Shift+F2,Alt+Shift+F2,Run command on clipboard contents
 _k_friendly_name=KRunner
@@ -58,14 +110,14 @@ _launch=Search\tAlt+Space\tAlt+F2,Alt+Space\tAlt+F2\tSearch,KRunner
 
 [ksmserver]
 Halt Without Confirmation=Ctrl+Alt+Shift+PgDown,Ctrl+Alt+Shift+PgDown,Halt Without Confirmation
-Lock Session=Ctrl+Alt+L\tScreensaver\tMeta+L,Meta+L\tCtrl+Alt+L\tScreensaver,Lock Session
+Lock Session=Screensaver\tCtrl+Alt+L,Meta+L\tCtrl+Alt+L\tScreensaver,Lock Session
 Log Out=Meta+Shift+Esc\tCtrl+Alt+Del,Ctrl+Alt+Del,Log Out
 Log Out Without Confirmation=Ctrl+Alt+Shift+Del,Ctrl+Alt+Shift+Del,Log Out Without Confirmation
 Reboot Without Confirmation=Ctrl+Alt+Shift+PgUp,Ctrl+Alt+Shift+PgUp,Reboot Without Confirmation
 _k_friendly_name=Session Management
 
 [kwin]
-Activate Window Demanding Attention=Ctrl+Alt+A,Ctrl+Alt+A,Activate Window Demanding Attention
+Activate Window Demanding Attention=Ctrl+Alt+A\tMeta+Shift+U,Ctrl+Alt+A,Activate Window Demanding Attention
 ClearLastMouseMark=Meta+Shift+F12,Meta+Shift+F12,Clear Last Mouse Mark
 ClearMouseMarks=,Meta+Shift+F11,Clear All Mouse Marks
 Decrease Opacity=none,none,Decrease Opacity of Active Window by 5 %
@@ -86,7 +138,7 @@ Krohnkite: Floating Layout=none,none,
 Krohnkite: Grow Height=Meta+Ctrl+J,none,
 Krohnkite: Grow Width=Meta+Ctrl+L,none,
 Krohnkite: Increase=Meta+I,none,
-Krohnkite: Left=Meta+H,none,
+Krohnkite: Left=none,none,
 Krohnkite: Monocle Layout=,none,
 Krohnkite: Move Down/Next=,none,
 Krohnkite: Move Left=,none,
@@ -119,10 +171,10 @@ Switch One Desktop Down=Ctrl+Alt+Down,Meta+Ctrl+Down,Switch One Desktop Down
 Switch One Desktop Up=Ctrl+Alt+Up,Meta+Ctrl+Up,Switch One Desktop Up
 Switch One Desktop to the Left=Ctrl+Alt+Left,Meta+Ctrl+Left,Switch One Desktop to the Left
 Switch One Desktop to the Right=Ctrl+Alt+Right,Meta+Ctrl+Right,Switch One Desktop to the Right
-Switch Window Down=Meta+Alt+Down,Meta+Alt+Down,Switch to Window Below
-Switch Window Left=Meta+Alt+Left,Meta+Alt+Left,Switch to Window to the Left
-Switch Window Right=Meta+Alt+Right,Meta+Alt+Right,Switch to Window to the Right
-Switch Window Up=Meta+Alt+Up,Meta+Alt+Up,Switch to Window Above
+Switch Window Down=Meta+Alt+Down\tMeta+J,Meta+Alt+Down,Switch to Window Below
+Switch Window Left=Meta+H\tMeta+Alt+Left,Meta+Alt+Left,Switch to Window to the Left
+Switch Window Right=Meta+L\tMeta+Alt+Right,Meta+Alt+Right,Switch to Window to the Right
+Switch Window Up=Meta+Alt+Up\tMeta+K,Meta+Alt+Up,Switch to Window Above
 Switch to Desktop 1=Ctrl+F1\tMeta+1,Ctrl+F1,Switch to Desktop 1
 Switch to Desktop 10=\tMeta+0,none,Switch to Desktop 10
 Switch to Desktop 11=none,none,Switch to Desktop 11
@@ -157,10 +209,10 @@ Switch to Screen 6=none,none,Switch to Screen 6
 Switch to Screen 7=none,none,Switch to Screen 7
 TILING: Decrease Number Of Masters=Meta+_,none,Decrease Number Of Masters
 TILING: Increase Number Of Masters=Meta++,none,Increase Number Of Masters
-TILING: Move Window Down=Meta+Shift+J,none,Move Window Down
-TILING: Move Window Left=Meta+Shift+H,none,Move Window Left
-TILING: Move Window Right=Meta+Shift+L,none,Move Window Right
-TILING: Move Window Up=Meta+Shift+K,none,Move Window Up
+TILING: Move Window Down=none,none,Move Window Down
+TILING: Move Window Left=none,none,Move Window Left
+TILING: Move Window Right=none,none,Move Window Right
+TILING: Move Window Up=none,none,Move Window Up
 TILING: Next Tiling Layout=Meta+PgDown,none,Next Tiling Layout
 TILING: Previous Tiling Layout=,none,Previous Tiling Layout
 TILING: Resize Active Window To The Bottom=Meta+Alt+J,none,Resize Active Window To The Bottom
@@ -169,7 +221,7 @@ TILING: Resize Active Window To The Right=Meta+Alt+L,none,Resize Active Window T
 TILING: Resize Active Window To The Top=Meta+Alt+K,none,Resize Active Window To The Top
 TILING: Swap Window With Master=Meta+Shift+M,none,Swap Window With Master
 TILING: Tile now=Meta+T,none,Tile now
-TILING: Toggle Border for all=Meta+Shift+U,none,Toggle Border for all
+TILING: Toggle Border for all=none,none,Toggle Border for all
 TILING: Toggle Floating=Meta+F,none,Toggle Floating
 TILING: Toggle Tiling=Meta+Shift+F11,none,Toggle Tiling
 Toggle Night Color=none,none,Toggle Night Color
@@ -184,8 +236,8 @@ Walk Through Window Tabs=none,none,Walk Through Window Tabs
 Walk Through Window Tabs (Reverse)=none,none,Walk Through Window Tabs (Reverse)
 Walk Through Windows=Alt+Tab,Alt+Tab,Walk Through Windows
 Walk Through Windows (Reverse)=Alt+Shift+Backtab,Alt+Shift+Backtab,Walk Through Windows (Reverse)
-Walk Through Windows Alternative=Meta+J,none,Walk Through Windows Alternative
-Walk Through Windows Alternative (Reverse)=Meta+K,none,Walk Through Windows Alternative (Reverse)
+Walk Through Windows Alternative=none,none,Walk Through Windows Alternative
+Walk Through Windows Alternative (Reverse)=none,none,Walk Through Windows Alternative (Reverse)
 Walk Through Windows of Current Application=Alt+`,Alt+`,Walk Through Windows of Current Application
 Walk Through Windows of Current Application (Reverse)=Alt+~,Alt+~,Walk Through Windows of Current Application (Reverse)
 Walk Through Windows of Current Application Alternative=none,none,Walk Through Windows of Current Application Alternative
@@ -318,7 +370,7 @@ show latte view=,Meta+`,Show Latte Dock/Panel
 show layout settings=none,Meta+W,Show Layout Settings
 show view settings=,Meta+A,Cycle Through Dock/Panel Settings Windows
 show-barcode=none,none,Show Barcode...
-show-on-mouse-pos=Meta+C,none,Open Klipper at Mouse Position
+show-on-mouse-pos=none,none,Open Klipper at Mouse Position
 
 [mediacontrol]
 _k_friendly_name=Media Controller
@@ -341,7 +393,7 @@ _launch=Meta+Ctrl+.,Meta+.,Emoji Selector
 ActiveWindowScreenShot=Ctrl+Print,Meta+Print,Capture Active Window
 CurrentMonitorScreenShot=,none,Capture Current Monitor
 FullScreenScreenShot=Print,Shift+Print,Capture Entire Desktop
-RectangularRegionScreenShot=Meta+Shift+S,Meta+Shift+Print,Capture Rectangular Region
+RectangularRegionScreenShot=Shift+Print,Meta+Shift+Print,Capture Rectangular Region
 _k_friendly_name=Spectacle
 _launch=Meta+Print,Print,Launch Spectacle
 
@@ -371,9 +423,9 @@ activate task manager entry 7=,Meta+7,Activate Task Manager Entry 7
 activate task manager entry 8=,Meta+8,Activate Task Manager Entry 8
 activate task manager entry 9=,Meta+9,Activate Task Manager Entry 9
 activate widget 14=none,none,Activate Night Color Control Widget
-activate widget 23=none,none,Activate Application Menu Widget
-activate widget 32=none,none,Activate Icons-only Task Manager Widget
+activate widget 33=none,none,Activate Pager Widget
 activate widget 53=none,none,Activate Application Menu Widget
+activate widget 68=Meta+F1,none,Activate Application Menu Widget
 clear-history=none,none,Clear Clipboard History
 clipboard_action=Ctrl+Alt+X,Ctrl+Alt+X,Enable Clipboard Actions
 cycleNextAction=none,none,Next History Item
@@ -394,3 +446,7 @@ toggle do not disturb=none,none,Toggle do not disturb
 [systemsettings.desktop]
 _k_friendly_name=System Settings
 _launch=Tools,Tools,System Settings
+
+[yakuake]
+_k_friendly_name=Yakuake
+toggle-window-state=F12,F12,Open/Retract Yakuake

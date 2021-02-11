@@ -4,7 +4,7 @@ gitdir="${1:-$(pwd)}"
 gitname=${gitdir%/}
 gitname=${gitname##*/}
 htmldir="/tmp/git/$gitname"
-prefix="/opt/local"
+prefix="/usr/local"
 
 if [ -e $htmldir ]; then
 	rm -rf $htmldir

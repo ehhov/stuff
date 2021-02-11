@@ -14,8 +14,20 @@ EverMounted=true
 ForceAttachAutomount=false
 ForceLoginAutomount=false
 Icon=drive-removable-media-usb
-LastNameSeen=SANDISK
-LastSeenMounted=false
+LastNameSeen=ARCH_202004
+LastSeenMounted=true
+
+[Devices][/org/kde/fstab/overlay/var/lib/docker/check-overlayfs-support669641875/merged]
+EverMounted=true
+LastSeenMounted=true
+
+[Devices][/org/kde/fstab/overlay/var/lib/docker/overlay2/e792573006bae98841ed25aa929bd85b6959b5e0e71d947d697f9531a0e2b8ca/merged]
+EverMounted=true
+LastSeenMounted=true
+
+[Devices][/org/kde/fstab/overlay/var/lib/docker/overlay2/opaque-bug-check105202790/merged]
+EverMounted=true
+LastSeenMounted=true
 
 [General]
 AutomountEnabled=true

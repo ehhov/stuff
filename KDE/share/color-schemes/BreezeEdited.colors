@@ -14,7 +14,7 @@ ColorAmount=0.025
 ColorEffect=2
 ContrastAmount=0.1
 ContrastEffect=2
-Enable=false
+Enable=true
 IntensityAmount=0
 IntensityEffect=0
 
@@ -48,7 +48,7 @@ ForegroundVisited=61,174,230
 
 [Colors:Selection]
 BackgroundAlternate=29,153,243
-BackgroundNormal=0,149,246
+BackgroundNormal=61,174,233
 DecorationFocus=61,174,233
 DecorationHover=147,206,233
 ForegroundActive=252,252,252
@@ -104,7 +104,7 @@ ForegroundVisited=127,140,141
 
 [General]
 ColorScheme=Breeze
-Name=Breeze -- edited
+Name=Breeze Edited
 shadeSortColumn=true
 
 [KDE]
@@ -114,6 +114,6 @@ contrast=4
 activeBackground=71,80,87
 activeBlend=252,252,252
 activeForeground=252,252,252
-inactiveBackground=239,240,241
+inactiveBackground=189,195,199
 inactiveBlend=75,71,67
-inactiveForeground=189,195,199
+inactiveForeground=135,140,144

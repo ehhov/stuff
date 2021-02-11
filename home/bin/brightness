@@ -1,31 +1,5 @@
 #!/bin/sh
 
-## If you want to do everything in one script for some reason...
-#path='/sys/class/backlight/intel_backlight'
-#max=$(cat $path/max_brightness)
-#now=$(cat $path/actual_brightness)
-#percent=$(($now * 100 / $max))
-#if [ $percent -gt 60 ]; then
-#	step=20
-#else if [ $percent -gt 15 ]; then
-#	step=50
-#else if [ $percent -gt 5 ]; then
-#	step=100
-#else
-#	step=200
-#fi; fi; fi
-#step=$(($max / $step))
-
-#step=$(~/.bin/brightness_levels)
-#if [ -z "$step" ] || [ "${step%%.*}" -lt 1 ]; then
-#	step=2%
-#fi
-#
-#case $1 in
-#	up) brightnessctl set $step+;;
-#	down) brightnessctl set $step-;;
-#esac
-
 case $1 in
 	up) brightnessctl -e set 1%+;;
 	down) brightnessctl -e set 1%-;;

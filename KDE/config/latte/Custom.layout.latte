@@ -3,20 +3,20 @@ RightButton;NoModifier=org.kde.latte.contextmenu
 
 [Containments][1]
 activityId=
-byPassWM=true
+byPassWM=false
 dockWindowBehavior=true
-enableKWinEdges=true
+enableKWinEdges=false
 formfactor=2
 immutability=1
 isPreferredForShortcuts=false
-lastScreen=11
+lastScreen=10
 location=4
 onPrimary=true
 plugin=org.kde.latte.containment
 raiseOnActivityChange=false
 raiseOnDesktopChange=false
 settingsComplexity=4
-timerHide=700
+timerHide=500
 timerShow=200
 viewType=0
 visibility=2
@@ -31,10 +31,10 @@ PreloadWeight=0
 
 [Containments][1][Applets][2][Configuration][General]
 isInLatteDock=true
-launchers59=applications:firefox.desktop,applications:telegramdesktop.desktop,applications:org.kde.okular.desktop,applications:org.kde.dolphin.desktop,applications:gimp.desktop,applications:Alacritty.desktop,applications:systemsettings.desktop,applications:Zoom.desktop,applications:thunderbird.desktop
+launchers59=applications:firefox.desktop,applications:google-chrome.desktop,applications:telegramdesktop.desktop,applications:org.kde.okular.desktop,applications:org.kde.dolphin.desktop,applications:gimp.desktop,applications:org.inkscape.Inkscape.desktop,applications:Alacritty.desktop,applications:nvim-qt.desktop,applications:gnvim.desktop,applications:systemsettings.desktop,applications:Zoom.desktop,applications:thunderbird.desktop
 
 [Containments][1][ConfigDialog]
-DialogHeight=915
+DialogHeight=889
 DialogWidth=629
 
 [Containments][1][Configuration]
@@ -42,13 +42,17 @@ PreloadWeight=0
 
 [Containments][1][General]
 advanced=false
+animationNewWindowSliding=false
+animationWindowRemovedFromGroup=false
 appletOrder=2
+durationTime=x1
 iconSize=56
+inConfigureAppletsMode=true
 maxLength=76
 mouseWheelActions=false
 panelShadows=false
 panelSize=100
-panelTransparency=15
+panelTransparency=0
 shadowOpacity=50
 shadowSize=50
 shadows=None
@@ -58,7 +62,7 @@ showOnlyCurrentDesktop=true
 splitterPosition=1
 splitterPosition2=2
 titleTooltips=false
-zoomLevel=8
+zoomLevel=4
 
 [Containments][1][Indicator]
 customType=org.kde.latte.dashtopanel
@@ -68,6 +72,7 @@ padding=0.10000000149011612
 type=org.kde.latte.default
 
 [Containments][1][Indicator][org.kde.latte.default][General]
+glowApplyTo=OnActive
 glowOpacity=0.4
 minimizedTaskColoredDifferently=true
 

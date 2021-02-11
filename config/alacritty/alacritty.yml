@@ -1,9 +1,19 @@
-padding:
-        x: 5
-        y: 5
+window:
+        padding:
+                x: 3
+                y: 3
+
+scrolling:
+        history: 10000
 
 font:
-        size: 12
+        size: 9
+
+mouse_bindings:
+        - { mouse: Middle, action: None }
+
+key_bindings:
+        - { mods: Alt, key: V, action: PasteSelection }
 
 #################
 schemes:

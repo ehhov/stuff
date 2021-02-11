@@ -28,8 +28,8 @@ Some features are provided by programs that need to be compiled.
   X11: xorg-server, -server-utils, -xinit, intel-driver, libinput-driver
 - Studies related: TeX Live, OpenSSH, ROOT, Ostap
 - Other: simplescreenrecorder, klavaro, libinput-gestures
-- KDE: Plasma, Spectacle, Latte dock, Papirus (icon pack), Adwaita (icon 
-  pack)
+- KDE: Plasma, Spectacle, Latte dock, Papirus (icon pack), packagekit, 
+  -qt5, appstream, -qt5, wl-clipboard
 
 Apps that may appear to be useful in the future:
 
@@ -61,7 +61,9 @@ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 [GitHub](https://docs.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account)
 [GitLab](https://docs.gitlab.com/ee/ssh/#adding-an-ssh-key-to-your-gitlab-account)
 
-Create an `/opt/local/` directory and set 777 permissions.
+DEPRECATED
+Create an `optlocal` group, an `/opt/local/` directory with this group 
+and 775 permissions, and add the user to this group.
 
 
 # Various Instructions
@@ -69,6 +71,7 @@ Create an `/opt/local/` directory and set 777 permissions.
 - `useradd -m name` -m creates the `/home/name` directory.
 - `groupadd name`.
 - `gpasswd -a user group` to add and `-d user` to remove.
+- `chfn -f full_name user` to add a full name for the user.
 
 ## Network
 From systemd hooks
@@ -172,7 +175,13 @@ git push -f origin master
    thing://guest@IP/name), you can run `smbclient -L 192.168.1.1`.
 1. Use driver ph3250.ppd. Set yes in the Share checkbox.
 
-## Thunderbird fonts configuration
+## Thunderbird configuration
+CERN email configuration for Thunderbird can be found at 
+[here](https://espace.cern.ch/mmmservices-help/AccessingYourMailbox/Thunderbird/Pages/Configuration-(Thunderbird-31).aspx).
+
+Gmail configuration --- 
+[here](https://support.google.com/mail/answer/78892?hl=en#zippy=%2Cthunderbird).
+
 The font types you need are: Cyrillic, Latin, Other Writing Systems. Set 
 their sizes to 18.
 

@@ -1,17 +1,22 @@
 [$Version]
 update_info=spectacle_newConfig.upd:spectacle-new-config
 
+[General]
+copyImageToClipboard=true
+rememberLastRectangularRegion=false
+
 [GuiConfig]
 captureMode=3
-cropRegion=142,438,1340,209
-window-position=79,327
+cropRegion=860,274,630,281
+onClickChecked=true
+window-position=102,106
 
 [KFileDialog Settings]
-Recent Files[$e]=file:$HOME/Pictures/Screenshot_mail.png,file:$HOME/Pictures/Screenshot_mail.png
-Recent URLs[$e]=file:///tmp/,file:$HOME/Pictures/
+Recent Files[$e]=file:$HOME/Pictures/Screenshot_mail.png,file:$HOME/Pictures/Screenshots/20210209_145045.png,file:$HOME/Pictures/Screenshots/20210209_144534.png,file:$HOME/Pictures/Screenshots/20210209_135311.png
+Recent URLs[$e]=file:///tmp/,file:$HOME/Pictures/,file:$HOME/Pictures/Screenshots/,file:$HOME/,file:$HOME/Documents/
 detailViewIconSize=16
 
 [Save]
-lastSaveAsLocation=file:///home/kerim/Pictures/Screenshot_mail.png
-lastSaveLocation=file:///home/kerim/Pictures/Screenshots/20201204_013451.png
+lastSaveAsLocation=file:///home/kerim/Pictures/Screenshots/20210209_145045.png
+lastSaveLocation=file:///home/kerim/Pictures/Screenshots/20210209_145045.png
 saveFilenameFormat=Screenshots/%Y%M%D_%H%m%S

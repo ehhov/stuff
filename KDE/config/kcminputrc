@@ -16,5 +16,5 @@ MiddleButtonEmulation=false
 NaturalScroll=true
 PointerAcceleration=-0.150
 ScrollMethod=1
-TapDragLock=true
+TapDragLock=false
 TapToClick=true

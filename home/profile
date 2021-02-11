@@ -25,7 +25,7 @@ export NNN_OPTS='eEAo'
 #export QT_STYLE_OVERRIDE=''
 
 
-PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/X11R6/bin:/usr/local/bin:/usr/local/sbin:${PATH}":/opt/local/bin"
+PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/X11R6/bin:/usr/local/bin:/usr/local/sbin:${PATH}"
 oldPATH="$PATH:"; newPATH=""
 while [ -n "$oldPATH" ]; do
 	x=${oldPATH%%:*}
@@ -54,26 +54,10 @@ PATH=${newPATH#:}
 unset newPATH oldPATH x
 export PATH
 
-MANPATH=":${MANPATH}:/usr/share/man:/opt/local/share/man"
-if [ -n "$MANPATH" ]; then
-	# only remove duplicates, since empty fields are good
-	old_MANPATH=$MANPATH:; MANPATH=
-	while [ -n "$old_MANPATH" ]; do
-		x=${old_MANPATH%%:*}
-		case $MANPATH: in
-			*:"$x":*) ;;
-			*) MANPATH=$MANPATH:$x;;
-		esac
-		old_MANPATH=${old_MANPATH#*:}
-	done
-	MANPATH=${MANPATH#:}
-	unset old_MANPATH x
-fi
-export MANPATH
-
 date
 
-if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
-	#exec startx
-	exec startplasma-wayland
+if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ] && [ $XDG_SESSION_TYPE == tty ]; then
+	#MOZ_ENABLE_WAYLAND=1 QT_QPA_PLATFORM=wayland XDG_SESSION_TYPE=wayland exec dbus-run-session gnome-session
+	exec startx ~/.xinitrc kde
+	#exec startplasma-wayland
 fi

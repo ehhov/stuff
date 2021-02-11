@@ -4,7 +4,7 @@ NAME = stagit
 VERSION = 0.9.3
 
 # paths
-PREFIX = /opt/local
+PREFIX = /usr/local
 MANPREFIX = ${PREFIX}/share/man
 DOCPREFIX = ${PREFIX}/share/doc/${NAME}
 

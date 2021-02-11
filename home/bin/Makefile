@@ -1,11 +1,11 @@
-PREFIX = /opt/local
+PREFIX = /usr/local
 
 CC = cc
 FLAGS = -Wall -pedantic -Os -std=c99 -D_POSIX_C_SOURCE=200809L
 PROGS.C = batlog.c PStime.c execbg.c
 PROGS = ${PROGS.C:.c=}
 FILES = ${PROGS} brightness colors colors-all epsunite\
-        pdfsepunite replaceindir svg2pdf texclear\
+        pdfsepunite replaceindir svg2pdf texclean\
         usb volume showgit
 
 define NL

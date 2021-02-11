@@ -1,28 +1,8 @@
-# Customized
-XDG_DOWNLOAD_DIR="$HOME/Download"
-XDG_DOCUMENTS_DIR="$HOME/Documents"
-XDG_PICTURES_DIR="$HOME/Pictures"
-
-# Other Customized
 XDG_DESKTOP_DIR="$HOME/Desktop"
+XDG_DOCUMENTS_DIR="$HOME/Documents"
+XDG_DOWNLOAD_DIR="$HOME/Downloads"
 XDG_MUSIC_DIR="$HOME/Music"
+XDG_PICTURES_DIR="$HOME/Pictures"
 XDG_PUBLICSHARE_DIR="$HOME/Public"
 XDG_TEMPLATES_DIR="$HOME/Templates"
 XDG_VIDEOS_DIR="$HOME/Videos"
-
-# Default settings for user directories
-#
-# The values are relative pathnames from the home directory and
-# will be translated on a per-path-element basis into the users locale
-#DESKTOP=Desktop
-#DOWNLOAD=Downloads
-#TEMPLATES=Templates
-#PUBLICSHARE=Public
-#DOCUMENTS=Documents
-#MUSIC=Music
-#PICTURES=Pictures
-#VIDEOS=Videos
-# Another alternative is:
-#MUSIC=Documents/Music
-#PICTURES=Documents/Pictures
-#VIDEOS=Documents/Videos

@@ -8,6 +8,8 @@ Width 1920=778
 [DownloadDialog Settings]
 Height 1080=521
 Width 1920=700
+eDP-1 Height 1080=550
+eDP-1 Width 1920=800
 
 [General]
 Number of Actions=0
@@ -28,6 +30,7 @@ outlineWidth=1
 10=eDP-1
 11=DP-1
 12=X11-0
+13=Screen27
 
 [UniversalSettings]
 badges3DStyle=false
