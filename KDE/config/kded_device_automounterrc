@@ -14,7 +14,23 @@ EverMounted=true
 ForceAttachAutomount=false
 ForceLoginAutomount=false
 Icon=drive-removable-media-usb
-LastNameSeen=ARCH_202004
+LastNameSeen=GParted-live
+LastSeenMounted=true
+
+[Devices][/org/freedesktop/UDisks2/block_devices/sda2]
+Icon=drive-removable-media-usb
+LastNameSeen=ANACONDA
+LastSeenMounted=false
+
+[Devices][/org/freedesktop/UDisks2/block_devices/sda3]
+Icon=drive-removable-media-usb
+LastNameSeen=ANACONDA
+LastSeenMounted=false
+
+[Devices][/org/freedesktop/UDisks2/block_devices/sdb1]
+EverMounted=true
+Icon=drive-removable-media-usb
+LastNameSeen=93.2 GiB Removable Media
 LastSeenMounted=true
 
 [Devices][/org/kde/fstab/overlay/var/lib/docker/check-overlayfs-support669641875/merged]

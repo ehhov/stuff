@@ -1,0 +1,17 @@
+halfmir -- mirror half an image
+===============================
+
+halfmir is a program that mirrors every second line of a png image. It 
+is ultimately a toy, but hopefully a fun one.
+
+
+Requirements
+------------
+To build this program, the png library is needed.
+
+
+Installation
+------------
+Edit the first lines of Makefile to fit your system and run
+
+    make install
