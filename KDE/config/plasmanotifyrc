@@ -7,6 +7,9 @@ Seen=true
 [Applications][google-chrome]
 Seen=true
 
+[Applications][org.telegram.desktop]
+Seen=true
+
 [Applications][rhythmbox]
 Seen=true
 

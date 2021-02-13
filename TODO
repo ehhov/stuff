@@ -1,5 +1,3 @@
-Write a program to reflect every second row in png images.
-
 Neovim-Qt window size from ginit.vim
 
 Modify MuPDF to add a middle mouse button zoom.
@@ -10,10 +8,3 @@ Try plain FFMPEG for screencast
 
 Patch dmenu and create a history file that will be used in parallel with 
 command completion
-
-Try Sway:
-  Terminal emulator -- havoc (https://github.com/ii8/havoc)
-  Screenshot utility -- grim
-
-dwm:
- - libinput-gestures

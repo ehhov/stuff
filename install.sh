@@ -65,7 +65,7 @@ mime)
 	file=~/.config/mimeapps.list
 	here="${dir}"/config/mimeapps.list
 	if [ -f "$file" ] && [ ! -h "$file" ]; then
-		cp "$file" $"here"
+		cp "$file" "$here"
 	fi
 	here="${here#$dir/}"
 	remove "$file"

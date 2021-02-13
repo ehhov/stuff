@@ -1,0 +1,8 @@
+[DLL075B:01 06CB:76AF Touchpad]
+clickMethodAreas=false
+clickMethodClickfinger=true
+disableWhileTyping=false
+leftHanded=false
+naturalScroll=true
+pointerAcceleration=-0.15
+tapToClick=true

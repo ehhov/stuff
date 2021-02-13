@@ -15,6 +15,9 @@ bind 'set completion-ignore-case on'
 bind 'set colored-completion-prefix on'
 bind 'set colored-stats on'
 
+bind '\C-w:backward-kill-word'
+bind 'set bind-tty-special-chars Off'
+
 [ -r ~/.shellsrc ] && . ~/.shellsrc
 
 PS1func() {

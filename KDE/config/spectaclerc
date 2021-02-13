@@ -7,7 +7,6 @@ rememberLastRectangularRegion=false
 
 [GuiConfig]
 captureMode=3
-cropRegion=860,274,630,281
 onClickChecked=true
 window-position=102,106
 
