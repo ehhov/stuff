@@ -11,11 +11,11 @@ onClickChecked=true
 window-position=102,106
 
 [KFileDialog Settings]
-Recent Files[$e]=file:$HOME/Pictures/Screenshot_mail.png,file:$HOME/Pictures/Screenshots/20210209_145045.png,file:$HOME/Pictures/Screenshots/20210209_144534.png,file:$HOME/Pictures/Screenshots/20210209_135311.png
+Recent Files[$e]=file:$HOME/Pictures/Screenshots/20210214_134025.png,file:$HOME/Pictures/Screenshots/20210214_134449.png
 Recent URLs[$e]=file:///tmp/,file:$HOME/Pictures/,file:$HOME/Pictures/Screenshots/,file:$HOME/,file:$HOME/Documents/
 detailViewIconSize=16
 
 [Save]
-lastSaveAsLocation=file:///home/kerim/Pictures/Screenshots/20210209_145045.png
-lastSaveLocation=file:///home/kerim/Pictures/Screenshots/20210209_145045.png
+lastSaveAsLocation=file:///home/kerim/Pictures/Screenshots/20210214_134449.png
+lastSaveLocation=file:///home/kerim/Pictures/Screenshots/20210214_134449.png
 saveFilenameFormat=Screenshots/%Y%M%D_%H%m%S

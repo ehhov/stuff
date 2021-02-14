@@ -72,14 +72,16 @@ mime)
 	create_link ../${rel}/"$here" "$file"
 ;;
 
-clone)
+gits)
 	cd ~
 	[ -e thicc ] || git clone https://github.com/ehhov/thicc.git
+	[ -e work ] || git clone https://github.com/ehhov/work.git
+	[ -e workcern ] || git clone https://gitlab.cern.ch/kerimgus/workcern.git
 	mkdir -p ~/gits
 	cd ~/gits
-	[ -e status ] || git clone https://github.com/ehhov/status.git
-	[ -e st ] || git clone https://github.com/ehhov/st.git
 	[ -e dwm ] || git clone https://github.com/ehhov/dwm.git
+	[ -e st ] || git clone https://github.com/ehhov/st.git
+	[ -e status ] || git clone https://github.com/ehhov/status.git
 	[ -e xshot ] || git clone https://github.com/ehhov/xshot.git
 	[ -e xpick ] || git clone https://github.com/ehhov/xpick.git
 	[ -e emonc ] || git clone https://github.com/ehhov/emonc.git
@@ -92,6 +94,7 @@ clone)
 	echo -e "  $0 rm|remove    to remove the files (whether they are installed or not)"
 	echo -e "  $0 [re]kde      to \`[re]link\` files for KDE"
 	echo -e "  $0 mime         to copy ~/.config/mimeapps.list to here if it is a regular file"
+	echo -e "  $0 gits         to clone all the gits"
 	echo -e ""
 ;;
 

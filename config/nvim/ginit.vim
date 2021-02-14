@@ -1,5 +1,5 @@
 set guioptions+=cemgp
-set guifont=Monospace:h9
+set guifont=Monospace:h12
 
 if exists('g:GuiLoaded')
 	GuiTabline 0

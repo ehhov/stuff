@@ -1,0 +1,369 @@
+[ca/desrt/dconf-editor]
+saved-pathbar-path='/org/gnome/gnome-screenshot/'
+saved-view='/org/gnome/gnome-screenshot/'
+show-warning=false
+window-height=500
+window-is-maximized=false
+window-width=1156
+
+[org/fedoraproject/FirewallConfig]
+show-active-bindings=true
+show-ipsets=true
+
+[org/gnome/Totem]
+active-plugins=['vimeo', 'variable-rate', 'skipto', 'screenshot', 'screensaver', 'save-file', 'rotation', 'recent', 'movie-properties', 'open-directory', 'media-player-keys', 'autoload-subtitles', 'apple-trailers']
+subtitle-encoding='UTF-8'
+
+[org/gnome/calculator]
+accuracy=9
+angle-units='degrees'
+base=10
+button-mode='basic'
+number-format='automatic'
+show-thousands=false
+show-zeroes=false
+source-currency=''
+source-units='degree'
+target-currency=''
+target-units='radian'
+window-position=(26, 23)
+word-size=64
+
+[org/gnome/calendar]
+active-view='month'
+window-maximized=true
+window-position=(0, 0)
+window-size=(1920, 1006)
+
+[org/gnome/control-center]
+last-panel='keyboard'
+
+[org/gnome/desktop/a11y/applications]
+screen-magnifier-enabled=false
+screen-reader-enabled=false
+
+[org/gnome/desktop/a11y/keyboard]
+bouncekeys-enable=false
+
+[org/gnome/desktop/a11y/magnifier]
+mag-factor=4.0
+
+[org/gnome/desktop/app-folders]
+folder-children=['Utilities', 'YaST']
+
+[org/gnome/desktop/app-folders/folders/Utilities]
+apps=['gnome-abrt.desktop', 'gnome-system-log.desktop', 'gnome-system-monitor.desktop', 'gucharmap.desktop', 'nm-connection-editor.desktop', 'org.gnome.baobab.desktop', 'org.gnome.Calculator.desktop', 'org.gnome.DejaDup.desktop', 'org.gnome.Dictionary.desktop', 'org.gnome.DiskUtility.desktop', 'org.gnome.eog.desktop', 'org.gnome.Evince.desktop', 'org.gnome.FileRoller.desktop', 'org.gnome.fonts.desktop', 'org.gnome.Screenshot.desktop', 'org.gnome.seahorse.Application.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.tweaks.desktop', 'org.gnome.Usage.desktop', 'simple-scan.desktop', 'vinagre.desktop', 'yelp.desktop']
+categories=['X-GNOME-Utilities']
+name='X-GNOME-Utilities.directory'
+translate=true
+
+[org/gnome/desktop/app-folders/folders/YaST]
+categories=['X-SuSE-YaST']
+name='suse-yast.directory'
+translate=true
+
+[org/gnome/desktop/applications/terminal]
+exec='alacritty'
+exec-arg='-'
+
+[org/gnome/desktop/background]
+picture-uri='file:///usr/share/backgrounds/f33/default/f33.xml'
+
+[org/gnome/desktop/calendar]
+show-weekdate=true
+
+[org/gnome/desktop/input-sources]
+current=uint32 0
+mru-sources=[('xkb', 'us'), ('xkb', 'ru')]
+sources=[('xkb', 'us'), ('xkb', 'ru')]
+xkb-options=['lv3:ralt_switch']
+
+[org/gnome/desktop/interface]
+clock-show-weekday=true
+cursor-size=24
+cursor-theme='dark'
+document-font-name='Sans 10'
+enable-animations=true
+enable-hot-corners=false
+font-name='Sans 10'
+gtk-enable-primary-paste=true
+gtk-im-module='gtk-im-context-simple'
+gtk-theme='Adwaita'
+monospace-font-name='Monospace 10'
+show-battery-percentage=false
+text-scaling-factor=1.3500000000000001
+toolbar-style='text'
+
+[org/gnome/desktop/notifications]
+application-children=['gnome-network-panel', 'org-kde-kdeconnect-daemon', 'org-gnome-software', 'org-freedesktop-problems-applet', 'org-gnome-fileroller', 'org-telegram-desktop', 'org-gnome-nautilus', 'ca-desrt-dconf-editor']
+
+[org/gnome/desktop/notifications/application/ca-desrt-dconf-editor]
+application-id='ca.desrt.dconf-editor.desktop'
+
+[org/gnome/desktop/notifications/application/gnome-network-panel]
+application-id='gnome-network-panel.desktop'
+
+[org/gnome/desktop/notifications/application/org-freedesktop-problems-applet]
+application-id='org.freedesktop.problems.applet.desktop'
+
+[org/gnome/desktop/notifications/application/org-gnome-fileroller]
+application-id='org.gnome.FileRoller.desktop'
+
+[org/gnome/desktop/notifications/application/org-gnome-nautilus]
+application-id='org.gnome.Nautilus.desktop'
+
+[org/gnome/desktop/notifications/application/org-gnome-software]
+application-id='org.gnome.Software.desktop'
+
+[org/gnome/desktop/notifications/application/org-kde-kdeconnect-daemon]
+application-id='org.kde.kdeconnect.daemon.desktop'
+
+[org/gnome/desktop/notifications/application/org-telegram-desktop]
+application-id='org.telegram.desktop.desktop'
+
+[org/gnome/desktop/peripherals/touchpad]
+disable-while-typing=false
+speed=-0.14999999999999999
+tap-to-click=true
+two-finger-scrolling-enabled=true
+
+[org/gnome/desktop/privacy]
+disable-microphone=false
+report-technical-problems=true
+
+[org/gnome/desktop/search-providers]
+sort-order=['org.gnome.Contacts.desktop', 'org.gnome.Documents.desktop', 'org.gnome.Nautilus.desktop']
+
+[org/gnome/desktop/wm/keybindings]
+close=['<Alt>F4', '<Shift><Super>c']
+minimize=['<Super>m']
+move-to-monitor-left=['<Super><Shift>Left', '<Shift><Super>less']
+move-to-monitor-right=['<Super><Shift>Right', '<Shift><Super>greater']
+move-to-workspace-1=['<Super><Shift>Home', '<Super><Shift>1']
+move-to-workspace-2=['<Super><Shift>2']
+move-to-workspace-3=['<Super><Shift>3']
+move-to-workspace-4=['<Super><Shift>4']
+move-to-workspace-5=['<Super><Shift>5']
+move-to-workspace-6=['<Super><Shift>6']
+move-to-workspace-7=['<Super><Shift>7']
+move-to-workspace-8=['<Super><Shift>8']
+move-to-workspace-9=['<Super><Shift>9']
+move-to-workspace-down=['<Super><Shift>Page_Down', '<Control><Shift><Alt>Down', '<Super><Shift>j']
+move-to-workspace-left=['<Control><Shift><Alt>Left', '<Super><Shift>h']
+move-to-workspace-right=['<Control><Shift><Alt>Right', '<Super><Shift>l']
+move-to-workspace-up=['<Super><Shift>Page_Up', '<Control><Shift><Alt>Up', '<Super><Shift>k']
+show-desktop=['<Super>d']
+switch-applications=@as []
+switch-applications-backward=@as []
+switch-to-workspace-1=['<Super>1']
+switch-to-workspace-2=['<Super>2']
+switch-to-workspace-3=['<Super>3']
+switch-to-workspace-4=['<Super>4']
+switch-to-workspace-5=['<Super>5']
+switch-to-workspace-6=['<Super>6']
+switch-to-workspace-7=['<Super>7']
+switch-to-workspace-8=['<Super>8']
+switch-to-workspace-9=['<Super>9']
+switch-to-workspace-down=['<Super>Page_Down', '<Control><Alt>Down', '<Super>j']
+switch-to-workspace-left=['<Control><Alt>Left', '<Super>h']
+switch-to-workspace-right=['<Control><Alt>Right', '<Super>l']
+switch-to-workspace-up=['<Super>Page_Up', '<Control><Alt>Up', '<Super>k']
+switch-windows=['<Alt>Tab']
+switch-windows-backward=['<Shift><Alt>Tab']
+toggle-above=['<Alt>Return']
+toggle-fullscreen=['<Shift><Super>f']
+toggle-on-all-workspaces=['<Shift><Super>Return']
+
+[org/gnome/desktop/wm/preferences]
+audible-bell=false
+resize-with-right-button=true
+titlebar-font='Sans Bold 10'
+
+[org/gnome/eog/view]
+background-color='rgb(0,0,0)'
+use-background-color=true
+
+[org/gnome/evince/default]
+window-ratio=(2.3350513039329654, 1.0286379455748376)
+
+[org/gnome/evolution-data-server]
+migrated=true
+network-monitor-gio-name=''
+
+[org/gnome/file-roller/dialogs/extract]
+recreate-folders=true
+skip-newer=false
+
+[org/gnome/file-roller/listing]
+list-mode='as-folder'
+name-column-width=250
+show-path=false
+sort-method='name'
+sort-type='ascending'
+
+[org/gnome/file-roller/ui]
+sidebar-width=200
+window-height=480
+window-width=600
+
+[org/gnome/gedit/plugins]
+active-plugins=['spell', 'sort', 'modelines', 'filebrowser', 'docinfo']
+
+[org/gnome/gedit/preferences/ui]
+show-tabs-mode='auto'
+
+[org/gnome/gedit/state/window]
+bottom-panel-size=140
+side-panel-active-page='GeditWindowDocumentsPanel'
+side-panel-size=200
+size=(900, 700)
+state=87168
+
+[org/gnome/login-screen]
+enable-fingerprint-authentication=true
+enable-password-authentication=true
+enable-smartcard-authentication=false
+
+[org/gnome/mutter]
+workspaces-only-on-primary=true
+
+[org/gnome/nautilus/list-view]
+default-column-order=['name', 'size', 'type', 'owner', 'group', 'permissions', 'where', 'date_modified', 'date_modified_with_time', 'date_accessed', 'recency', 'starred', 'detailed_type']
+default-visible-columns=['name', 'size', 'date_modified', 'starred']
+
+[org/gnome/nautilus/preferences]
+default-folder-viewer='icon-view'
+search-filter-time-type='last_modified'
+search-view='list-view'
+
+[org/gnome/nautilus/window-state]
+initial-size=(988, 550)
+maximized=false
+sidebar-width=184
+
+[org/gnome/photos]
+window-maximized=true
+
+[org/gnome/rhythmbox]
+position=(-1, -1)
+
+[org/gnome/rhythmbox/library/source]
+show-browser=true
+
+[org/gnome/rhythmbox/player]
+volume=1.0
+
+[org/gnome/rhythmbox/plugins]
+active-plugins=['rb', 'power-manager', 'notification', 'mtpdevice', 'mpris', 'mmkeys', 'iradio', 'ipod', 'generic-player', 'dbus-media-server', 'daap', 'cd-recorder', 'audioscrobbler', 'audiocd', 'artsearch', 'android']
+seen-plugins=['rb', 'webremote', 'soundcloud', 'replaygain', 'pythonconsole', 'notification', 'mtpdevice', 'mpris', 'magnatune', 'lyrics', 'listenbrainz', 'ipod', 'im-status', 'grilo', 'fmradio', 'dbus-media-server', 'daap', 'cd-recorder', 'audioscrobbler', 'artsearch']
+
+[org/gnome/rhythmbox/plugins/audioscrobbler/Last.fm]
+scrobbling-enabled=true
+
+[org/gnome/rhythmbox/plugins/audioscrobbler/Libre.fm]
+scrobbling-enabled=true
+
+[org/gnome/rhythmbox/plugins/iradio]
+initial-stations-loaded=true
+
+[org/gnome/rhythmbox/plugins/iradio/source]
+show-browser=true
+
+[org/gnome/rhythmbox/podcast/source]
+show-browser=true
+
+[org/gnome/rhythmbox/rhythmdb]
+locations=['file:///home/kerim/Music']
+
+[org/gnome/settings-daemon/plugins/color]
+night-light-last-coordinates=(55.72170136011519, 37.508953400000003)
+
+[org/gnome/settings-daemon/plugins/media-keys]
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/']
+home=['<Super>e']
+
+[org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0]
+binding='<Super>Return'
+command='alacritty'
+name='Alacritty'
+
+[org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1]
+binding='<Primary><Super>n'
+command='nvim-qt'
+name='Neovim Qt'
+
+[org/gnome/settings-daemon/plugins/power]
+sleep-inactive-ac-timeout=3600
+sleep-inactive-ac-type='nothing'
+
+[org/gnome/settings-daemon/plugins/xsettings]
+antialiasing='grayscale'
+hinting='slight'
+
+[org/gnome/shell]
+enabled-extensions=['dash-to-dock@micxgx.gmail.com', 'apps-menu@gnome-shell-extensions.gcampax.github.com', 'places-menu@gnome-shell-extensions.gcampax.github.com']
+favorite-apps=['firefox.desktop', 'google-chrome.desktop', 'org.telegram.desktop.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Evince.desktop', 'org.gnome.Photos.desktop', 'gimp.desktop', 'org.inkscape.Inkscape.desktop', 'Alacritty.desktop', 'nvim-qt.desktop', 'org.gnome.Calendar.desktop', 'gnome-control-center.desktop', 'org.gnome.Software.desktop', 'Zoom.desktop', 'mozilla-thunderbird.desktop']
+
+[org/gnome/shell/app-switcher]
+current-workspace-only=true
+
+[org/gnome/shell/extensions/dash-to-dock]
+animate-show-apps=false
+apply-custom-theme=false
+click-action='cycle-windows'
+custom-theme-shrink=true
+customize-alphas=false
+dash-max-icon-size=64
+dock-position='BOTTOM'
+extend-height=false
+force-straight-corner=false
+height-fraction=0.90000000000000002
+hot-keys=false
+icon-size-fixed=false
+intellihide-mode='FOCUS_APPLICATION_WINDOWS'
+isolate-monitors=false
+isolate-workspaces=true
+max-alpha=0.80000000000000004
+middle-click-action='launch'
+min-alpha=0.14999999999999999
+multi-monitor=true
+preferred-monitor=0
+running-indicator-style='DEFAULT'
+scroll-action='do-nothing'
+shift-click-action='minimize'
+shift-middle-click-action='launch'
+show-apps-at-top=false
+show-mounts=true
+show-show-apps-button=true
+show-trash=false
+show-windows-preview=true
+transparency-mode='DYNAMIC'
+
+[org/gnome/shell/world-clocks]
+locations=@av []
+
+[org/gnome/simple-scan]
+document-type='photo'
+
+[org/gnome/software]
+check-timestamp=int64 1613302049
+first-run=false
+online-updates-timestamp=int64 1613302121
+show-nonfree-prompt=false
+
+[org/gnome/system/location]
+enabled=true
+
+[org/gtk/settings/file-chooser]
+date-format='regular'
+location-mode='path-bar'
+show-hidden=false
+show-size-column=true
+show-type-column=true
+sidebar-width=181
+sort-column='name'
+sort-directories-first=false
+sort-order='ascending'
+type-format='category'
+window-position=(26, 23)
+window-size=(1239, 652)

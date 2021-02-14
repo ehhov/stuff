@@ -29,53 +29,14 @@ RightButton;NoModifier=org.kde.contextmenu
 [AppletGlobals][org.kde.plasma.comic]
 lastUpdate=2021,1,10,20,39,55
 
-[Containments][25]
-ItemGeometriesHorizontal=
-activityId=88559549-0b0e-489f-ae89-506e5622cf21
-formfactor=0
-immutability=1
-lastScreen=0
-location=0
-plugin=org.kde.plasma.folder
-wallpaperplugin=org.kde.slideshow
+[Containments][1][Configuration]
+PreloadWeight=42
 
-[Containments][25][ConfigDialog]
-DialogHeight=775
-DialogWidth=1274
+[Containments][2][Applets][3][Configuration]
+PreloadWeight=100
 
-[Containments][25][Configuration]
-PreloadWeight=0
-
-[Containments][25][General]
-ToolBoxButtonState=topcenter
-ToolBoxButtonX=594
-ToolBoxButtonY=26
-selectionMarkers=false
-sortMode=-1
-
-[Containments][25][Wallpaper][org.kde.image][General]
-Image=file:///usr/share/wallpapers/summer_1am/contents/images/2560x1600.jpg
-SlidePaths=/usr/share/wallpapers
-
-[Containments][25][Wallpaper][org.kde.slideshow][General]
-Image=file:///home/kerim/Pictures/beautiful-bing-daily/RE1MBLH_1920x1080.jpg
-SlideInterval=87300
-SlidePaths=/home/kerim/Pictures/beautiful-bing-daily
-
-[Containments][27]
-activityId=88559549-0b0e-489f-ae89-506e5622cf21
-formfactor=0
-immutability=1
-lastScreen=1
-location=0
-plugin=org.kde.plasma.folder
-wallpaperplugin=org.kde.image
-
-[Containments][27][Configuration]
-PreloadWeight=0
-
-[Containments][27][Wallpaper][org.kde.image][General]
-Image=file:///usr/share/wallpapers/Next/contents/images/1920x1080.jpg
+[Containments][2][Configuration]
+PreloadWeight=42
 
 [Containments][44]
 activityId=
@@ -98,7 +59,7 @@ immutability=1
 plugin=org.kde.plasma.systemtray
 
 [Containments][44][Applets][47][Configuration]
-PreloadWeight=89
+PreloadWeight=17
 SystrayContainmentId=48
 
 [Containments][44][Applets][60]
@@ -134,13 +95,13 @@ PreloadWeight=0
 customDateFormat=ddd MMM d
 customSpacing=6.5476190476190474
 dateFormat=customDate
-enabledCalendarPlugins=/usr/lib/qt/plugins/plasmacalendarplugins/pimevents.so,/usr/lib/qt/plugins/plasmacalendarplugins/holidaysevents.so,/usr/lib/qt/plugins/plasmacalendarplugins/astronomicalevents.so
+enabledCalendarPlugins=/usr/lib/qt/plugins/plasmacalendarplugins/pimevents.so,/usr/lib/qt/plugins/plasmacalendarplugins/holidaysevents.so,/usr/lib/qt/plugins/plasmacalendarplugins/astronomicalevents.so,/usr/lib64/qt5/plugins/plasmacalendarplugins/pimevents.so,/usr/lib64/qt5/plugins/plasmacalendarplugins/holidaysevents.so,/usr/lib64/qt5/plugins/plasmacalendarplugins/astronomicalevents.so
 showSeparator=false
 showWeekNumbers=true
 
 [Containments][44][Applets][62][Configuration][ConfigDialog]
-DialogHeight=660
-DialogWidth=880
+DialogHeight=760
+DialogWidth=1357
 
 [Containments][44][Applets][68]
 immutability=1
@@ -197,7 +158,7 @@ immutability=1
 plugin=org.kde.plasma.devicenotifier
 
 [Containments][48][Applets][51][Configuration]
-PreloadWeight=82
+PreloadWeight=0
 
 [Containments][48][Applets][52]
 immutability=1
@@ -253,14 +214,14 @@ immutability=1
 plugin=org.kde.plasma.networkmanagement
 
 [Containments][48][Applets][59][Configuration]
-PreloadWeight=2
+PreloadWeight=0
 
 [Containments][48][Applets][63]
 immutability=1
 plugin=org.kde.kdeconnect
 
 [Containments][48][Applets][63][Configuration]
-PreloadWeight=32
+PreloadWeight=0
 
 [Containments][48][Applets][64]
 immutability=1
@@ -285,7 +246,7 @@ immutability=1
 plugin=org.kde.plasma.pkupdates
 
 [Containments][48][Applets][69][Configuration]
-PreloadWeight=41
+PreloadWeight=0
 
 [Containments][48][ConfigDialog]
 DialogHeight=660
@@ -299,8 +260,29 @@ extraItems=org.kde.plasma.clipboard,org.kde.plasma.battery,org.kde.plasma.nightc
 hiddenItems=org.kde.ktp-contactlist
 knownItems=org.kde.plasma.clipboard,org.kde.plasma.battery,org.kde.plasma.nightcolorcontrol,org.kde.plasma.notifications,org.kde.plasma.keyboardindicator,org.kde.plasma.networkmanagement,org.kde.plasma.devicenotifier,org.kde.plasma.vault,org.kde.plasma.bluetooth,org.kde.plasma.volume,org.kde.plasma.mediacontroller,org.kde.ktp-contactlist,org.kde.kdeconnect,org.kde.plasma.printmanager,org.kde.plasma.pkupdates
 
-[Containments][66]
-activityId=88559549-0b0e-489f-ae89-506e5622cf21
+[Containments][7][Applets][21][Configuration]
+PreloadWeight=55
+
+[Containments][70]
+activityId=9a041e54-01f4-45de-912e-c7cf8d0dd2ab
+formfactor=0
+immutability=1
+lastScreen=0
+location=0
+plugin=org.kde.plasma.folder
+wallpaperplugin=org.kde.image
+
+[Containments][70][Configuration]
+PreloadWeight=0
+
+[Containments][70][General]
+sortMode=-1
+
+[Containments][70][Wallpaper][org.kde.image][General]
+Image=file:///usr/share/backgrounds/f33/default/f33-02-day.png
+
+[Containments][71]
+activityId=9a041e54-01f4-45de-912e-c7cf8d0dd2ab
 formfactor=0
 immutability=1
 lastScreen=2
@@ -308,11 +290,11 @@ location=0
 plugin=org.kde.plasma.folder
 wallpaperplugin=org.kde.image
 
-[Containments][66][Configuration]
-PreloadWeight=0
+[Containments][71][Configuration]
+PreloadWeight=42
 
-[Containments][66][Wallpaper][org.kde.image][General]
-Image=file:///usr/share/wallpapers/Next/contents/images/2560x1440.jpg
+[Containments][71][Wallpaper][org.kde.image][General]
+Image=file:///usr/share/wallpapers/F33/contents/images/2560x1440.png
 
 [Containments35Appletsts][34][Configuration][General]
 launchers=applications:firefox.desktop,preferred://browser,applications:telegramdesktop.desktop,preferred://filemanager,applications:gimp.desktop,applications:org.inkscape.Inkscape.desktop,applications:Alacritty.desktop,applications:nvim-qt.desktop,applications:systemsettings.desktop,applications:Zoom.desktop,applications:thunderbird.desktop

@@ -1,11 +1,11 @@
 ! apps need dpi set here, not only in /etc/.../xorg.conf
-Xft.dpi: 130
-Xft.antialias: true
-Xft.hinting: true
-Xft.rgba: rgb
-Xft.autohint: true
-Xft.hintstyle: hintslight
-Xft.lcdfilter: lcddefault
+!Xft.dpi: 130
+!Xft.antialias: true
+!Xft.hinting: true
+!Xft.rgba: rgb
+!Xft.autohint: true
+!Xft.hintstyle: hintslight
+!Xft.lcdfilter: lcddefault
 
 Xcursor.size: 24
 Xcursor.theme: dark

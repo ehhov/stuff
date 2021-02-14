@@ -1,3 +1,11 @@
+GNOME:
+- screenshots
+- mouse-keyboard shortcuts to switch workspaces
+- notification shortcuts
+- app launcher shortcuts
+- Qt apps and Alacritty don't have any shadow
+
+
 Neovim-Qt window size from ginit.vim
 
 Modify MuPDF to add a middle mouse button zoom.

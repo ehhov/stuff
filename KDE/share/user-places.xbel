@@ -10,6 +10,8 @@
    <GroupState-Tags-IsHidden>false</GroupState-Tags-IsHidden>
    <withRecentlyUsed>true</withRecentlyUsed>
    <GroupState-RecentlySaved-IsHidden>false</GroupState-RecentlySaved-IsHidden>
+   <withBaloo>true</withBaloo>
+   <GroupState-SearchFor-IsHidden>false</GroupState-SearchFor-IsHidden>
   </metadata>
  </info>
  <bookmark href="file:///home/kerim">
@@ -168,7 +170,7 @@
   </info>
   <title>156.3 GiB Hard Drive</title>
  </separator>
- <separator href="file:///">
+ <separator href="file:///boot">
   <info>
    <metadata owner="http://www.kde.org">
     <UDI>/org/freedesktop/UDisks2/block_devices/nvme0n1p2</UDI>
@@ -176,10 +178,10 @@
     <IsHidden>false</IsHidden>
    </metadata>
    <metadata owner="http://freedesktop.org">
-    <bookmark:icon name="drive-harddisk-root"/>
+    <bookmark:icon name="drive-harddisk"/>
    </metadata>
   </info>
-  <title>39.7 GiB Hard Drive</title>
+  <title>1.0 GiB Hard Drive</title>
  </separator>
  <separator>
   <info>
@@ -204,7 +206,7 @@
     <ID>1613230127/0</ID>
     <isSystemItem>false</isSystemItem>
     <IsHidden>false</IsHidden>
-    <OnlyInApp></OnlyInApp>
+    <OnlyInApp/>
    </metadata>
   </info>
  </bookmark>
@@ -261,13 +263,100 @@
   </info>
  </bookmark>
  <bookmark href="file:///tmp">
-  <title>tmp</title>
+  <title>/tmp</title>
   <info>
    <metadata owner="http://freedesktop.org">
     <bookmark:icon name="inode-directory"/>
    </metadata>
    <metadata owner="http://www.kde.org">
     <ID>1613230221/5</ID>
+    <isSystemItem>false</isSystemItem>
+    <IsHidden>false</IsHidden>
+    <OnlyInApp/>
+   </metadata>
+  </info>
+ </bookmark>
+ <bookmark href="search:/documents">
+  <title>Documents</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="folder-text"/>
+   </metadata>
+   <metadata owner="http://www.kde.org">
+    <ID>1613236258/0</ID>
+    <isSystemItem>true</isSystemItem>
+    <IsHidden>false</IsHidden>
+   </metadata>
+  </info>
+ </bookmark>
+ <bookmark href="search:/images">
+  <title>Images</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="folder-images"/>
+   </metadata>
+   <metadata owner="http://www.kde.org">
+    <ID>1613236258/1</ID>
+    <isSystemItem>true</isSystemItem>
+    <IsHidden>false</IsHidden>
+   </metadata>
+  </info>
+ </bookmark>
+ <bookmark href="search:/audio">
+  <title>Audio</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="folder-sound"/>
+   </metadata>
+   <metadata owner="http://www.kde.org">
+    <ID>1613236258/2</ID>
+    <isSystemItem>true</isSystemItem>
+    <IsHidden>false</IsHidden>
+   </metadata>
+  </info>
+ </bookmark>
+ <bookmark href="search:/videos">
+  <title>Videos</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="folder-videos"/>
+   </metadata>
+   <metadata owner="http://www.kde.org">
+    <ID>1613236258/3</ID>
+    <isSystemItem>true</isSystemItem>
+    <IsHidden>false</IsHidden>
+   </metadata>
+  </info>
+ </bookmark>
+ <separator href="file:///">
+  <info>
+   <metadata owner="http://www.kde.org">
+    <UDI>/org/freedesktop/UDisks2/block_devices/nvme0n1p3</UDI>
+    <isSystemItem>true</isSystemItem>
+    <IsHidden>false</IsHidden>
+   </metadata>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="drive-harddisk-root"/>
+   </metadata>
+  </info>
+  <title>fedora_xps13</title>
+ </separator>
+ <separator>
+  <info>
+   <metadata owner="http://www.kde.org">
+    <UDI>/org/freedesktop/UDisks2/block_devices/sda1</UDI>
+    <isSystemItem>true</isSystemItem>
+   </metadata>
+  </info>
+ </separator>
+ <bookmark href="kdeconnect://787be15da15b738c/">
+  <title>MI 5</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="kdeconnect"/>
+   </metadata>
+   <metadata owner="http://www.kde.org">
+    <ID>1613332395/0</ID>
    </metadata>
   </info>
  </bookmark>

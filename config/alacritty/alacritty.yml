@@ -7,7 +7,7 @@ scrolling:
         history: 10000
 
 font:
-        size: 9
+        size: 12
 
 mouse_bindings:
         - { mouse: Middle, action: None }

@@ -14,7 +14,7 @@ autoload=false
 autoload=true
 
 [Module-device_automounter]
-autoload=true
+autoload=false
 
 [Module-freespacenotifier]
 autoload=true
