@@ -6,9 +6,9 @@
 !Xft.autohint: true
 !Xft.hintstyle: hintslight
 !Xft.lcdfilter: lcddefault
-
-Xcursor.size: 24
-Xcursor.theme: dark
+!
+!Xcursor.size: 24
+!Xcursor.theme: dark
 
 ! the path has to be full because it is sourced from the Display Manager
 #include "/home/kerim/.Xresources.d/colors"

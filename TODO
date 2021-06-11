@@ -1,10 +1,19 @@
+Print energy units in nucl script in work/Py.
+
+Disable all latte-dock shortcuts.
+
+Remove Microsoft Teams repository from dnf.
+
 GNOME:
 - screenshots
 - mouse-keyboard shortcuts to switch workspaces
 - notification shortcuts
 - app launcher shortcuts
 - Qt apps and Alacritty don't have any shadow
+- cursor is strange
 
+KDE:
+- find an alternative to Places drop-down menu
 
 Neovim-Qt window size from ginit.vim
 

@@ -56,8 +56,20 @@ export PATH
 
 date
 
-if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ] && [ $XDG_SESSION_TYPE == tty ]; then
-	#MOZ_ENABLE_WAYLAND=1 QT_QPA_PLATFORM=wayland XDG_SESSION_TYPE=wayland exec dbus-run-session gnome-session
-	#MOZ_ENABLE_WAYLAND=1 QT_QPA_PLATFORM=wayland XDG_SESSION_TYPE=wayland exec startplasma-wayland
-	exec startx ~/.xinitrc kde
+# Necessary for KDE, not enough for GNOME
+if [ "$DISPLAY" ]; then
+	~/.bin/per-de-config.sh
 fi
+
+if [ "$XDG_CURRENT_DESKTOP" = GNOME ]; then
+	export QT_QPA_PLATFORMTHEME=qt5ct
+	export QT_QPA_PLATFORM=xcb
+	#export QT_FONT_DPI=128
+	#export QT_WAYLAND_FORCE_DPI=128
+fi
+
+#if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ] && [ $XDG_SESSION_TYPE == tty ]; then
+#	#MOZ_ENABLE_WAYLAND=1 QT_QPA_PLATFORM=wayland XDG_SESSION_TYPE=wayland exec dbus-run-session gnome-session
+#	#MOZ_ENABLE_WAYLAND=1 QT_QPA_PLATFORM=wayland XDG_SESSION_TYPE=wayland exec startplasma-wayland
+#	exec startx ~/.xinitrc kde
+#fi

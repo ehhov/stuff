@@ -7,6 +7,7 @@ setl tw=72 wm=1
 command! -buffer R update <bar> ! pdflatex -file-line-error -interaction=nonstopmode % <args> <bar> grep --color ':.*:'
 command! -buffer C ! texclean %
 command! -buffer RRC exe 'R' <bar> exe 'R' <bar> exe 'C'
+command! -buffer RB exe 'C' <bar> exe 'R' <bar> exe '! bibtex %:r' <bar> exe 'R' <bar> exe 'R' <bar> exe 'C'
 
 command! -buffer P silent ! execbg xdg-open %:p:r.pdf
 

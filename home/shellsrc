@@ -19,6 +19,7 @@ alias pgrepu="pgrep -u${USER}"
 alias grep='grep -I --color'
 alias pdflatex='pdflatex -file-line-error -interaction=nonstopmode'
 alias nvim='nvim -p'
+alias nvimdiff='nvim -d -O'
 
 alias view="nvim -R -M"
 alias xcb='xclip -selection clipboard'

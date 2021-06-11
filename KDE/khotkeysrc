@@ -1,5 +1,8 @@
+[$Version]
+update_info=spectacle_shortcuts.upd:spectacle-migrate-shortcuts
+
 [Data]
-DataCount=6
+DataCount=7
 
 [Data_1]
 Comment=KMenuEdit Global Shortcuts
@@ -61,9 +64,9 @@ Comment=Simple_action
 TriggersCount=1
 
 [Data_1_2Triggers0]
-Key=Ctrl+Alt+T
+Key=
 Type=SHORTCUT
-Uuid={7d366c2a-3b39-409d-ac42-4a49990054ea}
+Uuid={5042681a-0656-41fd-acea-3dc76981e51a}
 
 [Data_2]
 Comment=This group contains various examples demonstrating most of the features of KHotkeys. (Note that this group and all its actions are disabled by default.)
@@ -116,7 +119,7 @@ TriggersCount=1
 [Data_2_1Triggers0]
 Key=Ctrl+Alt+I
 Type=SHORTCUT
-Uuid={62134ddb-dc19-4da5-b81b-29408d030d68}
+Uuid={b9c3fa74-39bd-43e3-9d4d-0f9e0aa12354}
 
 [Data_2_2]
 Comment=After pressing Alt+Ctrl+H the input of 'Hello' will be simulated, as if you typed it.  This is especially useful if you have call to frequently type a word (for instance, 'unsigned').  Every keypress in the input is separated by a colon ':'. Note that the keypresses literally mean keypresses, so you have to write what you would press on the keyboard. In the table below, the left column shows the input and the right column shows what to type.\n\n"enter" (i.e. new line)                Enter or Return\na (i.e. small a)                          A\nA (i.e. capital a)                       Shift+A\n: (colon)                                  Shift+;\n' '  (space)                              Space
@@ -143,7 +146,7 @@ TriggersCount=1
 [Data_2_2Triggers0]
 Key=Ctrl+Alt+H
 Type=SHORTCUT
-Uuid={02b41610-63e0-445e-ba50-f54deb7a1458}
+Uuid={4742dc0e-00c1-4d60-9adc-2a39e9746635}
 
 [Data_2_3]
 Comment=This action runs Konsole, after pressing Ctrl+Alt+T.
@@ -169,7 +172,7 @@ TriggersCount=1
 [Data_2_3Triggers0]
 Key=Ctrl+Alt+T
 Type=SHORTCUT
-Uuid={9ee33e9e-8e16-4356-b345-b3cf570a7ec5}
+Uuid={1102745e-7d47-4432-ad7b-980fd154cc2d}
 
 [Data_2_4]
 Comment=Read the comment on the "Type 'Hello'" action first.\n\nQt Designer uses Ctrl+F4 for closing windows.  In KDE, however, Ctrl+F4 is the shortcut for going to virtual desktop 4, so this shortcut does not work in Qt Designer.  Further, Qt Designer does not use KDE's standard Ctrl+W for closing the window.\n\nThis problem can be solved by remapping Ctrl+W to Ctrl+F4 when the active window is Qt Designer. When Qt Designer is active, every time Ctrl+W is pressed, Ctrl+F4 will be sent to Qt Designer instead. In other applications, the effect of Ctrl+W is unchanged.\n\nWe now need to specify three things: A new shortcut trigger on 'Ctrl+W', a new keyboard input action sending Ctrl+F4, and a new condition that the active window is Qt Designer.\nQt Designer seems to always have title 'Qt Designer by Trolltech', so the condition will check for the active window having that title.
@@ -214,7 +217,7 @@ TriggersCount=1
 [Data_2_4Triggers0]
 Key=Ctrl+W
 Type=SHORTCUT
-Uuid={2d39792f-c928-476f-98de-ac76698a7bb3}
+Uuid={6bbe93d4-3287-40f0-b1a3-5a5c17f9f9fe}
 
 [Data_2_5]
 Comment=By pressing Alt+Ctrl+W a D-Bus call will be performed that will show the minicli. You can use any kind of D-Bus call, just like using the command line 'qdbus' tool.
@@ -243,7 +246,7 @@ TriggersCount=1
 [Data_2_5Triggers0]
 Key=Ctrl+Alt+W
 Type=SHORTCUT
-Uuid={c6913454-cd9a-47e4-b098-4166f559c698}
+Uuid={4ec8feff-e04c-4bc7-a82d-797708c637e5}
 
 [Data_2_6]
 Comment=Read the comment on the "Type 'Hello'" action first.\n\nJust like the "Type 'Hello'" action, this one simulates keyboard input, specifically, after pressing Ctrl+Alt+B, it sends B to XMMS (B in XMMS jumps to the next song). The 'Send to specific window' checkbox is checked and a window with its class containing 'XMMS_Player' is specified; this will make the input always be sent to this window. This way, you can control XMMS even if, for instance, it is on a different virtual desktop.\n\n(Run 'xprop' and click on the XMMS window and search for WM_CLASS to see 'XMMS_Player').
@@ -285,10 +288,10 @@ TriggersCount=1
 [Data_2_6Triggers0]
 Key=Ctrl+Alt+B
 Type=SHORTCUT
-Uuid={a4c46395-2dc0-429f-a3e5-c111b4f3f556}
+Uuid={b5a4da59-1368-4b5a-a2be-6c0892a9c464}
 
 [Data_2_7]
-Comment=Konqueror in KDE3.1 has tabs, and now you can also have gestures.\n\nJust press the middle mouse button and start drawing one of the gestures, and after you are finished, release the mouse button. If you only need to paste the selection, it still works, just click the middle mouse button. (You can change the mouse button to use in the global settings).\n\nRight now, there are the following gestures available:\nmove right and back left - Forward (Alt+Right)\nmove left and back right - Back (Alt+Left)\nmove up and back down  - Up (Alt+Up)\ncircle counterclockwise - Reload (F5)\n\nThe gesture shapes can be entered by performing them in the configuration dialog. You can also look at your numeric pad to help you: gestures are recognized like a 3x3 grid of fields, numbered 1 to 9.\n\nNote that you must perform exactly the gesture to trigger the action. Because of this, it is possible to enter more gestures for the action. You should try to avoid complicated gestures where you change the direction of mouse movement more than once.  For instance, 45654 or 74123 are simple to perform, but 1236987 may be already quite difficult.\n\nThe conditions for all gestures are defined in this group. All these gestures are active only if the active window is Konqueror (class contains 'konqueror').
+Comment=Konqueror in KDE3.1 has tabs, and now you can also have gestures.\n\nJust press the middle mouse button and start drawing one of the gestures, and after you are finished, release the mouse button. If you only need to paste the selection, it still works, just click the middle mouse button. (You can change the mouse button to use in the global settings).\n\nRight now, there are the following gestures available:\nmove right and back left - Forward (Alt+Right)\nmove left and back right - Back (Alt+Left)\nmove up and back down  - Up (Alt+Up)\ncircle anticlockwise - Reload (F5)\n\nThe gesture shapes can be entered by performing them in the configuration dialog. You can also look at your numeric pad to help you: gestures are recognized like a 3x3 grid of fields, numbered 1 to 9.\n\nNote that you must perform exactly the gesture to trigger the action. Because of this, it is possible to enter more gestures for the action. You should try to avoid complicated gestures where you change the direction of mouse movement more than once.  For instance, 45654 or 74123 are simple to perform, but 1236987 may be already quite difficult.\n\nThe conditions for all gestures are defined in this group. All these gestures are active only if the active window is Konqueror (class contains 'konqueror').
 DataCount=4
 Enabled=false
 Name=Konqi Gestures
@@ -477,7 +480,7 @@ TriggersCount=1
 [Data_2_8Triggers0]
 Key=Meta+E
 Type=SHORTCUT
-Uuid={bc73feec-b08b-43c4-a921-e2104338594c}
+Uuid={54be96d9-43b3-4f4e-8f9f-da1dcf057b12}
 
 [Data_3]
 Comment=Basic Konqueror gestures.
@@ -897,14 +900,14 @@ ConditionsCount=0
 [Data_4_1]
 Comment=Comment
 Enabled=true
-Name=Brightness Up
+Name=Up
 Type=SIMPLE_ACTION_DATA
 
 [Data_4_1Actions]
 ActionsCount=1
 
 [Data_4_1Actions0]
-CommandURL=brightnessctl -e set 1%+
+CommandURL=/bin/sh -c '~/.bin/brightness up'
 Type=COMMAND_URL
 
 [Data_4_1Conditions]
@@ -918,19 +921,19 @@ TriggersCount=1
 [Data_4_1Triggers0]
 Key=Alt+Monitor Brightness Up
 Type=SHORTCUT
-Uuid={8f3db867-315b-45e6-8092-7ba5d71f70e2}
+Uuid={71b2ace9-04a6-404c-adc3-4abbdd0d6297}
 
 [Data_4_2]
 Comment=Comment
 Enabled=true
-Name=Brightness Down
+Name=Down
 Type=SIMPLE_ACTION_DATA
 
 [Data_4_2Actions]
 ActionsCount=1
 
 [Data_4_2Actions0]
-CommandURL=brightnessctl -e set 1%-
+CommandURL=/bin/sh -c '~/.bin/brightness down'
 Type=COMMAND_URL
 
 [Data_4_2Conditions]
@@ -944,19 +947,19 @@ TriggersCount=1
 [Data_4_2Triggers0]
 Key=Alt+Monitor Brightness Down
 Type=SHORTCUT
-Uuid={0cf51781-e93d-49aa-8783-c7748ed1107e}
+Uuid={791e7af9-b7d4-4c88-8d9b-8415749c975c}
 
 [Data_4_3]
 Comment=Comment
 Enabled=true
-Name=Brightness Big Up
+Name=Big Up
 Type=SIMPLE_ACTION_DATA
 
 [Data_4_3Actions]
 ActionsCount=1
 
 [Data_4_3Actions0]
-CommandURL=brightnessctl -e set 10%+
+CommandURL=/bin/sh -c '~/.bin/brightness bigup'
 Type=COMMAND_URL
 
 [Data_4_3Conditions]
@@ -970,19 +973,19 @@ TriggersCount=1
 [Data_4_3Triggers0]
 Key=Meta+Monitor Brightness Up
 Type=SHORTCUT
-Uuid={b413464b-61e8-40e9-b7e0-0d20277c4877}
+Uuid={bb1bf06e-995e-4f2f-9d8b-425e11a65ad9}
 
 [Data_4_4]
 Comment=Comment
 Enabled=true
-Name=Brightness Big Down
+Name=Big Down
 Type=SIMPLE_ACTION_DATA
 
 [Data_4_4Actions]
 ActionsCount=1
 
 [Data_4_4Actions0]
-CommandURL=brightnessctl -e set 10%-
+CommandURL=/bin/sh -c '~/.bin/brightness bigdown'
 Type=COMMAND_URL
 
 [Data_4_4Conditions]
@@ -996,13 +999,13 @@ TriggersCount=1
 [Data_4_4Triggers0]
 Key=Meta+Monitor Brightness Down
 Type=SHORTCUT
-Uuid={39eab122-88ec-45f8-8289-cab072f14b1b}
+Uuid={b605dce2-68a8-4d86-9e2d-7225dea1c12d}
 
 [Data_5]
 Comment=Comment
-DataCount=2
-Enabled=true
-Name=Applications
+DataCount=6
+Enabled=false
+Name=Screenshots
 SystemGroup=0
 Type=ACTION_DATA_GROUP
 
@@ -1013,14 +1016,14 @@ ConditionsCount=0
 [Data_5_1]
 Comment=Comment
 Enabled=true
-Name=Terminal
+Name=Screen
 Type=SIMPLE_ACTION_DATA
 
 [Data_5_1Actions]
 ActionsCount=1
 
 [Data_5_1Actions0]
-CommandURL=alacritty
+CommandURL=/bin/sh -c '~/.bin/print screen'
 Type=COMMAND_URL
 
 [Data_5_1Conditions]
@@ -1032,21 +1035,21 @@ Comment=Simple_action
 TriggersCount=1
 
 [Data_5_1Triggers0]
-Key=Meta+Return
+Key=
 Type=SHORTCUT
-Uuid={12e0dc1e-d130-4cf1-8876-0bc61cc72b22}
+Uuid={1523da30-53f1-4258-8841-67ddadf833b5}
 
 [Data_5_2]
 Comment=Comment
 Enabled=true
-Name=Neovim Qt
+Name=Delayed\s
 Type=SIMPLE_ACTION_DATA
 
 [Data_5_2Actions]
 ActionsCount=1
 
 [Data_5_2Actions0]
-CommandURL=nvim-qt
+CommandURL=/bin/sh -c '~/.bin/print delayed'
 Type=COMMAND_URL
 
 [Data_5_2Conditions]
@@ -1058,15 +1061,119 @@ Comment=Simple_action
 TriggersCount=1
 
 [Data_5_2Triggers0]
-Key=Meta+N
+Key=Shift+Print
 Type=SHORTCUT
-Uuid={7c01ddb3-2d3f-457b-ae04-e82db2454fa8}
+Uuid={daeb6cea-177e-4bb0-ac67-8b40ffe39037}
+
+[Data_5_3]
+Comment=Comment
+Enabled=true
+Name=Region
+Type=SIMPLE_ACTION_DATA
+
+[Data_5_3Actions]
+ActionsCount=1
+
+[Data_5_3Actions0]
+CommandURL=/bin/sh -c '~/.bin/print region'
+Type=COMMAND_URL
+
+[Data_5_3Conditions]
+Comment=
+ConditionsCount=0
+
+[Data_5_3Triggers]
+Comment=Simple_action
+TriggersCount=1
+
+[Data_5_3Triggers0]
+Key=
+Type=SHORTCUT
+Uuid={e88c9046-d65c-412d-b77d-08b899f53c0d}
+
+[Data_5_4]
+Comment=Comment
+Enabled=true
+Name=Import
+Type=SIMPLE_ACTION_DATA
+
+[Data_5_4Actions]
+ActionsCount=1
+
+[Data_5_4Actions0]
+CommandURL=/bin/sh -c '~/.bin/print import'
+Type=COMMAND_URL
+
+[Data_5_4Conditions]
+Comment=
+ConditionsCount=0
+
+[Data_5_4Triggers]
+Comment=Simple_action
+TriggersCount=1
+
+[Data_5_4Triggers0]
+Key=Meta+Shift+W
+Type=SHORTCUT
+Uuid={38635c38-88c2-4fc0-900f-5c1b125ba4a1}
+
+[Data_5_5]
+Comment=Comment
+Enabled=true
+Name=Exit
+Type=SIMPLE_ACTION_DATA
+
+[Data_5_5Actions]
+ActionsCount=1
+
+[Data_5_5Actions0]
+CommandURL=/bin/sh -c '~/.bin/print quit'
+Type=COMMAND_URL
+
+[Data_5_5Conditions]
+Comment=
+ConditionsCount=0
+
+[Data_5_5Triggers]
+Comment=Simple_action
+TriggersCount=1
+
+[Data_5_5Triggers0]
+Key=Meta+Shift+Q
+Type=SHORTCUT
+Uuid={1039982d-6170-410d-817a-86313fc80d19}
+
+[Data_5_6]
+Comment=Comment
+Enabled=true
+Name=Spectacle
+Type=SIMPLE_ACTION_DATA
+
+[Data_5_6Actions]
+ActionsCount=1
+
+[Data_5_6Actions0]
+CommandURL=spectacle
+Type=COMMAND_URL
+
+[Data_5_6Conditions]
+Comment=
+ConditionsCount=0
+
+[Data_5_6Triggers]
+Comment=Simple_action
+TriggersCount=1
+
+[Data_5_6Triggers0]
+Key=
+Type=SHORTCUT
+Uuid={cf24da50-e98c-4ba7-8991-2682dd3528fd}
 
 [Data_6]
 Comment=Comment
-DataCount=3
+DataCount=8
 Enabled=true
-Name=KDE Fixed
+Name=Applications
 SystemGroup=0
 Type=ACTION_DATA_GROUP
 
@@ -1077,18 +1184,15 @@ ConditionsCount=0
 [Data_6_1]
 Comment=Comment
 Enabled=true
-Name=Spectacle Region
+Name=Terminal
 Type=SIMPLE_ACTION_DATA
 
 [Data_6_1Actions]
 ActionsCount=1
 
 [Data_6_1Actions0]
-Arguments=false
-Call=RectangularRegion
-RemoteApp=org.kde.Spectacle
-RemoteObj=/
-Type=DBUS
+CommandURL=alacritty
+Type=COMMAND_URL
 
 [Data_6_1Conditions]
 Comment=
@@ -1099,25 +1203,22 @@ Comment=Simple_action
 TriggersCount=1
 
 [Data_6_1Triggers0]
-Key=Meta+Shift+S
+Key=Meta+Return
 Type=SHORTCUT
-Uuid={12c11221-a3c0-477d-9e9a-c8d01e3ac321}
+Uuid={0a946bcb-d6cc-4023-a129-ad1b1064a124}
 
 [Data_6_2]
 Comment=Comment
 Enabled=true
-Name=Spectacle Window
+Name=XTerm
 Type=SIMPLE_ACTION_DATA
 
 [Data_6_2Actions]
 ActionsCount=1
 
 [Data_6_2Actions0]
-Arguments=false false
-Call=ActiveWindow
-RemoteApp=org.kde.spectacle
-RemoteObj=/
-Type=DBUS
+CommandURL=xterm
+Type=COMMAND_URL
 
 [Data_6_2Conditions]
 Comment=
@@ -1128,25 +1229,22 @@ Comment=Simple_action
 TriggersCount=1
 
 [Data_6_2Triggers0]
-Key=Meta+Shift+W
+Key=Meta+X
 Type=SHORTCUT
-Uuid={7cdf14a3-0da1-4c9f-aaef-6f31b6a7c532}
+Uuid={8254e47e-35bc-4868-8597-580625cbdc86}
 
 [Data_6_3]
 Comment=Comment
 Enabled=true
-Name=Klipper Pop-up
+Name=URxvt
 Type=SIMPLE_ACTION_DATA
 
 [Data_6_3Actions]
 ActionsCount=1
 
 [Data_6_3Actions0]
-Arguments=
-Call=showKlipperPopupMenu
-RemoteApp=org.kde.klipper
-RemoteObj=/klipper
-Type=DBUS
+CommandURL=urxvt
+Type=COMMAND_URL
 
 [Data_6_3Conditions]
 Comment=
@@ -1157,9 +1255,264 @@ Comment=Simple_action
 TriggersCount=1
 
 [Data_6_3Triggers0]
+Key=Meta+U
+Type=SHORTCUT
+Uuid={50622c66-c748-4cc2-8e6a-b13ad3532394}
+
+[Data_6_4]
+Comment=Comment
+Enabled=true
+Name=Alacritty
+Type=SIMPLE_ACTION_DATA
+
+[Data_6_4Actions]
+ActionsCount=1
+
+[Data_6_4Actions0]
+CommandURL=alacritty
+Type=COMMAND_URL
+
+[Data_6_4Conditions]
+Comment=
+ConditionsCount=0
+
+[Data_6_4Triggers]
+Comment=Simple_action
+TriggersCount=1
+
+[Data_6_4Triggers0]
+Key=Meta+A
+Type=SHORTCUT
+Uuid={cc156a35-1544-4d5d-83fb-2fbe5b86f710}
+
+[Data_6_5]
+Comment=Comment
+Enabled=true
+Name=ST
+Type=SIMPLE_ACTION_DATA
+
+[Data_6_5Actions]
+ActionsCount=1
+
+[Data_6_5Actions0]
+CommandURL=st
+Type=COMMAND_URL
+
+[Data_6_5Conditions]
+Comment=
+ConditionsCount=0
+
+[Data_6_5Triggers]
+Comment=Simple_action
+TriggersCount=1
+
+[Data_6_5Triggers0]
+Key=Meta+S
+Type=SHORTCUT
+Uuid={a0dacb90-60ed-4190-a2c9-c798a07ac329}
+
+[Data_6_6]
+Comment=Comment
+Enabled=true
+Name=GVim
+Type=SIMPLE_ACTION_DATA
+
+[Data_6_6Actions]
+ActionsCount=1
+
+[Data_6_6Actions0]
+CommandURL=gnvim
+Type=COMMAND_URL
+
+[Data_6_6Conditions]
+Comment=
+ConditionsCount=0
+
+[Data_6_6Triggers]
+Comment=Simple_action
+TriggersCount=1
+
+[Data_6_6Triggers0]
+Key=Meta+G
+Type=SHORTCUT
+Uuid={9c8ab798-f589-4cc2-94e3-bdac0d846051}
+
+[Data_6_7]
+Comment=Comment
+Enabled=true
+Name=Neovim Qt
+Type=SIMPLE_ACTION_DATA
+
+[Data_6_7Actions]
+ActionsCount=1
+
+[Data_6_7Actions0]
+CommandURL=nvim-qt
+Type=COMMAND_URL
+
+[Data_6_7Conditions]
+Comment=
+ConditionsCount=0
+
+[Data_6_7Triggers]
+Comment=Simple_action
+TriggersCount=1
+
+[Data_6_7Triggers0]
+Key=Meta+N
+Type=SHORTCUT
+Uuid={ee03219d-430f-4b4e-99c0-5b879a63b3ed}
+
+[Data_6_8]
+Comment=Comment
+Enabled=true
+Name=Explorer
+Type=SIMPLE_ACTION_DATA
+
+[Data_6_8Actions]
+ActionsCount=1
+
+[Data_6_8Actions0]
+CommandURL=dolphin
+Type=COMMAND_URL
+
+[Data_6_8Conditions]
+Comment=
+ConditionsCount=0
+
+[Data_6_8Triggers]
+Comment=Simple_action
+TriggersCount=1
+
+[Data_6_8Triggers0]
+Key=Meta+E
+Type=SHORTCUT
+Uuid={41ca1c84-ce87-4437-8e95-052c2b1b8877}
+
+[Data_7]
+Comment=Comment
+DataCount=3
+Enabled=true
+Name=KDE Fixed
+SystemGroup=0
+Type=ACTION_DATA_GROUP
+
+[Data_7Conditions]
+Comment=
+ConditionsCount=0
+
+[Data_7_1]
+Comment=Comment
+Enabled=true
+Name=Spectacle Region
+Type=SIMPLE_ACTION_DATA
+
+[Data_7_1Actions]
+ActionsCount=1
+
+[Data_7_1Actions0]
+Arguments=false
+Call=RectangularRegion
+RemoteApp=org.kde.Spectacle
+RemoteObj=/
+Type=DBUS
+
+[Data_7_1Conditions]
+Comment=
+ConditionsCount=0
+
+[Data_7_1Triggers]
+Comment=Simple_action
+TriggersCount=1
+
+[Data_7_1Triggers0]
+Key=Meta+Shift+S
+Type=SHORTCUT
+Uuid={55991b4c-ec41-4f7f-9017-6fc8146c8a0a}
+
+[Data_7_2]
+Comment=Comment
+Enabled=true
+Name=Spectacle Window
+Type=SIMPLE_ACTION_DATA
+
+[Data_7_2Actions]
+ActionsCount=1
+
+[Data_7_2Actions0]
+Arguments=false false
+Call=ActiveWindow
+RemoteApp=org.kde.Spectacle
+RemoteObj=/
+Type=DBUS
+
+[Data_7_2Conditions]
+Comment=
+ConditionsCount=0
+
+[Data_7_2Triggers]
+Comment=Simple_action
+TriggersCount=1
+
+[Data_7_2Triggers0]
+Key=Meta+Shift+W
+Type=SHORTCUT
+Uuid={1c9ad8f2-d327-44c7-ae70-1ba2a93bfa83}
+
+[Data_7_3]
+Comment=Comment
+Enabled=true
+Name=Klipper Popup
+Type=SIMPLE_ACTION_DATA
+
+[Data_7_3Actions]
+ActionsCount=1
+
+[Data_7_3Actions0]
+Arguments=
+Call=showKlipperPopupMenu
+RemoteApp=org.kde.klipper
+RemoteObj=/klipper
+Type=DBUS
+
+[Data_7_3Conditions]
+Comment=
+ConditionsCount=0
+
+[Data_7_3Triggers]
+Comment=Simple_action
+TriggersCount=1
+
+[Data_7_3Triggers0]
 Key=Meta+C
 Type=SHORTCUT
-Uuid={7f8794d8-c092-4c4d-b6c6-871f2aeee25c}
+Uuid={23217d75-755d-443c-81c9-b975dbfc783e}
+
+[Data_7_8]
+Comment[$d]
+Enabled[$d]
+Name[$d]
+Type[$d]
+
+[Data_7_8Actions]
+ActionsCount[$d]
+
+[Data_7_8Actions0]
+CommandURL[$d]
+Type[$d]
+
+[Data_7_8Conditions]
+Comment[$d]
+ConditionsCount[$d]
+
+[Data_7_8Triggers]
+Comment[$d]
+TriggersCount[$d]
+
+[Data_7_8Triggers0]
+Key[$d]
+Type[$d]
+Uuid[$d]
 
 [General]
 ColorScheme[$d]
@@ -1187,7 +1540,7 @@ ColorScheme[$d]
 widgetStyle[$d]
 
 [Main]
-AlreadyImported=defaults,kde32b1,konqueror_gestures_kde321,konsole
+AlreadyImported=defaults,kde32b1,spectacle,konqueror_gestures_kde321,konsole
 Disabled=false
 Version=2
 

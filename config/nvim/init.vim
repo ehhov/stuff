@@ -21,7 +21,8 @@ set shortmess-=F
 set fillchars=fold:-
 set title
 set guicursor=n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20
-set guifont=monospace:h10
+set guioptions+=cemgp
+set guifont=monospace:h9
 
 set wrap
 set linebreak
@@ -123,5 +124,4 @@ runtime tabline.vim
 if exists("gnvim")
 	call gnvim#enable_ext_tabline(0)
 	colorscheme gui_github
-	set guifont=monospace:h9
 endif

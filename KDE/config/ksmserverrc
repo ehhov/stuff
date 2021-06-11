@@ -3,24 +3,3 @@ update_info=ksmserver_update_loginMode_value.upd:ksmserver_update_loginMode_valu
 
 [General]
 loginMode=emptySession
-
-[LegacySession: saved at previous logout]
-count=0
-
-[Session: saved at previous logout]
-clientId1=1061726368000160700971600000439600002
-clientId2=1061726368000160700978300000439600003
-clientId3=1061726368000160700978800000439600004
-count=3
-program1=pulseaudio
-program2=firefox
-program3=thunderbird
-restartCommand1=
-restartCommand2=/usr/lib/firefox/firefox,--sm-client-id,1061726368000160700978300000439600003
-restartCommand3=/usr/lib/thunderbird/thunderbird,--sm-client-id,1061726368000160700978800000439600004
-restartStyleHint1=0
-restartStyleHint2=0
-restartStyleHint3=0
-userId1=kerim
-userId2=kerim
-userId3=kerim

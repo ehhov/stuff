@@ -12,6 +12,9 @@ PointerAcceleration=0.000
 PointerAccelerationProfile=2
 
 [Libinput][1739][30383][DLL075B:01 06CB:76AF Touchpad]
+ClickMethodAreas=true
+ClickMethodClickfinger=false
+DisableWhileTyping=false
 MiddleButtonEmulation=false
 NaturalScroll=true
 PointerAcceleration=-0.150

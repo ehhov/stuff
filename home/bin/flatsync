@@ -1,11 +1,11 @@
 #!/bin/sh
 
 for appdir in "${HOME}/.var/app/"*; do
-	for cfg in "${HOME}/.config/"{gtk*,fontconfig}; do
+	for cfg in "${HOME}/.config/"{gtk*,fontconfig,dconf}; do
 		ln -fs "../../../../${cfg#$HOME/}" "$appdir/config"
 	done
 
-	for shr in "${HOME}/.local/share/"fonts; do
+	for shr in "${HOME}/.local/share/"{fonts,icons}; do
 		ln -fs "../../../../${shr#$HOME/}" "$appdir/data"
 	done
 done

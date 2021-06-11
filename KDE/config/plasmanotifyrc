@@ -20,4 +20,4 @@ Seen=true
 Seen=true
 
 [Notifications]
-PopupTimeout=10000
+PopupTimeout=5000

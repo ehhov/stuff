@@ -10,3 +10,4 @@ WindowDragMode=WD_NONE
 
 [Windeco]
 ButtonSize=ButtonSmall
+DrawBorderOnMaximizedWindows=true

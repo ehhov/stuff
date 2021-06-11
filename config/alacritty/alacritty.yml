@@ -6,8 +6,11 @@ window:
 scrolling:
         history: 10000
 
+dpi:
+        x: 128
+        y: 128
 font:
-        size: 12
+        size: 9
 
 mouse_bindings:
         - { mouse: Middle, action: None }

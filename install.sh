@@ -61,16 +61,30 @@ kde|rekde)
 	done
 ;;
 
-mime)
-	file=~/.config/mimeapps.list
-	here="${dir}"/config/mimeapps.list
-	if [ -f "$file" ] && [ ! -h "$file" ]; then
-		cp "$file" "$here"
-	fi
-	here="${here#$dir/}"
-	remove "$file"
-	create_link ../${rel}/"$here" "$file"
+rmkde)
+	for i in "${dir}"/KDE/config/*; do
+		i="${i#$dir/}"
+		j="${i#KDE/config/}"
+		remove ~/.config/"$j"
+	done
+	for i in "${dir}"/KDE/share/*; do
+		i="${i#$dir/}"
+		j="${i#KDE/share/}"
+		remove ~/.local/share/"$j"
+	done
 ;;
+
+# WARNING: may not work with per-desktop env. configurations
+#mime)
+#	file=~/.config/mimeapps.list
+#	here="${dir}"/config/mimeapps.list
+#	if [ -f "$file" ] && [ ! -h "$file" ]; then
+#		cat "$file" >| "$here"
+#	fi
+#	here="${here#$dir/}"
+#	remove "$file"
+#	create_link ../"${rel}/$here" "$file"
+#;;
 
 gits)
 	cd ~
@@ -91,9 +105,10 @@ gits)
 	echo -e "$0: usage ('|' means 'or', [] means optional) :"
 	echo -e "  $0 ln|link      to create links"
 	echo -e "  $0 reln|relink  to remove your files and create links"
-	echo -e "  $0 rm|remove    to remove the files (whether they are installed or not)"
+	echo -e "  $0 rm|remove    to remove the files (whether they are links from here or not)"
 	echo -e "  $0 [re]kde      to \`[re]link\` files for KDE"
-	echo -e "  $0 mime         to copy ~/.config/mimeapps.list to here if it is a regular file"
+	echo -e "  $0 rmkde        to \`remove\` files for KDE"
+	#echo -e "  $0 mime         to copy ~/.config/mimeapps.list to here if it is a regular file"
 	echo -e "  $0 gits         to clone all the gits"
 	echo -e ""
 ;;
