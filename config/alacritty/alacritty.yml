@@ -320,4 +320,4 @@ schemes:
       cyan: '#586e75'
       white: '#002b36'
 
-colors: *github
+colors: *Dracula

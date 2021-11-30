@@ -1,8 +1,8 @@
 [$Version]
-update_info=delete_cursor_old_default_size.upd:DeleteCursorOldDefaultSize
+update_info=delete_cursor_old_default_size.upd:DeleteCursorOldDefaultSize,kcminputrc_fix_botched_5_21_0.upd:kcminputrc_fix_botched_5_21_0_pre,kcminputrc_fix_botched_5_21_0.upd:kcminputrc_fix_botched_5_21_0,kcminputrc_repeat.upd:kcminputrc_migrate_key_repeat
 
 [Keyboard]
-KeyboardRepeating=0
+KeyRepeat=repeat
 NumLock=2
 RepeatDelay=600
 RepeatRate=25
@@ -12,9 +12,11 @@ PointerAcceleration=0.000
 PointerAccelerationProfile=2
 
 [Libinput][1739][30383][DLL075B:01 06CB:76AF Touchpad]
+ClickMethod=2
 ClickMethodAreas=true
 ClickMethodClickfinger=false
 DisableWhileTyping=false
+Enabled=true
 MiddleButtonEmulation=false
 NaturalScroll=true
 PointerAcceleration=-0.150
@@ -22,5 +24,8 @@ ScrollMethod=1
 TapDragLock=false
 TapToClick=true
 
-[Mouse]
-cursorTheme=breeze_cursors
+[Libinput][2][7][SynPS/2 Synaptics TouchPad]
+ClickMethod=2
+
+[Tmp]
+update_info=delete_cursor_old_default_size.upd:DeleteCursorOldDefaultSize

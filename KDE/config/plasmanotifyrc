@@ -1,23 +1,13 @@
-[Applications][clementine]
-Seen=true
-
-[Applications][firefox]
-Seen=true
-
 [Applications][google-chrome]
 Seen=true
 
 [Applications][org.telegram.desktop]
 Seen=true
 
-[Applications][rhythmbox]
-Seen=true
-
-[Applications][telegramdesktop]
-Seen=true
-
-[Applications][thunderbird]
-Seen=true
+[DoNotDisturb]
+Until=2021,11,17,15,7,0.057
 
 [Notifications]
+LowPriorityHistory=true
+NormalAlwaysOnTop=true
 PopupTimeout=5000

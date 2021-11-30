@@ -20,6 +20,7 @@ alias grep='grep -I --color'
 alias pdflatex='pdflatex -file-line-error -interaction=nonstopmode'
 alias nvim='nvim -p'
 alias nvimdiff='nvim -d -O'
+alias vim='nvim'
 
 alias view="nvim -R -M"
 alias xcb='xclip -selection clipboard'

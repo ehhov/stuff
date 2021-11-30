@@ -9,7 +9,6 @@ rememberLastRectangularRegion=false
 [GuiConfig]
 captureDelay=3
 captureMode=3
-cropRegion=152,165,505,729
 includePointer=true
 window-position=102,106
 
@@ -20,5 +19,5 @@ detailViewIconSize=16
 
 [Save]
 lastSaveAsLocation=file:///home/kerim/Pictures/Screenshots/20210214_134449.png
-lastSaveLocation=file:///home/kerim/Pictures/Screenshots/2021-05-20_16-28-29.png
+lastSaveLocation=file:///home/kerim/Pictures/Screenshots/2021-11-29_16-42-59.png
 saveFilenameFormat=Screenshots/%Y-%M-%D_%H-%m-%S

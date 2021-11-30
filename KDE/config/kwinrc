@@ -1,5 +1,5 @@
 [$Version]
-update_info=kwin.upd:replace-scalein-with-scale,kwin.upd:port-minimizeanimation-effect-to-js,kwin.upd:port-scale-effect-to-js,kwin.upd:port-dimscreen-effect-to-js,kwin.upd:auto-bordersize,kwin.upd:animation-speed
+update_info=kwin.upd:replace-scalein-with-scale,kwin.upd:port-minimizeanimation-effect-to-js,kwin.upd:port-scale-effect-to-js,kwin.upd:port-dimscreen-effect-to-js,kwin.upd:auto-bordersize,kwin.upd:animation-speed,kwin.upd:desktop-grid-click-behavior,kwin.upd:no-swap-encourage,kwin.upd:make-translucency-effect-disabled-by-default,kwin.upd:remove-flip-switch-effect,kwin.upd:remove-cover-switch-effect,kwin.upd:remove-cubeslide-effect,kwin.upd:remove-xrender-backend
 
 [Compositing]
 Backend=OpenGL
@@ -37,6 +37,11 @@ Rows=1
 [DrmOutputs][bf2d3f4398][bf2d3f4398]
 Scale=1
 
+[DrmOutputs][fc4db480-700a-546c-b3b1-1181242314f2][fc4db480-700a-546c-b3b1-1181242314f2]
+Mode=1920x1080_59934
+Scale=1
+Transform=normal
+
 [Effect-Blur]
 BlurStrength=15
 NoiseStrength=0
@@ -53,7 +58,6 @@ BorderActivateSphere=9
 BorderActivate=9
 
 [Effect-FlipSwitch]
-TabBox=false
 TabBoxAlternative=false
 
 [Effect-MagicLamp]
@@ -66,6 +70,9 @@ BorderActivateClass=9
 
 [Effect-Slide]
 SlideBackground=false
+
+[Effect-TrackMouse]
+Meta=false
 
 [ElectricBorders]
 Bottom=None
@@ -97,12 +104,11 @@ CommandWindowWheel=Scroll
 
 [Plugins]
 blurEnabled=true
-coverswitchEnabled=true
-flipswitchEnabled=true
+contrastEnabled=true
+diminactiveEnabled=true
 highlightwindowEnabled=true
-krohnkiteEnabled=false
+krohnkiteEnabled=true
 kwin4_effect_fadedesktopEnabled=true
-kwin4_effect_morphingpopupsEnabled=false
 kwin4_effect_squashEnabled=false
 magiclampEnabled=true
 minimizeallEnabled=false
@@ -112,14 +118,27 @@ slidingpopupsEnabled=false
 synchronizeskipswitcherEnabled=false
 videowallEnabled=false
 windowgeometryEnabled=false
+wobblywindowsEnabled=true
+
+[Script-desktopchangeosd]
+TextOnly=true
+
+[Script-krohnkite]
+enableSpreadLayout=false
+enableStairLayout=false
+ignoreTitle=Canvas
+newWindowAsMaster=true
+screenGapBottom=10
+screenGapLeft=10
+screenGapRight=10
+screenGapTop=10
+tileLayoutGap=10
 
 [TabBox]
 ActivitiesMode=1
 ApplicationsMode=0
 BorderActivate=9
 BorderAlternativeActivate=9
-DesktopLayout=org.kde.breeze.desktop
-DesktopListLayout=org.kde.breeze.desktop
 DesktopMode=1
 HighlightWindows=false
 LayoutName=thumbnails
@@ -152,7 +171,6 @@ ElectricBorderCornerRatio=0.25
 ElectricBorderDelay=150
 ElectricBorderMaximize=true
 ElectricBorderTiling=true
-ElectricBorders=0
 FocusPolicy=ClickToFocus
 FocusStealingPreventionLevel=1
 GeometryTip=false
@@ -162,7 +180,6 @@ MaximizeButtonMiddleClickCommand=Maximize (vertical only)
 MaximizeButtonRightClickCommand=Maximize (horizontal only)
 NextFocusPrefersMouse=false
 Placement=Cascade
-RollOverDesktops=false
 SeparateScreenFocus=false
 ShadeHover=false
 ShadeHoverInterval=250
@@ -171,6 +188,10 @@ TitlebarDoubleClickCommand=Maximize
 WindowSnapZone=10
 
 [org.kde.kdecoration2]
+BorderSize=None
+BorderSizeAuto=false
 ButtonsOnLeft=M
 ButtonsOnRight=IAX
 ShowToolTips=false
+library=org.kde.breeze
+theme=Breeze

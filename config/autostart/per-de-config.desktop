@@ -1,3 +1,4 @@
 [Desktop Entry]
+Name=Per DE Config Files
 Type=Application
 Exec=sh -c "~/.bin/per-de-config.sh"
