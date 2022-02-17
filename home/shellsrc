@@ -32,8 +32,47 @@ du1() { du -hd1 "$@" | sort -h; }
 
 open() {
 	for i in "$@"; do
+		if ! [ -e "$i" ]; then
+			echo "Nothing found at \"$i\""
+			continue
+		fi
 		execbg xdg-open "$i" 1>/dev/null 2>&1
 	done
+}
+
+defnamen() {
+	local ext="${2#.}"
+	local firstarg="${1%-}"
+	firstarg="$(dirname "$firstarg")/$(basename "$firstarg")"
+	firstarg="${firstarg#./}"
+	local name="${firstarg:-$namen}"
+	if [ -z "$name" ]; then
+		echo "Please specify a base for name"
+		return
+	fi
+	local bname="$(basename "$name")"
+	if [ $# -lt 2 ] && [ "${bname#.}" != "${bname##*.}" ]; then
+		if [ "$firstarg" ]; then
+			ext="${bname##*.}"
+		else
+			ext="${bname%-*-*.*}"
+			ext="${bname#$ext}"
+			ext="${ext#-*-*.}"
+		fi
+	fi
+	ext="${ext:+.$ext}"
+	if [ "$firstarg" ]; then
+		name="${name%$ext}"
+	else
+		local name="${namen%-*-*}"
+	fi
+	local n=001
+	local t="$(date +%b%d | tr '[:upper:]' '[:lower:]')"
+	while [ -e "$name-$t-$n$ext" ]; do
+		n="$(printf '%03i\n' $(( $n + 1)))"
+	done
+	namen="$(readlink -f "$name-$t-$n$ext")"
+	echo "namen=\"$namen\""
 }
 
 copy() {
@@ -45,7 +84,6 @@ copy() {
 	# If Wayland
 	#wl-copy -type $(file -b --mime-type "$1") "$1"
 }
-
 
 #################################
 ## Prompt string configuration ##

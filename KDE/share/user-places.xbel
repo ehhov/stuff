@@ -369,15 +369,52 @@
    </metadata>
   </info>
  </separator>
- <bookmark href="kdeconnect://61384aa48ac8456b/">
-  <title>Mi 5</title>
+ <separator>
   <info>
-   <metadata owner="http://freedesktop.org">
-    <bookmark:icon name="kdeconnect"/>
-   </metadata>
    <metadata owner="http://www.kde.org">
-    <ID>1638272776/8</ID>
+    <UDI>/org/kde/solid/udev/sys/devices/pci0000:00/0000:00:14.0/usb1/1-1</UDI>
+    <isSystemItem>true</isSystemItem>
    </metadata>
   </info>
- </bookmark>
+ </separator>
+ <separator>
+  <info>
+   <metadata owner="http://www.kde.org">
+    <UDI>/org/freedesktop/UDisks2/block_devices/loop0</UDI>
+    <isSystemItem>true</isSystemItem>
+   </metadata>
+  </info>
+ </separator>
+ <separator>
+  <info>
+   <metadata owner="http://www.kde.org">
+    <UDI>/org/freedesktop/UDisks2/block_devices/loop1</UDI>
+    <isSystemItem>true</isSystemItem>
+   </metadata>
+  </info>
+ </separator>
+ <separator>
+  <info>
+   <metadata owner="http://www.kde.org">
+    <UDI>/org/freedesktop/UDisks2/block_devices/loop2</UDI>
+    <isSystemItem>true</isSystemItem>
+   </metadata>
+  </info>
+ </separator>
+ <separator>
+  <info>
+   <metadata owner="http://www.kde.org">
+    <UDI>/org/freedesktop/UDisks2/block_devices/loop3</UDI>
+    <isSystemItem>true</isSystemItem>
+   </metadata>
+  </info>
+ </separator>
+ <separator>
+  <info>
+   <metadata owner="http://www.kde.org">
+    <UDI>/org/freedesktop/UDisks2/block_devices/loop4</UDI>
+    <isSystemItem>true</isSystemItem>
+   </metadata>
+  </info>
+ </separator>
 </xbel>

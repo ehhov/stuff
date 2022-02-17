@@ -18,6 +18,7 @@ set cursorline
 set path+=**
 
 set shortmess-=F
+set scrolloff=2
 set fillchars=fold:-
 set title
 set guicursor=n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20
@@ -32,8 +33,9 @@ set showbreak=\|
 set tabstop=8
 set softtabstop=0
 set shiftwidth=0
-set nosmarttab
+set smarttab
 set autoindent
+set copyindent
 
 set foldmethod=marker
 filetype on
@@ -51,9 +53,10 @@ command! -bang Q q<bang>
 command! D e %:p:h
 command! EE update <bar> e %
 command! -nargs=? M  wa <bar> ! make <args>
-command! -nargs=? Open update <bar> ! execbg xdg-open %:p
-command! -nargs=1 Oline exe "normal <esc>YPVr".<f-args>."Y"
-command! -nargs=1 Uline exe "normal <esc>YpVr".<f-args>."Y"
+command! -nargs=1 -complete=file Open update <bar> ! cd %:p:h; execbg xdg-open <q-args>
+command! -nargs=1 Oline exe "normal <esc>YPVr=0R".<q-args>." <esc>Y"
+command! -nargs=1 Uline exe "normal <esc>YpVr=0R".<q-args>." <esc>Y"
+command! Paste set invpaste paste?
 command! Terminal tabnew <bar> terminal
 
 nnoremap q: <nop>
@@ -62,6 +65,7 @@ noremap ' `
 noremap ` '
 nnoremap <c-a> ggVG
 tnoremap <esc> <c-\><c-n>
+unmap Y
 vnoremap <c-c> "+y
 vnoremap <c-x> "+d
 vnoremap <c-v> "+p
@@ -79,8 +83,8 @@ let &statusline=' %F %m%r%h%w%=%-6k %-16(%l,%c%V / %LL%) %P '
 set spelllang=en_us,ru
 set spellfile=~/.vim/spell/custom.utf-8.add
 set encoding=utf-8
-inoremap <c-s> <c-o>:silent set spell! <bar> echo " spell = ".&spell <cr>
-nnoremap <c-s> :silent set spell! <bar> echo " spell = ".&spell <cr>
+inoremap <c-s> <c-o>:set invspell spell?<cr>
+nnoremap <c-s> :set invspell spell?<cr>
 
 "let g:netrw_browsex_viewer = "mimeopen -n"
 let g:netrw_browse_split = 3

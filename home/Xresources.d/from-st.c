@@ -54,9 +54,17 @@ static const char *palettes[][259] = {
  "#ddd6c3", "#cb4b36", "#589e22", "#a39400", "#657bb3", "#6c71c4", "#589ea5", "#002b36",
  [256] = "#fdf6e3", "#556b73", "#586e75"}, /* Solarized light */
 
-{"#101010", "#efa6a2", "#80c990", "#a69460", "#a3b8ef", "#e6a3dc", "#50cacd", "#808080",
- "#252525", "#e0af85", "#5accaf", "#c8c874", "#ccaced", "#f2a1c2", "#74c3e4", "#c0c0c0",
- [256] = "#101010", "#c0c0c0", "#c0c0c0"}, /* other dark */
+{"#eee8d5", "#dc322f", "#859900", "#b58900", "#268bd2", "#d33682", "#2aa198", "#b5b5ab",
+ "#ddd6c3", "#cb4b36", "#589e22", "#a39400", "#657bb3", "#6c71c4", "#589ea5", "#002b36",
+ [256] = "#1F1F28", "#DCD7BA", "#54546D"}, /* Kanagawa */
+
+{"#1c1b19", "#ef2f27", "#519f50", "#fbb829", "#2c78bf", "#e02c6d", "#0aaeb3", "#6C6860",
+ "#292724", "#f75341", "#98bc37", "#fed06e", "#68a8e4", "#ff5c8f", "#2be4d0", "#fce8c3",
+ [256] = "#1c1b19", "#fce8c3", "#fbb829"}, /* Srcery */
+
+{"#101010", "#D67B76", "#80c990", "#C79D73", "#a3b8ef", "#e6a3dc", "#50cacd", "#606060",
+ "#252525", "#E0A084", "#5accaf", "#c8c874", "#ccaced", "#f2a1c2", "#74c3e4", "#c0c0c0",
+ [256] = "#101010", "#c0c0c0", "#c0c0c0"}, /* soft dark */
 
 {"#2E3436", "#CC0000", "#4B910B", "#C4A000", "#3465A4", "#755079", "#06989A", "#916E86",
  "#401C35", "#EF2929", "#8AE234", "#FCE94F", "#729FCF", "#AD7FA8", "#34E2E2", "#EEEEEC",
@@ -83,7 +91,7 @@ static const char *palettes[][259] = {
  [256] = "#fdf6e3", "#657b83", "#586e75"}, /* Solarized light original */
 };
 static const char *names[] = {
-	"light", "github", "Dracula", "Nord", "Solarized_dark", "Solarized_light", "other_dark", "Ubuntu", "Gruvbox_dark", "Gruvbox_light", "dark", "Solarized_dark_orig", "Solarized_light_orig"
+	"light", "github", "Dracula", "Nord", "Solarized_dark", "Solarized_light", "Kanagawa", "Srcery", "soft_dark", "Ubuntu", "Gruvbox_dark", "Gruvbox_light", "dark", "Solarized_dark_orig", "Solarized_light_orig"
 };
 
 int main() {

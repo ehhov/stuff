@@ -36,7 +36,8 @@ systemctl set-default multi-user.target
 
 Create an ssh key and add it to GitHub and other services.
 ``` bash
-ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+ssh-keygen -t ed25519 -C "your_email@example.com"
+# OR ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 ```
 
 [GitHub](https://docs.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account)

@@ -8,11 +8,6 @@ FILES = ${PROGS} brightness colors colors-all epsunite\
         pdfsepunite replaceindir svg2pdf texclean\
         usb volume showgit flatsync
 
-define NL
-
-
-endef
-
 all: ${PROGS} ${FILES}
 
 install: all

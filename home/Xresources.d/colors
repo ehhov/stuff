@@ -127,26 +127,68 @@
 #define Solarized_light_fg    #556b73
 #define Solarized_light_cur   #586e75
 
-!!! other_dark color scheme
-#define other_dark_c0    #101010
-#define other_dark_c1    #efa6a2
-#define other_dark_c2    #80c990
-#define other_dark_c3    #a69460
-#define other_dark_c4    #a3b8ef
-#define other_dark_c5    #e6a3dc
-#define other_dark_c6    #50cacd
-#define other_dark_c7    #808080
-#define other_dark_c8    #252525
-#define other_dark_c9    #e0af85
-#define other_dark_c10   #5accaf
-#define other_dark_c11   #c8c874
-#define other_dark_c12   #ccaced
-#define other_dark_c13   #f2a1c2
-#define other_dark_c14   #74c3e4
-#define other_dark_c15   #c0c0c0
-#define other_dark_bg    #101010
-#define other_dark_fg    #c0c0c0
-#define other_dark_cur   #c0c0c0
+!!! Kanagawa color scheme
+#define Kanagawa_c0    #eee8d5
+#define Kanagawa_c1    #dc322f
+#define Kanagawa_c2    #859900
+#define Kanagawa_c3    #b58900
+#define Kanagawa_c4    #268bd2
+#define Kanagawa_c5    #d33682
+#define Kanagawa_c6    #2aa198
+#define Kanagawa_c7    #b5b5ab
+#define Kanagawa_c8    #ddd6c3
+#define Kanagawa_c9    #cb4b36
+#define Kanagawa_c10   #589e22
+#define Kanagawa_c11   #a39400
+#define Kanagawa_c12   #657bb3
+#define Kanagawa_c13   #6c71c4
+#define Kanagawa_c14   #589ea5
+#define Kanagawa_c15   #002b36
+#define Kanagawa_bg    #1F1F28
+#define Kanagawa_fg    #DCD7BA
+#define Kanagawa_cur   #54546D
+
+!!! Srcery color scheme
+#define Srcery_c0    #1c1b19
+#define Srcery_c1    #ef2f27
+#define Srcery_c2    #519f50
+#define Srcery_c3    #fbb829
+#define Srcery_c4    #2c78bf
+#define Srcery_c5    #e02c6d
+#define Srcery_c6    #0aaeb3
+#define Srcery_c7    #6C6860
+#define Srcery_c8    #292724
+#define Srcery_c9    #f75341
+#define Srcery_c10   #98bc37
+#define Srcery_c11   #fed06e
+#define Srcery_c12   #68a8e4
+#define Srcery_c13   #ff5c8f
+#define Srcery_c14   #2be4d0
+#define Srcery_c15   #fce8c3
+#define Srcery_bg    #1c1b19
+#define Srcery_fg    #fce8c3
+#define Srcery_cur   #fbb829
+
+!!! soft_dark color scheme
+#define soft_dark_c0    #101010
+#define soft_dark_c1    #D67B76
+#define soft_dark_c2    #80c990
+#define soft_dark_c3    #C79D73
+#define soft_dark_c4    #a3b8ef
+#define soft_dark_c5    #e6a3dc
+#define soft_dark_c6    #50cacd
+#define soft_dark_c7    #606060
+#define soft_dark_c8    #252525
+#define soft_dark_c9    #E0A084
+#define soft_dark_c10   #5accaf
+#define soft_dark_c11   #c8c874
+#define soft_dark_c12   #ccaced
+#define soft_dark_c13   #f2a1c2
+#define soft_dark_c14   #74c3e4
+#define soft_dark_c15   #c0c0c0
+#define soft_dark_bg    #101010
+#define soft_dark_fg    #c0c0c0
+#define soft_dark_cur   #c0c0c0
 
 !!! Ubuntu color scheme
 #define Ubuntu_c0    #2E3436

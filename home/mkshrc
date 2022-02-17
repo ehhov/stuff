@@ -9,14 +9,12 @@ HISTFILE=~/.mksh_history
 
 bind '^L=clear-screen'
 bind -m ^U='^[0^K'
-bind '^[[M~=delete-word-forward' # used by st. Doesn't work anyway.
 bind -m ^Q='^A^[[1;5C^[[C'
-#bind '^[[3;5~=delete-word-forward' # used by xterm, but too long for mksh
 
 [ -r ~/.shellsrc ] && . ~/.shellsrc
 
 PS1func() {
-	local title time user path branch n m item
+	local title time user path branch njobs n m item
 	time="36| $(PStime)"
 	user="35| $USER"
 	path="32| $(sed -E 's/([^\./]{1})[^/]*\//\1\//g' <<< ${PWD/#$HOME/\~})"
@@ -51,12 +49,14 @@ PS1func() {
 		branch=" (${branch# })"
 	fi
 	branch="37|$branch"
+	njobs=" [$(jobs -p | wc -l)]"
+	njobs="37|${njobs# \[0\]}"
 	# hyphen -, en dash –, em dash —
 	title="${PWD/#$HOME/\~} : ${0##*/} — ${TERM%-*color}"
 
 	echo -en "\\001\\015"
 	echo -en "\\001\\033]0;"; echo -n "$title"; echo -en "\\007\\001"
-	for item in "$time" "$user" "$path" "$branch"; do
+	for item in "$time" "$user" "$path" "$branch" "$njobs"; do
 		echo -en "\\001\\033[${item%%\|*}m\\001"
 		echo -n "${item#*\|}"
 	done

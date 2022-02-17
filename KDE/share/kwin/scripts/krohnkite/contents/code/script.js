@@ -1,10 +1,12 @@
 "use strict";
-var __spreadArrays = (this && this.__spreadArrays) || function () {
-    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
-    for (var r = Array(s), k = 0, i = 0; i < il; i++)
-        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
-            r[k] = a[j];
-    return r;
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
 };
 var Shortcut;
 (function (Shortcut) {
@@ -38,6 +40,8 @@ var Shortcut;
     Shortcut[Shortcut["NextLayout"] = 27] = "NextLayout";
     Shortcut[Shortcut["PreviousLayout"] = 28] = "PreviousLayout";
     Shortcut[Shortcut["SetLayout"] = 29] = "SetLayout";
+    Shortcut[Shortcut["Rotate"] = 30] = "Rotate";
+    Shortcut[Shortcut["RotatePart"] = 31] = "RotatePart";
 })(Shortcut || (Shortcut = {}));
 var CONFIG;
 var KWinConfig = (function () {
@@ -49,13 +53,15 @@ var KWinConfig = (function () {
             return str.split(",").map(function (part) { return part.trim(); });
         }
         DEBUG.enabled = DEBUG.enabled || KWin.readConfig("debug", false);
-        this.layouts = [];
+        this.layoutOrder = [];
+        this.layoutFactories = {};
         [
             ["enableTileLayout", true, TileLayout],
             ["enableMonocleLayout", true, MonocleLayout],
             ["enableThreeColumnLayout", true, ThreeColumnLayout],
             ["enableSpreadLayout", true, SpreadLayout],
             ["enableStairLayout", true, StairLayout],
+            ["enableSpiralLayout", true, SpiralLayout],
             ["enableQuarterLayout", false, QuarterLayout],
             ["enableFloatingLayout", false, FloatingLayout],
             ["enableCascadeLayout", false, CascadeLayout],
@@ -63,7 +69,8 @@ var KWinConfig = (function () {
             .forEach(function (_a) {
             var configKey = _a[0], defaultValue = _a[1], layoutClass = _a[2];
             if (KWin.readConfig(configKey, defaultValue))
-                _this.layouts.push(new layoutClass());
+                _this.layoutOrder.push(layoutClass.id);
+            _this.layoutFactories[layoutClass.id] = (function () { return new layoutClass(); });
         });
         this.maximizeSoleTile = KWin.readConfig("maximizeSoleTile", false);
         this.monocleMaximize = KWin.readConfig("monocleMaximize", true);
@@ -222,6 +229,8 @@ var KWinDriver = (function () {
         bind("", "Cycle Layout", Shortcut.NextLayout);
         bind("\\", "Next Layout", Shortcut.NextLayout);
         bind("|", "Previous Layout", Shortcut.PreviousLayout);
+        bind("R", "Rotate", Shortcut.Rotate);
+        bind("Shift+R", "Rotate Part", Shortcut.RotatePart);
         bind("Return", "Set master", Shortcut.SetMaster);
         var bindLayout = function (seq, title, layoutClass) {
             title = "Krohnkite: " + title + " Layout";
@@ -286,7 +295,11 @@ var KWinDriver = (function () {
             return _this.control.onCurrentSurfaceChanged(_this);
         });
         this.connect(workspace.clientAdded, function (client) {
+            var handled = false;
             var handler = function () {
+                if (handled)
+                    return;
+                handled = true;
                 var window = _this.windowMap.add(client);
                 _this.control.onWindowAdded(_this, window);
                 if (window.state !== WindowState.Unmanaged)
@@ -296,6 +309,7 @@ var KWinDriver = (function () {
                 client.windowShown.disconnect(wrapper);
             };
             var wrapper = _this.connect(client.windowShown, handler);
+            _this.setTimeout(handler, 50);
         });
         this.connect(workspace.clientRemoved, function (client) {
             var window = _this.windowMap.get(client);
@@ -531,10 +545,12 @@ var KWinWindow = (function () {
     Object.defineProperty(KWinWindow.prototype, "shouldIgnore", {
         get: function () {
             var resourceClass = String(this.client.resourceClass);
+            var resourceName = String(this.client.resourceName);
             var windowRole = String(this.client.windowRole);
             return (this.client.specialWindow
                 || resourceClass === "plasmashell"
                 || (KWINCONFIG.ignoreClass.indexOf(resourceClass) >= 0)
+                || (KWINCONFIG.ignoreClass.indexOf(resourceName) >= 0)
                 || (matchWords(this.client.caption, KWINCONFIG.ignoreTitle) >= 0)
                 || (KWINCONFIG.ignoreRole.indexOf(windowRole) >= 0));
         },
@@ -544,11 +560,13 @@ var KWinWindow = (function () {
     Object.defineProperty(KWinWindow.prototype, "shouldFloat", {
         get: function () {
             var resourceClass = String(this.client.resourceClass);
+            var resourceName = String(this.client.resourceName);
             return (this.client.modal
                 || (!this.client.resizeable)
                 || (KWINCONFIG.floatUtility
                     && (this.client.dialog || this.client.splash || this.client.utility))
                 || (KWINCONFIG.floatingClass.indexOf(resourceClass) >= 0)
+                || (KWINCONFIG.floatingClass.indexOf(resourceName) >= 0)
                 || (matchWords(this.client.caption, KWINCONFIG.floatingTitle) >= 0));
         },
         enumerable: false,
@@ -577,8 +595,6 @@ var KWinWindow = (function () {
         configurable: true
     });
     KWinWindow.prototype.commit = function (geometry, noBorder, keepAbove) {
-        if (this.maximized)
-            keepAbove = true;
         debugObj(function () { return ["KWinWindow#commit", { geometry: geometry, noBorder: noBorder, keepAbove: keepAbove }]; });
         if (this.client.move || this.client.resize)
             return;
@@ -1075,7 +1091,8 @@ var TilingEngine = (function () {
             tilingArea = workingArea.gap(CONFIG.screenGapLeft, CONFIG.screenGapRight, CONFIG.screenGapTop, CONFIG.screenGapBottom);
         var visibles = this.windows.getVisibleWindows(srf);
         debugObj(function () { return ["arrangeScreen", {
-                layout: layout, srf: srf,
+                layout: layout,
+                srf: srf,
                 visibles: visibles.length,
             }]; });
         visibles.forEach(function (window) {
@@ -1329,63 +1346,49 @@ var EngineContext = (function () {
 }());
 var LayoutStoreEntry = (function () {
     function LayoutStoreEntry() {
-        var _this = this;
-        this.index = 0;
-        this.key = CONFIG.layouts[0].classID;
+        this.currentIndex = 0;
+        this.currentID = CONFIG.layoutOrder[0];
         this.layouts = {};
-        this.prevKey = this.key;
-        CONFIG.layouts.forEach(function (layout) {
-            _this.layouts[layout.classID] = layout.clone();
-        });
-        [
-            TileLayout,
-            MonocleLayout,
-            ThreeColumnLayout,
-            SpreadLayout,
-            StairLayout,
-            QuarterLayout,
-            FloatingLayout,
-        ].forEach(function (layoutClass) {
-            if (!_this.layouts[layoutClass.id])
-                _this.layouts[layoutClass.id] = new layoutClass();
-        });
+        this.previousID = this.currentID;
+        this.loadLayout(this.currentID);
     }
     Object.defineProperty(LayoutStoreEntry.prototype, "currentLayout", {
         get: function () {
-            return (this.index === null)
-                ? this.layouts[this.key]
-                : this.layouts[CONFIG.layouts[this.index].classID];
+            return this.loadLayout(this.currentID);
         },
         enumerable: false,
         configurable: true
     });
     LayoutStoreEntry.prototype.cycleLayout = function (step) {
-        this.prevKey = this.key;
-        this.index = (this.index !== null)
-            ? wrapIndex(this.index + step, CONFIG.layouts.length)
+        this.previousID = this.currentID;
+        this.currentIndex = (this.currentIndex !== null)
+            ? wrapIndex(this.currentIndex + step, CONFIG.layoutOrder.length)
             : 0;
-        this.key = CONFIG.layouts[this.index].classID;
-        return this.currentLayout;
+        this.currentID = CONFIG.layoutOrder[this.currentIndex];
+        return this.loadLayout(this.currentID);
     };
-    LayoutStoreEntry.prototype.setLayout = function (classID) {
-        if (this.key === classID) {
-            if (classID === MonocleLayout.id)
-                classID = this.prevKey;
-            else
-                return this.currentLayout;
+    LayoutStoreEntry.prototype.setLayout = function (targetID) {
+        var targetLayout = this.loadLayout(targetID);
+        if (targetLayout instanceof MonocleLayout
+            && this.currentLayout instanceof MonocleLayout) {
+            this.currentID = this.previousID;
+            this.previousID = targetID;
         }
-        var layout = this.layouts[classID];
+        else if (this.currentID !== targetID) {
+            this.previousID = this.currentID;
+            this.currentID = targetID;
+        }
+        this.updateCurrentIndex();
+        return targetLayout;
+    };
+    LayoutStoreEntry.prototype.updateCurrentIndex = function () {
+        var idx = CONFIG.layoutOrder.indexOf(this.currentID);
+        this.currentIndex = (idx === -1) ? null : idx;
+    };
+    LayoutStoreEntry.prototype.loadLayout = function (ID) {
+        var layout = this.layouts[ID];
         if (!layout)
-            return this.currentLayout;
-        this.prevKey = this.key;
-        this.key = layout.classID;
-        this.index = null;
-        for (var i = 0; i < CONFIG.layouts.length; i++) {
-            if (CONFIG.layouts[i].classID === this.key) {
-                this.index = i;
-                break;
-            }
-        }
+            layout = this.layouts[ID] = CONFIG.layoutFactories[ID]();
         return layout;
     };
     return LayoutStoreEntry;
@@ -1435,7 +1438,7 @@ var Window = (function () {
         this.geometry = window.geometry;
         this.timestamp = 0;
         this.internalState = WindowState.Unmanaged;
-        this.shouldCommitFloat = false;
+        this.shouldCommitFloat = this.shouldFloat;
         this.weightMap = {};
     }
     Window.isTileableState = function (state) {
@@ -1541,7 +1544,7 @@ var Window = (function () {
         debugObj(function () { return ["Window#commit", { state: WindowState[state] }]; });
         switch (state) {
             case WindowState.NativeMaximized:
-                this.window.commit(undefined, undefined, undefined);
+                this.window.commit(undefined, undefined, false);
                 break;
             case WindowState.NativeFullscreen:
                 this.window.commit(undefined, undefined, undefined);
@@ -1659,39 +1662,16 @@ var CascadeLayout = (function () {
         this.classID = CascadeLayout.id;
     }
     CascadeLayout.decomposeDirection = function (dir) {
-        var vertStep;
         switch (dir) {
-            case CascadeDirection.North:
-            case CascadeDirection.NorthEast:
-            case CascadeDirection.NorthWest:
-                vertStep = -1;
-                break;
-            case CascadeDirection.South:
-            case CascadeDirection.SouthEast:
-            case CascadeDirection.SouthWest:
-                vertStep = 1;
-                break;
-            default:
-                vertStep = 0;
-                break;
+            case CascadeDirection.NorthWest: return [-1, -1];
+            case CascadeDirection.North: return [-1, 0];
+            case CascadeDirection.NorthEast: return [-1, 1];
+            case CascadeDirection.East: return [0, 1];
+            case CascadeDirection.SouthEast: return [1, 1];
+            case CascadeDirection.South: return [1, 0];
+            case CascadeDirection.SouthWest: return [1, -1];
+            case CascadeDirection.West: return [0, -1];
         }
-        var horzStep;
-        switch (dir) {
-            case CascadeDirection.East:
-            case CascadeDirection.NorthEast:
-            case CascadeDirection.SouthEast:
-                horzStep = 1;
-                break;
-            case CascadeDirection.West:
-            case CascadeDirection.NorthWest:
-            case CascadeDirection.SouthWest:
-                horzStep = -1;
-                break;
-            default:
-                horzStep = 0;
-                break;
-        }
-        return [vertStep, horzStep];
     };
     Object.defineProperty(CascadeLayout.prototype, "description", {
         get: function () {
@@ -1759,6 +1739,197 @@ var FloatingLayout = (function () {
     FloatingLayout.id = "FloatingLayout ";
     FloatingLayout.instance = new FloatingLayout();
     return FloatingLayout;
+}());
+var FillLayoutPart = (function () {
+    function FillLayoutPart() {
+    }
+    FillLayoutPart.prototype.adjust = function (area, tiles, basis, delta) {
+        return delta;
+    };
+    FillLayoutPart.prototype.apply = function (area, tiles) {
+        return tiles.map(function (tile) {
+            return area;
+        });
+    };
+    return FillLayoutPart;
+}());
+var HalfSplitLayoutPart = (function () {
+    function HalfSplitLayoutPart(primary, secondary) {
+        this.primary = primary;
+        this.secondary = secondary;
+        this.angle = 0;
+        this.gap = 0;
+        this.primarySize = 1;
+        this.ratio = 0.5;
+    }
+    Object.defineProperty(HalfSplitLayoutPart.prototype, "horizontal", {
+        get: function () {
+            return this.angle === 0 || this.angle === 180;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(HalfSplitLayoutPart.prototype, "reversed", {
+        get: function () {
+            return this.angle === 180 || this.angle === 270;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    HalfSplitLayoutPart.prototype.adjust = function (area, tiles, basis, delta) {
+        var basisIndex = tiles.indexOf(basis);
+        if (basisIndex < 0)
+            return delta;
+        if (tiles.length <= this.primarySize) {
+            return this.primary.adjust(area, tiles, basis, delta);
+        }
+        else if (this.primarySize === 0) {
+            return this.secondary.adjust(area, tiles, basis, delta);
+        }
+        else {
+            var targetIndex = (basisIndex < this.primarySize) ? 0 : 1;
+            if (targetIndex === 0) {
+                delta = this.primary.adjust(area, tiles.slice(0, this.primarySize), basis, delta);
+            }
+            else {
+                delta = this.secondary.adjust(area, tiles.slice(this.primarySize), basis, delta);
+            }
+            this.ratio = LayoutUtils.adjustAreaHalfWeights(area, (this.reversed) ? 1 - this.ratio : this.ratio, this.gap, (this.reversed) ? 1 - targetIndex : targetIndex, delta, this.horizontal);
+            if (this.reversed)
+                this.ratio = 1 - this.ratio;
+            switch ((this.angle * 10) + targetIndex + 1) {
+                case 1:
+                case 1802:
+                    return new RectDelta(0, delta.west, delta.south, delta.north);
+                case 2:
+                case 1801:
+                    return new RectDelta(delta.east, 0, delta.south, delta.north);
+                case 901:
+                case 2702:
+                    return new RectDelta(delta.east, delta.west, 0, delta.north);
+                case 902:
+                case 2701:
+                    return new RectDelta(delta.east, delta.west, delta.south, 0);
+            }
+            return delta;
+        }
+    };
+    HalfSplitLayoutPart.prototype.apply = function (area, tiles) {
+        if (tiles.length <= this.primarySize) {
+            return this.primary.apply(area, tiles);
+        }
+        else if (this.primarySize === 0) {
+            return this.secondary.apply(area, tiles);
+        }
+        else {
+            var reversed = this.reversed;
+            var ratio = (reversed) ? 1 - this.ratio : this.ratio;
+            var _a = LayoutUtils.splitAreaHalfWeighted(area, ratio, this.gap, this.horizontal), area1 = _a[0], area2 = _a[1];
+            var result1 = this.primary.apply((reversed) ? area2 : area1, tiles.slice(0, this.primarySize));
+            var result2 = this.secondary.apply((reversed) ? area1 : area2, tiles.slice(this.primarySize));
+            return result1.concat(result2);
+        }
+    };
+    return HalfSplitLayoutPart;
+}());
+var StackLayoutPart = (function () {
+    function StackLayoutPart() {
+        this.gap = 0;
+    }
+    StackLayoutPart.prototype.adjust = function (area, tiles, basis, delta) {
+        var weights = LayoutUtils.adjustAreaWeights(area, tiles.map(function (tile) { return tile.weight; }), CONFIG.tileLayoutGap, tiles.indexOf(basis), delta, false);
+        weights.forEach(function (weight, i) {
+            tiles[i].weight = weight * tiles.length;
+        });
+        var idx = tiles.indexOf(basis);
+        return new RectDelta(delta.east, delta.west, (idx === tiles.length - 1) ? delta.south : 0, (idx === 0) ? delta.north : 0);
+    };
+    StackLayoutPart.prototype.apply = function (area, tiles) {
+        var weights = tiles.map(function (tile) { return tile.weight; });
+        return LayoutUtils.splitAreaWeighted(area, weights, this.gap);
+    };
+    return StackLayoutPart;
+}());
+var RotateLayoutPart = (function () {
+    function RotateLayoutPart(inner, angle) {
+        if (angle === void 0) { angle = 0; }
+        this.inner = inner;
+        this.angle = angle;
+    }
+    RotateLayoutPart.prototype.adjust = function (area, tiles, basis, delta) {
+        switch (this.angle) {
+            case 0: break;
+            case 90:
+                area = new Rect(area.y, area.x, area.height, area.width);
+                delta = new RectDelta(delta.south, delta.north, delta.east, delta.west);
+                break;
+            case 180:
+                delta = new RectDelta(delta.west, delta.east, delta.south, delta.north);
+                break;
+            case 270:
+                area = new Rect(area.y, area.x, area.height, area.width);
+                delta = new RectDelta(delta.north, delta.south, delta.east, delta.west);
+                break;
+        }
+        delta = this.inner.adjust(area, tiles, basis, delta);
+        switch (this.angle) {
+            case 0:
+                delta = delta;
+                break;
+            case 90:
+                delta = new RectDelta(delta.south, delta.north, delta.east, delta.west);
+                break;
+            case 180:
+                delta = new RectDelta(delta.west, delta.east, delta.south, delta.north);
+                break;
+            case 270:
+                delta = new RectDelta(delta.north, delta.south, delta.east, delta.west);
+                break;
+        }
+        return delta;
+    };
+    RotateLayoutPart.prototype.apply = function (area, tiles) {
+        switch (this.angle) {
+            case 0: break;
+            case 90:
+                area = new Rect(area.y, area.x, area.height, area.width);
+                break;
+            case 180: break;
+            case 270:
+                area = new Rect(area.y, area.x, area.height, area.width);
+                break;
+        }
+        var innerResult = this.inner.apply(area, tiles);
+        switch (this.angle) {
+            case 0:
+                return innerResult;
+            case 90:
+                return innerResult.map(function (g) {
+                    return new Rect(g.y, g.x, g.height, g.width);
+                });
+            case 180:
+                return innerResult.map(function (g) {
+                    var rx = g.x - area.x;
+                    var newX = area.x + area.width - (rx + g.width);
+                    return new Rect(newX, g.y, g.width, g.height);
+                });
+            case 270:
+                return innerResult.map(function (g) {
+                    var rx = g.x - area.x;
+                    var newY = area.x + area.width - (rx + g.width);
+                    return new Rect(g.y, newY, g.height, g.width);
+                });
+        }
+    };
+    RotateLayoutPart.prototype.rotate = function (amount) {
+        var angle = this.angle + amount;
+        if (angle < 0)
+            angle = 270;
+        else if (angle >= 360)
+            angle = 0;
+        this.angle = angle;
+    };
+    return RotateLayoutPart;
 }());
 var LayoutUtils = (function () {
     function LayoutUtils() {
@@ -1859,7 +2030,7 @@ var MonocleLayout = (function () {
             tile.geometry = area;
         });
         if (ctx.backend === KWinDriver.backendName && KWINCONFIG.monocleMinimizeRest) {
-            var tiles_1 = __spreadArrays(tileables);
+            var tiles_1 = __spreadArray([], tileables, true);
             ctx.setTimeout(function () {
                 var current = ctx.currentWindow;
                 if (current && current.tiled) {
@@ -1991,6 +2162,65 @@ var QuarterLayout = (function () {
     QuarterLayout.id = "QuarterLayout";
     return QuarterLayout;
 }());
+var SpiralLayout = (function () {
+    function SpiralLayout() {
+        this.description = "Spiral";
+        this.depth = 1;
+        this.parts = new HalfSplitLayoutPart(new FillLayoutPart(), new FillLayoutPart());
+        this.parts.angle = 0;
+        this.parts.gap = CONFIG.tileLayoutGap;
+    }
+    SpiralLayout.prototype.adjust = function (area, tiles, basis, delta) {
+        this.parts.adjust(area, tiles, basis, delta);
+    };
+    SpiralLayout.prototype.apply = function (ctx, tileables, area) {
+        tileables.forEach(function (tileable) {
+            return tileable.state = WindowState.Tiled;
+        });
+        this.bore(tileables.length);
+        this.parts.apply(area, tileables)
+            .forEach(function (geometry, i) {
+            tileables[i].geometry = geometry;
+        });
+    };
+    SpiralLayout.prototype.toString = function () {
+        return "Spiral()";
+    };
+    SpiralLayout.prototype.bore = function (depth) {
+        if (this.depth >= depth)
+            return;
+        var hpart = this.parts;
+        var i;
+        for (i = 0; i < this.depth - 1; i++) {
+            hpart = hpart.secondary;
+        }
+        var lastFillPart = hpart.secondary;
+        var npart;
+        while (i < depth - 1) {
+            npart = new HalfSplitLayoutPart(new FillLayoutPart(), lastFillPart);
+            npart.gap = CONFIG.tileLayoutGap;
+            switch ((i + 1) % 4) {
+                case 0:
+                    npart.angle = 0;
+                    break;
+                case 1:
+                    npart.angle = 90;
+                    break;
+                case 2:
+                    npart.angle = 180;
+                    break;
+                case 3:
+                    npart.angle = 270;
+                    break;
+            }
+            hpart.secondary = npart;
+            hpart = npart;
+            i++;
+        }
+        this.depth = depth;
+    };
+    return SpiralLayout;
+}());
 var SpreadLayout = (function () {
     function SpreadLayout() {
         this.classID = SpreadLayout.id;
@@ -2034,52 +2264,6 @@ var SpreadLayout = (function () {
     };
     SpreadLayout.id = "SpreadLayout";
     return SpreadLayout;
-}());
-var StackLayout = (function () {
-    function StackLayout() {
-        this.classID = StackLayout.id;
-        this.size = 0;
-    }
-    Object.defineProperty(StackLayout.prototype, "description", {
-        get: function () {
-            return "Stack [" + this.size + "]";
-        },
-        enumerable: false,
-        configurable: true
-    });
-    StackLayout.prototype.apply = function (ctx, tileables, area) {
-        tileables.forEach(function (tile) { return tile.state = WindowState.Tiled; });
-        var tiles = tileables;
-        LayoutUtils.splitAreaWeighted(area, tiles.map(function (tile) { return tile.weight; }), CONFIG.tileLayoutGap)
-            .forEach(function (rect, i) {
-            tiles[i].geometry = rect;
-        });
-    };
-    StackLayout.prototype.clone = function () {
-        var other = new StackLayout();
-        other.size = this.size;
-        return other;
-    };
-    StackLayout.prototype.toString = function () {
-        return "StackLayout(size=" + this.size + ")";
-    };
-    StackLayout.prototype.handleShortcut = function (ctx, input, data) {
-        switch (input) {
-            case Shortcut.Increase:
-                if (this.size < 10)
-                    this.size += 1;
-                ctx.showNotification(this.description);
-                return true;
-            case Shortcut.Decrease:
-                if (this.size > 0)
-                    this.size -= 1;
-                ctx.showNotification(this.description);
-                return true;
-        }
-        return false;
-    };
-    StackLayout.id = "StackLayout";
-    return StackLayout;
 }());
 var StairLayout = (function () {
     function StairLayout() {
@@ -2247,8 +2431,11 @@ var ThreeColumnLayout = (function () {
 var TileLayout = (function () {
     function TileLayout() {
         this.classID = TileLayout.id;
-        this.numMaster = 1;
-        this.masterRatio = 0.55;
+        this.parts = new RotateLayoutPart(new HalfSplitLayoutPart(new RotateLayoutPart(new StackLayoutPart()), new StackLayoutPart()));
+        var masterPart = this.parts.inner;
+        masterPart.gap =
+            masterPart.primary.inner.gap =
+                masterPart.secondary.gap = CONFIG.tileLayoutGap;
     }
     Object.defineProperty(TileLayout.prototype, "description", {
         get: function () {
@@ -2257,48 +2444,37 @@ var TileLayout = (function () {
         enumerable: false,
         configurable: true
     });
+    Object.defineProperty(TileLayout.prototype, "numMaster", {
+        get: function () {
+            return this.parts.inner.primarySize;
+        },
+        set: function (value) {
+            this.parts.inner.primarySize = value;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(TileLayout.prototype, "masterRatio", {
+        get: function () {
+            return this.parts.inner.ratio;
+        },
+        set: function (value) {
+            this.parts.inner.ratio = value;
+        },
+        enumerable: false,
+        configurable: true
+    });
     TileLayout.prototype.adjust = function (area, tiles, basis, delta) {
-        var basisIndex = tiles.indexOf(basis);
-        if (basisIndex < 0)
-            return;
-        this.masterRatio = LayoutUtils.adjustAreaHalfWeights(area, this.masterRatio, CONFIG.tileLayoutGap, (basisIndex < this.numMaster) ? 0 : 1, delta, true);
-        this.masterRatio = clip(this.masterRatio, TileLayout.MIN_MASTER_RATIO, TileLayout.MAX_MASTER_RATIO);
-        if (basisIndex < this.numMaster) {
-            var masterTiles_3 = tiles.slice(0, this.numMaster);
-            LayoutUtils.adjustAreaWeights(area, masterTiles_3.map(function (tile) { return tile.weight; }), CONFIG.tileLayoutGap, masterTiles_3.indexOf(basis), delta)
-                .forEach(function (weight, i) {
-                masterTiles_3[i].weight = weight * masterTiles_3.length;
-            });
-        }
-        else {
-            var stackTiles_1 = tiles.slice(this.numMaster);
-            LayoutUtils.adjustAreaWeights(area, stackTiles_1.map(function (tile) { return tile.weight; }), CONFIG.tileLayoutGap, stackTiles_1.indexOf(basis), delta)
-                .forEach(function (weight, i) {
-                stackTiles_1[i].weight = weight * stackTiles_1.length;
-            });
-        }
+        this.parts.adjust(area, tiles, basis, delta);
     };
     TileLayout.prototype.apply = function (ctx, tileables, area) {
-        tileables.forEach(function (tileable) { return tileable.state = WindowState.Tiled; });
-        var tiles = tileables;
-        if (tiles.length <= this.numMaster || this.numMaster === 0)
-            LayoutUtils.splitAreaWeighted(area, tiles.map(function (tile) { return tile.weight; }), CONFIG.tileLayoutGap)
-                .forEach(function (rect, i) {
-                tiles[i].geometry = rect;
-            });
-        else {
-            var _a = LayoutUtils.splitAreaHalfWeighted(area, this.masterRatio, CONFIG.tileLayoutGap, true), masterArea = _a[0], stackArea = _a[1];
-            var masterTiles_4 = tiles.slice(0, this.numMaster);
-            var stackTiles_2 = tiles.slice(this.numMaster);
-            LayoutUtils.splitAreaWeighted(masterArea, masterTiles_4.map(function (tile) { return tile.weight; }), CONFIG.tileLayoutGap)
-                .forEach(function (rect, i) {
-                masterTiles_4[i].geometry = rect;
-            });
-            LayoutUtils.splitAreaWeighted(stackArea, stackTiles_2.map(function (tile) { return tile.weight; }), CONFIG.tileLayoutGap)
-                .forEach(function (rect, i) {
-                stackTiles_2[i].geometry = rect;
-            });
-        }
+        tileables.forEach(function (tileable) {
+            return tileable.state = WindowState.Tiled;
+        });
+        this.parts.apply(area, tileables)
+            .forEach(function (geometry, i) {
+            tileables[i].geometry = geometry;
+        });
     };
     TileLayout.prototype.clone = function () {
         var other = new TileLayout();
@@ -2323,6 +2499,12 @@ var TileLayout = (function () {
                 if (this.numMaster > 0)
                     this.numMaster -= 1;
                 ctx.showNotification(this.description);
+                break;
+            case Shortcut.Rotate:
+                this.parts.rotate(90);
+                break;
+            case Shortcut.RotatePart:
+                this.parts.inner.primary.rotate(90);
                 break;
             default:
                 return false;
@@ -2412,11 +2594,11 @@ function toRect(qrect) {
     return new Rect(qrect.x, qrect.y, qrect.width, qrect.height);
 }
 var Rect = (function () {
-    function Rect(x, y, w, h) {
-        this.height = h;
-        this.width = w;
+    function Rect(x, y, width, height) {
         this.x = x;
         this.y = y;
+        this.width = width;
+        this.height = height;
     }
     Object.defineProperty(Rect.prototype, "maxX", {
         get: function () { return this.x + this.width; },
@@ -2438,6 +2620,9 @@ var Rect = (function () {
         enumerable: false,
         configurable: true
     });
+    Rect.prototype.clone = function () {
+        return new Rect(this.x, this.y, this.width, this.height);
+    };
     Rect.prototype.equals = function (other) {
         return (this.x === other.x &&
             this.y === other.y &&
@@ -2446,6 +2631,13 @@ var Rect = (function () {
     };
     Rect.prototype.gap = function (left, right, top, bottom) {
         return new Rect(this.x + left, this.y + top, this.width - (left + right), this.height - (top + bottom));
+    };
+    Rect.prototype.gap_mut = function (left, right, top, bottom) {
+        this.x += left;
+        this.y += top;
+        this.width -= (left + right);
+        this.height -= (top + bottom);
+        return this;
     };
     Rect.prototype.includes = function (other) {
         return (this.x <= other.x &&
@@ -2495,6 +2687,8 @@ var WrapperMap = (function () {
     }
     WrapperMap.prototype.add = function (item) {
         var key = this.hasher(item);
+        if (this.items[key] !== undefined)
+            throw "WrapperMap: the key [" + key + "] already exists!";
         var wrapped = this.wrapper(item);
         this.items[key] = wrapped;
         return wrapped;

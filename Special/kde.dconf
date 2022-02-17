@@ -1,79 +1,30 @@
 [ca/desrt/dconf-editor]
-saved-pathbar-path='theme'
-saved-view='/org/gnome/shell/extensions/user-theme/name'
+saved-pathbar-path='/org/gnome/desktop/wm/keybindings/close'
+saved-view='/org/gnome/desktop/wm/keybindings/close'
 show-warning=false
-window-height=708
+window-height=500
 window-is-maximized=false
-window-width=1281
-
-[com/deepin/dde/appearance]
-font-monospace='Cousine'
-font-standard='Arimo'
-opacity=0.40000000000000002
-
-[com/deepin/dde/audio]
-first-run=false
-
-[com/deepin/dde/datetime]
-user-timezone-list=['Europe/Moscow']
-
-[com/deepin/dde/display]
-brightness='{"eDP-1":0.21000000000000002}'
-
-[com/deepin/dde/dock]
-docked-apps=['/S@dde-file-manager', '/S@google-chrome', '/S@dde-control-center']
-plugin-settings='{"network":{"holded_/org/freedesktop/NetworkManager/Devices/2":false},"power":{"holded_power":false},"sound":{"holded_sound-item-key":false},"tray":{"fashion-tray-expanded":true,"holded_sni:Onboard":false,"holded_sni:dnfdragora-updater":false,"holded_window:seapplet":false}}'
-
-[com/deepin/dde/inputdevices]
-wheel-speed=uint32 1
-
-[com/deepin/dde/keybinding/mediakey]
-audio-stop=@as []
-
-[com/deepin/dde/keyboard]
-numlock-state='off'
-
-[com/deepin/dde/launcher]
-display-mode='free'
-
-[com/deepin/dde/mouse]
-double-click=400
-
-[com/deepin/dde/power]
-ambient-light-adjust-brightness=false
-power-module-initialized=true
-
-[com/deepin/dde/touchpad]
-disable-while-typing=false
-motion-acceleration=1.6000000000000001
-natural-scroll=true
-
-[com/deepin/wrap/gnome/desktop/interface]
-cursor-size=36
-
-[com/deepin/wrap/gnome/desktop/peripherals/keyboard]
-delay=uint32 250
-repeat-interval=uint32 50
-
-[com/deepin/wrap/gnome/desktop/peripherals/touchpad]
-natural-scroll=true
-tap-to-click=true
-
-[com/deepin/xsettings]
-double-click-time=400
-gtk-cursor-theme-size=36
-gtk-font-name='Arimo 9'
-individual-scaling='eDP-1=1.50'
-scale-factor=1.5
-xft-dpi=147456
+window-width=1156
 
 [desktop/ibus/general]
 preload-engines=['xkb:us::eng']
-version='1.5.23'
+version='1.5.25'
+
+[org/fedorahosted/background-logo-extension]
+logo-border=uint32 8
+logo-opacity=uint32 255
+logo-size=9.8837209302325579
 
 [org/fedoraproject/FirewallConfig]
 show-active-bindings=true
 show-ipsets=true
+
+[org/freedesktop/ibus/engine/typing-booster]
+dictionary='en_US'
+inputmethod='NoIME'
+
+[org/gnome/Characters]
+recent-characters=['💩']
 
 [org/gnome/Totem]
 active-plugins=['vimeo', 'variable-rate', 'skipto', 'screenshot', 'screensaver', 'save-file', 'rotation', 'recent', 'movie-properties', 'open-directory', 'media-player-keys', 'autoload-subtitles', 'apple-trailers']
@@ -98,7 +49,7 @@ word-size=64
 active-view='month'
 window-maximized=true
 window-position=(0, 0)
-window-size=(1920, 996)
+window-size=(1920, 998)
 
 [org/gnome/clocks]
 timers=[{'duration': <1020>, 'name': <''>}]
@@ -109,7 +60,7 @@ size=(870, 690)
 state=87168
 
 [org/gnome/control-center]
-last-panel='wifi'
+last-panel='bluetooth'
 
 [org/gnome/desktop/a11y/applications]
 screen-magnifier-enabled=false
@@ -157,17 +108,17 @@ enable-animations=true
 enable-hot-corners=false
 font-name='Sans Serif,  10'
 gtk-enable-primary-paste=true
-gtk-im-module='gtk-im-context-simple:xim'
-gtk-theme='Adwaita'
+gtk-im-module='gtk-im-context-simple'
+gtk-theme='Breeze'
 icon-theme='breeze-dark'
 monospace-font-name='Monospace 10'
 show-battery-percentage=false
-text-scaling-factor=1.3500000000000001
+text-scaling-factor=1.25
 toolbar-style='text'
 toolkit-accessibility=false
 
 [org/gnome/desktop/notifications]
-application-children=['gnome-network-panel', 'org-kde-kdeconnect-daemon', 'org-gnome-software', 'org-freedesktop-problems-applet', 'org-gnome-fileroller', 'org-telegram-desktop', 'org-gnome-nautilus', 'ca-desrt-dconf-editor', 'org-kde-drkonqi', 'zoom', 'org-gnome-clocks']
+application-children=['gnome-network-panel', 'org-kde-kdeconnect-daemon', 'org-gnome-software', 'org-freedesktop-problems-applet', 'org-gnome-fileroller', 'org-telegram-desktop', 'org-gnome-nautilus', 'ca-desrt-dconf-editor', 'org-kde-drkonqi', 'zoom', 'org-gnome-clocks', 'mozilla-thunderbird', 'org-gnome-evince', 'google-chrome', 'teams', 'org-gnome-eog', 'gnome-power-panel']
 
 [org/gnome/desktop/notifications/application/ca-desrt-dconf-editor]
 application-id='ca.desrt.dconf-editor.desktop'
@@ -175,11 +126,26 @@ application-id='ca.desrt.dconf-editor.desktop'
 [org/gnome/desktop/notifications/application/gnome-network-panel]
 application-id='gnome-network-panel.desktop'
 
+[org/gnome/desktop/notifications/application/gnome-power-panel]
+application-id='gnome-power-panel.desktop'
+
+[org/gnome/desktop/notifications/application/google-chrome]
+application-id='google-chrome.desktop'
+
+[org/gnome/desktop/notifications/application/mozilla-thunderbird]
+application-id='mozilla-thunderbird.desktop'
+
 [org/gnome/desktop/notifications/application/org-freedesktop-problems-applet]
 application-id='org.freedesktop.problems.applet.desktop'
 
 [org/gnome/desktop/notifications/application/org-gnome-clocks]
 application-id='org.gnome.clocks.desktop'
+
+[org/gnome/desktop/notifications/application/org-gnome-eog]
+application-id='org.gnome.eog.desktop'
+
+[org/gnome/desktop/notifications/application/org-gnome-evince]
+application-id='org.gnome.Evince.desktop'
 
 [org/gnome/desktop/notifications/application/org-gnome-fileroller]
 application-id='org.gnome.FileRoller.desktop'
@@ -202,6 +168,9 @@ application-id='org.kde.kdeconnect.daemon.desktop'
 [org/gnome/desktop/notifications/application/org-telegram-desktop]
 application-id='org.telegram.desktop.desktop'
 
+[org/gnome/desktop/notifications/application/teams]
+application-id='teams.desktop'
+
 [org/gnome/desktop/notifications/application/zoom]
 application-id='Zoom.desktop'
 
@@ -218,49 +187,20 @@ report-technical-problems=true
 [org/gnome/desktop/search-providers]
 sort-order=['org.gnome.Contacts.desktop', 'org.gnome.Documents.desktop', 'org.gnome.Nautilus.desktop']
 
+[org/gnome/desktop/session]
+idle-delay=uint32 0
+
 [org/gnome/desktop/sound]
 event-sounds=true
 theme-name='__custom'
 
 [org/gnome/desktop/wm/keybindings]
-close=['<Alt>F4', '<Shift><Super>c']
-minimize=['<Super>m']
-move-to-monitor-left=['<Super><Shift>Left', '<Shift><Super>less']
-move-to-monitor-right=['<Super><Shift>Right', '<Shift><Super>greater']
-move-to-workspace-1=['<Super><Shift>Home', '<Super><Shift>1']
-move-to-workspace-2=['<Super><Shift>2']
-move-to-workspace-3=['<Super><Shift>3']
-move-to-workspace-4=['<Super><Shift>4']
-move-to-workspace-5=['<Super><Shift>5']
-move-to-workspace-6=['<Super><Shift>6']
-move-to-workspace-7=['<Super><Shift>7']
-move-to-workspace-8=['<Super><Shift>8']
-move-to-workspace-9=['<Super><Shift>9']
-move-to-workspace-down=['<Super><Shift>Page_Down', '<Control><Shift><Alt>Down', '<Super><Shift>j']
-move-to-workspace-left=['<Control><Shift><Alt>Left', '<Super><Shift>h']
-move-to-workspace-right=['<Control><Shift><Alt>Right', '<Super><Shift>l']
-move-to-workspace-up=['<Super><Shift>Page_Up', '<Control><Shift><Alt>Up', '<Super><Shift>k']
-show-desktop=['<Super>d']
+close=['<Alt>F4', '<Super><Shift>C']
 switch-applications=@as []
 switch-applications-backward=@as []
-switch-to-workspace-1=['<Super>1']
-switch-to-workspace-2=['<Super>2']
-switch-to-workspace-3=['<Super>3']
-switch-to-workspace-4=['<Super>4']
-switch-to-workspace-5=['<Super>5']
-switch-to-workspace-6=['<Super>6']
-switch-to-workspace-7=['<Super>7']
-switch-to-workspace-8=['<Super>8']
-switch-to-workspace-9=['<Super>9']
-switch-to-workspace-down=['<Super>Page_Down', '<Control><Alt>Down', '<Super>j']
-switch-to-workspace-left=['<Control><Alt>Left', '<Super>h']
-switch-to-workspace-right=['<Control><Alt>Right', '<Super>l']
-switch-to-workspace-up=['<Super>Page_Up', '<Control><Alt>Up', '<Super>k']
 switch-windows=['<Alt>Tab']
 switch-windows-backward=['<Shift><Alt>Tab']
-toggle-above=['<Alt>Return']
 toggle-fullscreen=['<Shift><Super>f']
-toggle-on-all-workspaces=['<Shift><Super>Return']
 
 [org/gnome/desktop/wm/preferences]
 audible-bell=false
@@ -275,8 +215,22 @@ sidebar=false
 background-color='rgb(0,0,0)'
 use-background-color=true
 
+[org/gnome/evince]
+document-directory=@ms 'file:///home/kerim/Documents/English'
+
 [org/gnome/evince/default]
-window-ratio=(2.2795995161940596, 1.1961182577296321)
+continuous=true
+dual-page=false
+dual-page-odd-left=false
+enable-spellchecking=true
+fullscreen=false
+inverted-colors=false
+show-sidebar=false
+sidebar-page='thumbnails'
+sidebar-size=132
+sizing-mode='automatic'
+window-ratio=(2.7449452018895433, 0.99775505113494634)
+zoom=0.83333333333333337
 
 [org/gnome/evolution-data-server]
 migrated=true
@@ -304,6 +258,9 @@ active-plugins=['spell', 'sort', 'modelines', 'filebrowser', 'docinfo']
 [org/gnome/gedit/preferences/ui]
 show-tabs-mode='auto'
 
+[org/gnome/gedit/state/file-chooser]
+open-recent=false
+
 [org/gnome/gedit/state/window]
 bottom-panel-size=140
 side-panel-active-page='GeditWindowDocumentsPanel'
@@ -315,7 +272,7 @@ state=87168
 open-file-path='/home/kerim/stuff'
 
 [org/gnome/login-screen]
-enable-fingerprint-authentication=true
+enable-fingerprint-authentication=false
 enable-password-authentication=true
 enable-smartcard-authentication=false
 
@@ -376,11 +333,11 @@ locations=['file:///home/kerim/Music']
 
 [org/gnome/settings-daemon/plugins/color]
 night-light-enabled=false
-night-light-last-coordinates=(55.730201439884809, 37.617699999999999)
+night-light-last-coordinates=(55.739200719942403, 37.617699999999999)
 night-light-temperature=uint32 3726
 
 [org/gnome/settings-daemon/plugins/media-keys]
-custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/']
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']
 home=['<Super>e']
 screensaver=['<Primary><Alt>l']
 
@@ -388,11 +345,6 @@ screensaver=['<Primary><Alt>l']
 binding='<Super>Return'
 command='gnome-terminal'
 name='Terminal'
-
-[org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1]
-binding='<Primary><Super>n'
-command='nvim-qt'
-name='Neovim Qt'
 
 [org/gnome/settings-daemon/plugins/power]
 sleep-inactive-ac-timeout=3600
@@ -404,17 +356,24 @@ hinting='slight'
 
 [org/gnome/shell]
 disable-user-extensions=false
-enabled-extensions=['dash-to-dock@micxgx.gmail.com', 'apps-menu@gnome-shell-extensions.gcampax.github.com', 'places-menu@gnome-shell-extensions.gcampax.github.com']
-favorite-apps=['firefox.desktop', 'google-chrome.desktop', 'org.telegram.desktop.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Evince.desktop', 'gimp.desktop', 'org.inkscape.Inkscape.desktop', 'org.gnome.Terminal.desktop', 'nvim-qt.desktop', 'gnvim.desktop', 'org.gnome.Calendar.desktop', 'gnome-control-center.desktop', 'org.gnome.tweaks.desktop', 'org.gnome.Software.desktop', 'Zoom.desktop', 'mozilla-thunderbird.desktop']
+enabled-extensions=['dash-to-dock@micxgx.gmail.com', 'places-menu@gnome-shell-extensions.gcampax.github.com', 'reorder-workspaces@jer.dev', 'middleclickclose@paolo.tranquilli.gmail.com', 'clipboard-indicator@tudmotu.com', 'apps-menu@gnome-shell-extensions.gcampax.github.com']
+favorite-apps=['firefox.desktop', 'google-chrome.desktop', 'org.telegram.desktop.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Evince.desktop', 'gimp.desktop', 'org.inkscape.Inkscape.desktop', 'Alacritty.desktop', 'org.gnome.Terminal.desktop', 'nvim-qt.desktop', 'gnome-control-center.desktop', 'org.gnome.tweaks.desktop', 'org.gnome.Software.desktop', 'Zoom.desktop', 'mozilla-thunderbird.desktop']
 had-bluetooth-devices-setup=true
 
 [org/gnome/shell/app-switcher]
 current-workspace-only=true
 
+[org/gnome/shell/extensions/clipboard-indicator]
+disable-down-arrow=false
+display-mode=0
+enable-keybindings=false
+strip-text=false
+
 [org/gnome/shell/extensions/dash-to-dock]
 animate-show-apps=false
 apply-custom-theme=false
-click-action='cycle-windows'
+autohide-in-fullscreen=true
+click-action='previews'
 custom-theme-shrink=true
 customize-alphas=false
 dash-max-icon-size=64
@@ -437,7 +396,9 @@ scroll-action='do-nothing'
 shift-click-action='minimize'
 shift-middle-click-action='launch'
 show-apps-at-top=false
-show-mounts=true
+show-favorites=true
+show-mounts=false
+show-running=true
 show-show-apps-button=true
 show-trash=false
 show-windows-preview=true
@@ -448,24 +409,50 @@ locations=@av []
 
 [org/gnome/simple-scan]
 document-type='photo'
-save-directory='file:///home/kerim/Pictures/'
+save-directory='file:///home/kerim/Desktop/scanned/'
+save-format='image/png'
 
 [org/gnome/software]
-check-timestamp=int64 1613471019
+check-timestamp=int64 1615736349
 first-run=false
-install-timestamp=int64 1613431774
-online-updates-timestamp=int64 1613471034
+install-timestamp=int64 1614268780
+online-updates-timestamp=int64 1615736414
 show-nonfree-prompt=false
 
 [org/gnome/system/location]
 enabled=true
 
+[org/gnome/terminal/legacy]
+theme-variant='dark'
+
+[org/gnome/terminal/legacy/profiles:]
+default='b1dcc9dd-5262-4d8d-a863-c897e6d979b9'
+list=['b1dcc9dd-5262-4d8d-a863-c897e6d979b9', 'd0444ae5-1e0d-4d81-a0b0-8308ea1dc76a']
+
 [org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
-palette=['rgb(23,20,33)', 'rgb(192,28,40)', 'rgb(38,162,105)', 'rgb(162,115,76)', 'rgb(18,72,139)', 'rgb(163,71,186)', 'rgb(42,161,179)', 'rgb(94,92,100)', 'rgb(57,56,61)', 'rgb(246,97,81)', 'rgb(51,209,122)', 'rgb(233,173,12)', 'rgb(42,123,222)', 'rgb(192,97,203)', 'rgb(51,199,222)', 'rgb(255,255,255)']
+background-color='rgb(246,248,250)'
+bold-color-same-as-fg=true
+bold-is-bright=true
+cursor-colors-set=false
+foreground-color='rgb(36,41,46)'
+palette=['rgb(0,0,0)', 'rgb(215,58,73)', 'rgb(44,190,78)', 'rgb(227,98,9)', 'rgb(0,92,197)', 'rgb(243,75,125)', 'rgb(0,173,216)', 'rgb(186,191,196)', 'rgb(239,242,246)', 'rgb(203,36,49)', 'rgb(44,151,75)', 'rgb(249,119,50)', 'rgb(3,110,231)', 'rgb(111,66,193)', 'rgb(0,180,171)', 'rgb(255,255,255)']
+use-theme-colors=false
+use-transparent-background=false
+
+[org/gnome/terminal/legacy/profiles:/:d0444ae5-1e0d-4d81-a0b0-8308ea1dc76a]
+background-color='rgb(0,43,54)'
+bold-color-same-as-fg=true
+bold-is-bright=true
+cursor-colors-set=false
+foreground-color='rgb(131,148,150)'
+palette=['rgb(0,33,41)', 'rgb(220,50,47)', 'rgb(133,153,0)', 'rgb(191,111,0)', 'rgb(38,139,210)', 'rgb(211,54,130)', 'rgb(42,161,152)', 'rgb(88,110,117)', 'rgb(7,54,66)', 'rgb(203,75,22)', 'rgb(88,110,0)', 'rgb(165,123,0)', 'rgb(51,116,182)', 'rgb(140,113,180)', 'rgb(67,177,161)', 'rgb(253,246,227)']
+use-theme-colors=false
+use-transparent-background=false
+visible-name='Solarized Dark Tuned'
 
 [org/gtk/settings/color-chooser]
-custom-colors=[(0.22500000000000003, 0.22000000000000003, 0.24000000000000002, 1.0), (0.28199999999999997, 0.27599999999999997, 0.29999999999999993, 1.0), (0.31333333333333335, 0.30666666666666664, 0.33333333333333331, 1.0), (0.36862745098039218, 0.36078431372549019, 0.39215686274509803, 1.0), (0.96470588235294119, 0.38039215686274508, 0.31764705882352939, 1.0)]
-selected-color=(true, 0.22500000000000003, 0.22000000000000003, 0.24000000000000002, 1.0)
+custom-colors=[(0.14117647058823529, 0.16078431372549021, 0.1803921568627451, 1.0), (0.96470588235294119, 0.97254901960784312, 0.98039215686274506, 1.0), (0.090196078431372548, 0.078431372549019607, 0.12941176470588237, 1.0), (0.0, 0.70588235294117652, 0.67058823529411749, 1.0), (0.20000000000000001, 0.7803921568627451, 0.87058823529411766, 1.0), (0.43529411764705894, 0.25882352941176467, 0.75686274509803919, 1.0), (0.011764705882352944, 0.43137254901960781, 0.90588235294117647, 1.0), (0.16470588235294117, 0.4823529411764706, 0.87058823529411766, 1.0)]
+selected-color=(true, 0.14117647058823529, 0.16078431372549021, 0.1803921568627451, 1.0)
 
 [org/gtk/settings/file-chooser]
 clock-format='12h'
@@ -474,12 +461,12 @@ location-mode='path-bar'
 show-hidden=false
 show-size-column=true
 show-type-column=true
-sidebar-width=181
+sidebar-width=184
 sort-column='name'
 sort-directories-first=false
 sort-order='ascending'
 type-format='category'
-window-position=(341, 209)
+window-position=(681, 236)
 window-size=(1239, 652)
 
 [org/onboard]
