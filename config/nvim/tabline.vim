@@ -1,92 +1,92 @@
 set showtabline=1
-nnoremap <a-1> :tabnext 1 <cr>
-nnoremap <a-2> :tabnext 2 <cr>
-nnoremap <a-3> :tabnext 3 <cr>
-nnoremap <a-4> :tabnext 4 <cr>
-nnoremap <a-5> :tabnext 5 <cr>
-nnoremap <a-6> :tabnext 6 <cr>
-nnoremap <a-7> :tabnext 7 <cr>
-nnoremap <a-8> :tabnext 8 <cr>
-nnoremap <a-9> :tabnext 9 <cr>
-nnoremap <a-0> :tabnext 10<cr>
+nnoremap  <a-1>  <cmd>tabnext 1<cr>
+nnoremap  <a-2>  <cmd>tabnext 2<cr>
+nnoremap  <a-3>  <cmd>tabnext 3<cr>
+nnoremap  <a-4>  <cmd>tabnext 4<cr>
+nnoremap  <a-5>  <cmd>tabnext 5<cr>
+nnoremap  <a-6>  <cmd>tabnext 6<cr>
+nnoremap  <a-7>  <cmd>tabnext 7<cr>
+nnoremap  <a-8>  <cmd>tabnext 8<cr>
+nnoremap  <a-9>  <cmd>tablast<cr>
 
-nnoremap <a-t> :tabnew<cr>
-nnoremap <a-p> :tabp<cr>
-nnoremap <a-n> :tabn<cr>
-nnoremap <a-s-p> :tabm-<cr>
-nnoremap <a-s-n> :tabm+<cr>
-
-let g:lasttab = 1
-aug lasttab_tabline
-	au!
-	au TabLeave * let g:lasttab = tabpagenr()
-aug END
-nnoremap <a-l> :exe "tabnext ".g:lasttab<cr>
-inoremap <a-l> <c-o>:exe "tabnext ".g:lasttab<cr>
+nnoremap  <a-t>    <cmd>tabnew<cr>
+nnoremap  <a-w>    <cmd>tabclose<cr>
+nnoremap  <a-p>    <cmd>tabprevious<cr>
+nnoremap  <a-n>    <cmd>tabnext<cr>
+nnoremap  <a-s-p>  <cmd>tabmove -1<cr>
+nnoremap  <a-s-n>  <cmd>tabmove +1<cr>
+nnoremap  <a-l>    g<tab>
+inoremap  <a-l>    <c-o>g<tab>
 
 fun! TheTabLine()
 	let attr = []
 	let text = []
+	let fintab = tabpagenr('$')
+	let curtab = tabpagenr()
 
-	for tab in range(tabpagenr('$'))
+	for tab in range(1, fintab)
 		let a = '' | let t = ''
 
-		let tab = tab + 1
 		let buflist = tabpagebuflist(tab)
-		let bufnr = buflist[tabpagewinnr(tab) - 1]
-		let bufname = bufname(bufnr)
+		let bufnr = buflist[tabpagewinnr(tab)-1]
 		for i in buflist
 			let bufmodified = getbufvar(i, "&mod")
 			if bufmodified | break | endif
 		endfor
-		let bufft = getbufvar(bufnr, "&filetype")
+		let bufname = bufname(bufnr)
+		if bufname == ''
+			let bufname = '[No Name]'
+		elseif fnamemodify(bufname, ':t') == ''
+			let bufname = fnamemodify(bufname, ':h:t').'/'
+		else
+			let bufname = fnamemodify(bufname, ':t')
+		endif
 
 		let a .= '%' . tab . 'T'
-		let a .= (tab == tabpagenr() ? '%#TabLineSel#' : '%#TabLine#')
+		let a .= (tab == curtab ? '%#TabLineSel#' : '%#TabLine#')
 		let t .= ' ' . tab . ' '
-		let t .= (bufname != '' ? fnamemodify(bufname, ':t') : '[No Name]')
-		let t .= (bufft == 'netrw' ? '/' : '')
-		let i  = (len(buflist)>1? len(buflist):'').(bufft=='help'? 'h':'').(bufmodified? '+':'')
+		let t .= bufname
+		let i  = (len(buflist)>1? len(buflist):'').(bufmodified? '+':'')
 		let t .= (len(i)>0? ' ['.i.']' : '')
-		let t .= (tab == tabpagenr() || tab == tabpagenr()-1 || tab == tabpagenr('$') ? ' ' : ' |')
+		let t .= (tab == curtab || tab == curtab-1 || tab == fintab ? ' ' : ' |')
 
 		let attr += [a]
 		let text += [t]
 	endfor
 
-	if len(join(text, '')) > &columns && tabpagenr('$') > 1
+	if len(join(text, '')) > &columns && fintab > 1
 		let isfull = [] | let l = 0
-		for i in range(tabpagenr('$'))
+		for i in range(fintab)
 			let isfull += [0]
-			if i == tabpagenr()-1 | continue | endif
-			let text[i] = (i == tabpagenr()-2 || i == tabpagenr('$')-1 ? text[i][1:-2] : text[i][1:-3].'|')
+			if i == curtab-1 | continue | endif
+			let text[i] = (i == curtab-2 || i == fintab-1 ? text[i][1:-2] : text[i][1:-3].'|')
 		endfor
-		let isfull[tabpagenr()-1] = 1
+		let isfull[curtab-1] = 1
 		while 1
 			let l = &columns
-			for i in range(tabpagenr('$'))
+			for i in range(fintab)
 				let l -= len(text[i])*isfull[i]
 			endfor
-			exe 'let sum = ' . tabpagenr('$') . '-'. join(isfull, '-')
+			exe 'let sum = ' . fintab . '-'. join(isfull, '-')
 			if sum>0 | let l = l / sum | else | let l = &columns | endif
-			for i in range(tabpagenr('$'))
-				if i == tabpagenr()-1 | continue | endif
+			for i in range(fintab)
+				if i == curtab-1 | continue | endif
 				let isfull[i] = (l >= len(text[i]))
 			endfor
 
-			exe 'let q = ' . join(isfull, '+') .'+'. (sum-tabpagenr('$'))
+			exe 'let q = ' . join(isfull, '+') .'+'. (sum-fintab)
 			if q <= 0 | break | endif
 		endwhile
 		let l = l/2
 		let c = &columns
-		for i in range(tabpagenr('$'))
+		for i in range(fintab)
 			let c -= len(text[i])*isfull[i]
 		endfor
 		let c -= 2*l*sum
-		for i in range(tabpagenr('$'))
+		for i in range(fintab)
 			if !isfull[i]
 				let t = text[i]
-				let text[i] =  t[:l+(c>0)-1] . '*'
+				let text[i] = t[:l+(c>0)-1] . '*'
 				let c -= 1
 				let text[i].= t[-l-(c>0)+1:]
 				let c -= 1
@@ -96,7 +96,7 @@ fun! TheTabLine()
 	endif
 
 	let line = ''
-	for i in range(tabpagenr('$'))
+	for i in range(fintab)
 		let line .= attr[i] . text[i]
 	endfor
 	return line . '%#TabLineFill#%999T%='

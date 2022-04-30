@@ -1,12 +1,12 @@
-PREFIX = /usr/local
+PREFIX = ${HOME}/.local
 
 CC = cc
-FLAGS = -Wall -pedantic -Os -std=c99 -D_POSIX_C_SOURCE=200809L
+CFLAGS = -Wall -pedantic -O2 -std=c99 -D_POSIX_C_SOURCE=200809L
 PROGS.C = batlog.c PStime.c execbg.c
 PROGS = ${PROGS.C:.c=}
 FILES = ${PROGS} brightness colors colors-all epsunite\
         pdfsepunite replaceindir svg2pdf texclean\
-        usb volume showgit flatsync
+	usb volume showgit flatsync mvb
 
 all: ${PROGS} ${FILES}
 
@@ -16,13 +16,13 @@ install: all
 	for file in ${FILES}; do chmod 755 ${PREFIX}/bin/$$file; done
 
 uninstall:
-	  for file in ${FILES}; do rm -f ${PREFIX}/bin/$$file; done
+	for file in ${FILES}; do rm -f ${PREFIX}/bin/$$file; done
 
 clean:
 	rm -f ${PROGS}
 
 %: %.c
-	${CC} ${FLAGS} -o $@ $<
+	${CC} ${CFLAGS} -o $@ $<
 
 %:
 

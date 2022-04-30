@@ -187,7 +187,7 @@ schemes:
   soft_dark: &soft_dark
     primary:
       background: '#101010'
-      foreground: '#c0c0c0'
+      foreground: '#a0a0a0'
     normal:
       black: '#101010'
       red: '#D67B76'

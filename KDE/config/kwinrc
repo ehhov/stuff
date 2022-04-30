@@ -1,9 +1,8 @@
 [$Version]
-update_info=kwin.upd:replace-scalein-with-scale,kwin.upd:port-minimizeanimation-effect-to-js,kwin.upd:port-scale-effect-to-js,kwin.upd:port-dimscreen-effect-to-js,kwin.upd:auto-bordersize,kwin.upd:animation-speed,kwin.upd:desktop-grid-click-behavior,kwin.upd:no-swap-encourage,kwin.upd:make-translucency-effect-disabled-by-default,kwin.upd:remove-flip-switch-effect,kwin.upd:remove-cover-switch-effect,kwin.upd:remove-cubeslide-effect,kwin.upd:remove-xrender-backend
+update_info=kwin.upd:replace-scalein-with-scale,kwin.upd:port-minimizeanimation-effect-to-js,kwin.upd:port-scale-effect-to-js,kwin.upd:port-dimscreen-effect-to-js,kwin.upd:auto-bordersize,kwin.upd:animation-speed,kwin.upd:desktop-grid-click-behavior,kwin.upd:no-swap-encourage,kwin.upd:make-translucency-effect-disabled-by-default,kwin.upd:remove-flip-switch-effect,kwin.upd:remove-cover-switch-effect,kwin.upd:remove-cubeslide-effect,kwin.upd:remove-xrender-backend,kwin.upd:enable-scale-effect-by-default
 
 [Compositing]
 Backend=OpenGL
-Enabled=true
 GLCore=true
 GLPreferBufferSwap=a
 GLTextureFilter=0
@@ -105,17 +104,18 @@ CommandWindowWheel=Scroll
 [Plugins]
 blurEnabled=true
 contrastEnabled=true
-diminactiveEnabled=true
-highlightwindowEnabled=true
-krohnkiteEnabled=false
+glideEnabled=true
+krohnkiteEnabled=true
 kwin4_effect_fadedesktopEnabled=true
+kwin4_effect_scaleEnabled=false
 kwin4_effect_squashEnabled=false
 magiclampEnabled=true
 minimizeallEnabled=false
+overviewEnabled=true
 screenedgeEnabled=false
 slideEnabled=false
 slidingpopupsEnabled=false
-sticky-window-snappingEnabled=true
+sticky-window-snappingEnabled=false
 synchronizeskipswitcherEnabled=false
 videowallEnabled=false
 windowgeometryEnabled=false
@@ -125,9 +125,13 @@ wobblywindowsEnabled=true
 TextOnly=true
 
 [Script-krohnkite]
+enableFloatingLayout=true
+enableMonocleLayout=false
+enableSpiralLayout=false
 enableSpreadLayout=false
 enableStairLayout=false
 enableThreeColumnLayout=false
+floatingTitle=Canvas
 ignoreTitle=Canvas
 keepFloatAbove=false
 newWindowAsMaster=true
@@ -154,12 +158,12 @@ SwitchingMode=0
 ActivitiesMode=1
 ApplicationsMode=0
 DesktopMode=1
-HighlightWindows=true
 LayoutName=org.kde.breeze.desktop
 MinimizedMode=1
 MultiScreenMode=0
 ShowDesktopMode=0
 ShowTabBox=false
+SwitchingMode=1
 
 [Windows]
 ActiveMouseScreen=false
@@ -182,7 +186,7 @@ MaximizeButtonLeftClickCommand=Maximize
 MaximizeButtonMiddleClickCommand=Maximize (vertical only)
 MaximizeButtonRightClickCommand=Maximize (horizontal only)
 NextFocusPrefersMouse=false
-Placement=Cascade
+Placement=Smart
 SeparateScreenFocus=false
 ShadeHover=false
 ShadeHoverInterval=250
@@ -193,7 +197,7 @@ WindowSnapZone=10
 [org.kde.kdecoration2]
 BorderSize=None
 BorderSizeAuto=false
-ButtonsOnLeft=M
+ButtonsOnLeft=MN
 ButtonsOnRight=IAX
 ShowToolTips=false
 library=org.kde.breeze

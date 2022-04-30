@@ -1,4 +1,4 @@
-#
+# vim:ft=sh
 # ~/.profile
 #
 
@@ -16,15 +16,14 @@ export HISTSIZE=20000
 
 export CDPATH=":${HOME}:${HOME}/gits"
 export LS_COLORS='rs=0:di=01;34:ln=01;36:mh=00:pi=33:so=01;35:do=01;35:bd=33;01:cd=33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32'
-export PS_FORMAT='user,pid,ppid,pcpu,stat,start,ucmd'
+export PS_FORMAT='user,pid,ppid,pcpu,stat,start,cmd'
 export NNN_OPTS='eEAo'
 
 #export MOZ_USE_XINPUT2=1
 #export QT_QPA_PLATFORMTHEME=qt5ct
 #export QT_STYLE_OVERRIDE=''
 
-
-PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/X11R6/bin:/usr/local/bin:/usr/local/sbin:${PATH}"
+PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/X11R6/bin:/usr/local/bin:/usr/local/sbin:${PATH}:$HOME/.local/bin/"
 oldPATH="$PATH:"; newPATH=""
 while [ -n "$oldPATH" ]; do
 	x=${oldPATH%%:*}
@@ -53,12 +52,8 @@ PATH=${newPATH#:}
 unset newPATH oldPATH x
 export PATH
 
-date
-
-# Necessary for KDE, not enough for GNOME
-if [ "$DISPLAY" ]; then
-	~/.bin/per-de-config.sh
-fi
+# Fedora doesn't look for local man by default.
+export MANPATH=":${MANPATH}:${HOME}/.local/share/man"
 
 if [ "$XDG_CURRENT_DESKTOP" = GNOME ]; then
 	export QT_QPA_PLATFORMTHEME=qt5ct

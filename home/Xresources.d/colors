@@ -1,7 +1,7 @@
 ! vim:ft=xdefaults
-!!! This file is created using ~/.Xresources.d/from-st.c !!!
+! === This file is created using ~/.Xresources.d/from-st.c ===
 
-!!! light color scheme
+! light color scheme
 #define light_c0    #000000
 #define light_c1    #FF2424
 #define light_c2    #00c000
@@ -22,7 +22,7 @@
 #define light_fg    #000000
 #define light_cur   #000000
 
-!!! github color scheme
+! github color scheme
 #define github_c0    #000000
 #define github_c1    #d73a49
 #define github_c2    #2cbe4e
@@ -43,7 +43,7 @@
 #define github_fg    #24292e
 #define github_cur   #24292e
 
-!!! Dracula color scheme
+! Dracula color scheme
 #define Dracula_c0    #000000
 #define Dracula_c1    #ff5555
 #define Dracula_c2    #50fa7b
@@ -64,7 +64,7 @@
 #define Dracula_fg    #d8d8d2
 #define Dracula_cur   #d8d8d2
 
-!!! Nord color scheme
+! Nord color scheme
 #define Nord_c0    #3b4252
 #define Nord_c1    #bf616a
 #define Nord_c2    #a3be8c
@@ -85,7 +85,7 @@
 #define Nord_fg    #d8dee9
 #define Nord_cur   #d8dee9
 
-!!! Solarized_dark color scheme
+! Solarized_dark color scheme
 #define Solarized_dark_c0    #002129
 #define Solarized_dark_c1    #dc322f
 #define Solarized_dark_c2    #859900
@@ -106,7 +106,7 @@
 #define Solarized_dark_fg    #839496
 #define Solarized_dark_cur   #93a1a1
 
-!!! Solarized_light color scheme
+! Solarized_light color scheme
 #define Solarized_light_c0    #eee8d5
 #define Solarized_light_c1    #dc322f
 #define Solarized_light_c2    #859900
@@ -127,7 +127,7 @@
 #define Solarized_light_fg    #556b73
 #define Solarized_light_cur   #586e75
 
-!!! Kanagawa color scheme
+! Kanagawa color scheme
 #define Kanagawa_c0    #eee8d5
 #define Kanagawa_c1    #dc322f
 #define Kanagawa_c2    #859900
@@ -148,7 +148,7 @@
 #define Kanagawa_fg    #DCD7BA
 #define Kanagawa_cur   #54546D
 
-!!! Srcery color scheme
+! Srcery color scheme
 #define Srcery_c0    #1c1b19
 #define Srcery_c1    #ef2f27
 #define Srcery_c2    #519f50
@@ -169,7 +169,7 @@
 #define Srcery_fg    #fce8c3
 #define Srcery_cur   #fbb829
 
-!!! soft_dark color scheme
+! soft_dark color scheme
 #define soft_dark_c0    #101010
 #define soft_dark_c1    #D67B76
 #define soft_dark_c2    #80c990
@@ -187,10 +187,10 @@
 #define soft_dark_c14   #74c3e4
 #define soft_dark_c15   #c0c0c0
 #define soft_dark_bg    #101010
-#define soft_dark_fg    #c0c0c0
-#define soft_dark_cur   #c0c0c0
+#define soft_dark_fg    #a0a0a0
+#define soft_dark_cur   #a0a0a0
 
-!!! Ubuntu color scheme
+! Ubuntu color scheme
 #define Ubuntu_c0    #2E3436
 #define Ubuntu_c1    #CC0000
 #define Ubuntu_c2    #4B910B
@@ -211,7 +211,7 @@
 #define Ubuntu_fg    #ffffff
 #define Ubuntu_cur   #ffffff
 
-!!! Gruvbox_dark color scheme
+! Gruvbox_dark color scheme
 #define Gruvbox_dark_c0    #282828
 #define Gruvbox_dark_c1    #cc241d
 #define Gruvbox_dark_c2    #98971a
@@ -232,7 +232,7 @@
 #define Gruvbox_dark_fg    #ebdbb2
 #define Gruvbox_dark_cur   #ebdbb2
 
-!!! Gruvbox_light color scheme
+! Gruvbox_light color scheme
 #define Gruvbox_light_c0    #fbf1c7
 #define Gruvbox_light_c1    #cc241d
 #define Gruvbox_light_c2    #98971a
@@ -253,7 +253,7 @@
 #define Gruvbox_light_fg    #3c3836
 #define Gruvbox_light_cur   #3c3836
 
-!!! dark color scheme
+! dark color scheme
 #define dark_c0    #555555
 #define dark_c1    #E06C75
 #define dark_c2    #98C379
@@ -274,7 +274,7 @@
 #define dark_fg    #cccccc
 #define dark_cur   #cccccc
 
-!!! Solarized_dark_orig color scheme
+! Solarized_dark_orig color scheme
 #define Solarized_dark_orig_c0    #073642
 #define Solarized_dark_orig_c1    #dc322f
 #define Solarized_dark_orig_c2    #859900
@@ -295,7 +295,7 @@
 #define Solarized_dark_orig_fg    #a3b4b6
 #define Solarized_dark_orig_cur   #93a1a1
 
-!!! Solarized_light_orig color scheme
+! Solarized_light_orig color scheme
 #define Solarized_light_orig_c0    #eee8d5
 #define Solarized_light_orig_c1    #dc322f
 #define Solarized_light_orig_c2    #859900

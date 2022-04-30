@@ -99,6 +99,7 @@ gits)
 	[ -e xshot ] || git clone https://github.com/ehhov/xshot.git
 	[ -e xpick ] || git clone https://github.com/ehhov/xpick.git
 	[ -e emonc ] || git clone https://github.com/ehhov/emonc.git
+	[ -e filemanager ] || git clone https://github.com/ehhov/filemanager.git
 ;;
 
 *)

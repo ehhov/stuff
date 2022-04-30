@@ -1,9 +1,9 @@
 [$Version]
-update_info=spectacle_newConfig.upd:spectacle-new-config
+update_info=spectacle_newConfig.upd:spectacle-new-config,spectacle_clipboard.upd:clipboard-settings-change
 
 [General]
 autoSaveImage=true
-copyImageToClipboard=true
+clipboardGroup=PostScreenshotCopyImage
 rememberLastRectangularRegion=false
 
 [GuiConfig]
@@ -19,5 +19,5 @@ detailViewIconSize=16
 
 [Save]
 lastSaveAsLocation=file:///home/kerim/Pictures/Screenshots/20210214_134449.png
-lastSaveLocation=file:///home/kerim/Pictures/Screenshots/2022-02-15_02-04-08.png
+lastSaveLocation=file:///home/kerim/Pictures/Screenshots/2022-04-27_17-30-12.png
 saveFilenameFormat=Screenshots/%Y-%M-%D_%H-%m-%S

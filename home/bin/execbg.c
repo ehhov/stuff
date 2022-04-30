@@ -43,9 +43,9 @@ main(int argc, char **argv)
 	}
 	
 	if (isatty(STDIN_FILENO)) {
-		i = open("/dev/null", O_WRONLY);
+		i = open("/dev/null", O_RDONLY);
 		if (i < 0) {
-			fputs("Failed to open /dev/null for writing.\n", stderr);
+			fputs("Failed to open /dev/null for reading.\n", stderr);
 			return 1;
 		}
 		if (dup2(i, STDIN_FILENO) < 0) {

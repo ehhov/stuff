@@ -21,7 +21,7 @@ alias pdflatex='pdflatex -file-line-error -interaction=nonstopmode'
 alias nvim='nvim -p'
 alias nvimdiff='nvim -d -O'
 alias vim='nvim'
-
+alias e="$EDITOR"
 alias view="nvim -R -M"
 alias xcb='xclip -selection clipboard'
 alias xcbi='xclip -selection clipboard -target=image/png'
@@ -30,14 +30,28 @@ alias stx='startx ~/.xinitrc'
 
 du1() { du -hd1 "$@" | sort -h; }
 
+psc() {
+	pgrep "$@" >/dev/null 2>&1 && ps -o 'pid=,cmd=' -p $(pgrep "$@")
+}
+
 open() {
 	for i in "$@"; do
 		if ! [ -e "$i" ]; then
-			echo "Nothing found at \"$i\""
+			echo "Nothing found at '$i'."
 			continue
 		fi
-		execbg xdg-open "$i" 1>/dev/null 2>&1
+		setsid -f xdg-open "$i" </dev/null 1>/dev/null 2>&1
 	done
+}
+
+copy() {
+	if [ "$1" ]; then
+		xclip -selection clipboard -t $(xdg-mime query filetype "$1") -i "$1"
+	else
+		xclip -selection clipboard -i
+	fi
+	# If Wayland
+	#wl-copy -type $(xdg-mime query filetype "$1") "$1"
 }
 
 defnamen() {
@@ -47,7 +61,7 @@ defnamen() {
 	firstarg="${firstarg#./}"
 	local name="${firstarg:-$namen}"
 	if [ -z "$name" ]; then
-		echo "Please specify a base for name"
+		echo "Please specify a base for name."
 		return
 	fi
 	local bname="$(basename "$name")"
@@ -73,16 +87,6 @@ defnamen() {
 	done
 	namen="$(readlink -f "$name-$t-$n$ext")"
 	echo "namen=\"$namen\""
-}
-
-copy() {
-	if [ "$1" ]; then
-		xclip -selection clipboard -t $(file -b --mime-type "$1") -i "$1"
-	else
-		xclip -selection clipboard -i
-	fi
-	# If Wayland
-	#wl-copy -type $(file -b --mime-type "$1") "$1"
 }
 
 #################################

@@ -4,9 +4,6 @@ Seen=true
 [Applications][org.telegram.desktop]
 Seen=true
 
-[DoNotDisturb]
-Until=2021,11,17,15,7,0.057
-
 [Notifications]
 LowPriorityHistory=true
 NormalAlwaysOnTop=true

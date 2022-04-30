@@ -1,0 +1,70 @@
+#!/bin/sh
+
+gen_filename() {
+	while :; do
+		f="mvb$(tr -dc A-Za-z0-9 < /dev/urandom | head -c 9; echo '')"
+		if ! [ -e "$*/$f" ]; then break; fi
+	done
+	echo "$*/$f"
+}
+
+editor=${EDITOR:-vim}
+tmp=${TMPDIR:-/tmp}
+
+file_old="$(gen_filename "$tmp")"
+file_new="$(gen_filename "$tmp")"
+
+if [ $# -le 1 ]; then
+	\ls -v "${1:-.}" > "$file_old" || exit
+	dir="${1:-.}/"
+else
+	\ls -df "$@" > "$file_old" || exit
+	dir=''
+fi
+
+if ! [ -s "$file_old" ]; then
+	echo "File list empty." >&2
+	rm -f "$file_old"
+	exit 1
+fi
+
+rjust=0
+while read -r line; do
+	line_dir="$(dirname "$line")/"
+	line_dir="${line_dir#./}"
+	if [ "$rjust" -lt "${#line_dir}" ]; then
+		rjust="${#line_dir}"
+	fi
+done < "$file_old"
+rjust="${rjust#0}"
+
+while read -r line; do
+	line_dir="$(dirname "$line")/"
+	line_dir="${line_dir#./}"
+	line_file="$(basename "$line")"
+	if [ -d "$dir$line" ]; then
+		line_file="$line_file/"
+	fi
+	printf "%${rjust}s%s\n" "${line_dir}" "$line_file" >> "$file_new"
+done < "$file_old"
+
+
+if ! $editor "$file_new" -c "${rjust:+normal! ${rjust}l}"; then
+	rm -f "$file_old" "$file_new"
+	exit 1
+fi
+
+
+if [ "$(wc -l < "$file_new")" -ne "$(wc -l < "$file_old")" ]; then
+	echo "Number of lines changed. Aborting." >&2
+	rm -f "$file_old" "$file_new"
+	exit 1
+fi
+
+while read -r old <&3 && read -r new <&4; do
+	if [ "${old%/}" != "${new%/}" ]; then
+		mv -i "$dir$old" "$dir$new" 3<&- 4<&-
+	fi
+done 3<"$file_old" 4<"$file_new"
+
+rm -f "$file_old" "$file_new"

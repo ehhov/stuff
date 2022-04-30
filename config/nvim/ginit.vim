@@ -5,4 +5,4 @@ endif
 
 set bg=light
 "colorscheme neosolarized
-colorscheme gui_github
+colorscheme gui_soft_dark

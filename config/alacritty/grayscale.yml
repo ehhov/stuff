@@ -1,0 +1,24 @@
+schemes:
+  grayscale: &grayscale
+    primary:
+      background: '#0f0f0f'  # HSL:   0,  0,  6
+      foreground: '#8c8c8c'  # HSL:   0,  0, 55
+    normal:
+      black:      '#0f0f0f'  # HSL:   0,  0,  6
+      red:        '#737373'  # HSL:   0,  0, 45
+      green:      '#8c8c8c'  # HSL: 120,  0, 55
+      yellow:     '#808080'  # HSL:  60,  0, 50
+      blue:       '#666666'  # HSL: 240,  0, 40
+      magenta:    '#949494'  # HSL: 300,  0, 58
+      cyan:       '#999999'  # HSL: 180,  0, 60
+      white:      '#454545'  # HSL:   0,  0, 27
+    bright:
+      black:      '#1c1c1c'  # HSL:   0,  0, 11
+      red:        '#787878'  # HSL:   0,  0, 47
+      green:      '#919191'  # HSL: 120,  0, 57
+      yellow:     '#858585'  # HSL:  60,  0, 52
+      blue:       '#737373'  # HSL: 240,  0, 45
+      magenta:    '#969696'  # HSL: 300,  0, 59
+      cyan:       '#9e9e9e'  # HSL: 180,  0, 62
+      white:      '#8c8c8c'  # HSL:   0,  0, 55
+colors: *grayscale

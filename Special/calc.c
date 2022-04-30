@@ -1,5 +1,5 @@
 /*
- * using this program, you can calculate DPI based on the resolution
+ * Using this program, you can calculate DPI based on the resolution
  * and diagonal or side lengths based on the resolution and DPI.
  * I use it to configure 20-display.conf and .Xresousces.
  *
@@ -8,25 +8,27 @@
 #include <stdio.h>
 #include <math.h>
 
-double inmm = 25.4;
+static const double inmm = 25.4;
 
-void
+static void
 DPI(int X, int Y, double diagonal)
 {
-	printf("%lf\n", X / diagonal * sqrt(1 + Y*Y * 1.0 / X/X));
+	printf("DPI: %lf\n", X / diagonal * sqrt(1 + Y*Y * 1.0 / X/X));
 }
 
-void
-sides(int X, int Y, double DPI)
+static void
+sides(int X, int Y, int DPI)
 {
-	printf("%.0lfmm x %.0lfmm\n", X / DPI * inmm, Y / DPI * inmm);
+	printf("Sides from DPI %d: %.0lfmm x %.0lfmm\n",
+	       DPI, inmm * X / DPI, inmm * Y / DPI);
 }
 
-void
+static void
 realsides(int X, int Y, double diagonal)
 {
 	double Xside = diagonal / sqrt(1 + 1.0 * Y*Y / X/X) * inmm;
-	printf("%.0lfmm x %.0lfmm\n", Xside, Xside * Y / X);
+	printf("Sides from diagonal %.1lf in: %.0lfmm x %.0lfmm\n",
+	       diagonal, Xside, Xside * Y / X);
 }
 
 int

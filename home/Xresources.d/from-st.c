@@ -1,24 +1,52 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 static const char *Xres_output = "colors";
-static const char *liveschemes = "live_colors.sh";
-static const char *alarcittycolors = "colors.yml";
+static const char *live_schemes = "live_colors.sh";
+static const char *alarcitty_colors = "colors.yml";
 
 static const char *
-vimcolorfile(const char *filename)
+vim_color_filename(const char *filename)
 {
-	static char buf[1024];
+	static char buf[BUFSIZ];
 	static char *home = NULL;
+	static char *config = NULL;
 
 	/* XDG_CONFIG_HOME... */
-	if (!home)
+	if (!config && !home)
+		config = getenv("XDG_CONFIG_HOME");
+	if (!config && !home)
 		home = getenv("HOME");
-	if (!home)
+	if (!config && !home)
 		exit(1);
 
-	snprintf(buf, sizeof(buf), "%s/.config/nvim/colors/gui_%s.vim", home, filename);
+	if (config)
+		snprintf(buf, sizeof(buf), "%s/nvim/colors/gui_%s.vim", config, filename);
+	else
+		snprintf(buf, sizeof(buf), "%s/.config/nvim/colors/gui_%s.vim", home, filename);
 	return buf;
+}
+
+static void
+vim_append_gui_from_terminal(FILE* file)
+{
+	char buf[BUFSIZ];
+	FILE *source;
+	size_t n, i;
+
+	if (!(source = fopen(vim_color_filename("from_terminal"), "r"))) {
+		fputs("Failed to append gui_from_terminal.\n", stderr);
+		return;
+	}
+
+	fputs("\n\" === Apply the actual colorscheme === {{""{\n", file);
+	while ((n = fread(buf, sizeof(*buf), BUFSIZ, source)) > 0)
+		for (i = 0; i < n; i++)
+			fputc(buf[i], file);
+	fputs("\" }}""}\n", file);
+
+	fclose(source);
 }
 
 
@@ -29,7 +57,8 @@ vimcolorfile(const char *filename)
  * Compile and run while in ~/.Xresources.d/
  */
 static const char *palettes[][259] = {
-     /* black      red        green      yellow     blue       magenta    cyan       white  bg fg cur */
+/* black     red        green      yellow     blue       magenta    cyan      white
+ * [256] = bg fg cur */
 {"#000000", "#FF2424", "#00c000", "#CC7700", "#0055FF", "#d769ce", "#1D97FC", "#B9BBB9",
  "#D7EFDD", "#FB3737", "#40BF4A", "#E69119", "#3846ff", "#c779de", "#09B3B3", "#ffffff",
  [256] = "#e4f7e4", "#000000", "#000000"}, /* My light theme */
@@ -64,7 +93,7 @@ static const char *palettes[][259] = {
 
 {"#101010", "#D67B76", "#80c990", "#C79D73", "#a3b8ef", "#e6a3dc", "#50cacd", "#606060",
  "#252525", "#E0A084", "#5accaf", "#c8c874", "#ccaced", "#f2a1c2", "#74c3e4", "#c0c0c0",
- [256] = "#101010", "#c0c0c0", "#c0c0c0"}, /* soft dark */
+ [256] = "#101010", "#a0a0a0", "#a0a0a0"}, /* soft dark */
 
 {"#2E3436", "#CC0000", "#4B910B", "#C4A000", "#3465A4", "#755079", "#06989A", "#916E86",
  "#401C35", "#EF2929", "#8AE234", "#FCE94F", "#729FCF", "#AD7FA8", "#34E2E2", "#EEEEEC",
@@ -91,226 +120,138 @@ static const char *palettes[][259] = {
  [256] = "#fdf6e3", "#657b83", "#586e75"}, /* Solarized light original */
 };
 static const char *names[] = {
-	"light", "github", "Dracula", "Nord", "Solarized_dark", "Solarized_light", "Kanagawa", "Srcery", "soft_dark", "Ubuntu", "Gruvbox_dark", "Gruvbox_light", "dark", "Solarized_dark_orig", "Solarized_light_orig"
+	"light", "github", "Dracula", "Nord", "Solarized_dark", "Solarized_light",
+	"Kanagawa", "Srcery", "soft_dark", "Ubuntu", "Gruvbox_dark", "Gruvbox_light",
+	"dark", "Solarized_dark_orig", "Solarized_light_orig"
 };
 
 int main() {
-	int N = sizeof(palettes)/sizeof(palettes[0]);
+	int N = sizeof(palettes) / sizeof(*palettes), i;
 	FILE *file;
 
-	file=fopen(Xres_output, "w");
-	fputs("! vim:ft=xdefaults\n" \
-	      "!!! This file is created using ~/.Xresources.d/from-st.c !!!\n", file);
-	for (int theme=0; theme<N; theme++){
-		fprintf(file, "\n!!! %s color scheme\n", names[theme]);
-		fprintf(file, "#define %s_c0    %s\n", names[theme], palettes[theme][0]);
-		fprintf(file, "#define %s_c1    %s\n", names[theme], palettes[theme][1]);
-		fprintf(file, "#define %s_c2    %s\n", names[theme], palettes[theme][2]);
-		fprintf(file, "#define %s_c3    %s\n", names[theme], palettes[theme][3]);
-		fprintf(file, "#define %s_c4    %s\n", names[theme], palettes[theme][4]);
-		fprintf(file, "#define %s_c5    %s\n", names[theme], palettes[theme][5]);
-		fprintf(file, "#define %s_c6    %s\n", names[theme], palettes[theme][6]);
-		fprintf(file, "#define %s_c7    %s\n", names[theme], palettes[theme][7]);
-		fprintf(file, "#define %s_c8    %s\n", names[theme], palettes[theme][8]);
-		fprintf(file, "#define %s_c9    %s\n", names[theme], palettes[theme][9]);
-		fprintf(file, "#define %s_c10   %s\n", names[theme], palettes[theme][10]);
-		fprintf(file, "#define %s_c11   %s\n", names[theme], palettes[theme][11]);
-		fprintf(file, "#define %s_c12   %s\n", names[theme], palettes[theme][12]);
-		fprintf(file, "#define %s_c13   %s\n", names[theme], palettes[theme][13]);
-		fprintf(file, "#define %s_c14   %s\n", names[theme], palettes[theme][14]);
-		fprintf(file, "#define %s_c15   %s\n", names[theme], palettes[theme][15]);
-		fprintf(file, "#define %s_bg    %s\n", names[theme], palettes[theme][256]);
-		fprintf(file, "#define %s_fg    %s\n", names[theme], palettes[theme][257]);
-		fprintf(file, "#define %s_cur   %s\n", names[theme], palettes[theme][258]);
+	if (file = fopen(Xres_output, "w")) {
+		fputs("! vim:ft=xdefaults\n"
+		      "! === This file is created using ~/.Xresources.d/from-st.c ===\n", file);
+		for (i = 0; i < N; i++) {
+			fprintf(file, "\n! %s color scheme\n", names[i]);
+			fprintf(file, "#define %s_c0    %s\n", names[i], palettes[i][0]);
+			fprintf(file, "#define %s_c1    %s\n", names[i], palettes[i][1]);
+			fprintf(file, "#define %s_c2    %s\n", names[i], palettes[i][2]);
+			fprintf(file, "#define %s_c3    %s\n", names[i], palettes[i][3]);
+			fprintf(file, "#define %s_c4    %s\n", names[i], palettes[i][4]);
+			fprintf(file, "#define %s_c5    %s\n", names[i], palettes[i][5]);
+			fprintf(file, "#define %s_c6    %s\n", names[i], palettes[i][6]);
+			fprintf(file, "#define %s_c7    %s\n", names[i], palettes[i][7]);
+			fprintf(file, "#define %s_c8    %s\n", names[i], palettes[i][8]);
+			fprintf(file, "#define %s_c9    %s\n", names[i], palettes[i][9]);
+			fprintf(file, "#define %s_c10   %s\n", names[i], palettes[i][10]);
+			fprintf(file, "#define %s_c11   %s\n", names[i], palettes[i][11]);
+			fprintf(file, "#define %s_c12   %s\n", names[i], palettes[i][12]);
+			fprintf(file, "#define %s_c13   %s\n", names[i], palettes[i][13]);
+			fprintf(file, "#define %s_c14   %s\n", names[i], palettes[i][14]);
+			fprintf(file, "#define %s_c15   %s\n", names[i], palettes[i][15]);
+			fprintf(file, "#define %s_bg    %s\n", names[i], palettes[i][256]);
+			fprintf(file, "#define %s_fg    %s\n", names[i], palettes[i][257]);
+			fprintf(file, "#define %s_cur   %s\n", names[i], palettes[i][258]);
+		}
+		fclose(file);
 	}
-	fclose(file);
 
-	file=fopen(liveschemes, "w");
-	fputs("#!/bin/sh\n" \
-	      "### This file is created using ~/.Xresources.d/from-st.c ###\n" \
-	      "# The script makes use of color changing escape sequences\n" \
-	      "# They are supported by xterm, tilix, alacritty, (urxvt?) and not by st\n" \
-	      "# For some details, see e.g. https://github.com/alacritty/alacritty/issues/656\n" \
-	      "\nschemes=\"\"\n", file);
-	for (int theme=0; theme<N; theme++){
-		fprintf(file, "\n%s() {\n", names[theme]);
-		fprintf(file, "\tprintf \"\\033]4;0;%s\\007\"\n",   palettes[theme][0]);
-		fprintf(file, "\tprintf \"\\033]4;1;%s\\007\"\n",   palettes[theme][1]);
-		fprintf(file, "\tprintf \"\\033]4;2;%s\\007\"\n",   palettes[theme][2]);
-		fprintf(file, "\tprintf \"\\033]4;3;%s\\007\"\n",   palettes[theme][3]);
-		fprintf(file, "\tprintf \"\\033]4;4;%s\\007\"\n",   palettes[theme][4]);
-		fprintf(file, "\tprintf \"\\033]4;5;%s\\007\"\n",   palettes[theme][5]);
-		fprintf(file, "\tprintf \"\\033]4;6;%s\\007\"\n",   palettes[theme][6]);
-		fprintf(file, "\tprintf \"\\033]4;7;%s\\007\"\n",   palettes[theme][7]);
-		fprintf(file, "\tprintf \"\\033]4;8;%s\\007\"\n",   palettes[theme][8]);
-		fprintf(file, "\tprintf \"\\033]4;9;%s\\007\"\n",   palettes[theme][9]);
-		fprintf(file, "\tprintf \"\\033]4;10;%s\\007\"\n",  palettes[theme][10]);
-		fprintf(file, "\tprintf \"\\033]4;11;%s\\007\"\n",  palettes[theme][11]);
-		fprintf(file, "\tprintf \"\\033]4;12;%s\\007\"\n",  palettes[theme][12]);
-		fprintf(file, "\tprintf \"\\033]4;13;%s\\007\"\n",  palettes[theme][13]);
-		fprintf(file, "\tprintf \"\\033]4;14;%s\\007\"\n",  palettes[theme][14]);
-		fprintf(file, "\tprintf \"\\033]4;15;%s\\007\"\n",  palettes[theme][15]);
-		fprintf(file, "\tprintf \"\\033]11;%s\\007\"\n",    palettes[theme][256]);
-		fprintf(file, "\tprintf \"\\033]708;%s\\007\"\n",   palettes[theme][256]);
-		fprintf(file, "\tprintf \"\\033]10;%s\\007\"\n",    palettes[theme][257]);
-		fprintf(file, "\tprintf \"\\033]12;%s\\007\"\n",    palettes[theme][258]);
-		fprintf(file, "}\n");
-		fprintf(file, "schemes=\"$schemes %s\"\n", names[theme]);
+	if (file = fopen(live_schemes, "w")) {
+		fputs("#!/bin/sh\n"
+		      "# === This file is created using ~/.Xresources.d/from-st.c ===\n"
+		      "# The script makes use of color changing escape sequences\n"
+		      "# They are supported by xterm, tilix, alacritty, (urxvt?) and not by st\n"
+		      "# For some details, see e.g. https://github.com/alacritty/alacritty/issues/656\n"
+		      "\nschemes=\"\"\n", file);
+		for (i = 0; i < N; i++) {
+			fprintf(file, "\n%s() {\n", names[i]);
+			fprintf(file, "\tprintf \"\\033]4;0;%s\\007\"\n",   palettes[i][0]);
+			fprintf(file, "\tprintf \"\\033]4;1;%s\\007\"\n",   palettes[i][1]);
+			fprintf(file, "\tprintf \"\\033]4;2;%s\\007\"\n",   palettes[i][2]);
+			fprintf(file, "\tprintf \"\\033]4;3;%s\\007\"\n",   palettes[i][3]);
+			fprintf(file, "\tprintf \"\\033]4;4;%s\\007\"\n",   palettes[i][4]);
+			fprintf(file, "\tprintf \"\\033]4;5;%s\\007\"\n",   palettes[i][5]);
+			fprintf(file, "\tprintf \"\\033]4;6;%s\\007\"\n",   palettes[i][6]);
+			fprintf(file, "\tprintf \"\\033]4;7;%s\\007\"\n",   palettes[i][7]);
+			fprintf(file, "\tprintf \"\\033]4;8;%s\\007\"\n",   palettes[i][8]);
+			fprintf(file, "\tprintf \"\\033]4;9;%s\\007\"\n",   palettes[i][9]);
+			fprintf(file, "\tprintf \"\\033]4;10;%s\\007\"\n",  palettes[i][10]);
+			fprintf(file, "\tprintf \"\\033]4;11;%s\\007\"\n",  palettes[i][11]);
+			fprintf(file, "\tprintf \"\\033]4;12;%s\\007\"\n",  palettes[i][12]);
+			fprintf(file, "\tprintf \"\\033]4;13;%s\\007\"\n",  palettes[i][13]);
+			fprintf(file, "\tprintf \"\\033]4;14;%s\\007\"\n",  palettes[i][14]);
+			fprintf(file, "\tprintf \"\\033]4;15;%s\\007\"\n",  palettes[i][15]);
+			fprintf(file, "\tprintf \"\\033]11;%s\\007\"\n",    palettes[i][256]);
+			fprintf(file, "\tprintf \"\\033]708;%s\\007\"\n",   palettes[i][256]);
+			fprintf(file, "\tprintf \"\\033]10;%s\\007\"\n",    palettes[i][257]);
+			fprintf(file, "\tprintf \"\\033]12;%s\\007\"\n",    palettes[i][258]);
+			fprintf(file, "}\n");
+			fprintf(file, "schemes=\"$schemes %s\"\n", names[i]);
+		}
+		fputs("\nPS3=\"Choose a color scheme: \"\n" \
+		      "select scheme in $schemes \"Do not change\"\n" \
+		      "do\n" \
+		      "\t${scheme#Do not change}\n" \
+		      "\tbreak\n" \
+		      "done\n", file);
+		fclose(file);
 	}
-	fputs("\nPS3=\"Choose a color scheme: \"\n" \
-	      "select scheme in $schemes \"Do not change\"\n" \
-	      "do\n" \
-	      "\t${scheme/#Do not change/}\n" \
-	      "\tbreak\n" \
-	      "done\n", file);
-	fclose(file);
 
-	file=fopen(alarcittycolors, "w");
-	fputs("schemes:\n", file);
-	for (int theme=0; theme<N; theme++){
-		fprintf(file, "\n  %s: &%s\n", names[theme], names[theme]);
-		fprintf(file, "    primary:\n");
-		fprintf(file, "      background: '%s'\n", palettes[theme][256]);
-		fprintf(file, "      foreground: '%s'\n", palettes[theme][257]);
-		fprintf(file, "    normal:\n");
-		fprintf(file, "      black: '%s'\n",  palettes[theme][0]);
-		fprintf(file, "      red: '%s'\n",  palettes[theme][1]);
-		fprintf(file, "      green: '%s'\n",  palettes[theme][2]);
-		fprintf(file, "      yellow: '%s'\n",  palettes[theme][3]);
-		fprintf(file, "      blue: '%s'\n",  palettes[theme][4]);
-		fprintf(file, "      magenta: '%s'\n",  palettes[theme][5]);
-		fprintf(file, "      cyan: '%s'\n",  palettes[theme][6]);
-		fprintf(file, "      white: '%s'\n",  palettes[theme][7]);
-		fprintf(file, "    bright:\n");
-		fprintf(file, "      black: '%s'\n",  palettes[theme][8]);
-		fprintf(file, "      red: '%s'\n",  palettes[theme][9]);
-		fprintf(file, "      green: '%s'\n",  palettes[theme][10]);
-		fprintf(file, "      yellow: '%s'\n",  palettes[theme][11]);
-		fprintf(file, "      blue: '%s'\n",  palettes[theme][12]);
-		fprintf(file, "      magenta: '%s'\n",  palettes[theme][13]);
-		fprintf(file, "      cyan: '%s'\n",  palettes[theme][14]);
-		fprintf(file, "      white: '%s'\n",  palettes[theme][15]);
+	if (file = fopen(alarcitty_colors, "w")) {
+		fputs("schemes:\n", file);
+		for (i = 0; i < N; i++) {
+			fprintf(file, "\n  %s: &%s\n", names[i], names[i]);
+			fprintf(file, "    primary:\n");
+			fprintf(file, "      background: '%s'\n", palettes[i][256]);
+			fprintf(file, "      foreground: '%s'\n", palettes[i][257]);
+			fprintf(file, "    normal:\n");
+			fprintf(file, "      black: '%s'\n",      palettes[i][0]);
+			fprintf(file, "      red: '%s'\n",        palettes[i][1]);
+			fprintf(file, "      green: '%s'\n",      palettes[i][2]);
+			fprintf(file, "      yellow: '%s'\n",     palettes[i][3]);
+			fprintf(file, "      blue: '%s'\n",       palettes[i][4]);
+			fprintf(file, "      magenta: '%s'\n",    palettes[i][5]);
+			fprintf(file, "      cyan: '%s'\n",       palettes[i][6]);
+			fprintf(file, "      white: '%s'\n",      palettes[i][7]);
+			fprintf(file, "    bright:\n");
+			fprintf(file, "      black: '%s'\n",      palettes[i][8]);
+			fprintf(file, "      red: '%s'\n",        palettes[i][9]);
+			fprintf(file, "      green: '%s'\n",      palettes[i][10]);
+			fprintf(file, "      yellow: '%s'\n",     palettes[i][11]);
+			fprintf(file, "      blue: '%s'\n",       palettes[i][12]);
+			fprintf(file, "      magenta: '%s'\n",    palettes[i][13]);
+			fprintf(file, "      cyan: '%s'\n",       palettes[i][14]);
+			fprintf(file, "      white: '%s'\n",      palettes[i][15]);
+		}
+		fclose(file);
 	}
-	fclose(file);
 
-	for (int theme=0; theme<N; theme++){
-		file=fopen(vimcolorfile(names[theme]), "w");
+	for (int i = 0; i < N; i++) {
+		if (!(file = fopen(vim_color_filename(names[i]), "w")))
+			continue;
 
-		fputs("hi clear Normal\n"
-		      "set bg&\n"
-		      "hi clear\n"
-		      "if exists(\"syntax_on\")\n"
-		      "\tsyntax reset\n"
-		      "endif\n\n", file);
-		fprintf(file, "let g:colors_name = \"%s\"\n\n", names[theme]);
-		fprintf(file, "let s:none = \"none\"\n");
-		fprintf(file, "let s:c0    = \"%s\"\n", palettes[theme][0]);
-		fprintf(file, "let s:c1    = \"%s\"\n", palettes[theme][1]);
-		fprintf(file, "let s:c2    = \"%s\"\n", palettes[theme][2]);
-		fprintf(file, "let s:c3    = \"%s\"\n", palettes[theme][3]);
-		fprintf(file, "let s:c4    = \"%s\"\n", palettes[theme][4]);
-		fprintf(file, "let s:c5    = \"%s\"\n", palettes[theme][5]);
-		fprintf(file, "let s:c6    = \"%s\"\n", palettes[theme][6]);
-		fprintf(file, "let s:c7    = \"%s\"\n", palettes[theme][7]);
-		fprintf(file, "let s:c8    = \"%s\"\n", palettes[theme][8]);
-		fprintf(file, "let s:c9    = \"%s\"\n", palettes[theme][9]);
-		fprintf(file, "let s:c10   = \"%s\"\n", palettes[theme][10]);
-		fprintf(file, "let s:c11   = \"%s\"\n", palettes[theme][11]);
-		fprintf(file, "let s:c12   = \"%s\"\n", palettes[theme][12]);
-		fprintf(file, "let s:c13   = \"%s\"\n", palettes[theme][13]);
-		fprintf(file, "let s:c14   = \"%s\"\n", palettes[theme][14]);
-		fprintf(file, "let s:c15   = \"%s\"\n", palettes[theme][15]);
-		fprintf(file, "let s:bg    = \"%s\"\n", palettes[theme][256]);
-		fprintf(file, "let s:fg    = \"%s\"\n", palettes[theme][257]);
-		fprintf(file, "let s:cur   = \"%s\"\n", palettes[theme][258]);
-		fputs("\n\
-\" Default 16-colors color scheme in vim {{{\n\
-exe  \"hi  SpecialKey        gui=none            guifg=\"  .  s:c4    .  \" guibg=\"  .  s:none     \n\
-exe  \"hi  NonText           gui=none            guifg=\"  .  s:c12   .  \" guibg=\"  .  s:none     \n\
-exe  \"hi  Directory         gui=none            guifg=\"  .  s:c4    .  \" guibg=\"  .  s:none     \n\
-exe  \"hi  ErrorMsg          gui=none            guifg=\"  .  s:c15   .  \" guibg=\"  .  s:c1       \n\
-exe  \"hi  IncSearch         gui=reverse         guifg=\"  .  s:none  .  \" guibg=\"  .  s:none     \n\
-exe  \"hi  Search            gui=none            guifg=\"  .  s:c0    .  \" guibg=\"  .  s:c11      \n\
-exe  \"hi  MoreMsg           gui=none            guifg=\"  .  s:c2    .  \" guibg=\"  .  s:none     \n\
-exe  \"hi  ModeMsg           gui=bold            guifg=\"  .  s:none  .  \" guibg=\"  .  s:none     \n\
-exe  \"hi  LineNr            gui=none            guifg=\"  .  s:c3    .  \" guibg=\"  .  s:none     \n\
-exe  \"hi  LineNrAbove       gui=none            guifg=\"  .  s:none  .  \" guibg=\"  .  s:none     \n\
-exe  \"hi  LineNrBelow       gui=none            guifg=\"  .  s:none  .  \" guibg=\"  .  s:none     \n\
-exe  \"hi  CursorLineNr      gui=underline       guifg=\"  .  s:c3    .  \" guibg=\"  .  s:none     \n\
-exe  \"hi  Question          gui=none            guifg=\"  .  s:c2    .  \" guibg=\"  .  s:none     \n\
-exe  \"hi  StatusLine        gui=bold,reverse    guifg=\"  .  s:none  .  \" guibg=\"  .  s:none     \n\
-exe  \"hi  StatusLineNC      gui=reverse         guifg=\"  .  s:none  .  \" guibg=\"  .  s:none     \n\
-exe  \"hi  VertSplit         gui=reverse         guifg=\"  .  s:none  .  \" guibg=\"  .  s:none     \n\
-exe  \"hi  Title             gui=none            guifg=\"  .  s:c5    .  \" guibg=\"  .  s:none     \n\
-exe  \"hi  Visual            gui=none            guifg=\"  .  s:none  .  \" guibg=\"  .  s:c7       \n\
-exe  \"hi  VisualNOS         gui=bold,underline  guifg=\"  .  s:none  .  \" guibg=\"  .  s:none     \n\
-exe  \"hi  WarningMsg        gui=none            guifg=\"  .  s:c1    .  \" guibg=\"  .  s:none     \n\
-exe  \"hi  WildMenu          gui=none            guifg=\"  .  s:c0    .  \" guibg=\"  .  s:c11      \n\
-exe  \"hi  Folded            gui=none            guifg=\"  .  s:c4    .  \" guibg=\"  .  s:c7       \n\
-exe  \"hi  FoldColumn        gui=none            guifg=\"  .  s:c4    .  \" guibg=\"  .  s:c7       \n\
-exe  \"hi  DiffAdd           gui=none            guifg=\"  .  s:none  .  \" guibg=\"  .  s:c12      \n\
-exe  \"hi  DiffChange        gui=none            guifg=\"  .  s:none  .  \" guibg=\"  .  s:c13      \n\
-exe  \"hi  DiffDelete        gui=none            guifg=\"  .  s:c12   .  \" guibg=\"  .  s:c14      \n\
-exe  \"hi  DiffText          gui=bold            guifg=\"  .  s:none  .  \" guibg=\"  .  s:c9       \n\
-exe  \"hi  SignColumn        gui=none            guifg=\"  .  s:c4    .  \" guibg=\"  .  s:c7       \n\
-exe  \"hi  Conceal           gui=none            guifg=\"  .  s:c7    .  \" guibg=\"  .  s:c8       \n\
-exe  \"hi  SpellBad          gui=none            guifg=\"  .  s:none  .  \" guibg=\"  .  s:c9       \n\
-exe  \"hi  SpellCap          gui=none            guifg=\"  .  s:none  .  \" guibg=\"  .  s:c12      \n\
-exe  \"hi  SpellRare         gui=none            guifg=\"  .  s:none  .  \" guibg=\"  .  s:c13      \n\
-exe  \"hi  SpellLocal        gui=none            guifg=\"  .  s:none  .  \" guibg=\"  .  s:c14      \n\
-exe  \"hi  Pmenu             gui=none            guifg=\"  .  s:c0    .  \" guibg=\"  .  s:c13      \n\
-exe  \"hi  PmenuSel          gui=none            guifg=\"  .  s:c0    .  \" guibg=\"  .  s:c7       \n\
-exe  \"hi  PmenuSbar         gui=none            guifg=\"  .  s:none  .  \" guibg=\"  .  s:c7       \n\
-exe  \"hi  PmenuThumb        gui=none            guifg=\"  .  s:none  .  \" guibg=\"  .  s:c0       \n\
-exe  \"hi  TabLine           gui=underline       guifg=\"  .  s:c0    .  \" guibg=\"  .  s:c7       \n\
-exe  \"hi  TabLineSel        gui=bold            guifg=\"  .  s:none  .  \" guibg=\"  .  s:none     \n\
-exe  \"hi  TabLineFill       gui=reverse         guifg=\"  .  s:none  .  \" guibg=\"  .  s:none     \n\
-exe  \"hi  CursorColumn      gui=none            guifg=\"  .  s:none  .  \" guibg=\"  .  s:c7       \n\
-exe  \"hi  CursorLine        gui=underline       guifg=\"  .  s:none  .  \" guibg=\"  .  s:none     \n\
-exe  \"hi  ColorColumn       gui=none            guifg=\"  .  s:none  .  \" guibg=\"  .  s:c9       \n\
-exe  \"hi  Normal            gui=none            guifg=\"  .  s:fg    .  \" guibg=\"  .  s:bg       \n\
-exe  \"hi  StatusLineTerm    gui=bold            guifg=\"  .  s:c15   .  \" guibg=\"  .  s:c2       \n\
-exe  \"hi  StatusLineTermNC  gui=none            guifg=\"  .  s:c15   .  \" guibg=\"  .  s:c2       \n\
-exe  \"hi  MatchParen        gui=none            guifg=\"  .  s:none  .  \" guibg=\"  .  s:c14      \n\
-exe  \"hi  ToolbarLine       gui=none            guifg=\"  .  s:none  .  \" guibg=\"  .  s:c7       \n\
-exe  \"hi  ToolbarButton     gui=bold            guifg=\"  .  s:c15   .  \" guibg=\"  .  s:c8       \n\
-exe  \"hi  Comment           gui=none            guifg=\"  .  s:c4    .  \" guibg=\"  .  s:none     \n\
-exe  \"hi  Constant          gui=none            guifg=\"  .  s:c1    .  \" guibg=\"  .  s:none     \n\
-exe  \"hi  Special           gui=none            guifg=\"  .  s:c5    .  \" guibg=\"  .  s:none     \n\
-exe  \"hi  Identifier        gui=none            guifg=\"  .  s:c6    .  \" guibg=\"  .  s:none     \n\
-exe  \"hi  Statement         gui=none            guifg=\"  .  s:c3    .  \" guibg=\"  .  s:none     \n\
-exe  \"hi  PreProc           gui=none            guifg=\"  .  s:c5    .  \" guibg=\"  .  s:none     \n\
-exe  \"hi  Type              gui=none            guifg=\"  .  s:c2    .  \" guibg=\"  .  s:none     \n\
-exe  \"hi  Underlined        gui=underline       guifg=\"  .  s:c5    .  \" guibg=\"  .  s:none     \n\
-exe  \"hi  Ignore            gui=none            guifg=\"  .  s:c15   .  \" guibg=\"  .  s:none     \n\
-exe  \"hi  Error             gui=none            guifg=\"  .  s:c15   .  \" guibg=\"  .  s:c9       \n\
-exe  \"hi  Todo              gui=none            guifg=\"  .  s:c0    .  \" guibg=\"  .  s:c11      \n\
-\" }}} \n\n\
-exe  \"hi  Folded        gui=none       guifg=\"  .  s:c4    .  \" guibg=\"  .  s:c8\n\
-exe  \"hi  Comment       gui=none       guifg=\"  .  s:c4    .  \" guibg=\"  .  s:none\n\
-exe  \"hi  Search        gui=none       guifg=\"  .  s:c0    .  \" guibg=\"  .  s:c11\n\
-exe  \"hi  CursorColumn  gui=none       guifg=\"  .  s:none  .  \" guibg=\"  .  s:c8\n\
-exe  \"hi  CursorLine    gui=none       guifg=\"  .  s:none  .  \" guibg=\"  .  s:c8\n\
-exe  \"hi  CursorLineNr  gui=none       guifg=\"  .  s:c7    .  \" guibg=\"  .  s:c8\n\
-exe  \"hi  LineNr        gui=none       guifg=\"  .  s:c7    .  \" guibg=\"  .  s:none\n\
-exe  \"hi  MatchParen    gui=none       guifg=\"  .  s:none  .  \" guibg=\"  .  s:c7\n\
-exe  \"hi  Visual        gui=none       guifg=\"  .  s:none  .  \" guibg=\"  .  s:c7\n\
-exe  \"hi  VertSplit     gui=reverse    guifg=\"  .  s:c7    .  \" guibg=\"  .  s:none\n\
-exe  \"hi  Pmenu         gui=none       guifg=\"  .  s:none  .  \" guibg=\"  .  s:c8\n\
-exe  \"hi  PmenuSel      gui=reverse    guifg=\"  .  s:c7    .  \" guibg=\"  .  s:none\n\
-exe  \"hi  PmenuSbar     gui=none       guifg=\"  .  s:c7    .  \" guibg=\"  .  s:c8\n\
-exe  \"hi  PmenuThumb    gui=none       guifg=\"  .  s:c7    .  \" guibg=\"  .  s:c7\n\
-exe  \"hi  SpellBad      gui=underline  guifg=\"  .  s:c9    .  \" guibg=\"  .  s:none\n\
-exe  \"hi  SpellCap      gui=underline  guifg=\"  .  s:c12   .  \" guibg=\"  .  s:none\n\
-exe  \"hi  SpellLocal    gui=underline  guifg=\"  .  s:c14   .  \" guibg=\"  .  s:none\n\
-exe  \"hi  DiffAdd       gui=none       guifg=\"  .  s:none  .  \" guibg=\"  .  s:c10\n\
-exe  \"hi  DiffChange    gui=none       guifg=\"  .  s:none  .  \" guibg=\"  .  s:c11\n\
-exe  \"hi  DiffDelete    gui=none       guifg=\"  .  s:none  .  \" guibg=\"  .  s:c9\n\
-exe  \"hi  DiffText      gui=none       guifg=\"  .  s:c15   .  \" guibg=\"  .  s:c9\n\
-exe  \"hi  TabLine       gui=none       guifg=\"  .  s:c0    .  \" guibg=\"  .  s:c7\n\
-exe  \"hi  TabLineFill   gui=none       guifg=\"  .  s:none  .  \" guibg=\"  .  s:c7\n\
-exe  \"hi  TabLineSel    gui=bold       guifg=\"  .  s:none  .  \" guibg=\"  .  s:none\n\
-", file);
+		fprintf(file, "let g:colors_name = \'%s\'\n\n", names[i]);
+		fprintf(file, "let s:c0  = \'%s\'\n", palettes[i][0]);
+		fprintf(file, "let s:c1  = \'%s\'\n", palettes[i][1]);
+		fprintf(file, "let s:c2  = \'%s\'\n", palettes[i][2]);
+		fprintf(file, "let s:c3  = \'%s\'\n", palettes[i][3]);
+		fprintf(file, "let s:c4  = \'%s\'\n", palettes[i][4]);
+		fprintf(file, "let s:c5  = \'%s\'\n", palettes[i][5]);
+		fprintf(file, "let s:c6  = \'%s\'\n", palettes[i][6]);
+		fprintf(file, "let s:c7  = \'%s\'\n", palettes[i][7]);
+		fprintf(file, "let s:c8  = \'%s\'\n", palettes[i][8]);
+		fprintf(file, "let s:c9  = \'%s\'\n", palettes[i][9]);
+		fprintf(file, "let s:c10 = \'%s\'\n", palettes[i][10]);
+		fprintf(file, "let s:c11 = \'%s\'\n", palettes[i][11]);
+		fprintf(file, "let s:c12 = \'%s\'\n", palettes[i][12]);
+		fprintf(file, "let s:c13 = \'%s\'\n", palettes[i][13]);
+		fprintf(file, "let s:c14 = \'%s\'\n", palettes[i][14]);
+		fprintf(file, "let s:c15 = \'%s\'\n", palettes[i][15]);
+		fprintf(file, "let s:bg  = \'%s\'\n", palettes[i][256]);
+		fprintf(file, "let s:fg  = \'%s\'\n", palettes[i][257]);
+		fprintf(file, "let s:cur = \'%s\'\n", palettes[i][258]);
+		vim_append_gui_from_terminal(file);
 
 		fclose(file);
 	}

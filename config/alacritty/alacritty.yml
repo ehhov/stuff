@@ -2,6 +2,7 @@ window:
   padding:
     x: 3
     y: 3
+  decorations: full
 
 scrolling:
   history: 10000
@@ -10,7 +11,9 @@ dpi:
   x: 128
   y: 128
 font:
-  size: 9
+  normal:
+    family: ttyp0
+  size: 10
 
 mouse_bindings:
         - { mouse: Middle, action: None }
@@ -208,7 +211,7 @@ schemes:
   soft_dark: &soft_dark
     primary:
       background: '#101010'
-      foreground: '#c0c0c0'
+      foreground: '#a0a0a0'
     normal:
       black: '#101010'
       red: '#D67B76'
@@ -366,4 +369,12 @@ schemes:
       cyan: '#586e75'
       white: '#002b36'
 
-colors: *soft_dark
+
+#
+#colors: *github
+#colors: *Solarized_dark
+#colors: *soft_dark
+
+import:
+  - ~/.config/alacritty/grayscale.yml
+  - ~/.config/alacritty/gentledark.yml

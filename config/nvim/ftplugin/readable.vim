@@ -2,7 +2,7 @@ setl spell
 
 setl tw=72 ts=2 sts=0 sw=0 et nosta
 
-setl fo+=ta
+setl fo+=tan
 
 fun! Togfo()
 	if &fo =~ 'a'

@@ -1,0 +1,8 @@
+#[Desktop Entry]
+#Type=Application
+#Name=emonc: automatic display configuration
+#Exec=sh -c 'exec emonc -l onlylargest'
+
+#-c "kwin_x11 --replace"
+# One could also want to run exebg plasmashell --replace.
+# For some reason, it doesn't work outside sh -c ''.

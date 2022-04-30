@@ -22,3 +22,10 @@ for file in "$@"; do
 		ln -s "$file-$session" "$config/$file"
 	fi
 done
+
+
+# This could go in ~/.config/autostart
+# [Desktop Entry]
+# Type=Application
+# Name=Per DE Config Files
+# Exec=sh -c "~/.bin/per-de-config.sh"

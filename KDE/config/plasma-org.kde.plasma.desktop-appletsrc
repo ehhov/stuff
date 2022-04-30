@@ -32,8 +32,9 @@ lastUpdate=2021,1,10,20,39,55
 [Containments][1][Configuration]
 PreloadWeight=42
 
-[Containments][105]
+[Containments][108]
 ItemGeometries-1920x1080=
+ItemGeometries-2560x1440=
 ItemGeometriesHorizontal=
 activityId=fe2b846e-7839-47ac-8f8f-02392e5fd7f9
 formfactor=0
@@ -41,22 +42,36 @@ immutability=1
 lastScreen=0
 location=0
 plugin=org.kde.plasma.folder
-wallpaperplugin=org.kde.potd
+wallpaperplugin=org.kde.image
 
-[Containments][105][ConfigDialog]
-DialogHeight=660
-DialogWidth=880
+[Containments][108][Configuration]
+PreloadWeight=0
 
-[Containments][105][Configuration]
-PreloadWeight=42
+[Containments][108][General]
+ToolBoxButtonState=topcenter
+ToolBoxButtonX=448
+ToolBoxButtonY=30
 
-[Containments][105][Wallpaper][org.kde.image][General]
-Image=file:///usr/share/wallpapers/Next/contents/images/1920x1080.png
+[Containments][108][Wallpaper][org.kde.image][General]
+Image=file:///usr/share/wallpapers/Next/contents/images/2560x1440.jpg
 
-[Containments][105][Wallpaper][org.kde.potd][General]
-Category=1065374
-FillMode=2
-Provider=unsplash
+[Containments][109]
+ItemGeometries-1920x1080=
+ItemGeometries-2560x1440=
+ItemGeometriesHorizontal=
+activityId=fe2b846e-7839-47ac-8f8f-02392e5fd7f9
+formfactor=0
+immutability=1
+lastScreen=1
+location=0
+plugin=org.kde.plasma.folder
+wallpaperplugin=org.kde.image
+
+[Containments][109][Configuration]
+PreloadWeight=0
+
+[Containments][109][Wallpaper][org.kde.image][General]
+Image=file:///usr/share/wallpapers/Next/contents/images/2560x1440.jpg
 
 [Containments][2][Applets][3][Configuration]
 PreloadWeight=100
@@ -72,27 +87,6 @@ lastScreen=0
 location=3
 plugin=org.kde.panel
 wallpaperplugin=org.kde.image
-
-[Containments][44][Applets][101]
-immutability=1
-plugin=org.kde.plasma.panelspacer
-
-[Containments][44][Applets][101][Configuration]
-PreloadWeight=34
-
-[Containments][44][Applets][101][Configuration][General]
-length=761
-
-[Containments][44][Applets][102]
-immutability=1
-plugin=org.kde.plasma.appmenu
-
-[Containments][44][Applets][102][Configuration]
-PreloadWeight=34
-
-[Containments][44][Applets][102][Configuration][ConfigDialog]
-DialogHeight=660
-DialogWidth=880
 
 [Containments][44][Applets][45]
 immutability=1
@@ -110,7 +104,7 @@ immutability=1
 plugin=org.kde.plasma.systemtray
 
 [Containments][44][Applets][47][Configuration]
-PreloadWeight=100
+PreloadWeight=0
 SystrayContainmentId=48
 
 [Containments][44][Applets][61]
@@ -129,7 +123,7 @@ immutability=1
 plugin=org.kde.plasma.betterinlineclock
 
 [Containments][44][Applets][78][Configuration]
-PreloadWeight=97
+PreloadWeight=0
 
 [Containments][44][Applets][78][Configuration][Appearance]
 customDateFormat=ddd d MMM
@@ -148,7 +142,7 @@ immutability=1
 plugin=org.kde.plasma.kickoff
 
 [Containments][44][Applets][92][Configuration]
-PreloadWeight=100
+PreloadWeight=84
 
 [Containments][44][Applets][92][Configuration][ConfigDialog]
 DialogHeight=682
@@ -161,15 +155,32 @@ systemFavorites=suspend\\,hibernate\\,reboot\\,shutdown
 [Containments][44][Applets][92][Shortcuts]
 global=Meta+F1
 
+[Containments][44][Applets][98]
+immutability=1
+plugin=org.kde.plasma.icontasks
+
+[Containments][44][Applets][98][Configuration]
+PreloadWeight=0
+
+[Containments][44][Applets][98][Configuration][ConfigDialog]
+DialogHeight=660
+DialogWidth=880
+
+[Containments][44][Applets][98][Configuration][General]
+groupedTaskVisualization=2
+launchers=applications:google-chrome.desktop,applications:org.telegram.desktop.desktop,applications:org.kde.okular.desktop,preferred://filemanager,applications:gimp.desktop,applications:org.inkscape.Inkscape.desktop,applications:Alacritty.desktop,applications:systemsettings.desktop,applications:org.kde.discover.desktop,applications:Zoom.desktop,applications:mozilla-thunderbird.desktop
+maxStripes=1
+wheelEnabled=false
+
 [Containments][44][ConfigDialog]
-DialogHeight=88
+DialogHeight=93
 DialogWidth=1920
 
 [Containments][44][Configuration]
 PreloadWeight=0
 
 [Containments][44][General]
-AppletOrder=92;102;101;45;61;47;78
+AppletOrder=92;98;45;61;47;78
 
 [Containments][48]
 activityId=
@@ -185,7 +196,7 @@ immutability=1
 plugin=org.kde.plasma.volume
 
 [Containments][48][Applets][49][Configuration]
-PreloadWeight=100
+PreloadWeight=0
 
 [Containments][48][Applets][49][Configuration][ConfigDialog]
 DialogHeight=682
@@ -203,7 +214,7 @@ immutability=1
 plugin=org.kde.plasma.devicenotifier
 
 [Containments][48][Applets][51][Configuration]
-PreloadWeight=87
+PreloadWeight=0
 
 [Containments][48][Applets][52]
 immutability=1
@@ -224,7 +235,7 @@ immutability=1
 plugin=org.kde.plasma.notifications
 
 [Containments][48][Applets][54][Configuration]
-PreloadWeight=33
+PreloadWeight=0
 
 [Containments][48][Applets][55]
 immutability=1
@@ -249,28 +260,28 @@ immutability=1
 plugin=org.kde.plasma.battery
 
 [Containments][48][Applets][57][Configuration]
-PreloadWeight=100
+PreloadWeight=2
 
 [Containments][48][Applets][58]
 immutability=1
 plugin=org.kde.plasma.bluetooth
 
 [Containments][48][Applets][58][Configuration]
-PreloadWeight=100
+PreloadWeight=0
 
 [Containments][48][Applets][59]
 immutability=1
 plugin=org.kde.plasma.networkmanagement
 
 [Containments][48][Applets][59][Configuration]
-PreloadWeight=42
+PreloadWeight=0
 
 [Containments][48][Applets][63]
 immutability=1
 plugin=org.kde.kdeconnect
 
 [Containments][48][Applets][63][Configuration]
-PreloadWeight=22
+PreloadWeight=0
 
 [Containments][48][Applets][64]
 immutability=1
@@ -302,7 +313,7 @@ immutability=1
 plugin=org.kde.plasma.keyboardlayout
 
 [Containments][48][Applets][90][Configuration]
-PreloadWeight=18
+PreloadWeight=0
 
 [Containments][48][Applets][90][Configuration][ConfigDialog]
 DialogHeight=682
@@ -316,7 +327,7 @@ immutability=1
 plugin=org.kde.plasma.manage-inputmethod
 
 [Containments][48][Applets][93][Configuration]
-PreloadWeight=42
+PreloadWeight=0
 
 [Containments][48][ConfigDialog]
 DialogHeight=660
@@ -333,64 +344,15 @@ knownItems=org.kde.plasma.clipboard,org.kde.plasma.battery,org.kde.plasma.nightc
 [Containments][7][Applets][21][Configuration]
 PreloadWeight=55
 
-[Containments][73]
-activityId=fe2b846e-7839-47ac-8f8f-02392e5fd7f9
-formfactor=0
-immutability=1
-lastScreen=1
-location=0
-plugin=org.kde.plasma.folder
-wallpaperplugin=org.kde.image
+[Containments35Appletsts][34][Configuration][General]
+launchers=applications:firefox.desktop,preferred://browser,applications:telegramdesktop.desktop,preferred://filemanager,applications:gimp.desktop,applications:org.inkscape.Inkscape.desktop,applications:Alacritty.desktop,applications:nvim-qt.desktop,applications:systemsettings.desktop,applications:Zoom.desktop,applications:thunderbird.desktop
+maxStripes=1
 
-[Containments][73][Configuration]
-PreloadWeight=0
-
-[Containments][73][General]
-ToolBoxButtonState=top
-ToolBoxButtonY=30
-
-[Containments][73][Wallpaper][org.kde.image][General]
-Image=file:///home/kerim/.local/share/wallpapers/Plasma_K012_FHD_NoLogo.png
-
-[Containments][96]
-activityId=
-formfactor=2
-immutability=1
-lastScreen=0
-location=4
-plugin=org.kde.panel
-wallpaperplugin=org.kde.image
-
-[Containments][96][Applets][98]
-immutability=1
-plugin=org.kde.plasma.icontasks
-
-[Containments][96][Applets][98][Configuration]
-PreloadWeight=42
-
-[Containments][96][Applets][98][Configuration][ConfigDialog]
-DialogHeight=660
-DialogWidth=880
-
-[Containments][96][Applets][98][Configuration][General]
+[Containments44Appletsts][98][Configuration][General]
 groupedTaskVisualization=2
 launchers=applications:google-chrome.desktop,applications:org.telegram.desktop.desktop,applications:org.kde.okular.desktop,preferred://filemanager,applications:gimp.desktop,applications:org.inkscape.Inkscape.desktop,applications:Alacritty.desktop,applications:systemsettings.desktop,applications:org.kde.discover.desktop,applications:Zoom.desktop,applications:mozilla-thunderbird.desktop
 maxStripes=1
 wheelEnabled=false
-
-[Containments][96][ConfigDialog]
-DialogHeight=88
-DialogWidth=1920
-
-[Containments][96][Configuration]
-PreloadWeight=42
-
-[Containments][96][General]
-AppletOrder=98
-
-[Containments35Appletsts][34][Configuration][General]
-launchers=applications:firefox.desktop,preferred://browser,applications:telegramdesktop.desktop,preferred://filemanager,applications:gimp.desktop,applications:org.inkscape.Inkscape.desktop,applications:Alacritty.desktop,applications:nvim-qt.desktop,applications:systemsettings.desktop,applications:Zoom.desktop,applications:thunderbird.desktop
-maxStripes=1
 
 [ScreenMapping]
 itemsOnDisabledScreens=0,14,file:///home/kerim/Music,file:///home/kerim/stuff,file:///home/kerim/Pictures,file:///home/kerim/thicc,file:///home/kerim/other,file:///home/kerim/gits,file:///home/kerim/workcern,file:///home/kerim/Videos,file:///home/kerim/Templates,file:///home/kerim/work,file:///home/kerim/Public,file:///home/kerim/Desktop,file:///home/kerim/Downloads,file:///home/kerim/Documents

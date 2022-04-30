@@ -1,14 +1,14 @@
 set keymap=russian
 set imsearch=-1
 set iminsert=0
-inoremap <c-space> <c-o>:let &iminsert=!&iminsert <cr>
-nnoremap <c-space> :let &iminsert=!&iminsert <cr>
+inoremap <c-space> <c-o><cmd>let &iminsert=!&iminsert<cr>
+nnoremap <c-space> <cmd>let &iminsert=!&iminsert<cr>
 " make iminsert global
-let g:layout = &iminsert
+let s:layout = &iminsert
 augroup global_keymap
 	au!
-	au BufLeave * let g:layout = &iminsert
-	au BufEnter * let &iminsert = g:layout
+	au BufLeave * let s:layout = &iminsert
+	au BufEnter * let &iminsert = s:layout
 augroup END
 
 " because langmap is noremap, but I need consistency between keyboard layouts

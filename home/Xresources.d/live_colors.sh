@@ -1,5 +1,5 @@
 #!/bin/sh
-### This file is created using ~/.Xresources.d/from-st.c ###
+# === This file is created using ~/.Xresources.d/from-st.c ===
 # The script makes use of color changing escape sequences
 # They are supported by xterm, tilix, alacritty, (urxvt?) and not by st
 # For some details, see e.g. https://github.com/alacritty/alacritty/issues/656
@@ -217,8 +217,8 @@ soft_dark() {
 	printf "\033]4;15;#c0c0c0\007"
 	printf "\033]11;#101010\007"
 	printf "\033]708;#101010\007"
-	printf "\033]10;#c0c0c0\007"
-	printf "\033]12;#c0c0c0\007"
+	printf "\033]10;#a0a0a0\007"
+	printf "\033]12;#a0a0a0\007"
 }
 schemes="$schemes soft_dark"
 
@@ -369,6 +369,6 @@ schemes="$schemes Solarized_light_orig"
 PS3="Choose a color scheme: "
 select scheme in $schemes "Do not change"
 do
-	${scheme/#Do not change/}
+	${scheme#Do not change}
 	break
 done

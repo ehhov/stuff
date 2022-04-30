@@ -56,6 +56,7 @@ var KWinConfig = (function () {
         this.layoutOrder = [];
         this.layoutFactories = {};
         [
+            ["enableFloatingLayout", false, FloatingLayout],
             ["enableTileLayout", true, TileLayout],
             ["enableMonocleLayout", true, MonocleLayout],
             ["enableThreeColumnLayout", true, ThreeColumnLayout],
@@ -63,7 +64,6 @@ var KWinConfig = (function () {
             ["enableStairLayout", true, StairLayout],
             ["enableSpiralLayout", true, SpiralLayout],
             ["enableQuarterLayout", false, QuarterLayout],
-            ["enableFloatingLayout", false, FloatingLayout],
             ["enableCascadeLayout", false, CascadeLayout],
         ]
             .forEach(function (_a) {
@@ -1099,6 +1099,8 @@ var TilingEngine = (function () {
             if (window.state === WindowState.Undecided)
                 window.state = (window.shouldFloat) ? WindowState.Floating : WindowState.Tiled;
         });
+        if (visibles.length === 0 && layout.classID !== CONFIG.layoutOrder[0])
+            layout = this.setLayout(ctx, CONFIG.layoutOrder[0]);
         var tileables = this.windows.getVisibleTileables(srf);
         if (CONFIG.maximizeSoleTile && tileables.length === 1) {
             tileables[0].state = WindowState.Maximized;

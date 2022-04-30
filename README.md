@@ -8,7 +8,7 @@ Some features are provided by programs that need to be compiled. `Makefile`s are
 ## Apps and Packages
 
 - Necessary: Neovim Git GCC Make brightnessctl
-- Apps: Alacritty Firefox Chrome Okular Thunderbird GIMP Inkscape LibeOffice Telegram-Desktop VLC simple-scan nnn TexStudio Apostrophe Strawberry simplescreenrecorder klavaro qpdfview-qt5 Thunar
+- Apps: Alacritty Firefox Chrome Okular Thunderbird GIMP Inkscape LibeOffice Telegram-Desktop Celluloid simple-scan nnn TexStudio Apostrophe Strawberry simplescreenrecorder klavaro qpdfview-qt5 Thunar
 - Utilities: TexLive IPython mksh Rust Cargo Python
 - Smaller systems: dmenu openbox tint2 picom feh pavucontrol clipmenu dunst xclip bluez{,-utils} pulseaudio-bluetooth CUPS sane openssh flatpak
 - Minimal distros: libinput wpa\_supplicant dhcp mesa-driver xorg{-server,-server-utils,-xinit} intel-driver libinput-driver zip unzip tar pulseaudio

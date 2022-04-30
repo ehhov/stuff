@@ -13,7 +13,7 @@ main(int argc, char *argv[])
 {
 	FILE *file;
 	int now, full, current;
-	time_t t, started;
+	time_t t, t0;
 	double percent, hours_remain;
 	const char *cmd;
 
@@ -47,40 +47,38 @@ main(int argc, char *argv[])
 		}
 	}
 
-	time(&started);
+	time(&t0);
 	do {
-		file = fopen(BAT_PATH"charge_now", "r");
-		if (file == NULL) {
-			fprintf(stderr, "file does not exist (%s).\n", BAT_PATH"charge_now");
+		if (!(file = fopen(BAT_PATH"charge_now", "r"))) {
+			fprintf(stderr, "Failed to read file %s.\n", BAT_PATH"charge_now");
 			return 1;
 		}
 		fscanf(file, "%d", &now);
 		fclose(file);
 		
-		file = fopen(BAT_PATH"charge_full", "r");
-		if (file == NULL) {
-			fprintf(stderr, "file does not exist (%s).\n", BAT_PATH"charge_full");
+		if (!(file = fopen(BAT_PATH"charge_full", "r"))) {
+			fprintf(stderr, "Failed to read file %s.\n", BAT_PATH"charge_full");
 			return 1;
 		}
 		fscanf(file, "%d", &full);
 		fclose(file);
 	
-		file = fopen(BAT_PATH"current_now", "r");
-		if (file == NULL) {
-			fprintf(stderr, "file does not exist (%s).\n", BAT_PATH"current_now");
+		if (!(file = fopen(BAT_PATH"current_now", "r"))) {
+			fprintf(stderr, "Failed to read file %s.\n", BAT_PATH"current_now");
 			return 1;
 		}
 		fscanf(file, "%d", &current);
 		fclose(file);
-		if (current == 0) current = 1;
+		if (current == 0)
+			current = 1;
 	
 		percent = now * 100.0 / full;
 		hours_remain = now * 1.0 / current;
 		time(&t);
-		printf("%.2lf %.2lf %.3lf\n", (t - started)*1.0/60 , percent, hours_remain);
+		printf("%.2lf %.2lf %.3lf\n", (t - t0)*1.0/60, percent, hours_remain);
 		fflush(stdout);
 		sleep(interval_sec);
-	} while (t - started < stop_after_min*60);
+	} while (t - t0 < stop_after_min*60);
 	
 	return 0;
 }

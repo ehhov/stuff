@@ -5,6 +5,7 @@
 [alias]
 	s = status
 	d = diff
+	dn = diff --name-only
 	l = log --oneline --graph --all
 [branch]
 	autosetuprebase = always

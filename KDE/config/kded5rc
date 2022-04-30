@@ -13,8 +13,14 @@ autoload=false
 [Module-colorcorrectlocationupdater]
 autoload=true
 
+[Module-colord]
+autoload=true
+
 [Module-device_automounter]
 autoload=false
+
+[Module-dnssdwatcher]
+autoload=true
 
 [Module-freespacenotifier]
 autoload=true
@@ -29,6 +35,9 @@ autoload=true
 autoload=true
 
 [Module-kded_dnssdwatcher]
+autoload=true
+
+[Module-kded_touchpad]
 autoload=true
 
 [Module-keyboard]
