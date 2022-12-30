@@ -1,0 +1,34 @@
+[$Version]
+update_info=delete_cursor_old_default_size.upd:DeleteCursorOldDefaultSize,kcminputrc_fix_botched_5_21_0.upd:kcminputrc_fix_botched_5_21_0_pre,kcminputrc_fix_botched_5_21_0.upd:kcminputrc_fix_botched_5_21_0,kcminputrc_repeat.upd:kcminputrc_migrate_key_repeat
+
+[Keyboard]
+KeyRepeat=repeat
+NumLock=2
+RepeatDelay=600
+RepeatRate=25
+
+[Libinput][1739][30383][DLL075B:01 06CB:76AF Mouse]
+PointerAcceleration=0.000
+PointerAccelerationProfile=2
+
+[Libinput][1739][30383][DLL075B:01 06CB:76AF Touchpad]
+ClickMethod=2
+ClickMethodAreas=true
+ClickMethodClickfinger=false
+DisableWhileTyping=false
+Enabled=true
+MiddleButtonEmulation=false
+NaturalScroll=true
+PointerAcceleration=-0.150
+ScrollMethod=1
+TapDragLock=false
+TapToClick=true
+
+[Libinput][2][7][SynPS/2 Synaptics TouchPad]
+ClickMethod=2
+
+[Mouse]
+X11LibInputXAccelProfileFlat=false
+
+[Tmp]
+update_info=delete_cursor_old_default_size.upd:DeleteCursorOldDefaultSize

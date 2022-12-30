@@ -1,24 +1,24 @@
 schemes:
   gentledark: &gentledark
     primary:
-      background: '#121217'  # HSV: 240, 20,  9
-      foreground: '#828282'  # HSV:   0,  0, 51
+      background: '#121217'
+      foreground: '#828282'
     normal:
-      black:      '#121217'  # HSV: 240, 20,  9
-      red:        '#b66e72'  # HSV: 357, 39, 71
-      green:      '#5e8d5c'  # HSV: 117, 35, 55
-      yellow:     '#a6785d'  # HSV:  22, 44, 65
-      blue:       '#7f7eae'  # HSV: 241, 28, 68
-      magenta:    '#af6d98'  # HSV: 321, 38, 69
-      cyan:       '#518b91'  # HSV: 185, 44, 57
-      white:      '#4f4f59'  # HSV: 240, 11, 35
+      black:      '#121217'
+      red:        '#b66e71'
+      green:      '#5e8d5c'
+      yellow:     '#a6785d'
+      blue:       '#7f7eae'
+      magenta:    '#af6d98'
+      cyan:       '#518b90'
+      white:      '#4f4f59'
     bright:
-      black:      '#201c21'  # HSV: 290, 15, 13
-      red:        '#b37169'  # HSV:   6, 41, 70
-      green:      '#5c8d6e'  # HSV: 142, 35, 55
-      yellow:     '#997e52'  # HSV:  37, 47, 60
-      blue:       '#9776a6'  # HSV: 280, 29, 65
-      magenta:    '#b16f84'  # HSV: 341, 37, 69
-      cyan:       '#5a8999'  # HSV: 195, 41, 60
-      white:      '#828282'  # HSV:   0,  0, 51
+      black:      '#201c21'
+      red:        '#b3716a'
+      green:      '#5c8d6f'
+      yellow:     '#997e51'
+      blue:       '#9776a6'
+      magenta:    '#b16f84'
+      cyan:       '#5a8999'
+      white:      '#828282'
 colors: *gentledark

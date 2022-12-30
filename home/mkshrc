@@ -14,7 +14,7 @@ bind -m ^Q='^A^[[1;5C^[[C'
 [ -r ~/.shellsrc ] && . ~/.shellsrc
 
 PS1func() {
-	local title time user path branch njobs n m item
+	local title time user path branch njobs n m s item
 	time="36| $(PStime)"
 	user="35| $USER"
 	path="32| $(sed -E 's/([^\./]{1})[^/]*\//\1\//g' <<< ${PWD/#$HOME/\~})"
@@ -40,10 +40,10 @@ PS1func() {
 		fi
 		n="$(git rev-list --left-right --count master...origin/master 2>/dev/null)"
 		m="${n#*	}"; n="${n%	*}"
-		if [ "$n" ] && [ "$m" ]; then
-			if [ $n -ne 0 ] || [ $m -ne 0 ]; then
-				branch=",$n/$m$branch"
-			fi
+		s="$(git stash list 2>/dev/null | wc -l)"
+		m="${m:-0}"; n="${n:-0}"; s=":${s:-0}"; s="${s#:0}"
+		if [ $n -ne 0 ] || [ $m -ne 0 ] || [ "$s" ]; then
+			branch=",$n$s/$m$branch"
 		fi
 		branch="${branch#,}"
 		branch=" (${branch# })"

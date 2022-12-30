@@ -1,0 +1,46 @@
+#!/bin/sh
+
+ext="${2#.}"
+firstarg="${1%-}"
+firstarg="$(dirname "$firstarg")/$(basename "$firstarg")"
+firstarg="${firstarg#./}"
+
+name="${firstarg:-$namen}"
+
+if [ -z "$name" ]; then
+	echo "Please specify a base for name." >&2
+	exit 1
+fi
+
+bname="$(basename "$name")"
+
+if [ $# -lt 2 ] && [ "${bname#.}" != "${bname##*.}" ]; then
+	if [ "$firstarg" ]; then
+		ext="${bname##*.}"
+	else
+		ext="${bname%-*-*.*}"
+		ext="${bname#$ext}"
+		ext="${ext#-*-*.}"
+	fi
+fi
+
+ext="${ext:+.$ext}"
+
+if [ "$firstarg" ]; then
+	name="${name%$ext}"
+else
+	name="${namen%-*-*}"
+fi
+
+n=001
+t="$(date +%b%d | tr '[:upper:]' '[:lower:]')"
+while [ -e "$name-$t-$n$ext" ]; do
+	n="$(printf '%03i\n' $(( 10#$n + 1)))"
+done
+
+namen="$(readlink -f "$name-$t-$n$ext")"
+
+printf "%s\n" "namen=\"$namen\"" >&2
+printf "%s\n" "$namen"
+
+exit 0

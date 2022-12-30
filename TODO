@@ -1,1 +1,9 @@
 Print energy units in nucl script in work/py.
+
+Flash a light where the bottom / top line was before c-d, c-f, etc. in 
+Vim
+
+KDE PowerDevil change brightness exponentially. Print as well. Don't %...
+PowerDevilUPowerBackend::setBrightness --- ddc....
+BacklightHelper::writeBrightness --- actual_level or what is writtenToDevice
+Or just edit levels...

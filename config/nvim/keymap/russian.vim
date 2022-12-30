@@ -3,7 +3,7 @@ scriptencoding utf-8
 let b:keymap_name = "ru"
 
 loadkeymap
-~   Ё
+"~   Ё
 `   ё
 F   А
 <   Б

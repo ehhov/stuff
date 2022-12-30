@@ -79,13 +79,12 @@ hi  ErrorMsg          cterm=reverse       ctermfg=1     ctermbg=none
 hi  CursorColumn      cterm=none          ctermfg=none  ctermbg=8
 hi  CursorLine        cterm=none          ctermfg=none  ctermbg=8
 hi  ColorColumn       cterm=none          ctermfg=none  ctermbg=8
-hi  CursorLineNr      cterm=none          ctermfg=7     ctermbg=8
-hi  LineNr            cterm=none          ctermfg=7     ctermbg=none
-hi  LineNrAbove       cterm=none          ctermfg=7     ctermbg=none
-hi  LineNrBelow       cterm=none          ctermfg=7     ctermbg=none
+hi  CursorLineNr      cterm=none          ctermfg=12    ctermbg=8
+hi  LineNr            cterm=none          ctermfg=7     ctermbg=8
+hi  LineNrAbove       cterm=none          ctermfg=7     ctermbg=8
+hi  LineNrBelow       cterm=none          ctermfg=7     ctermbg=8
 hi  MatchParen        cterm=none          ctermfg=none  ctermbg=7
 hi  Visual            cterm=none          ctermfg=none  ctermbg=7
-hi  VertSplit         cterm=reverse       ctermfg=7     ctermbg=none
 hi  Pmenu             cterm=none          ctermfg=none  ctermbg=8
 hi  PmenuSel          cterm=reverse       ctermfg=7     ctermbg=none
 hi  PmenuSbar         cterm=none          ctermfg=7     ctermbg=8
@@ -98,13 +97,14 @@ hi  DiffAdd           cterm=none          ctermfg=0     ctermbg=10
 hi  DiffChange        cterm=none          ctermfg=0     ctermbg=11
 hi  DiffDelete        cterm=none          ctermfg=0     ctermbg=9
 hi  DiffText          cterm=none          ctermfg=0     ctermbg=9
-hi  StatusLine        cterm=reverse       ctermfg=none  ctermbg=none
-hi  StatusLineNC      cterm=reverse       ctermfg=7     ctermbg=none
 hi  StatusLineTerm    cterm=bold,reverse  ctermfg=2     ctermbg=none
 hi  StatusLineTermNC  cterm=reverse       ctermfg=2     ctermbg=none
-hi  TabLine           cterm=none          ctermfg=0     ctermbg=7
-hi  TabLineFill       cterm=none          ctermfg=none  ctermbg=7
-hi  TabLineSel        cterm=bold          ctermfg=none  ctermbg=none
+hi  StatusLine        cterm=none          ctermfg=3     ctermbg=none
+hi  StatusLineNC      cterm=none          ctermfg=7     ctermbg=none
+hi  TabLine           cterm=reverse       ctermfg=7     ctermbg=none
+hi  TabLineSel        cterm=reverse       ctermfg=3     ctermbg=none
+hi  TabLineFill       cterm=none          ctermfg=none  ctermbg=none
+hi  VertSplit         cterm=none          ctermfg=7     ctermbg=none
 
 " === Adapt for use in gui colorscheme scripts ===
 " ! sed -e "s/^\(hi.*cterm.*\)$/exe '\1   '/" -e "/colors_name/d" -e "s/cterm/gui/g" -e "s/=\([0123456789]\|1[012345]\)   \( *\)/=' . s:c\1 .\2' /g" -e "s/\(fg\|bg\)=none\( *\)/\1=' . s:\1 .\2' /g" -e "s/ \. *' \{1,\}'$//" > gui_from_terminal.vim < %

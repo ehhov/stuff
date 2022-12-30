@@ -34,6 +34,12 @@ systemctl start sddm.service
 systemctl set-default multi-user.target
 ```
 
+Configure `dnf`:
+```
+fastestmirror=1
+max_parallel_downloads=10
+```
+
 Create an ssh key and add it to GitHub and other services.
 ``` bash
 ssh-keygen -t ed25519 -C "your_email@example.com"
@@ -52,6 +58,9 @@ Create an `optlocal` group, an `/opt/local/` directory with this group and 775 p
 ## Backup and restore GNOME configuration
 - Backup with `dconf dump / > backup.conf`
 - Restore with `dconf load / < backup.conf`
+- `GNOME/` directory contains configuration to be restored on new GNOME installations. One might `dconf load / < $FILE` them.
+
+GNOME should also come with extensions: System Tray, GSConnect, Dash to Dock.
 
 ## User and Group management
 - `useradd -m name` -m creates the `/home/name` directory.

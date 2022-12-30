@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=Autostart script
+Exec=sh -c 'exec ~/.config/autostart-script.sh'
+# For some reason, it doesn't work outside sh -c ''.

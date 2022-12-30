@@ -1,0 +1,24 @@
+schemes:
+  dracula: &dracula
+    primary:
+      background: '#1c1d26'
+      foreground: '#888888'
+    normal:
+      black:      '#1c1d26'
+      red:        '#f44a4d'
+      green:      '#00a129'
+      yellow:     '#838f25'
+      blue:       '#9c75d7'
+      magenta:    '#db57a5'
+      cyan:       '#2b94a7'
+      white:      '#525357'
+    bright:
+      black:      '#28232a'
+      red:        '#e65954'
+      green:      '#00a03f'
+      yellow:     '#868e38'
+      blue:       '#987ac7'
+      magenta:    '#cd64a1'
+      cyan:       '#3c93a3'
+      white:      '#888888'
+colors: *dracula

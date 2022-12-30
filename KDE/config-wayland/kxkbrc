@@ -1,0 +1,15 @@
+[$Version]
+update_info=kxkb.upd:remove-empty-lists,kxkb.upd:add-back-resetoptions,kxkb_variants.upd:split-variants
+
+[Layout]
+DisplayNames=,
+LayoutList=us,ru
+Options=grp:win_space_toggle,compose:sclk
+ResetOldOptions=true
+ShowFlag=true
+ShowLabel=false
+ShowLayoutIndicator=true
+ShowSingle=false
+SwitchMode=Global
+Use=true
+VariantList=,

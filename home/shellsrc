@@ -17,21 +17,19 @@ alias lt='ls -latr'
 alias psu="ps -u${USER}"
 alias pgrepu="pgrep -u${USER}"
 alias grep='grep -I --color'
-alias pdflatex='pdflatex -file-line-error -interaction=nonstopmode'
 alias nvim='nvim -p'
 alias nvimdiff='nvim -d -O'
-alias vim='nvim'
-alias e="$EDITOR"
 alias view="nvim -R -M"
-alias xcb='xclip -selection clipboard'
-alias xcbi='xclip -selection clipboard -target=image/png'
+alias tclear='clear && tmux clear-history'
 alias bt='bluetoothctl'
 alias stx='startx ~/.xinitrc'
 
 du1() { du -hd1 "$@" | sort -h; }
 
+nless() { nvim -c 'runtime ftplugin/nless.vim' "${@:--}"; }
+
 psc() {
-	pgrep "$@" >/dev/null 2>&1 && ps -o 'pid=,cmd=' -p $(pgrep "$@")
+	pgrep "$@" >/dev/null && ps -o 'pid=,cmd=' -p $(pgrep "$@")
 }
 
 open() {
@@ -55,38 +53,18 @@ copy() {
 }
 
 defnamen() {
-	local ext="${2#.}"
-	local firstarg="${1%-}"
-	firstarg="$(dirname "$firstarg")/$(basename "$firstarg")"
-	firstarg="${firstarg#./}"
-	local name="${firstarg:-$namen}"
-	if [ -z "$name" ]; then
-		echo "Please specify a base for name."
-		return
+	local printoutput=''
+	if [ "$1" = "--" ]; then
+		shift
+		printoutput=1
 	fi
-	local bname="$(basename "$name")"
-	if [ $# -lt 2 ] && [ "${bname#.}" != "${bname##*.}" ]; then
-		if [ "$firstarg" ]; then
-			ext="${bname##*.}"
-		else
-			ext="${bname%-*-*.*}"
-			ext="${bname#$ext}"
-			ext="${ext#-*-*.}"
+	local output="$("$(which defnamen)" "$@")"
+	if [ "$output" ]; then
+		export namen="$output"
+		if [ "$printoutput" ]; then
+			echo "$output"
 		fi
 	fi
-	ext="${ext:+.$ext}"
-	if [ "$firstarg" ]; then
-		name="${name%$ext}"
-	else
-		local name="${namen%-*-*}"
-	fi
-	local n=001
-	local t="$(date +%b%d | tr '[:upper:]' '[:lower:]')"
-	while [ -e "$name-$t-$n$ext" ]; do
-		n="$(printf '%03i\n' $(( $n + 1)))"
-	done
-	namen="$(readlink -f "$name-$t-$n$ext")"
-	echo "namen=\"$namen\""
 }
 
 #################################

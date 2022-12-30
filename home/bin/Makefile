@@ -6,7 +6,7 @@ PROGS.C = batlog.c PStime.c execbg.c
 PROGS = ${PROGS.C:.c=}
 FILES = ${PROGS} brightness colors colors-all epsunite\
         pdfsepunite replaceindir svg2pdf texclean\
-	usb volume showgit flatsync mvb
+	usb volume showgit flatsync mvb defnamen
 
 all: ${PROGS} ${FILES}
 

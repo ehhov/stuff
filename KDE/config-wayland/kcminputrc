@@ -1,0 +1,6 @@
+[Libinput][1739][30383][DLL075B:01 06CB:76AF Touchpad]
+ClickMethod=2
+DisableWhileTyping=false
+NaturalScroll=true
+PointerAcceleration=-0.150
+TapToClick=true

@@ -1,3 +1,16 @@
+#shell:
+#  program: /bin/fish
+
+# Disabled since vim, bash, and others abuse the bell
+#bell:
+#  command:
+#    program: notify-send
+#    args: ["Alacritty bell has rung"]
+
+env:
+  WAYLAND_DISPLAY: ''
+  WINIT_UNIX_BACKEND: x11
+
 window:
   padding:
     x: 3
@@ -12,8 +25,11 @@ dpi:
   y: 128
 font:
   normal:
-    family: ttyp0
+    family: monospace
   size: 10
+
+mouse:
+  hide_when_typing: true
 
 mouse_bindings:
         - { mouse: Middle, action: None }
@@ -376,5 +392,7 @@ schemes:
 #colors: *soft_dark
 
 import:
-  - ~/.config/alacritty/grayscale.yml
+  - ~/.config/alacritty/dracula.yml
+  - ~/.config/alacritty/green.yml
   - ~/.config/alacritty/gentledark.yml
+  - ~/.config/alacritty/grayscale.yml

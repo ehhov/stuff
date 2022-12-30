@@ -1,0 +1,7 @@
+[Applications][org.telegram.desktop]
+Seen=true
+
+[Notifications]
+LowPriorityHistory=true
+NormalAlwaysOnTop=true
+PopupTimeout=5000

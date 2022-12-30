@@ -3,12 +3,16 @@
 dir="$(readlink -f "$0")"
 dir="$(dirname "$dir")"
 rel="${dir#~/}"
+
+
 create_link() {
 	# link to_what where
 	if [ ! -e "$2" ] && [ ! -h "$2" ]; then
 		ln -s "$1" "$2"
 	fi
 }
+
+
 remove() {
 	# remove what
 	if [ -e "$1" ] || [ -h "$1" ]; then
@@ -16,13 +20,16 @@ remove() {
 	fi
 }
 
+
 case $1 in
 	re*) action() { remove "$2"; create_link "$1" "$2"; };;
+	rm*|remove) action() { remove "$2"; };;
 	*)   action() { create_link "$1" "$2"; };;
 esac
 
+
 case $1 in
-ln|link|reln|relink)
+ln|link|reln|relink|rm|remove)
 	for i in "${dir}"/home/*; do
 		i="${i#$dir/}"
 		j="${i#home/}"
@@ -35,43 +42,38 @@ ln|link|reln|relink)
 	done
 ;;
 
-rm|remove)
-	for i in "${dir}"/home/*; do
+kde*|rekde*|rmkde*)
+	case $1 in
+	*w*) suffix=wayland;;
+	*x*) suffix=x11;;
+	*) echo 'X11 or Wayland?'; exit;;
+	esac
+	for i in "${dir}"/KDE/config-$suffix/*; do
 		i="${i#$dir/}"
-		j="${i#home/}"
-		remove ~/."$j"
-	done
-	for i in "${dir}"/config/*; do
-		i="${i#$dir/}"
-		j="${i#config/}"
-		remove ~/.config/"$j"
-	done
-;;
-
-kde|rekde)
-	for i in "${dir}"/KDE/config/*; do
-		i="${i#$dir/}"
-		j="${i#KDE/config/}"
+		j="${i#KDE/config-$suffix/}"
 		action ../"${rel}/$i" ~/.config/"$j"
 	done
-	for i in "${dir}"/KDE/share/*; do
+	for i in "${dir}"/KDE/share-$suffix/*; do
 		i="${i#$dir/}"
-		j="${i#KDE/share/}"
+		j="${i#KDE/share-$suffix/}"
 		action ../../"${rel}/$i" ~/.local/share/"$j"
 	done
 ;;
 
-rmkde)
-	for i in "${dir}"/KDE/config/*; do
-		i="${i#$dir/}"
-		j="${i#KDE/config/}"
-		remove ~/.config/"$j"
-	done
-	for i in "${dir}"/KDE/share/*; do
-		i="${i#$dir/}"
-		j="${i#KDE/share/}"
-		remove ~/.local/share/"$j"
-	done
+sw*kde*)
+	case $1 in
+	sw*w*)
+		$0 rmkde-x11
+		$0 rekde-wayland
+	;;
+	sw*x*)
+		$0 rmkde-wayland
+		$0 rekde-x11
+	;;
+	*)
+		echo 'X11 or Wayland?'
+	;;
+	esac
 ;;
 
 # WARNING: may not work with per-desktop env. configurations
@@ -107,8 +109,9 @@ gits)
 	echo -e "  $0 ln|link      to create links"
 	echo -e "  $0 reln|relink  to remove your files and create links"
 	echo -e "  $0 rm|remove    to remove the files (whether they are links from here or not)"
-	echo -e "  $0 [re]kde      to \`[re]link\` files for KDE"
-	echo -e "  $0 rmkde        to \`remove\` files for KDE"
+	echo -e "  $0 [re]kde      to \`[re]link\` files for KDE. X11 or Wayland"
+	echo -e "  $0 rmkde        to \`remove\` files for KDE. X11 or Wayland"
+	echo -e "  $0 sw*kde       to switch from one KDE configuration to another. X11 or Wayland"
 	#echo -e "  $0 mime         to copy ~/.config/mimeapps.list to here if it is a regular file"
 	echo -e "  $0 gits         to clone all the gits"
 	echo -e ""

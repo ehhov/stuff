@@ -1,0 +1,34 @@
+Notes on configuration
+======================
+- cursor-size is set since it is different for different windows for 
+  some reason anyway.
+- per-window layout set to prevent chrome from having its own layout. 
+  Doesn't help...
+- It seems to be impossible to change the filename pattern for 
+  screenshots. It is not read from any dconf schema.
+
+
+Manually installed apps (should be deleted afterwards)
+======================================================
+- GNOME Tweaks
+- GNOME Extension Manager
+- File Roller
+
+
+Consider these extensions:
+==========================
+- System tray icons.
+- GSConnect.
+- Primary input on lock screen.
+- Quick lang switch to remove the pop-up.
+- Caffeine for sleep prevention.
+# Focus changer for super-hjkl shortcuts.
+
+Full names for extensions:
+==========================
+- 'gsconnect@andyholmes.github.io'
+- 'trayIconsReloaded@selfmade.pl'
+- 'quick-lang-switch@ankostis.gmail.com'
+- 'primary_input_on_lockscreen@sagidayan.com'
+- 'caffeine@patapon.info'
+# 'focus-changer@heartmire'

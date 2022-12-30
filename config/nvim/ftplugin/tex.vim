@@ -1,6 +1,6 @@
 setl spell
 syn spell toplevel
-setl ts=2 sts=0 sw=0 noet nosta
+setl ts=2 sts=0 sw=0 et nosta
 setl tw=72 wm=1
 
 " === Compiling commands: simple files, bibtex involving, Overleaf... ===
@@ -29,15 +29,21 @@ command! -buffer OB ORB
 command! -buffer Overleaf wa | Ca | OR | Bibtex main | OR | OR | Ca
 command! -buffer Opdf silent ! setsid -f xdg-open main.pdf </dev/null >/dev/null 2>&1
 
+command! -buffer -complete=file -nargs=1 -bar LatexXe ! xelatex
+	\ -file-line-error -interaction=nonstopmode <args>
+        \ <bar> sed -n -e '/\.\/.*\.tex:/{h' -e ':i' -e 'n;H;/^ *$/{g;p;d};bi}'
+command! -buffer Xe update <bar> LatexXe % <bar> LatexXe % <bar> texclean %
+
 " === General mappings ===
 vnoremap <buffer> <c-t> :'<,'>! column -t -s \& -o \& <cr>
 vnoremap <buffer> a$ F$of$
 vnoremap <buffer> i$ F$lof$h
 
 " === Modifying commands: default files, environments, wrappers ===
-command! -buffer Default r ~/work/tex/default.tex | normal! kdd
-command! -buffer Twocolumn r ~/work/tex/twocolumn.tex | normal! kdd
-command! -buffer Presentation r ~/work/tex/presentation.tex | normal! kdd
+command! -buffer Default r ~/work/tex/templates/default.tex | normal! kdd
+command! -buffer Twocolumn r ~/work/tex/templates/twocolumn.tex | normal! kdd
+command! -buffer Presentation r ~/work/tex/templates/presentation.tex | normal! kdd
+command! -buffer Standalone r ~/work/tex/templates/standalone.tex | normal! kdd
 command! -buffer Figure call s:Figure()
 command! -buffer SubFigure call s:SubFigure()
 command! -buffer Table call s:Table()
@@ -47,25 +53,26 @@ command! -buffer -nargs=* Environment call s:env(<f-args>)
 command! -buffer RenameEnvironment call s:renameenv()
 
 " === Mappings for modifying commands ===
-nnoremap <buffer> glf <cmd>Figure<cr>
-nnoremap <buffer> gls <cmd>SubFigure<cr>
-nnoremap <buffer> glt <cmd>Table<cr>
-nnoremap <buffer> glF <cmd>Frame<cr>
+nnoremap <buffer> glF <cmd>Figure<cr>
+nnoremap <buffer> glT <cmd>Table<cr>
+nnoremap <buffer> glf <cmd>Frame<cr>
 nnoremap <buffer> glI <cmd>Initials<cr>
-nnoremap <buffer> gle <cmd>Environment equation*<cr>
+nnoremap <buffer> glt <cmd>Environment tabular {cc}<cr>
+nnoremap <buffer> glE <cmd>Environment equation*<cr>
 nnoremap <buffer> gln <cmd>Environment enumerate<cr>
-nnoremap <buffer> gla <cmd>Environment enumerate label=alph*)<cr>
+nnoremap <buffer> gla <cmd>Environment enumerate [label=alph*)]<cr>
 nnoremap <buffer> gli <cmd>Environment itemize<cr>
-nnoremap <buffer> glE <cmd>Environment<cr>
+nnoremap <buffer> gle <cmd>Environment<cr>
 nnoremap <buffer> glR <cmd>call <sid>renameenv()<cr>
 nnoremap <buffer> glr <cmd>call <sid>renameenv()<cr>
 
 " === Automatic formatting ===
 setl fo-=t
 setl fo-=a
-inoremap <buffer> <c-y> <c-o>:setl fo+=ta<cr>i<bs>
+setl fo+=w
+inoremap <buffer> <c-y> <cmd>setl fo+=ta<cr>i<bs>
 aug tex_formatting
-	au!
+	au! tex_formatting * <buffer>
 	au InsertLeave <buffer> exe 'setl fo-=t' | exe 'setl fo-=a'
 aug END
 
@@ -73,17 +80,13 @@ aug END
 " === General functions and env-specific ones ===
 fun! s:env(...)
 	let l:env = get(a:000, 0, '')
-	if len(l:env) == 0
+	if empty(l:env)
 		let l:env = input('Environment: ')
 	endif
-	if len(l:env) == 0
+	if empty(l:env)
 		return
 	endif
-	if len(a:000) > 1
-		let l:opt = '['.join(a:000[1:], ', ').']'
-	else
-		let l:opt = ''
-	endif
+	let l:opt = len(a:000) > 1 ? join(a:000[1:], '') : ''
 	call append('.', ['\begin{'.l:env.'}'.l:opt, '\end{'.l:env.'}'])
 	normal! jV1j=
 endfun
@@ -128,42 +131,43 @@ endfun
 
 fun! s:Frame()
 	call append('.',
-		\ [ '\frame{\frametitle{}'
-		\ , '}'])
-	normal! jV1j=V1jzfzoj<<kf}
+		\ [ '\begin{frame}[label=]'
+		\ , '\frametitle{}'
+		\ , '\end{frame}'])
+	normal! jV2j=V2jzfzof]
 endfun
 
 fun! s:Figure()
 	call append('.',
 		\ [ '\begin{figure}'
-		\ , '	\centering'
-		\ , '	\includegraphics[width=\linewidth]{figures/}'
-		\ , '	\caption{}'
-		\ , '	\label{fig:}'
+		\ , '\centering'
+		\ , '\includegraphics[width=\linewidth]{figures/}'
+		\ , '\caption{}'
+		\ , '\label{fig:}'
 		\ , '\end{figure}'])
 	normal! jV5j=V5jzfzof%l
 endfun
 
 fun! s:SubFigure()
 	call append('.',
-		\ [ '	\null\hfill'
-		\ , '	\begin{subfigure}{.4\linewidth}'
-		\ , '		\includegraphics[width=\linewidth]{figures/}'
-		\ , '		\caption{}'
-		\ , '		\label{fig:}'
-		\ , '	\end{subfigure}'
-		\ , '	\hfill\null'])
+		\ [ '\null\hfill'
+		\ , '\begin{subfigure}{.4\linewidth}'
+		\ , '\includegraphics[width=\linewidth]{figures/}'
+		\ , '\caption{}'
+		\ , '\label{fig:}'
+		\ , '\end{subfigure}'
+		\ , '\hfill\null'])
 	normal! jV6j=
 endfun
 
 fun! s:Table()
 	call append('.',
 		\ [ '\begin{table}'
-		\ , '	\centering'
-		\ , '	\caption{}'
-		\ , '	\label{tab:}'
-		\ , '	\begin{tabular}{}'
-		\ , '	\end{tabular}'
+		\ , '\centering'
+		\ , '\caption{}'
+		\ , '\label{tab:}'
+		\ , '\begin{tabular}{}'
+		\ , '\end{tabular}'
 		\ , '\end{table}'])
 	normal! jV6j=V6jzfzof%l
 endfun

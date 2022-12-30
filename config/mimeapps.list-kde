@@ -19,7 +19,11 @@ text/html=google-chrome.desktop;firefox.desktop;nvim.desktop;libreoffice-writer.
 text/markdown=org.gnome.gitlab.somas.Apostrophe.desktop;nvim.desktop;okularApplication_md.desktop;org.kde.kwrite.desktop;okularApplication_txt.desktop;nvim.desktop;org.kde.calligrawords_ascii.desktop;libreoffice-writer.desktop;
 text/x-csrc=org.kde.kwrite.desktop;
 text/x-tex=nvim.desktop;texstudio.desktop;nvim.desktop;okularApplication_txt.desktop;libreoffice-writer.desktop;
+x-scheme-handler/geo=google-maps-geo-handler.desktop;
+x-scheme-handler/http=google-chrome.desktop;
+x-scheme-handler/https=google-chrome.desktop;
 x-scheme-handler/mailto=mozilla-thunderbird.desktop;thunderbird.desktop;userapp-Thunderbird-F61J8Z.desktop;
+x-scheme-handler/tel=Zoom.desktop;
 x-scheme-handler/tg=userapp-Telegram Desktop-C0NDW0.desktop;
 
 [Default Applications]
@@ -45,8 +49,10 @@ text/x-chdr=nvim.desktop;
 text/x-python=nvim.desktop;
 text/x-tex=nvim.desktop;
 video/mp4=vlc.desktop;
+x-scheme-handler/geo=google-maps-geo-handler.desktop;
 x-scheme-handler/http=google-chrome.desktop;
 x-scheme-handler/https=google-chrome.desktop;
 x-scheme-handler/mailto=mozilla-thunderbird.desktop;
+x-scheme-handler/tel=Zoom.desktop;
 x-scheme-handler/tg=userapp-Telegram Desktop-C0NDW0.desktop
 x-scheme-handler/webcal=google-chrome.desktop

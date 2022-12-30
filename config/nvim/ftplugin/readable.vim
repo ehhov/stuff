@@ -2,7 +2,7 @@ setl spell
 
 setl tw=72 ts=2 sts=0 sw=0 et nosta
 
-setl fo+=tan
+setl fo+=taw
 
 fun! Togfo()
 	if &fo =~ 'a'
@@ -13,7 +13,7 @@ fun! Togfo()
 	endif
 endfun
 
-inoremap <buffer> <c-y> <c-o>:call Togfo()<cr>
+inoremap <buffer>  <c-y>  <cmd>call Togfo()<cr>
 
 "aug text_formatting
 "	au!
