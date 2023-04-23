@@ -6,7 +6,8 @@ the_usage() {
 	echo "    $this ls TO list (removable) devices"
 	echo "    $this mount DEVICE TO mount a device"
 	echo "    $this eject DEVICE TO eject a device"
-	echo "    $this open DEVICE TO mount a device, open it in the SHELL, and then eject"
+	echo "    $this open DEVICE TO open a device in the SHELL"
+	echo "    $this cycle DEVICE TO mount a device, open it in the SHELL, and then eject"
 }
 
 usage() {
@@ -68,14 +69,16 @@ usb_eject() {
 }
 
 usb_open() {
-	usb_mount "$1" || exit 1
-
 	mpoint="$(lsblk -no mountpoint "/dev/${1#/dev/}")"
 	olddir="$PWD"
-	cd "$mpoint" || { usb_eject "$1"; exit 1; }
-	$SHELL || { usb_eject "$1"; exit 1; }
-	cd "$olddir" || { usb_eject "$1"; exit 1; }
+	cd "$mpoint" || return 1
+	$SHELL || return 1
+	cd "$olddir" || return 1
+}
 
+usb_cycle() {
+	usb_mount "$1" || exit 1
+	usb_open "$1"
 	usb_eject "$1" || exit 1
 }
 
@@ -100,4 +103,6 @@ case $opt in
 		usb_eject "$arg";;
 	open)
 		usb_open "$arg";;
+	cycle)
+		usb_cycle "$arg";;
 esac

@@ -1,7 +1,7 @@
 import os
 import subprocess
 import colorsys
-#from skimage.color import lab2rgb, rgb2lab, hsv2rgb, rgb2hsv
+from skimage.color import lab2rgb, rgb2lab, hsv2rgb, rgb2hsv
 
 
 class Colors:# {{{
@@ -275,29 +275,6 @@ class Colors:# {{{
     # }}}
 # }}}
 
-gentledark = Colors('gentledark').fromhex({
-      0:      '121217',
-      1:        'b66e71',
-      2:      '5e8d5c',
-      3:     'a6785d',
-      4:       '7f7eae',
-      5:    'af6d98',
-      6:       '518b90',
-      7:      '4f4f59',
-      8:      '201c21',
-      9:        'b3716a',
-      10:      '5c8d6f',
-      11:     '997e51',
-      12:       '9776a6',
-      13:    'b16f84',
-      14:       '5a8999',
-      15:      '828282',
-}).gengnometerminalconfig(
-        uuid='b1dcc9dd-5262-4d8d-a863-c897e6d979b9'
-)
-
-exit()
-
 grayscale = Colors('grayscale').fromhsl({
         0: [  0, 0,  6],   8: [  0, 0, 11],
         1: [  0, 0, 45],   9: [  0, 0, 47],
@@ -314,15 +291,13 @@ gentledark = Colors('gentledark').fromhsvshifts(
         [ 10,  25,  15,  40,  20,  10],
         [-10,  10,  -5,  12,   0,   0],
         [  9,   0,   0,   0,   0,   0],
-        black=[240, 20,  9],
+        black=[240, 20, 12],
         white=[  0,  0, 51],
-        seven=[240, 11, 35],
-        eight=[290, 15, 13],
+        seven=[240, 21, 35],
+        eight=[290, 29, 15],
         saturation=45,
         value=55
-).equalize().genconfigs().gengnometerminalconfig(
-        uuid='b1dcc9dd-5262-4d8d-a863-c897e6d979b9'
-)
+).equalize().genconfigs()
 
 dracula = Colors('dracula').fromhex({
         0: '282A36',    8: '4D4D4D',
@@ -333,9 +308,10 @@ dracula = Colors('dracula').fromhex({
         5: 'FF79C6',   13: 'FF92D0',
         6: '8BE9FD',   14: '9AEDFE',
         7: 'BFBFBF',   15: '888888',
-}).shiftelemto(0, '000000', .3, 'hex').defseveneight(
+}).shiftelemto(0, '000000', .5, 'hex').defseveneight(
         eightlight=.09
-).shiftelemto(8, '440000', .09, 'hex').equalize().genconfigs()
+).shiftelemto(8, '440000', .09, 'hex') \
+ .shiftelemto(15, '000000', .1, 'hex').equalize().genconfigs()
 
 green = Colors('green').fromsibling(gentledark).shiftallto(
         color='44ff00', weight=.3, profile='hex'
@@ -343,3 +319,7 @@ green = Colors('green').fromsibling(gentledark).shiftallto(
  .equalize().genconfigs()
 
 # GREEN 44 ff 00
+
+gentledark.gengnometerminalconfig(
+        uuid='b1dcc9dd-5262-4d8d-a863-c897e6d979b9'
+)

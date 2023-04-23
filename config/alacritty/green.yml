@@ -1,19 +1,19 @@
 schemes:
   green: &green
     primary:
-      background: '#121217'
+      background: '#18181f'
       foreground: '#30b200'
     normal:
-      black:      '#121217'
+      black:      '#18181f'
       red:        '#9aa055'
       green:      '#55ae3f'
       yellow:     '#8da445'
       blue:       '#70a77c'
       magenta:    '#96a071'
       cyan:       '#4dae65'
-      white:      '#4f4f59'
+      white:      '#474759'
     bright:
-      black:      '#201c21'
+      black:      '#241b26'
       red:        '#97a14f'
       green:      '#54ae4d'
       yellow:     '#82a73b'

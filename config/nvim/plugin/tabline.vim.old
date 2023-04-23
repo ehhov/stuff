@@ -63,13 +63,13 @@ fun! s:tabtext(tabnr)  "{{{
 	let l:bufnr = buflist[tabpagewinnr(a:tabnr)-1]
 	let l:bufname = gettabvar(a:tabnr, 'tabname', s:getbufname(l:bufnr))
 	let l:info = (len(l:buflist) > 1 ? len(l:buflist) : '')
-	            \.(empty(filter(l:buflist, 'getbufvar(v:val, "&mod")')) ? '' : '+')
+	            \.(empty(filter(l:buflist, 'getbufvar(v:val, "&modified")')) ? '' : '+')
 	return ' '.a:tabnr.' '.l:bufname.(empty(l:info) ? '' : ' ['.l:info.']').' '
 endfun  "}}}
 
 
 fun! s:getmaxlen(tabs, fulllen)  "{{{
-	let l:len = a:fulllen / (len(a:tabs) + 1)
+	let l:len = a:fulllen / len(a:tabs)
 	let l:smallestnotfull = 0
 	while l:len > l:smallestnotfull
 		let l:newlen = a:fulllen
@@ -107,7 +107,7 @@ fun! s:shrink(tabs, fulllen)  "{{{
 endfun  "}}}
 
 
-fun! TabLineFunction()  " {{{
+fun! TabLine()  " {{{
 	let l:tabs = map(range(1, tabpagenr('$')), 's:tabtext(v:val)')
 
 	if len(join(l:tabs, ' ')) > &columns && len(l:tabs) > 1
@@ -127,7 +127,7 @@ fun! TabLineFunction()  " {{{
 endfun  " }}}
 
 
-set tabline=%!TabLineFunction()
+" set tabline=%!TabLine()
 
 
 finish

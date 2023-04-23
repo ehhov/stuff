@@ -1,4 +1,6 @@
 " https://github.com/neovim/neovim/issues/8715
+finish
+
 set mouse=a
 set number
 set cursorline
@@ -124,6 +126,7 @@ aug END
 
 let g:tex_flavor = "latex"
 
+let g:filemanager_notifyoffilters = v:false
 let g:filemanager_sortrules = {'/figures$': 'obey:*/,\.tex$,*,.*/,.*', '/Downloads$': 'time'}
 let g:filemanager_alwaysexternal = '\.pdf$'
 

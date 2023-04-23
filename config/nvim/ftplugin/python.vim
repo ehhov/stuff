@@ -8,4 +8,4 @@ command! -buffer -nargs=? O  update <bar> ! ostap -qb % <args>
 command! -buffer -nargs=? CheckSyntax update <bar> ! python3 -m py_compile % <args>
 command! -buffer -nargs=? PEP update <bar> ! pycodestyle % <args>
 
-command! -buffer -nargs=0 CC if &l:cc != 80 | exe 'setl cc=80' | else | exe 'setl cc=' | endif
+setlocal cc=80

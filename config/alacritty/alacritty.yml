@@ -26,7 +26,7 @@ dpi:
 font:
   normal:
     family: monospace
-  size: 10
+  size: 12
 
 mouse:
   hide_when_typing: true

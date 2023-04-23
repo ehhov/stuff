@@ -102,6 +102,7 @@ gits)
 	[ -e xpick ] || git clone https://github.com/ehhov/xpick.git
 	[ -e emonc ] || git clone https://github.com/ehhov/emonc.git
 	[ -e filemanager ] || git clone https://github.com/ehhov/filemanager.git
+	[ -e forest ] || git clone https://github.com/ehhov/forest.git
 ;;
 
 *)

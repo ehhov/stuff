@@ -1,19 +1,19 @@
 schemes:
   gentledark: &gentledark
     primary:
-      background: '#121217'
+      background: '#18181f'
       foreground: '#828282'
     normal:
-      black:      '#121217'
+      black:      '#18181f'
       red:        '#b66e71'
       green:      '#5e8d5c'
       yellow:     '#a6785d'
       blue:       '#7f7eae'
       magenta:    '#af6d98'
       cyan:       '#518b90'
-      white:      '#4f4f59'
+      white:      '#474759'
     bright:
-      black:      '#201c21'
+      black:      '#241b26'
       red:        '#b3716a'
       green:      '#5c8d6f'
       yellow:     '#997e51'

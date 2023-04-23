@@ -83,7 +83,7 @@ hi  CursorLineNr      cterm=none          ctermfg=12    ctermbg=8
 hi  LineNr            cterm=none          ctermfg=7     ctermbg=8
 hi  LineNrAbove       cterm=none          ctermfg=7     ctermbg=8
 hi  LineNrBelow       cterm=none          ctermfg=7     ctermbg=8
-hi  MatchParen        cterm=none          ctermfg=none  ctermbg=7
+hi  MatchParen        cterm=none          ctermfg=14  ctermbg=7
 hi  Visual            cterm=none          ctermfg=none  ctermbg=7
 hi  Pmenu             cterm=none          ctermfg=none  ctermbg=8
 hi  PmenuSel          cterm=reverse       ctermfg=7     ctermbg=none
