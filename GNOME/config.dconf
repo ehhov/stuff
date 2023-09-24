@@ -23,11 +23,11 @@ font-hinting='full'
 font-name='Sans 11'
 gtk-enable-primary-paste=false
 monospace-font-name='Monospace 12'
-text-scaling-factor=1.1499999999999999
+text-scaling-factor=1.15
 
 [org/gnome/desktop/peripherals/touchpad]
 disable-while-typing=false
-speed=-0.14999999999999999
+speed=-0.15
 tap-to-click=true
 two-finger-scrolling-enabled=true
 
@@ -45,7 +45,7 @@ workspaces-only-on-primary=false
 power-button-action='suspend'
 sleep-inactive-ac-timeout=3600
 sleep-inactive-ac-type='nothing'
-sleep-inactive-battery-timeout=1800
+sleep-inactive-battery-timeout=7200
 
 [org/gnome/shell]
 #app-picker-layout=@aa{sv} []

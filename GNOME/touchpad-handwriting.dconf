@@ -1,0 +1,5 @@
+# vim:ft=dconf
+
+[org/gnome/desktop/peripherals/touchpad]
+speed=-0.15
+#speed=0

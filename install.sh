@@ -93,8 +93,8 @@ gits)
 	[ -e thicc ] || git clone https://github.com/ehhov/thicc.git
 	[ -e work ] || git clone https://github.com/ehhov/work.git
 	[ -e workcern ] || git clone https://gitlab.cern.ch/kerimgus/workcern.git
-	mkdir -p ~/gits
-	cd ~/gits
+	mkdir -p ~/software
+	cd ~/software
 	[ -e dwm ] || git clone https://github.com/ehhov/dwm.git
 	[ -e st ] || git clone https://github.com/ehhov/st.git
 	[ -e status ] || git clone https://github.com/ehhov/status.git

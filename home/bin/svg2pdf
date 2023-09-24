@@ -1,5 +1,7 @@
 #!/bin/sh
 
+INKSCAPE_CMD=flatpak run org.inkscape.Inkscape
+
 usage() {
 	this="${0##*/}"
 	echo "This script makes use of Inkscape."
@@ -8,7 +10,9 @@ usage() {
 	exit 1
 }
 
-convert() { flatpak run org.inkscape.Inkscape "$1" -o "$2" --export-type=pdf ; }
+convert() {
+	$INKSCAPE_CMD "$1" -o "$2" --export-type=pdf
+}
 
 if [ "$1" = "--" ]; then
 	shift

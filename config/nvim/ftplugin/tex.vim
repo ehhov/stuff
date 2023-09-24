@@ -1,6 +1,6 @@
 setl spell
 syn spell toplevel
-setl ts=2 sts=0 sw=0 et nosta
+setl ts=2 sts=2 sw=2 et nosta
 setl tw=72 wm=1
 
 " === Compiling commands: simple files, bibtex involving, Overleaf... ===
@@ -12,6 +12,7 @@ command! -buffer -complete=file -nargs=1 -bar Latexwarnings ! pdflatex
         \ <bar> sed -n -e '/\.\/.*\.tex:\|[Ww]arning/{h' -e ':i' -e 'n;H;/^ *$/{g;p;d};bi}'
 command! -buffer -complete=file -nargs=1 -bar Latexfull ! pdflatex -file-line-error -interaction=nonstopmode <args>
 command! -buffer -complete=file -nargs=1 -bar Bibtex ! bibtex <args>
+
 command! -buffer -bar R update <bar> Latex %
 command! -buffer -bar Rw update <bar> Latexwarnings %
 command! -buffer -bar Rfull update <bar> Latexfull %
@@ -21,6 +22,7 @@ command! -buffer RRC R | R | C
 command! -buffer RB C | R | Bibtex %:r | R | R | C
 command! -buffer B RB
 command! -buffer P silent ! setsid -f xdg-open %:p:r.pdf </dev/null >/dev/null 2>&1
+command! -buffer Cpdf C | ! rm %:p:r.pdf
 
 command! -buffer -bar OR wa <bar> Latex main
 command! -buffer -bar ORw wa <bar> Latexwarnings main
@@ -35,6 +37,8 @@ command! -buffer -complete=file -nargs=1 -bar LatexXe ! xelatex
 command! -buffer Xe update <bar> LatexXe % <bar> LatexXe % <bar> texclean %
 
 " === General mappings ===
+nnoremap <buffer> <c-j> f r~
+inoremap <buffer> <c-j> ~
 vnoremap <buffer> <c-t> :'<,'>! column -t -s \& -o \& <cr>
 vnoremap <buffer> a$ F$of$
 vnoremap <buffer> i$ F$lof$h

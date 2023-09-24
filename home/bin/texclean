@@ -1,9 +1,15 @@
 #!/bin/sh
 
+PDF=
+if [ "$1" = "--all" ]; then
+	PDF=pdf
+	shift
+fi
+
 for file in "$@"; do
 	file="${file%.tex}"
 	file="${file%.}"
-	for i in aux bbl blg out toc log synctex.gz nav snm lof \
+	for i in $PDF aux bbl blg out toc log synctex.gz nav snm lof \
 	         lot bit idx glo bcf ilg ind fdb_latexmk fls tdo; do
 		 if [ -f "$file.$i" ]; then rm -f "$file.$i"; fi
 	done

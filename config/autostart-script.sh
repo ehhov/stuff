@@ -1,3 +1,5 @@
+#!/bin/sh
+
 #FILE=~/other/fun/debug/log
 #
 #echo "$0 $@ executed at $(date)" >> $FILE
