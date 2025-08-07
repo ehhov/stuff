@@ -18,24 +18,8 @@ bind 'set colored-stats on'
 bind '\C-w:backward-kill-word'
 bind 'set bind-tty-special-chars Off'
 
+PS1_start=""
+PS1_np_beg="\\001"
+PS1_np_end="\\002"
+
 [ -r ~/.shellsrc ] && . ~/.shellsrc
-
-PS1func() {
-	local title time user path branch
-	time="36| $(PStime)"
-	user="35| $USER"
-	path="32| $(sed -E 's/([^\./]{1})[^/]*\//\1\//g' <<< ${PWD/#$HOME/\~})"
-	branch="37| (bash)"
-	# hyphen -, en dash –, em dash —
-	title="${PWD/#$HOME/\~} : ${0##*/} — ${TERM%-*color}"
-
-	echo -en "\\001\\033]0;"; echo -n "$title"; echo -en "\\007\\002"
-	for item in "$time" "$user" "$path" "$branch"; do
-		echo -en "\\001\\033[${item%%\|*}m\\002"
-		echo -n "${item#*\|}"
-	done
-	printf "\\001\\033[00m\\002 "
-}
-
-PROMPT_COMMAND=""
-PS1="\$(PS1func)"

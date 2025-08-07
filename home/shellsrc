@@ -44,12 +44,12 @@ open() {
 
 copy() {
 	if [ "$1" ]; then
-		xclip -selection clipboard -t $(xdg-mime query filetype "$1") -i "$1"
+		wl-copy -type $(xdg-mime query filetype "$1") "$1"
+		# xclip -selection clipboard -t $(xdg-mime query filetype "$1") -i "$1"
 	else
-		xclip -selection clipboard -i
+		wl-copy
+		# xclip -selection clipboard -i
 	fi
-	# If Wayland
-	#wl-copy -type $(xdg-mime query filetype "$1") "$1"
 }
 
 defnamen() {
@@ -70,4 +70,58 @@ defnamen() {
 #################################
 ## Prompt string configuration ##
 
-# now moved to shell-specific files
+PS1func() {
+	local title time user path branch njobs n m s item
+	time="36| $(date +%T)"
+	user="35| $USER"
+	path="32| $(sed -E 's/([^\./]{1})[^/]*\//\1\//g' <<< ${PWD/#$HOME/\~})"
+	branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)"
+	if [ "$branch" ]; then
+		s="$branch"
+		branch=" $branch"
+		m=$(git rev-parse --show-toplevel)
+		n=$(git ls-files -o --exclude-standard "$m" | wc -l)
+		if [ $n -gt 0 ]; then
+			branch=",${n}u$branch"
+		fi
+		n=$(git ls-files -d "$m" | wc -l)
+		if [ $n -gt 0 ]; then
+			branch=",${n}d$branch"
+		fi
+		n=$(git ls-files -m "$m" | wc -l)
+		if [ $n -gt 0 ]; then
+			branch=",${n}m$branch"
+		fi
+		n=$(git diff --staged --name-only | wc -l)
+		if [ $n -gt 0 ]; then
+			branch=",${n}s$branch"
+		fi
+		n="$(git rev-list --left-right --count "$s"...origin/"$s" 2>/dev/null)"
+		m="${n#*	}"; n="${n%	*}"
+		s="$(git stash list 2>/dev/null | wc -l)"
+		m="${m:-0}"; n="${n:-0}"; s=":${s:-0}"; s="${s#:0}"
+		if [ $n -ne 0 ] || [ $m -ne 0 ] || [ "$s" ]; then
+			branch=",$n$s/$m$branch"
+		fi
+		branch="${branch#,}"
+		branch=" (${branch# })"
+	fi
+	branch="37|$branch"
+	njobs=" [$(jobs -p | wc -l)]"
+	njobs="37|${njobs# \[0\]}"
+	# hyphen -, en dash –, em dash —
+	title="${PWD/#$HOME/\~} : ${0##*/} — ${TERM%-*color}"
+
+	echo -en "${PS1_start}"
+	echo -en "${PS1_np_beg}\\033]0;"
+	echo -n "$title"
+	echo -en "\\007${PS1_np_end}"
+	for item in "$time" "$user" "$path" "$branch" "$njobs"; do
+		echo -en "${PS1_np_beg}\\033[${item%%\|*}m${PS1_np_end}"
+		echo -n "${item#*\|}"
+	done
+	printf "${PS1_np_beg}\\033[00m${PS1_np_end} "
+}
+
+PROMPT_COMMAND=""
+PS1="\$(PS1func)"

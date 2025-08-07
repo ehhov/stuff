@@ -2,12 +2,16 @@
 [user]
 	name = Kerim Guseynov
 	email = kerim.d.guseynov@gmail.com
+
 [alias]
 	s = status
 	d = diff
 	dn = diff --name-only
 	l = log --oneline --graph --all
+	log-oneline = log --pretty=format:"%h%x09%an%x09%ad%x09%s"
+
 [branch]
 	autosetuprebase = always
+
 [color]
 	ui = auto

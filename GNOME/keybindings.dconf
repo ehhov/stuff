@@ -32,14 +32,14 @@ toggle-fullscreen=['<Super><Shift>F']
 toggle-maximized=['<Alt>F10', '<Super>F']
 toggle-on-all-workspaces=['<Super><Shift>0']
 
-[org/gnome/settings-daemon/plugins/media-keys]
-custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']
-screensaver=['<Super>l', '<Control><Alt>l']
+# [org/gnome/settings-daemon/plugins/media-keys]
+# custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']
+# screensaver=['<Super>l', '<Control><Alt>l']
 
-[org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0]
-binding='<Super>Return'
-command='gnome-terminal'
-name='Terminal'
+# [org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0]
+# binding='<Super>Return'
+# command='gnome-terminal'
+# name='Terminal'
 
 [org/gnome/shell/keybindings]
 switch-to-application-1=@as []

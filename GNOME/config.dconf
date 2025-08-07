@@ -4,42 +4,42 @@
 show-weekdate=true
 
 [org/gnome/desktop/input-sources]
-sources=[('xkb', 'us'), ('xkb', 'ru')]
+sources=[('xkb', 'fr+us'), ('xkb', 'ru')]
 xkb-options=['compose:sclk']
 per-window=false
 
 [org/gnome/desktop/interface]
-clock-format='12h'
+clock-format='24h'
 clock-show-weekday=true
 #cursor-size=24
 #cursor-theme='breeze'
 #cursor-theme=''
-document-font-name='Sans 11'
+# document-font-name='Sans 11'
 enable-hot-corners=false
-#font-antialiasing='grayscale'
-#font-hinting='slight'
-font-antialiasing='rgba'
-font-hinting='full'
-font-name='Sans 11'
+# font-antialiasing='grayscale'
+# font-hinting='slight'
+# font-antialiasing='rgba'
+# font-hinting='full'
+# font-name='Sans 11'
 gtk-enable-primary-paste=false
-monospace-font-name='Monospace 12'
-text-scaling-factor=1.15
+# monospace-font-name='Monospace 12'
+# text-scaling-factor=1.15
 
 [org/gnome/desktop/peripherals/touchpad]
 disable-while-typing=false
-speed=-0.15
+speed=-0.4
 tap-to-click=true
 two-finger-scrolling-enabled=true
 
 [org/gnome/desktop/wm/preferences]
 audible-bell=false
-num-workspaces=9
+# num-workspaces=9
 resize-with-right-button=true
-titlebar-font='Sans Bold 11'
+# titlebar-font='Sans Bold 11'
 
 [org/gnome/mutter]
-dynamic-workspaces=false
-workspaces-only-on-primary=false
+# dynamic-workspaces=false
+workspaces-only-on-primary=true
 
 [org/gnome/settings-daemon/plugins/power]
 power-button-action='suspend'
@@ -48,16 +48,16 @@ sleep-inactive-ac-type='nothing'
 sleep-inactive-battery-timeout=7200
 
 [org/gnome/shell]
-#app-picker-layout=@aa{sv} []
+# app-picker-layout=@aa{sv} []
 
 [org/gnome/shell/app-switcher]
 current-workspace-only=true
 
-[org/gnome/desktop/background]
-primary-color='#424242'
-picture-uri=''
-picture-uri-dark=''
-
-[org/gnome/desktop/screensaver]
-primary-color='#323232'
-picture-uri=''
+# [org/gnome/desktop/background]
+# primary-color='#424242'
+# picture-uri=''
+# picture-uri-dark=''
+#
+# [org/gnome/desktop/screensaver]
+# primary-color='#323232'
+# picture-uri=''

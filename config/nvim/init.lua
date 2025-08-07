@@ -224,4 +224,5 @@ vim.g.forest_uselscolors = true
 
 
 -- Color scheme
+vim.o.termguicolors = false
 vim.cmd.colorscheme('tuning')

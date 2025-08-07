@@ -1,6 +1,6 @@
 #!/bin/sh
 
-text=" gYw "
+text="${*:- gYw }"
 corner='\'
 bgs="49 40 41 42 43 44 45 46 47 100 101 102 103 104 105 106 107"
 lens="17 9 6" # table is split a bit nicer

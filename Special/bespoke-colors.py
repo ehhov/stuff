@@ -1,3 +1,5 @@
+import numpy as np
+from copy import deepcopy
 import os
 import subprocess
 import colorsys
@@ -169,20 +171,27 @@ class Colors:# {{{
         return self
     # }}}
 
-    def equalize(self, skipcolors=(0, 7, 8, 15)):# {{{
+    def equalize(self, skipcolors=(0, 7, 8), lightness=None,
+                 lightness_dict={}):
         self.__intorgb()
-        lightness = rgb2lab([c/255 for c in self.colors[15]])[0]
+        if lightness is None:
+            lightness = rgb2lab([c/255 for c in self.colors[15]])[0]
         for k, val in self.colors.items():
             if k in skipcolors:
                 continue
             L, a, b = rgb2lab([c/255 for c in val])
-            rgb = lab2rgb((lightness, a, b))
+            l = lightness_dict.get(k, lightness)
+            rgb = lab2rgb((l, a, b))
             self.colors[k] = [c*255 for c in rgb]
         self.__defhex()
         return self
-    # }}}
+
+    def equalized(self, skipcolors=(0, 7, 8), lightness=None,
+                  lightness_dict={}):
+        return deepcopy(self).equalize(skipcolors, lightness, lightness_dict)
 
     def genalacrittyconfig(self):# {{{
+        return self
         self.__defhex()
 
         filename = os.getenv('HOME')+'/.config/alacritty/'+self.name+'.yml'
@@ -220,6 +229,8 @@ class Colors:# {{{
     # }}}
 
     def genkonsoleconfig(self):# {{{
+        return self
+
         self.__intorgb()
 
         datadir = os.getenv('XDG_DATA_HOME')
@@ -275,6 +286,18 @@ class Colors:# {{{
     # }}}
 # }}}
 
+
+hex2rgb = lambda x: np.array([int(x[i:i+2], 16) / 255 for i in (0, 2, 4)])
+
+
+def hex_to_hsv(dic):
+    dic = {key: rgb2hsv(hex2rgb(val)) for key, val in dic.items()}
+    dic = {key: (val[0] * 360, val[1] * 100, val[2] * 100)
+           for key, val in dic.items()}
+    dic = {key: tuple(map(int, val)) for key, val in dic.items()}
+    return dic
+
+
 grayscale = Colors('grayscale').fromhsl({
         0: [  0, 0,  6],   8: [  0, 0, 11],
         1: [  0, 0, 45],   9: [  0, 0, 47],
@@ -287,17 +310,17 @@ grayscale = Colors('grayscale').fromhsl({
 }).genconfigs()
 
 gentledark = Colors('gentledark').fromhsvshifts(
-        [360, 130,  30, 260, 330, 190],
-        [ 10,  25,  15,  40,  20,  10],
+        [360, 135,  30, 260, 330, 190],
+        [ 10,  30,  15,  40,  20,  10],
         [-10,  10,  -5,  12,   0,   0],
         [  9,   0,   0,   0,   0,   0],
-        black=[240, 20, 12],
-        white=[  0,  0, 51],
-        seven=[240, 21, 35],
-        eight=[290, 29, 15],
-        saturation=45,
-        value=55
-).equalize().genconfigs()
+        black=[280, 30, 16], seven=[260, 20, 40],
+        eight=[280, 50, 20], white=[  0,  0, 65],
+        saturation=50, value=65,
+)
+gentledark.equalize(lightness=65, skipcolors=(),
+                    lightness_dict={0: 10, 8: 13, 7: 35})
+gentledark.genconfigs()
 
 dracula = Colors('dracula').fromhex({
         0: '282A36',    8: '4D4D4D',
@@ -320,6 +343,24 @@ green = Colors('green').fromsibling(gentledark).shiftallto(
 
 # GREEN 44 ff 00
 
-gentledark.gengnometerminalconfig(
+one_dark = Colors('one_dark').fromhsv({
+      0:  (219,   24,   19),    8:  (219,   28,   22),
+      1:  (356,   45,   81),    9:  (357,   43,   40),
+      2:  ( 90,   33,   75),   10:  ( 95,   33,   37),
+      3:  ( 40,   40,   87),   11:  ( 39,   46,   89),
+      4:  (210,   49,   90),   12:  (214,   53,   47),
+      5:  (  4,   62,   74),   13:  (  4,   60,   37),
+      6:  (188,   42,   74),   14:  (190,   35,   36),
+      7:  (230,   13,   37),   15:  (213,    3,   69),
+})
+one_dark_eq = one_dark.equalized(
+    lightness=69, lightness_dict={0: 17, 8: 21, 7: 40}, skipcolors=(),
+)
+
+gnome_terminal_theme = one_dark
+gnome_terminal_theme = one_dark_eq
+gnome_terminal_theme = gentledark
+
+gnome_terminal_theme.gengnometerminalconfig(
         uuid='b1dcc9dd-5262-4d8d-a863-c897e6d979b9'
 )
