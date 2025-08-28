@@ -53,10 +53,9 @@ export MANPATH=":${MANPATH}:${HOME}/.local/share/man"
 
 if [ "$XDG_CURRENT_DESKTOP" = GNOME ]; then
 	export QT_QPA_PLATFORMTHEME=qt6ct
-	#export QT_QPA_PLATFORM=xcb
-	export QT_QPA_PLATFORM=$XDG_SESSION_TYPE
-	export QT_FONT_DPI=128
-	export QT_WAYLAND_FORCE_DPI=128
+	export QT_QPA_PLATFORM=wayland
+	# export QT_FONT_DPI=128
+	# export QT_WAYLAND_FORCE_DPI=128
 fi
 
 # if [ "$XDG_CURRENT_DESKTOP" = KDE ]; then
