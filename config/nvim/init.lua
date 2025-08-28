@@ -12,6 +12,7 @@ end
 
 
 -- Options
+-- vim.o.shell = '/bin/mksh'
 vim.o.mouse = 'a'
 vim.o.number = true
 vim.o.cursorline = true
@@ -205,7 +206,7 @@ vim.api.nvim_create_autocmd({'BufNewFile', 'BufRead'}, {
 
 
 -- Spelling
-vim.opt.spelllang = {'en_us', 'ru'}
+vim.opt.spelllang = {'en_us', 'ru', 'fr'}
 -- vim.o.spellfile = vim.fn.stdpath('config') .. '/spell/filemanager.utf-8.add'
 vim.o.spellfile = vim.fn.stdpath('config') .. '/spell/custom.utf-8.add'
 vim.o.encoding = 'utf-8'
@@ -221,6 +222,9 @@ vim.g.forest_sortrules = {
 }
 vim.g.forest_alwaysexternal = '\\.pdf$'
 vim.g.forest_uselscolors = true
+-- vim.g.forest_winsize = 12
+
+require("config.lazy")
 
 
 -- Color scheme

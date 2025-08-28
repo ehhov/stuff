@@ -10,6 +10,7 @@ let g:colors_name='tuning'
 
 " Default 16-colors color scheme from vim {{{
 hi  SpecialKey        cterm=none            ctermfg=4     ctermbg=none
+hi  Delimiter         cterm=none            ctermfg=5     ctermbg=none
 hi  NonText           cterm=none            ctermfg=12    ctermbg=none
 hi  Directory         cterm=none            ctermfg=4     ctermbg=none
 hi  ErrorMsg          cterm=none            ctermfg=15    ctermbg=1
@@ -60,9 +61,11 @@ hi  ToolbarLine       cterm=none            ctermfg=none  ctermbg=7
 hi  ToolbarButton     cterm=bold            ctermfg=15    ctermbg=8
 hi  Comment           cterm=none            ctermfg=4     ctermbg=none
 hi  Constant          cterm=none            ctermfg=1     ctermbg=none
+hi  String            cterm=none            ctermfg=1     ctermbg=none
 hi  Special           cterm=none            ctermfg=5     ctermbg=none
 hi  Identifier        cterm=none            ctermfg=6     ctermbg=none
 hi  Statement         cterm=none            ctermfg=3     ctermbg=none
+hi  Operator          cterm=none            ctermfg=3     ctermbg=none
 hi  PreProc           cterm=none            ctermfg=5     ctermbg=none
 hi  Type              cterm=none            ctermfg=2     ctermbg=none
 hi  Underlined        cterm=underline       ctermfg=5     ctermbg=none
@@ -104,7 +107,7 @@ hi  StatusLineNC      cterm=none          ctermfg=7     ctermbg=none
 hi  TabLine           cterm=reverse       ctermfg=7     ctermbg=none
 hi  TabLineSel        cterm=reverse       ctermfg=3     ctermbg=none
 hi  TabLineFill       cterm=none          ctermfg=none  ctermbg=none
-hi  VertSplit         cterm=none          ctermfg=7     ctermbg=none
+hi  WinSeparator      cterm=none          ctermfg=7     ctermbg=none
 
 " === Adapt for use in gui colorscheme scripts ===
 " ! sed -e "s/^\(hi.*cterm.*\)$/exe '\1   '/" -e "/colors_name/d" -e "s/cterm/gui/g" -e "s/=\([0123456789]\|1[012345]\)   \( *\)/=' . s:c\1 .\2' /g" -e "s/\(fg\|bg\)=none\( *\)/\1=' . s:\1 .\2' /g" -e "s/ \. *' \{1,\}'$//" > gui_from_terminal.vim < %

@@ -60,6 +60,7 @@ command! -buffer RenameEnvironment call s:renameenv()
 nnoremap <buffer> glF <cmd>Figure<cr>
 nnoremap <buffer> glT <cmd>Table<cr>
 nnoremap <buffer> glf <cmd>Frame<cr>
+nnoremap <buffer> glp <cmd>Environment page<cr>
 nnoremap <buffer> glI <cmd>Initials<cr>
 nnoremap <buffer> glt <cmd>Environment tabular {cc}<cr>
 nnoremap <buffer> glE <cmd>Environment equation*<cr>
